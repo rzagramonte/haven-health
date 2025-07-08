@@ -223,7 +223,7 @@ This project demonstrates:
     <td>Peter Tasca</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/tascapeter514">@tascapeter514</a></td>
-    <td><a href="https://www.linkedin.com/in/peter-tasca/">LinkedIn Profile</a></td>
+    <td><a href='https://www.linkedin.com/in/peter-tasca/'>LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/rzagramonte.png" width="50" height="50" alt="Roosiel's profile image" style="border-radius: 50%"/></td>
