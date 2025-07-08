@@ -2,7 +2,7 @@
 
 export const LABELS = Object.freeze({
   home: {
-    title: "Home",
-    description: "Welcome to the home page",
+    title: 'Home',
+    description: 'Welcome to the home page',
   },
-});
+})
