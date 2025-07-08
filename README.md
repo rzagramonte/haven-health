@@ -230,7 +230,7 @@ This project demonstrates:
     <td>Roosiel Agramonte</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/rzagramonte">@rzagramonte</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://linkedin.com/in/roosiel">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/walterfurrer.png" width="50" height="50" alt="Walter's profile image" style="border-radius: 50%"/></td>
