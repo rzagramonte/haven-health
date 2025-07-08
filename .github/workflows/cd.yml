@@ -1,0 +1,128 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for migrations
+        id: check-migrations
+        run: |
+          if [ -d "supabase/migrations" ] && [ "$(ls -A supabase/migrations)" ]; then
+            echo "has-migrations=true" >> $GITHUB_OUTPUT
+            echo "📋 Found migration files - will check if any are new"
+          else
+            echo "has-migrations=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No migrations found - skipping Supabase steps"
+          fi
+
+      - name: Cache Supabase CLI
+        if: steps.check-migrations.outputs.has-migrations == 'true'
+        id: cache-supabase
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/bin/supabase
+          key: supabase-cli-${{ runner.os }}-v2.31.1
+          restore-keys: |
+            supabase-cli-${{ runner.os }}-
+
+      - name: Install Supabase CLI
+        if: steps.check-migrations.outputs.has-migrations == 'true' && steps.cache-supabase.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/.local/bin
+          curl -sSL https://github.com/supabase/cli/releases/download/v2.31.1/supabase_linux_amd64.tar.gz | tar -xz -C ~/.local/bin
+          chmod +x ~/.local/bin/supabase
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Verify Supabase CLI
+        if: steps.check-migrations.outputs.has-migrations == 'true'
+        run: |
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          supabase --version
+
+      - name: Check for pending migrations
+        if: steps.check-migrations.outputs.has-migrations == 'true'
+        id: check-pending
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+        run: |
+          # Ensure Supabase CLI is in PATH
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          
+          # Link to production project with retry logic
+          echo "🔗 Linking to Supabase project..."
+          for i in {1..3}; do
+            if supabase link --project-ref $SUPABASE_PROJECT_ID; then
+              echo "✅ Successfully linked to project"
+              break
+            else
+              echo "❌ Link attempt $i failed, retrying..."
+              sleep 5
+            fi
+          done
+          
+          # Check if there are pending migrations
+          echo "🔍 Checking for pending migrations..."
+          if supabase migration list --project-ref $SUPABASE_PROJECT_ID | grep -q "Not applied"; then
+            echo "pending-migrations=true" >> $GITHUB_OUTPUT
+            echo "📋 Found pending migrations - will apply them"
+          else
+            echo "pending-migrations=false" >> $GITHUB_OUTPUT
+            echo "✅ All migrations are already applied - skipping"
+          fi
+
+      - name: Apply pending migrations
+        if: steps.check-pending.outputs.pending-migrations == 'true'
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+        run: |
+          # Ensure Supabase CLI is in PATH
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          
+          # Show migration files that will be applied
+          echo "📋 Migration files in repository:"
+          ls -la supabase/migrations/
+          
+          # Apply only pending migrations
+          echo "🚀 Applying pending database migrations..."
+          if supabase db push --password $SUPABASE_DB_PASSWORD --linked; then
+            echo "✅ Migrations applied successfully"
+          else
+            echo "❌ Migration failed - checking status..."
+            supabase migration list --project-ref $SUPABASE_PROJECT_ID || true
+            exit 1
+          fi
+
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release

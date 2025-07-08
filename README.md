@@ -257,3 +257,60 @@ This project demonstrates:
     <td><a href="https://www.linkedin.com/in/nharris31/">LinkedIn Profile</a></td>
   </tr>
 </table>
+
+# CI/CD Pipeline
+
+- Blue: Developer actions
+- Purple: CI Pipeline (testing & validation)
+- Green: CD Pipeline (migrations & releases)
+- Orange: Vercel Auto-Deploy
+- Red: Critical migration step
+- Light Blue: Release process
+
+```mermaid
+graph TD
+      A[Push to main branch] --> B[GitHub Actions Triggered]
+
+      B --> C[CI Pipeline]
+      B --> D[CD Pipeline]
+
+      C --> C1[Lint & Test Job]
+      C1 --> C2[Setup Node.js 22]
+      C2 --> C3[Install Dependencies]
+      C3 --> C4[Run ESLint]
+      C4 --> C5[TypeScript Check]
+      C5 --> C6[Run Vitest Tests]
+      C6 --> C7[Build Check]
+
+      C --> C8[Test Migrations Job<br/>PR only]
+      C8 --> C9[Start PostgreSQL Container]
+      C9 --> C10[Apply Migrations to Test DB]
+      C10 --> C11[Validate Migration Success]
+
+      D --> D1[Setup Node.js & Dependencies]
+      D1 --> D2{Migration Files<br/>Exist?}
+
+      D2 -->|No| D8[Semantic Release]
+      D2 -->|Yes| D3[Install Supabase CLI<br/>cached]
+      D3 --> D4[Check Migration Status]
+      D4 --> D5{New Migrations<br/>Pending?}
+
+      D5 -->|No| D8
+      D5 -->|Yes| D6[Apply Migrations to Production]
+      D6 --> D8
+
+      D8 --> D9[Analyze Commits]
+      D9 --> D10[Bump Version]
+      D10 --> D11[Update CHANGELOG.md]
+      D11 --> D12[Create Git Tag]
+      D12 --> D13[Create GitHub Release]
+
+      D13 --> E[Vercel Auto-Deploy<br/>Handles build & deployment]
+
+      style A fill:#e1f5fe
+      style C fill:#f3e5f5
+      style D fill:#e8f5e8
+      style D6 fill:#ffebee
+      style D8 fill:#e3f2fd
+      style E fill:#fff3e0
+```
