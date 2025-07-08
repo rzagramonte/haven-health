@@ -243,11 +243,16 @@ This project demonstrates:
     <td colspan="5"><hr/></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/janesmith.png" width="50" height="50" alt="Walter's profile image" style="border-radius: 50%"/></td>
+    <td><img src="https://github.com/destocot.png" width="50" height="50" alt="Khurram's profile image" style="border-radius: 50%"/></td>
     <td>Khurram</td>
     <td>Cohort Lead</td>
-    <td><a href=""></a></td>
-    <td><a href="">LinkedIn Profile</a></td>
+    <td><a href="https://github.com/destocot">@destocot</a></td>
+    <td>
+    <div style="flex-direction: column; align-items: center; display: flex; justify-content: center; height: 50px;">
+    <a href="https://www.linkedin.com/in/khurram-ali1">LinkedIn Profile</a>
+    <a href="https://www.youtube.com/@GiraffeReactor">YouTube Channel</a>
+    </td>
+    </div>
   </tr>
   <tr>
     <td><img src="https://github.com/ncharris93.png" width="50" height="50" alt="Noah's profile image" style="border-radius: 50%"/></td>
