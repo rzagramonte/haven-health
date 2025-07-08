@@ -1,1 +1,5 @@
-exec < /dev/tty && node_modules/.bin/cz --hook || true
+# Only run commitizen if:
+# [ -t 0 ] - stdin is a terminal (TTY available)
+# [ -z "$CI" ] - NOT in CI environment
+# This prevents errors in GitHub Actions and other CI systems
+[ -t 0 ] && [ -z "$CI" ] && exec < /dev/tty && node_modules/.bin/cz --hook || true
