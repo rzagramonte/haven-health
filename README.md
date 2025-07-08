@@ -262,8 +262,8 @@ This project demonstrates:
 
 - Blue: Developer actions
 - Purple: CI Pipeline (testing & validation)
-- Green: CD Pipeline (migrations & releases)
-- Orange: Vercel Auto-Deploy
+- Green: CD Pipeline (migrations, releases & deployment)
+- Orange: Vercel deployment steps
 - Red: Critical migration step
 - Light Blue: Release process
 
@@ -305,12 +305,22 @@ graph TD
       D11 --> D12[Create Git Tag]
       D12 --> D13[Create GitHub Release]
 
-      D13 --> E[Vercel Auto-Deploy<br/>Handles build & deployment]
+      D13 --> E1[Build Application<br/>with env vars]
+      E1 --> E2[Install Vercel CLI]
+      E2 --> E3[Pull Vercel Config]
+      E3 --> E4[Build for Production]
+      E4 --> E5[Deploy to Vercel]
+      E5 --> E6[Live Site Updated]
 
       style A fill:#e1f5fe
       style C fill:#f3e5f5
       style D fill:#e8f5e8
       style D6 fill:#ffebee
       style D8 fill:#e3f2fd
-      style E fill:#fff3e0
+      style E1 fill:#fff3e0
+      style E2 fill:#fff3e0
+      style E3 fill:#fff3e0
+      style E4 fill:#fff3e0
+      style E5 fill:#fff3e0
+      style E6 fill:#fff3e0
 ```
