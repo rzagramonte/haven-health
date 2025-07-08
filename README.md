@@ -1,105 +1,259 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+# 🏥 Community Health Clinic
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+A full-stack demo application for a fictional community health clinic, built with [Next.js](https://nextjs.org), [Supabase](https://supabase.com), [Tailwind CSS](https://tailwindcss.com), and [shadcn/ui](https://ui.shadcn.com). This project showcases developer skills across frontend, backend, and infrastructure, and is designed as a polished portfolio piece for hiring teams.
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+---
 
-## Features
+## 🚀 Features
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Middleware
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Password-based authentication block installed via the [Supabase UI Library](https://supabase.com/ui/docs/nextjs/password-based-auth)
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Components with [shadcn/ui](https://ui.shadcn.com/)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+- **Patient Intake & Form Capture**  
+  Collect demographic, medical history, and contact information.
 
-## Demo
+- **Appointment Scheduling & Reminders**  
+  Book visits, send reminders, and support follow-up logic.
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+- **Insurance Eligibility Check**  
+  Flag basic eligibility (yes/no) based on minimal criteria.
 
-## Deploy to Vercel
+- **Provider Dashboard**  
+  Track wait times, no-show rates, and appointment flow.
 
-Vercel deployment will guide you through creating a Supabase account and project.
+### ⚡ Stretch Goals (Planned)
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+- Claims tracking integration
+- Point-of-care inventory
+- Clinical decision alerts
+- Mobile outreach module for on-site services (sync-capable)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png)
+---
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+## 🛠️ Tech Stack
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+<table>
+  <tr>
+    <td align="center" width="96">
+      <a href="https://nextjs.org">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="48" height="48" alt="Next.js" />
+      </a>
+      <br>Next.js
+    </td>
+    <td align="center" width="96">
+      <a href="https://www.typescriptlang.org">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="48" height="48" alt="TypeScript" />
+      </a>
+      <br>TypeScript
+    </td>
+    <td align="center" width="96">
+      <a href="https://tailwindcss.com">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/tailwindcss/tailwindcss-original.svg" width="48" height="48" alt="TailwindCSS" />
+      </a>
+      <br>Tailwind
+    </td>
+    <td align="center" width="96">
+      <a href="https://ui.shadcn.com">
+        <img src="https://avatars.githubusercontent.com/u/139895814?s=200&v=4" width="48" height="48" alt="shadcn/ui" />
+      </a>
+      <br>shadcn/ui
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="96"> 
+      <a href="https://supabase.com">
+        <img src="https://avatars.githubusercontent.com/u/54469796?s=200&v=4" width="48" height="48" alt="Supabase" />
+      </a>
+      <br>Supabase
+    </td>
+    <td align="center" width="96">
+      <a href="https://www.postgresql.org">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="48" height="48" alt="PostgreSQL" />
+      </a>
+      <br>PostgreSQL
+    </td>
+    <td align="center" width="96">
+      <a href="https://www.docker.com">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="48" height="48" alt="Docker" />
+      </a>
+      <br>Docker
+    </td>
+    <td align="center" width="96">
+      <a href="https://vercel.com">
+        <img src="https://cdn.worldvectorlogo.com/logos/vercel.svg" width="48" height="48" alt="Vercel" />
+      </a>
+      <br>Vercel
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="96">
+      <a href="https://eslint.org">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" width="48" height="48" alt="ESLint" />
+      </a>
+      <br>ESLint
+    </td>
+    <td align="center" width="96">
+      <a href="https://prettier.io">
+        <img src="https://prettier.io/icon.png" width="48" height="48" alt="Prettier" />
+      </a>
+      <br>Prettier
+    </td>
+    <td align="center" width="96">
+      <a href="https://vitest.dev">
+        <img src="https://vitest.dev/logo.svg" width="48" height="48" alt="Vitest" />
+      </a>
+      <br>Vitest
+    </td>
+    <td align="center" width="96">
+      <a href="https://github.com/features/actions">
+        <img src="https://avatars.githubusercontent.com/u/44036562?s=200&v=4" width="48" height="48" alt="GitHub Actions" />
+      </a>
+      <br>GitHub Actions
+    </td>
+  </tr>
+</table>
 
-## Clone and run locally
+---
 
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
+## 🖥️ Local Development
 
-2. Create a Next.js app using the Supabase Starter template npx command
+### Prerequisites
 
-   ```bash
-   npx create-next-app --example with-supabase with-supabase-app
-   ```
+- Node.js >= 20
+- Docker Desktop
 
-   ```bash
-   yarn create next-app --example with-supabase with-supabase-app
-   ```
+### Getting Started
 
-   ```bash
-   pnpm create next-app --example with-supabase with-supabase-app
-   ```
+```bash
+# 1. Clone the repo
+git clone https://github.com/your-org/community-health-clinic.git
+cd community-health-clinic
 
-3. Use `cd` to change into the app's directory
+# 2. Start Supabase (ensure docker desktop is running first!)
+npm run sb:start
 
-   ```bash
-   cd with-supabase-app
-   ```
+# 3. Run the app
+npm install
+npm run dev
+```
 
-4. Rename `.env.example` to `.env.local` and update the following:
+### Environment Variables
 
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=[INSERT SUPABASE PROJECT API ANON KEY]
-   ```
+Copy `.env.example` to `.env.local` and update values as needed.  
+Note: Supabase secrets will be available via local Docker if using `supabase start`.
 
-   Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` can be found in [your Supabase project's API settings](https://supabase.com/dashboard/project/_?showConnect=true)
+---
 
-5. You can now run the Next.js local development server:
+## 🌐 Live Demo
 
-   ```bash
-   npm run dev
-   ```
+👉 [Live Site on Vercel](https://dsd-east-coast-goats.vercel.app/)
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+---
 
-6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
+## 👥 Contributing
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+We welcome clean, well-documented contributions.
 
-## Feedback and issues
+### Steps
 
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
+1. clone this repo
+2. Create a branch: `git checkout -b feature/your-feature-name`
+3. Make your changes and commit
+4. Push: `git push -u origin head`
+5. Open a pull request
 
-## More Supabase examples
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for code style and review guidelines.
 
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+---
+
+## 📸 Screenshots
+
+> Add Loom demo or UI screenshots here.
+
+---
+
+## 📌 Project Status
+
+✅ MVP complete  
+🛠️ Stretch goals in progress  
+📨 [Meet the devs](./TEAM.md)
+
+---
+
+## 🎯 Why This Project?
+
+This project demonstrates:
+
+- Full-stack system design
+- Component-based frontend architecture
+- Scalable developer tooling and deployment
+
+# Our Team
+
+## Core Contributors
+
+<table>
+  <tr>
+    <th>Avatar</th>
+    <th>Name</th>
+    <th>Role</th>
+    <th>GitHub</th>
+    <th>LinkedIn</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/dgorik.png" width="50" height="50" alt="Daniel's profile image" style="border-radius: 50%"/></td>
+    <td>Daniel Gorbachev</td>
+    <td>Full Stack Developer</td>
+    <td><a href="https://github.com/dgorik">@dgorik</a></td>
+    <td><a href="https://linkedin.com/in/johndoe">LinkedIn Profile</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Dillon-Goetz.png" width="50" height="50" alt="Dillon's profile image" style="border-radius: 50%"/></td>
+    <td>Dillon Gotez</td>
+    <td>Full Stack Developer</td>
+    <td><a href="https://github.com/Dillon-Goetz">@Dillon-Goetz</a></td>
+    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/elvisEspinozaN.png" width="50" height="50" alt="Elvis's profile image" style="border-radius: 50%"/></td>
+    <td>Elvis Espinoza</td>
+    <td>Full Stack Developer</td>
+    <td><a href="https://github.com/elvisEspinozaN">@elvisEspinozaN</a></td>
+    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/tascapeter514.png" width="50" height="50" alt="Peter's profile image" style="border-radius: 50%"/></td>
+    <td>Peter Tasca</td>
+    <td>Full Stack Developer</td>
+    <td><a href="https://github.com/tascapeter514">@tascapeter514</a></td>
+    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/rzagramonte.png" width="50" height="50" alt="Roosiel's profile image" style="border-radius: 50%"/></td>
+    <td>Roosiel Agramonte</td>
+    <td>Full Stack Developer</td>
+    <td><a href="https://github.com/rzagramonte">@rzagramonte</a></td>
+    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/walterfurrer.png" width="50" height="50" alt="Walter's profile image" style="border-radius: 50%"/></td>
+    <td>Walter Furrer</td>
+    <td>Full Stack Developer</td>
+    <td><a href="https://github.com/watlerfurrer">@watlerfurrer</a></td>
+    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+  </tr>
+  <tr>
+    <td colspan="5"><hr/></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/janesmith.png" width="50" height="50" alt="Walter's profile image" style="border-radius: 50%"/></td>
+    <td>Khurram</td>
+    <td>Cohort Lead</td>
+    <td><a href=""></a></td>
+    <td><a href="">LinkedIn Profile</a></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/ncharris93.png" width="50" height="50" alt="Noah's profile image" style="border-radius: 50%"/></td>
+    <td>Noah Harris</td>
+    <td>Cohort Lead</td>
+    <td><a href="https://github.com/ncharris93">@ncharris93</a></td>
+    <td><a href="https://www.linkedin.com/in/nharris31/">LinkedIn Profile</a></td>
+  </tr>
+</table>
