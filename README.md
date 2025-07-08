@@ -202,7 +202,7 @@ This project demonstrates:
     <td>Daniel Gorbachev</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/dgorik">@dgorik</a></td>
-    <td><a href="https://linkedin.com/in/johndoe">LinkedIn Profile</a></td>
+    <td><a href="https://www.linkedin.com/in/danielgorbachev1/">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/Dillon-Goetz.png" width="50" height="50" alt="Dillon's profile image" style="border-radius: 50%"/></td>
