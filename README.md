@@ -216,7 +216,7 @@ This project demonstrates:
     <td>Elvis Espinoza</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/elvisEspinozaN">@elvisEspinozaN</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://www.linkedin.com/in/elvis-espinoza/">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/tascapeter514.png" width="50" height="50" alt="Peter's profile image" style="border-radius: 50%"/></td>
