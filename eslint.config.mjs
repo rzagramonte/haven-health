@@ -22,6 +22,11 @@ const eslintConfig = [
     },
   },
   {
+    rules: {
+      curly: ['error', 'all'],
+    },
+  },
+  {
     ignores: ['.next', 'tailwind.config.ts'],
   },
 ]
