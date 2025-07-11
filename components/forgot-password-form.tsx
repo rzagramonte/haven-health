@@ -36,7 +36,9 @@ export function ForgotPasswordForm({
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/update-password`,
       })
-      if (error) throw error
+      if (error) {
+        throw error
+      }
       setSuccess(true)
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : 'An error occurred')

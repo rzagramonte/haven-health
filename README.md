@@ -6,16 +6,16 @@ A full-stack demo application for a fictional community health clinic, built wit
 
 ## 🚀 Features
 
-- **Patient Intake & Form Capture**  
+- **Patient Intake & Form Capture**
   Collect demographic, medical history, and contact information.
 
-- **Appointment Scheduling & Reminders**  
+- **Appointment Scheduling & Reminders**
   Book visits, send reminders, and support follow-up logic.
 
-- **Insurance Eligibility Check**  
+- **Insurance Eligibility Check**
   Flag basic eligibility (yes/no) based on minimal criteria.
 
-- **Provider Dashboard**  
+- **Provider Dashboard**
   Track wait times, no-show rates, and appointment flow.
 
 ### ⚡ Stretch Goals (Planned)
@@ -57,7 +57,7 @@ A full-stack demo application for a fictional community health clinic, built wit
     </td>
   </tr>
   <tr>
-    <td align="center" width="96"> 
+    <td align="center" width="96">
       <a href="https://supabase.com">
         <img src="https://avatars.githubusercontent.com/u/54469796?s=200&v=4" width="48" height="48" alt="Supabase" />
       </a>
@@ -136,7 +136,7 @@ npm run dev
 
 ### Environment Variables
 
-Copy `.env.example` to `.env.local` and update values as needed.  
+Copy `.env.example` to `.env.local` and update values as needed.
 Note: Supabase secrets will be available via local Docker if using `supabase start`.
 
 ---
@@ -171,8 +171,8 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for code style and review guidelines.
 
 ## 📌 Project Status
 
-✅ MVP complete  
-🛠️ Stretch goals in progress  
+✅ MVP complete
+🛠️ Stretch goals in progress
 📨 [Meet the devs](./TEAM.md)
 
 ---
@@ -202,7 +202,7 @@ This project demonstrates:
     <td>Daniel Gorbachev</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/dgorik">@dgorik</a></td>
-    <td><a href="https://linkedin.com/in/johndoe">LinkedIn Profile</a></td>
+    <td><a href="https://www.linkedin.com/in/danielgorbachev1/">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/Dillon-Goetz.png" width="50" height="50" alt="Dillon's profile image" style="border-radius: 50%"/></td>
@@ -216,7 +216,7 @@ This project demonstrates:
     <td>Elvis Espinoza</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/elvisEspinozaN">@elvisEspinozaN</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://www.linkedin.com/in/elvis-espinoza/">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/tascapeter514.png" width="50" height="50" alt="Peter's profile image" style="border-radius: 50%"/></td>
@@ -230,24 +230,29 @@ This project demonstrates:
     <td>Roosiel Agramonte</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/rzagramonte">@rzagramonte</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://linkedin.com/in/roosiel">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/walterfurrer.png" width="50" height="50" alt="Walter's profile image" style="border-radius: 50%"/></td>
     <td>Walter Furrer</td>
     <td>Full Stack Developer</td>
-    <td><a href="https://github.com/watlerfurrer">@watlerfurrer</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://github.com/walterfurrer">@walterfurrer</a></td>
+    <td><a href="https://linkedin.com/in/walterfurrer">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td colspan="5"><hr/></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/janesmith.png" width="50" height="50" alt="Walter's profile image" style="border-radius: 50%"/></td>
+    <td><img src="https://github.com/destocot.png" width="50" height="50" alt="Khurram's profile image" style="border-radius: 50%"/></td>
     <td>Khurram</td>
     <td>Cohort Lead</td>
-    <td><a href=""></a></td>
-    <td><a href="">LinkedIn Profile</a></td>
+    <td><a href="https://github.com/destocot">@destocot</a></td>
+    <td>
+    <div style="flex-direction: column; align-items: center; display: flex; justify-content: center; height: 50px;">
+    <a href="https://www.linkedin.com/in/khurram-ali1">LinkedIn Profile</a>
+    <a href="https://www.youtube.com/@GiraffeReactor">YouTube Channel</a>
+    </td>
+    </div>
   </tr>
   <tr>
     <td><img src="https://github.com/ncharris93.png" width="50" height="50" alt="Noah's profile image" style="border-radius: 50%"/></td>
