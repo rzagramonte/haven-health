@@ -206,10 +206,10 @@ This project demonstrates:
   </tr>
   <tr>
     <td><img src="https://github.com/Dillon-Goetz.png" width="50" height="50" alt="Dillon's profile image" style="border-radius: 50%"/></td>
-    <td>Dillon Gotez</td>
+    <td>Dillon Goetz</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/Dillon-Goetz">@Dillon-Goetz</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://www.linkedin.com/in/dillongoetz/">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/elvisEspinozaN.png" width="50" height="50" alt="Elvis's profile image" style="border-radius: 50%"/></td>
