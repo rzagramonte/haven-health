@@ -6,16 +6,16 @@ A full-stack demo application for a fictional community health clinic, built wit
 
 ## 🚀 Features
 
-- **Patient Intake & Form Capture**  
+- **Patient Intake & Form Capture**
   Collect demographic, medical history, and contact information.
 
-- **Appointment Scheduling & Reminders**  
+- **Appointment Scheduling & Reminders**
   Book visits, send reminders, and support follow-up logic.
 
-- **Insurance Eligibility Check**  
+- **Insurance Eligibility Check**
   Flag basic eligibility (yes/no) based on minimal criteria.
 
-- **Provider Dashboard**  
+- **Provider Dashboard**
   Track wait times, no-show rates, and appointment flow.
 
 ### ⚡ Stretch Goals (Planned)
@@ -57,7 +57,7 @@ A full-stack demo application for a fictional community health clinic, built wit
     </td>
   </tr>
   <tr>
-    <td align="center" width="96"> 
+    <td align="center" width="96">
       <a href="https://supabase.com">
         <img src="https://avatars.githubusercontent.com/u/54469796?s=200&v=4" width="48" height="48" alt="Supabase" />
       </a>
@@ -136,7 +136,7 @@ npm run dev
 
 ### Environment Variables
 
-Copy `.env.example` to `.env.local` and update values as needed.  
+Copy `.env.example` to `.env.local` and update values as needed.
 Note: Supabase secrets will be available via local Docker if using `supabase start`.
 
 ---
@@ -171,8 +171,8 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for code style and review guidelines.
 
 ## 📌 Project Status
 
-✅ MVP complete  
-🛠️ Stretch goals in progress  
+✅ MVP complete
+🛠️ Stretch goals in progress
 📨 [Meet the devs](./TEAM.md)
 
 ---
@@ -202,28 +202,28 @@ This project demonstrates:
     <td>Daniel Gorbachev</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/dgorik">@dgorik</a></td>
-    <td><a href="https://linkedin.com/in/johndoe">LinkedIn Profile</a></td>
+    <td><a href="https://www.linkedin.com/in/danielgorbachev1/">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/Dillon-Goetz.png" width="50" height="50" alt="Dillon's profile image" style="border-radius: 50%"/></td>
-    <td>Dillon Gotez</td>
+    <td>Dillon Goetz</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/Dillon-Goetz">@Dillon-Goetz</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://www.linkedin.com/in/dillongoetz/">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/elvisEspinozaN.png" width="50" height="50" alt="Elvis's profile image" style="border-radius: 50%"/></td>
     <td>Elvis Espinoza</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/elvisEspinozaN">@elvisEspinozaN</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://www.linkedin.com/in/elvis-espinoza/">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/tascapeter514.png" width="50" height="50" alt="Peter's profile image" style="border-radius: 50%"/></td>
     <td>Peter Tasca</td>
     <td>Full Stack Developer</td>
     <td><a href="https://github.com/tascapeter514">@tascapeter514</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href='https://www.linkedin.com/in/peter-tasca/'>LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td><img src="https://github.com/rzagramonte.png" width="50" height="50" alt="Roosiel's profile image" style="border-radius: 50%"/></td>
@@ -236,18 +236,23 @@ This project demonstrates:
     <td><img src="https://github.com/walterfurrer.png" width="50" height="50" alt="Walter's profile image" style="border-radius: 50%"/></td>
     <td>Walter Furrer</td>
     <td>Full Stack Developer</td>
-    <td><a href="https://github.com/watlerfurrer">@watlerfurrer</a></td>
-    <td><a href="https://linkedin.com/in/janesmith">LinkedIn Profile</a></td>
+    <td><a href="https://github.com/walterfurrer">@walterfurrer</a></td>
+    <td><a href="https://linkedin.com/in/walterfurrer">LinkedIn Profile</a></td>
   </tr>
   <tr>
     <td colspan="5"><hr/></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/janesmith.png" width="50" height="50" alt="Walter's profile image" style="border-radius: 50%"/></td>
+    <td><img src="https://github.com/destocot.png" width="50" height="50" alt="Khurram's profile image" style="border-radius: 50%"/></td>
     <td>Khurram</td>
     <td>Cohort Lead</td>
-    <td><a href=""></a></td>
-    <td><a href="">LinkedIn Profile</a></td>
+    <td><a href="https://github.com/destocot">@destocot</a></td>
+    <td>
+    <div style="flex-direction: column; align-items: center; display: flex; justify-content: center; height: 50px;">
+    <a href="https://www.linkedin.com/in/khurram-ali1">LinkedIn Profile</a>
+    <a href="https://www.youtube.com/@GiraffeReactor">YouTube Channel</a>
+    </td>
+    </div>
   </tr>
   <tr>
     <td><img src="https://github.com/ncharris93.png" width="50" height="50" alt="Noah's profile image" style="border-radius: 50%"/></td>
@@ -262,8 +267,8 @@ This project demonstrates:
 
 - Blue: Developer actions
 - Purple: CI Pipeline (testing & validation)
-- Green: CD Pipeline (migrations & releases)
-- Orange: Vercel Auto-Deploy
+- Green: CD Pipeline (migrations, releases & deployment)
+- Orange: Vercel deployment steps
 - Red: Critical migration step
 - Light Blue: Release process
 
@@ -305,12 +310,22 @@ graph TD
       D11 --> D12[Create Git Tag]
       D12 --> D13[Create GitHub Release]
 
-      D13 --> E[Vercel Auto-Deploy<br/>Handles build & deployment]
+      D13 --> E1[Build Application<br/>with env vars]
+      E1 --> E2[Install Vercel CLI]
+      E2 --> E3[Pull Vercel Config]
+      E3 --> E4[Build for Production]
+      E4 --> E5[Deploy to Vercel]
+      E5 --> E6[Live Site Updated]
 
       style A fill:#e1f5fe
       style C fill:#f3e5f5
       style D fill:#e8f5e8
       style D6 fill:#ffebee
       style D8 fill:#e3f2fd
-      style E fill:#fff3e0
+      style E1 fill:#fff3e0
+      style E2 fill:#fff3e0
+      style E3 fill:#fff3e0
+      style E4 fill:#fff3e0
+      style E5 fill:#fff3e0
+      style E6 fill:#fff3e0
 ```
