@@ -117,7 +117,9 @@ A full-stack demo application for a fictional community health clinic, built wit
 ### Prerequisites
 
 - Node.js >= 20
-- Docker Desktop
+- [Docker Desktop](https://docs.docker.com/desktop/)
+  > [!WARNING]  
+  > For Windows, you may need to update your BIOS to allow virtualization.
 
 ### Getting Started
 
