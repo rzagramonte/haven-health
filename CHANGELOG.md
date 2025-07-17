@@ -1,3 +1,20 @@
+## [1.2.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.1.0...v1.2.0) (2025-07-17)
+
+### Features
+
+* **theme:** add custom color system w/ light and dark modes ([794c891](https://github.com/ncharris93/dsd-east-coast-goats/commit/794c891e0d68e30dac375dd5c3c270feb04e18f4))
+
+### Bug Fixes
+
+* **cd.yml:** use PAT instead of GITHUB_TOKEN for semantic release ([5b36a56](https://github.com/ncharris93/dsd-east-coast-goats/commit/5b36a569ee38f4c1ecf62d8d4e5c7469999e57fd))
+* **folder name:** renamed ../message.tsx/page.tsx to ../messages/page.tsx to fix typo ([d650913](https://github.com/ncharris93/dsd-east-coast-goats/commit/d650913a158dfac84cbf3ae8849e5bc3122340ea))
+
+### Documentation
+
+* **readme.md:** Fixed typo in GitHub link and added LinkedIn profile ([#7](https://github.com/ncharris93/dsd-east-coast-goats/issues/7)) ([82a51d0](https://github.com/ncharris93/dsd-east-coast-goats/commit/82a51d05e527bf7d7893dcde8999e47c560da289))
+* **readme.md:** pT LinkedIn Updated ([1ee30bf](https://github.com/ncharris93/dsd-east-coast-goats/commit/1ee30bf9062c9f9c4412597a8503cc23ea34fd7a))
+* **readme.md:** pT LinkedIn Updated ([f20820a](https://github.com/ncharris93/dsd-east-coast-goats/commit/f20820aea99b339985c80e194f79cafc187fb2f3))
+
 ## [1.1.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.0.1...v1.1.0) (2025-07-08)
 
 ### Features
