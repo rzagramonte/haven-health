@@ -107,22 +107,22 @@ ON DELETE CASCADE
 );
 
 
---allow rewriting of tables part 2
-alter table public.person
--- enable row level security;
+-- --allow rewriting of tables part 2
+-- alter table public.person
+-- -- enable row level security;
 
-alter table public.telecom
--- enable row level security;
+-- alter table public.telecom
+-- -- enable row level security;
 
-alter table public.address
--- enable row level security;
+-- alter table public.address
+-- -- enable row level security;
 
-alter table public.patient
--- enable row level security;
+-- alter table public.patient
+-- -- enable row level security;
 
-alter table public.appointment
--- enable row level security;
+-- alter table public.appointment
+-- -- enable row level security;
 
-alter table public.medical_visit
--- enable row level security;
+-- alter table public.medical_visit
+-- -- enable row level security;
 --
