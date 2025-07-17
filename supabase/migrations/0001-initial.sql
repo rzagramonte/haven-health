@@ -14,7 +14,7 @@ CREATE TYPE public.user_role AS ENUM (
     'provider'
 );
 
-CREATE TYPE public.user_role AS ENUM (
+CREATE TYPE public.contact AS ENUM (
   'phone',
   'email'
 );
