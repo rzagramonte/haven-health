@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.2.0...v1.2.1) (2025-07-18)
+
+### Code Refactoring
+
+* **root:** reset entire repository and cleanup ([#15](https://github.com/ncharris93/dsd-east-coast-goats/issues/15)) ([069a1b9](https://github.com/ncharris93/dsd-east-coast-goats/commit/069a1b9d4e7db477f76823bfb9ea3f077dfd8648))
+
 ## [1.2.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.1.0...v1.2.0) (2025-07-17)
 
 ### Features
