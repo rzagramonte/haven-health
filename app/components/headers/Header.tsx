@@ -1,4 +1,4 @@
-import AuthHeader from './AuthHeader/AuthHeader'
+// import AuthHeader from './AuthHeader/AuthHeader'
 import PublicHeader from './PublicHeader/PublicHeader'
 
 export default function Header() {
