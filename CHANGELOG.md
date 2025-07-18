@@ -1,3 +1,13 @@
+## [1.3.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.2.1...v1.3.0) (2025-07-18)
+
+### Features
+
+* **migrations:** added migrations folder and sql script to add tables to supabase ([22a8579](https://github.com/ncharris93/dsd-east-coast-goats/commit/22a85799a8101b108df030a2035d012438812dcc))
+
+### Documentation
+
+* bIOS info for docker ([0220b1b](https://github.com/ncharris93/dsd-east-coast-goats/commit/0220b1b19b1cb57ef8714728e8c6985d53b06ff2))
+
 ## [1.2.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.2.0...v1.2.1) (2025-07-18)
 
 ### Code Refactoring
