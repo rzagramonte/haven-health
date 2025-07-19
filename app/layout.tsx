@@ -40,7 +40,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
-
+      </body>
       <body className={`${geistSans.className} antialiased`}>
         {children}
         <Toaster position="top-center" richColors />
