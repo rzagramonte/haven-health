@@ -29,17 +29,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.className} antialiased`}>
         {children}
-        <Toaster
-          position="top-center"
-          richColors
-          toastOptions={{
-            style: {
-              backgroundColor: `hsl(var(--card))`,
-              color: `hsl(var(--foreground))`,
-              border: `1px solid hsl(var(--border))`,
-            },
-          }}
-        />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   )
