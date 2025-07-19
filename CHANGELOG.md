@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.4.0...v1.5.0) (2025-07-19)
+
+### Features
+
+* **app/api:** created placeholder files for all api routes ([c9fcb58](https://github.com/ncharris93/dsd-east-coast-goats/commit/c9fcb5871e97240f99db60fd2487b39add28d53e))
+
 ## [1.4.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.3.1...v1.4.0) (2025-07-19)
 
 ### Features
