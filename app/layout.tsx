@@ -4,8 +4,6 @@ import type { Metadata } from 'next'
  ecg-5/theme
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
-
-import { Geist } from 'next/font/google'
 import { Toaster } from 'sonner'
 
 const defaultUrl = process.env.VERCEL_URL
@@ -40,11 +38,6 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
-      </body>
-      <body className={`${geistSans.className} antialiased`}>
-        {children}
-        <Toaster position="top-center" richColors />
-
       </body>
     </html>
   )
