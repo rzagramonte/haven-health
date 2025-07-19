@@ -4,6 +4,7 @@
     "naumovs.color-highlight",
     "mikestead.dotenv",
     "yoavbls.pretty-ts-errors",
-    "vitest.explorer"
+    "vitest.explorer",
+    "bierner.markdown-mermaid"
   ]
 }

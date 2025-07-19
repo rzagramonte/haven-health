@@ -1,3 +1,29 @@
+## [1.4.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.3.1...v1.4.0) (2025-07-19)
+
+### Features
+
+* **toast:** add global toast system with success and error handling ([79f8c7b](https://github.com/ncharris93/dsd-east-coast-goats/commit/79f8c7bff46e6ef94941f75706f8ab7e9589c81d)), closes [#ECG-32](https://github.com/ncharris93/dsd-east-coast-goats/issues/ECG-32)
+
+### Code Refactoring
+
+* **toast:** switch to rich colors  and remove custom styling ([7cc30d8](https://github.com/ncharris93/dsd-east-coast-goats/commit/7cc30d825fe6f7b43d78dadcae9e4b9625804036)), closes [#ECG-32](https://github.com/ncharris93/dsd-east-coast-goats/issues/ECG-32)
+
+## [1.3.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.3.0...v1.3.1) (2025-07-19)
+
+### Bug Fixes
+
+* **migrations:** fixed syntax, fk unique names, and renamed file to supabase's requirements ([e258a28](https://github.com/ncharris93/dsd-east-coast-goats/commit/e258a28de1a002fc0a3606ed1b81afdd7bd60ecc))
+
+## [1.3.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.2.1...v1.3.0) (2025-07-18)
+
+### Features
+
+* **migrations:** added migrations folder and sql script to add tables to supabase ([22a8579](https://github.com/ncharris93/dsd-east-coast-goats/commit/22a85799a8101b108df030a2035d012438812dcc))
+
+### Documentation
+
+* bIOS info for docker ([0220b1b](https://github.com/ncharris93/dsd-east-coast-goats/commit/0220b1b19b1cb57ef8714728e8c6985d53b06ff2))
+
 ## [1.2.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.2.0...v1.2.1) (2025-07-18)
 
 ### Code Refactoring
