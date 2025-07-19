@@ -1,3 +1,9 @@
+## [1.5.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.5.0...v1.5.1) (2025-07-19)
+
+### Bug Fixes
+
+* **bug fix:** bug fix ([552c9e9](https://github.com/ncharris93/dsd-east-coast-goats/commit/552c9e9dbd847e5e68f0b64f34d45bcbe0a326c2))
+
 ## [1.5.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.4.0...v1.5.0) (2025-07-19)
 
 ### Features
