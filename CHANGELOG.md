@@ -1,3 +1,9 @@
+## [1.3.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.3.0...v1.3.1) (2025-07-19)
+
+### Bug Fixes
+
+* **migrations:** fixed syntax, fk unique names, and renamed file to supabase's requirements ([e258a28](https://github.com/ncharris93/dsd-east-coast-goats/commit/e258a28de1a002fc0a3606ed1b81afdd7bd60ecc))
+
 ## [1.3.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.2.1...v1.3.0) (2025-07-18)
 
 ### Features
