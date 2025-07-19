@@ -1,3 +1,13 @@
+## [1.4.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.3.1...v1.4.0) (2025-07-19)
+
+### Features
+
+* **toast:** add global toast system with success and error handling ([79f8c7b](https://github.com/ncharris93/dsd-east-coast-goats/commit/79f8c7bff46e6ef94941f75706f8ab7e9589c81d)), closes [#ECG-32](https://github.com/ncharris93/dsd-east-coast-goats/issues/ECG-32)
+
+### Code Refactoring
+
+* **toast:** switch to rich colors  and remove custom styling ([7cc30d8](https://github.com/ncharris93/dsd-east-coast-goats/commit/7cc30d825fe6f7b43d78dadcae9e4b9625804036)), closes [#ECG-32](https://github.com/ncharris93/dsd-east-coast-goats/issues/ECG-32)
+
 ## [1.3.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.3.0...v1.3.1) (2025-07-19)
 
 ### Bug Fixes
