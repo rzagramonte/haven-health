@@ -1,7 +1,6 @@
 import './globals.css'
 
 import type { Metadata } from 'next'
- ecg-5/theme
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
