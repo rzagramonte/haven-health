@@ -1,3 +1,9 @@
+## [1.5.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.5.1...v1.5.2) (2025-07-20)
+
+### Bug Fixes
+
+* **(initial.sql):** correct table names, causing false positive success ([1d7c7eb](https://github.com/ncharris93/dsd-east-coast-goats/commit/1d7c7ebc5b5653a34215412f0d656b3d1590f2a9))
+
 ## [1.5.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.5.0...v1.5.1) (2025-07-19)
 
 ### Bug Fixes
