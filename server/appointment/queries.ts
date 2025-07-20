@@ -1,5 +1,5 @@
 import 'server-only'
 
-export async function findAppointment() {}
+export async function getAppointment() {}
 
-export async function findAllAppointments() {}
+export async function getAppointments() {}

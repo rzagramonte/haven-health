@@ -50,3 +50,9 @@ export async function signOut(): Promise<void> {
     redirect('/login')
   }
 }
+
+export async function updatePassword() {}
+
+export async function resetPassword() {}
+
+export async function updateSettings() {}
