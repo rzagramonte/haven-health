@@ -1,10 +1,12 @@
 --allow rewriting of tables if you make changes.
 DROP TABLE if exists public.medical_visit;
-DROP TABLE if exists public.appointment;
-DROP TABLE if exists public.telecom;
-DROP TABLE if exists public.address;
+DROP TABLE if exists public.appointment_booking;
 DROP TABLE if exists public.patient;
+DROP TABLE if exists public.address;
+DROP TABLE if exists public.contact;
 DROP TABLE if exists public.person;
+
+DROP TYPE if exists public.contact_type;
 DROP TYPE if exists public.user_role;
 ---
 
