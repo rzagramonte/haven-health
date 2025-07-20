@@ -1,21 +1,99 @@
 import React from 'react'
+import type { IconType } from 'react-icons'
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
-import {
-  contactInfo,
-  copyright,
-  description,
-  legalLinks,
-  locationHours,
-  quickLinks,
-  socialLinks,
-} from '@/lib/data/footer'
-import {
-  ContactInfoBlock,
-  Link,
-  LocationHoursBlock,
-  QuickLinkGroup,
-  SocialLink,
-} from '@/lib/types/footer'
+// Type for a single link in quickLinks
+export type Link = {
+  name: string
+  href: string
+}
+
+// Type for a quick link group (e.g., "Quick Links")
+export type QuickLinkGroup = {
+  title: string
+  links: Link[]
+}
+
+export type SocialLink = {
+  icon: IconType
+  href: string
+  label: string
+}
+
+export type ContactInfoBlock = {
+  title: string
+  info: {
+    street: string
+    location: string
+    email: string
+    phone: string
+  }
+}
+
+export type LocationHoursBlock = {
+  title: string
+  hours: {
+    weekly: string
+    schedule: string
+  }
+  walkIns: {
+    title: string
+    schedule: string
+  }
+}
+
+export const copyright = '©2024 Haven Health. All rights reserved.'
+export const description = 'Get in touch through social media'
+
+export const legalLinks = [
+  { name: 'Terms and Conditions', href: '#' },
+  { name: 'Privacy Policy', href: '#' },
+]
+
+export const quickLinks = [
+  {
+    title: 'Quick Links',
+    links: [
+      { name: 'About Us', href: '#' },
+      { name: 'Our Services', href: '#' },
+      { name: 'Patient Portal', href: '#' },
+      { name: 'Appointments', href: '#' },
+    ],
+  },
+]
+
+export const socialLinks = [
+  { icon: FaInstagram, href: '#', label: 'Instagram' },
+  { icon: FaFacebook, href: '#', label: 'Facebook' },
+  { icon: FaTwitter, href: '#', label: 'Twitter' },
+  { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
+]
+
+export const contactInfo = [
+  {
+    title: 'Contact Us',
+    info: {
+      street: '123 Main St.',
+      location: 'Islip, NY 11751',
+      email: 'info@havenhealth.org',
+      phone: '(631) 555-5555',
+    },
+  },
+]
+
+export const locationHours = [
+  {
+    title: 'Hours of Operation',
+    hours: {
+      weekly: 'Monday - Saturday',
+      schedule: '9AM - 5PM',
+    },
+    walkIns: {
+      title: 'Walk-Ins',
+      schedule: '9AM - 12PM',
+    },
+  },
+]
 
 const Footer = () => {
   return (

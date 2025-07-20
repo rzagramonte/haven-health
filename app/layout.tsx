@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 
-import { Footer } from '@/components/ui/footer'
+import { Footer } from '@/components/ui/footer/footer'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`

@@ -71,16 +71,17 @@ jobs:
         if: steps.check-migrations.outputs.has-migrations == 'true'
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: |
           echo "📋 Checking migration status..."
           echo "🔍 Debug: Current working directory: $(pwd)"
           echo "🔍 Debug: Supabase directory contents:"
           ls -la supabase/ || echo "No supabase directory found"
 
-          supabase migration list || echo "⚠️ Failed to list migrations, but continuing..."
+          supabase migration list --password "$SUPABASE_DB_PASSWORD" || echo "⚠️ Failed to list migrations, but continuing..."
 
           echo "🚀 Applying database migrations..."
-          supabase db push --debug || {
+          supabase db push --debug --password "$SUPABASE_DB_PASSWORD" || {
             echo "❌ Migration push failed!"
             echo "🔍 Debug: Checking Supabase CLI version..."
             supabase --version
