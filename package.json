@@ -12,7 +12,9 @@
     "sb:stop": "npx supabase stop",
     "sb:web": "open http://localhost:54323",
     "prepare": "husky",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "gen:types:local": "supabase gen types typescript --schema public > lib/supabase/types.ts",
+    "gen:types:remote": "supabase gen types typescript --linked --schema public > lib/supabase/types.ts"
   },
   "dependencies": {
     "@commitlint/config-conventional": "^19.8.1",
