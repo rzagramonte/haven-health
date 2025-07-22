@@ -1,7 +1,17 @@
+import Image from 'next/image'
+
 export default function Error404() {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-background px-6 py-24 sm:py-32 lg:px-8">
+        <div className="bg-background">
+          <Image
+            alt="googly eyes"
+            height={600}
+            width={600}
+            src="/images/googlyeyes.jpg"
+          />
+        </div>
         <div className="text-center border-1 border-black p-[2em] bg-card">
           <p className="text-base font-semibold text-accent">404</p>
           <h1 className="mt-4 text-5xl font-semibold tracking-tight text-balance text-foreground sm:text-7xl">
