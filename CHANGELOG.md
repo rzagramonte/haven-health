@@ -1,3 +1,13 @@
+## [1.7.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.6.0...v1.7.0) (2025-07-22)
+
+### Features
+
+* **globals.css logo_dark.svg:** added logo in dark mode ([6df5136](https://github.com/ncharris93/dsd-east-coast-goats/commit/6df5136b6c3942de2be20769c0360a9884c78c83))
+
+### Bug Fixes
+
+* **globals.css:** typo fix ([c62b8d7](https://github.com/ncharris93/dsd-east-coast-goats/commit/c62b8d78cb427c88f776c98620dcf62682a99464))
+
 ## [1.6.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.5.3...v1.6.0) (2025-07-22)
 
 ### Features
