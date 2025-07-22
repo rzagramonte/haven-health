@@ -1,3 +1,9 @@
+## [1.5.3](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.5.2...v1.5.3) (2025-07-21)
+
+### Bug Fixes
+
+* typescript v4 fix ([#33](https://github.com/ncharris93/dsd-east-coast-goats/issues/33)) ([78c1d1d](https://github.com/ncharris93/dsd-east-coast-goats/commit/78c1d1d3daddef3329f6cc0ac90b96f0e3d2678c))
+
 ## [1.5.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.5.1...v1.5.2) (2025-07-20)
 
 ### Bug Fixes
