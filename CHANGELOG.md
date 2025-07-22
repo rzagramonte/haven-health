@@ -1,3 +1,26 @@
+## [1.6.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.5.3...v1.6.0) (2025-07-22)
+
+### Features
+
+* **cd.yml:** auto-update supabase types when a migration is added ([#30](https://github.com/ncharris93/dsd-east-coast-goats/issues/30)) ([4184163](https://github.com/ncharris93/dsd-east-coast-goats/commit/41841632db5c78e6336b3bf31f796a52ffb11a8b))
+* **components/ui/footer.tsx:** footer component for app layout ([ff59b46](https://github.com/ncharris93/dsd-east-coast-goats/commit/ff59b46b65a08a5d600b41d7a90202733bdcef84))
+* **icons:** add clinic logo SVG to public/icons for use across the app ([8e356f8](https://github.com/ncharris93/dsd-east-coast-goats/commit/8e356f8e71af97847f9abb883e6558c268060129))
+
+### Bug Fixes
+
+* Custom CSS Variable Fix ([#35](https://github.com/ncharris93/dsd-east-coast-goats/issues/35)) ([c716ed1](https://github.com/ncharris93/dsd-east-coast-goats/commit/c716ed120db6ac97ef38f393e18bfe39918c7bca))
+* **layout.tsx:** updated import in layout.tsx ([257e686](https://github.com/ncharris93/dsd-east-coast-goats/commit/257e6860822f53b4b2e2fe5fd65beab2f7dd6b9c))
+
+### Reverts
+
+* **package.json:** remove dotenv dependency ([31f3172](https://github.com/ncharris93/dsd-east-coast-goats/commit/31f31724427653200cfb759186f135883bd5213c))
+
+### Code Refactoring
+
+* **app:** merged with updated main branch ([66d110b](https://github.com/ncharris93/dsd-east-coast-goats/commit/66d110bf84a8107de6cf0151cd0ed729ff4634c6))
+* **footer.tsx:** refactored footer.tsx ([7ed673b](https://github.com/ncharris93/dsd-east-coast-goats/commit/7ed673b491feacee9f4aad5223c5ce9d4a54f945))
+* **footer.tsx:** updated icontype import ([7871351](https://github.com/ncharris93/dsd-east-coast-goats/commit/787135128497b00f528914b3736e42d85ab6cca5))
+
 ## [1.5.3](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.5.2...v1.5.3) (2025-07-21)
 
 ### Bug Fixes
