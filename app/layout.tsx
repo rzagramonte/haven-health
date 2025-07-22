@@ -5,6 +5,8 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 
+import { Footer } from '@/components/ui/footer'
+
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : 'http://localhost:3000'
@@ -37,6 +39,7 @@ export default function RootLayout({
         >
           {children}
           <Toaster position="top-center" richColors />
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
