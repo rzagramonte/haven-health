@@ -103,21 +103,22 @@ jobs:
           if [ -s lib/supabase/types.ts ]; then
             echo "✅ TypeScript types generated successfully"
             
-            # Commit the updated types
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            
-            git add lib/supabase/types.ts
-            
-            # Only commit if there are changes
-            if ! git diff --cached --quiet; then
-              git commit -m "chore: update database types [skip ci]" -m "🤖 Generated from database schema after migration"
+            # Check if the generated file actually differs from what's in git
+            if ! git diff --quiet HEAD -- lib/supabase/types.ts; then
+              echo "📝 Changes detected in types file, committing..."
+              
+              # Commit the updated types
+              git config --global user.name "github-actions[bot]"
+              git config --global user.email "github-actions[bot]@users.noreply.github.com"
+              
+              git add lib/supabase/types.ts
+              git commit --no-verify -m "chore: update database types [skip ci]" -m "🤖 Generated from database schema after migration"
               
               # Push using the PAT to bypass branch protection
               git push https://x-access-token:${{ secrets.RELEASE_PAT }}@github.com/${{ github.repository }}.git HEAD:main
               echo "✅ Updated types committed to repository"
             else
-              echo "ℹ️ No changes to types detected"
+              echo "ℹ️ No changes to types detected - continuing workflow"
             fi
           else
             echo "❌ Failed to generate TypeScript types"
