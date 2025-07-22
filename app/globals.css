@@ -91,7 +91,7 @@
     --secondary-foreground: hsl(240 10% 10%);  /* Charcoal Linen */
     --muted: hsl(40 12% 30%);                  /* Earth Griege */
     --muted-foreground: hsl(40 33% 96%);       /* Linen */
-    --accent: 2hsl(7 100% 55%);                /* Toasted Orange */
+    --accent: hsl(7 100% 55%);                 /* Toasted Orange */
     --accent-foreground: hsl(240 10% 10%);     /* Charcoal Linen */
     --destructive: hsl(0 60% 38%);             /* Dark Clinic Brick */
     --destructive-foreground: hsl(40 33% 96%); /* Linen */
