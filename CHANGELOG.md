@@ -1,3 +1,9 @@
+## [1.8.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.0...v1.8.1) (2025-07-23)
+
+### Bug Fixes
+
+* **migrations:** added foreign key to appointment, made patient's person_id unique to prevent dupes ([a49164d](https://github.com/ncharris93/dsd-east-coast-goats/commit/a49164dc8c620b36d64d39dc40b2af4f1b12aeaa))
+
 ## [1.8.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.7.0...v1.8.0) (2025-07-22)
 
 ### Features
