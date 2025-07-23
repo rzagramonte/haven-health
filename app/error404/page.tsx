@@ -4,12 +4,12 @@ export default function Error404() {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-background px-6 py-24 sm:py-32 lg:px-8">
-        <div className="bg-background">
+        <div className="bg-transparent inline-block">
           <Image
-            alt="googly eyes"
-            height={600}
-            width={600}
-            src="/images/googlyeyes.jpg"
+            src="/icons/googley-eyes.png"
+            width={500}
+            height={500}
+            alt="googlyeye"
           />
         </div>
         <div className="text-center border-1 border-black p-[2em] bg-card">
