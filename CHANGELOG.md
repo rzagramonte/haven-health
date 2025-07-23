@@ -1,3 +1,9 @@
+## [1.8.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.7.0...v1.8.0) (2025-07-22)
+
+### Features
+
+* **googly.svg:** added googly 404 ([4c5daab](https://github.com/ncharris93/dsd-east-coast-goats/commit/4c5daab063983aa85c2cd4d3ea662f8b9a4cdbd8))
+
 ## [1.7.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.6.0...v1.7.0) (2025-07-22)
 
 ### Features
