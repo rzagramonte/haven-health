@@ -13,12 +13,17 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-import { DatePickerForm } from './ui/DatePicker'
+// import { DatePicker } from './ui/DatePicker'
 import { RadioGroupDemo } from './ui/RadioGroup'
 
 type FormData = {
   username: string
-  age: number
+  password: string
+  address: string
+  dob: Date
+  sex: string
+  insurance: string
+  emergency_contact: string
 }
 
 export default function PatientIntakeForm() {
@@ -36,42 +41,78 @@ export default function PatientIntakeForm() {
         className="space-y-10 w-1/3 "
       >
         <FormDescription>
-          Please input your information below. All fields are required
+          Please input your information below. All fields are required.
         </FormDescription>
         <FormField
           control={form.control}
           name="username"
-          render={({}) => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input className="bg-white" type="email" required={true} />
-              </FormControl>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input className="bg-white" type="password" required={true} />
-              </FormControl>
-              <FormLabel>Home Adress</FormLabel>
-              <FormControl>
-                <Input className="bg-white" type="adress" required={true} />
-              </FormControl>
-              <DatePickerForm />
-              <h1>Sex</h1>
-              <RadioGroupDemo opt1="Male" opt2="Female" />
-              <h1>Do you have insurance</h1>
-              <RadioGroupDemo opt1="Yes" opt2="No" />
-              <FormLabel>Emergency Contact</FormLabel>
-              <FormControl>
-                <Input
-                  className="bg-white"
-                  type="emergency_contact"
-                  required={true}
-                />
+                <Input {...field} type="email" className="bg-white" />
               </FormControl>
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input {...field} type="password" className="bg-white" />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="address"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Home Address</FormLabel>
+              <FormControl>
+                <Input {...field} type="text" className="bg-white" />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        {/* <FormField
+          control={form.control}
+          name="dob"
+          render={({ field }) => <DatePicker />}
+        /> */}
+        <FormField
+          control={form.control}
+          name="sex"
+          render={({ field }) => (
+            <RadioGroupDemo {...field} opt1="Male" opt2="Female" />
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="insurance"
+          render={({ field }) => (
+            <RadioGroupDemo {...field} opt1="Yes" opt2="No" />
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="emergency_contact"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Emergency Contact</FormLabel>
+              <FormControl>
+                <Input {...field} type="text" className="bg-white" />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <Button className="bg-green-800 w-full" type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   )
