@@ -14,7 +14,7 @@ import {
 
 export default function ProfilePage() {
   return (
-    <main>
+    <main className="flex-grow">
       <div className="border-3 border-black w-full max-w-[110px]">
         <Avatar className="w-[100px] h-[100px] bg-background flex items-center justify-center">
           <FaHandHoldingMedical className="w-[60px] h-[60px] text-foreground" />

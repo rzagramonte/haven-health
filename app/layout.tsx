@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans`}>
+      <body className={`${inter.variable} font-sans h-screen flex flex-col`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -38,9 +38,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+
           <Toaster position="top-center" richColors />
-          <Footer />
         </ThemeProvider>
+        <Footer />
       </body>
     </html>
   )
