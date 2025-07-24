@@ -1,3 +1,16 @@
+## [1.9.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.1...v1.9.0) (2025-07-24)
+
+### Features
+
+* **server/auth/actions.ts:** created server actions for authentication ([1dd092a](https://github.com/ncharris93/dsd-east-coast-goats/commit/1dd092af239edc18934ea62130103882377d0140))
+* **server:** created placeholder files for all server actions, queries, and mutations ([e4fd3e7](https://github.com/ncharris93/dsd-east-coast-goats/commit/e4fd3e72ad726cec131954fd8cdc78600243dde4))
+
+## [1.8.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.0...v1.8.1) (2025-07-23)
+
+### Bug Fixes
+
+* **migrations:** added foreign key to appointment, made patient's person_id unique to prevent dupes ([a49164d](https://github.com/ncharris93/dsd-east-coast-goats/commit/a49164dc8c620b36d64d39dc40b2af4f1b12aeaa))
+
 ## [1.8.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.7.0...v1.8.0) (2025-07-22)
 
 ### Features
