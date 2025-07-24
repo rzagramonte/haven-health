@@ -125,12 +125,12 @@ export default function EditProfileClient() {
   })
 
   return (
-    <CardContent className="border-1 border-black flex flex-col items-center">
-      <ul className="flex flex-col gap-1">
+    <CardContent className="flex flex-col items-center">
+      <ul className=" w-full max-w-[350px] flex flex-col gap-3">
         {editState.providerDetails.map(({ key, label, value, icon: Icon }) => (
           <li
             key={key}
-            className="border-1 border-black flex items-center justify-between gap-2 p-1"
+            className="flex items-center w-full justify-between gap-2 p-1 border-b-1 border-destructive"
           >
             <div className="flex gap-2">
               <div className="w-8 h-8 flex items-center justify-center">
