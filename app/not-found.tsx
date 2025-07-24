@@ -8,15 +8,13 @@ export default function NotFound() {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-background px-6 py-24 sm:py-32 lg:px-8">
-        <div role="alert" className="bg-transparent inline-block">
-          <Image
-            src="/icons/googley-eyes.png"
-            width={500}
-            height={500}
-            alt="googlyeye"
-          />
+        <div
+          role="alert"
+          className="relative bg-transparent inline-block w-[80vw]  max-w-[500px] aspect-[2/1]"
+        >
+          <Image src="/icons/googley-eyes.png" fill alt="googlyeye" />
         </div>
-        <div className="text-center border-1 border-black p-[2em] bg-card">
+        <div className="text-center px-4 py-8 sm:px-6 sm:py-10 bg-card">
           <p className="text-base font-semibold text-accent">404</p>
           <h1 className="mt-4 text-5xl font-semibold tracking-tight text-balance text-foreground sm:text-7xl">
             Page not found
@@ -26,6 +24,7 @@ export default function NotFound() {
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Button
+              asChild
               aria-label="Go Back Home"
               className="cursor-pointer hover:bg-white hover:text-black"
             >
