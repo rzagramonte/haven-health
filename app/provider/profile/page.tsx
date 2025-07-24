@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useReducer } from 'react'
 import type { IconType } from 'react-icons'
 import {
   FaEdit,
@@ -26,7 +26,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 
-export type ProviderDetailsBlock = [
+export type ProviderDetails = [
   { label: string; key: 'name'; value: string; icon: IconType },
   { label: string; key: 'phone'; value: string; icon: IconType },
   { label: string; key: 'email'; value: string; icon: IconType },
@@ -44,7 +44,28 @@ export type ProviderDetailsBlock = [
   { label: string; key: 'newPatients'; value: boolean; icon: IconType },
 ]
 
-const providerDummyData: ProviderDetailsBlock = [
+type EditableValue =
+  | string
+  | boolean
+  | {
+      firstName: string
+      lastName: string
+      phone: string
+    }
+
+type EditAction =
+  | { type: 'EDIT'; key: string; value: EditableValue }
+  | { type: 'UPDATE'; value: EditableValue }
+  | { type: 'SAVE' }
+  | { type: 'CANCEL' }
+
+type EditState = {
+  providerDetails: ProviderDetails
+  editingKey: string | null
+  editableValue: EditableValue | null
+}
+
+const providerDummyData: ProviderDetails = [
   { label: 'Name & Title', key: 'name', value: 'Bob Ross M.D.', icon: FaUser },
   { label: 'Phone', key: 'phone', value: '(555) 555-5555', icon: FaPhone },
   {
@@ -77,13 +98,49 @@ const providerDummyData: ProviderDetailsBlock = [
   },
 ]
 
-export default function ProfilePage() {
-  const [isEditing, setIsEditing] = useState<boolean>(false)
+const editProfileReducer = (
+  state: EditState,
+  action: EditAction,
+): EditState => {
+  switch (action.type) {
+    case 'EDIT':
+      return { ...state, editingKey: action.key, editableValue: action.value }
 
-  const toggleEditMode = () => {
-    console.log(isEditing)
-    setIsEditing((prev) => !prev)
+    case 'UPDATE':
+      return { ...state, editableValue: action.value }
+
+    // udpate provider details state based on matching item.key to state.editingKey
+    case 'SAVE':
+      if (!state.editingKey) {
+        return state
+      }
+      return {
+        ...state,
+        providerDetails: state.providerDetails.map((item) =>
+          item.key === state.editingKey
+            ? { ...item, value: state.editableValue }
+            : item,
+        ) as ProviderDetails,
+        editingKey: null,
+        editableValue: null,
+      }
+
+    case 'CANCEL':
+      return { ...state, editingKey: null, editableValue: null }
+
+    default:
+      return state
   }
+}
+
+export default function ProfilePage() {
+  const [editState, editDispatch] = useReducer(editProfileReducer, {
+    providerDetails: providerDummyData,
+    editingKey: null,
+    editableValue: null,
+  })
+
+  console.log(editState, editDispatch)
 
   return (
     <main className="flex-grow p-5">
@@ -158,10 +215,7 @@ export default function ProfilePage() {
                     </div>
                   </div>
                   <CardAction className="">
-                    <Button
-                      className="w-6 h-6 cursor-pointer"
-                      onClick={toggleEditMode}
-                    >
+                    <Button className="w-6 h-6 cursor-pointer">
                       <FaEdit />
                     </Button>
                   </CardAction>
