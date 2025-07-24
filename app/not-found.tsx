@@ -1,10 +1,14 @@
+'use client'
 import Image from 'next/image'
+import Link from 'next/link'
 
-export default function Error404() {
+import { Button } from '@/components/ui/button'
+
+export default function NotFound() {
   return (
     <>
       <main className="grid min-h-full place-items-center bg-background px-6 py-24 sm:py-32 lg:px-8">
-        <div className="bg-transparent inline-block">
+        <div role="alert" className="bg-transparent inline-block">
           <Image
             src="/icons/googley-eyes.png"
             width={500}
@@ -21,15 +25,19 @@ export default function Error404() {
             Sorry, we couldn’t find the page you’re looking for.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="#"
-              className="rounded-md bg-accent px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            <Button
+              aria-label="Go Back Home"
+              className="cursor-pointer hover:bg-white hover:text-black"
             >
-              Go back home
-            </a>
-            <a href="#" className="text-sm font-semibold text-foreground">
-              Contact support <span aria-hidden="true">&rarr;</span>
-            </a>
+              <Link href="/">Go Back Home</Link>
+            </Button>
+            <Button
+              aria-label="Contact Support"
+              variant="outline"
+              className="cursor-pointer"
+            >
+              Contact Support <span aria-hidden="true">&rarr;</span>
+            </Button>
           </div>
         </div>
       </main>
