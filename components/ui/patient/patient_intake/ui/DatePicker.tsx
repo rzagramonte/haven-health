@@ -28,13 +28,16 @@ function isValidDate(date: Date | undefined) {
   return !isNaN(date.getTime())
 }
 
-export function DatePicker() {
+type DatePickerProps = {
+  value: Date
+  onChange: (date: Date | undefined) => void
+}
+
+export function DatePicker({ value, onChange }: DatePickerProps) {
   const [open, setOpen] = React.useState(false)
-  const [date, setDate] = React.useState<Date | undefined>(
-    new Date('2025-06-01'),
-  )
-  const [month, setMonth] = React.useState<Date | undefined>(date)
-  const [value, setValue] = React.useState(formatDate(date))
+
+  const [month, setMonth] = React.useState<Date | undefined>(value)
+  const formatted = formatDate(value)
   return (
     <div className="flex flex-col gap-3">
       <Label htmlFor="date" className="px-1">
@@ -43,14 +46,14 @@ export function DatePicker() {
       <div className="relative flex gap-2">
         <Input
           id="date"
-          value={value}
+          value={formatted}
           placeholder="June 01, 2025"
           className="bg-white"
           onChange={(e) => {
             const date = new Date(e.target.value)
-            setValue(e.target.value)
+            setOpen(true)
             if (isValidDate(date)) {
-              setDate(date)
+              onChange(date)
               setMonth(date)
             }
           }}
@@ -80,13 +83,13 @@ export function DatePicker() {
           >
             <Calendar
               mode="single"
-              selected={date}
+              selected={value}
               captionLayout="dropdown"
               month={month}
               onMonthChange={setMonth}
               onSelect={(date) => {
-                setDate(date)
-                setValue(formatDate(date))
+                onChange(date)
+                setMonth(date)
                 setOpen(false)
               }}
             />

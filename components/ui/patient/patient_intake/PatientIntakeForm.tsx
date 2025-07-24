@@ -10,15 +10,16 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-// import { DatePicker } from './ui/DatePicker'
+import { DatePicker } from './ui/DatePicker'
 import { RadioGroupDemo } from './ui/RadioGroup'
 
 type FormData = {
-  username: string
-  password: string
+  firstName: string
+  lastName: string
   address: string
   dob: Date
   sex: string
@@ -27,7 +28,16 @@ type FormData = {
 }
 
 export default function PatientIntakeForm() {
-  const form = useForm<FormData>()
+  const form = useForm<FormData>({
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      address: '',
+      sex: '',
+      insurance: '',
+      emergency_contact: '',
+    },
+  })
 
   function onSubmit(values: FormData) {
     //check that with the team
@@ -36,33 +46,30 @@ export default function PatientIntakeForm() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-10 w-1/3 "
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-1/3">
         <FormDescription>
           Please input your information below. All fields are required.
         </FormDescription>
         <FormField
           control={form.control}
-          name="username"
+          name="firstName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input {...field} type="email" className="bg-white" />
+                <Input {...field} className="bg-white" />
               </FormControl>
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="password"
+          name="lastName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input {...field} type="password" className="bg-white" />
+                <Input {...field} className="bg-white" />
               </FormControl>
             </FormItem>
           )}
@@ -79,23 +86,53 @@ export default function PatientIntakeForm() {
             </FormItem>
           )}
         />
-        {/* <FormField
+        <FormField
           control={form.control}
           name="dob"
-          render={({ field }) => <DatePicker />}
-        /> */}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Sex</FormLabel>
+              <FormControl>
+                <DatePicker value={field.value} onChange={field.onChange} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="sex"
           render={({ field }) => (
-            <RadioGroupDemo {...field} opt1="Male" opt2="Female" />
+            <FormItem>
+              <FormLabel>Sex</FormLabel>
+              <FormControl>
+                <RadioGroupDemo
+                  value={field.value}
+                  onChange={field.onChange}
+                  opt1="Male"
+                  opt2="Female"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
         />
         <FormField
           control={form.control}
           name="insurance"
           render={({ field }) => (
-            <RadioGroupDemo {...field} opt1="Yes" opt2="No" />
+            <FormItem>
+              <FormLabel>Insurance</FormLabel>
+              <FormControl>
+                <RadioGroupDemo
+                  value={field.value}
+                  onChange={field.onChange}
+                  opt1="Yes"
+                  opt2="No"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
         />
         <FormField
@@ -110,7 +147,7 @@ export default function PatientIntakeForm() {
             </FormItem>
           )}
         />
-        <Button className="bg-green-800 w-full" type="submit">
+        <Button className="bg-green-800 w-full mb-4" type="submit">
           Submit
         </Button>
       </form>
