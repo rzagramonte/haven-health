@@ -11,8 +11,10 @@ import {
   FaUserFriends,
 } from 'react-icons/fa'
 import { FaHouse } from 'react-icons/fa6'
+import { GiCancel } from 'react-icons/gi'
 import { MdAlternateEmail } from 'react-icons/md'
 import { RiContactsBookFill } from 'react-icons/ri'
+import { VscSaveAs } from 'react-icons/vsc'
 
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -349,15 +351,41 @@ export default function ProfilePage() {
                           key !== 'newPatients' && <p>{value}</p>}
                       </div>
                     </div>
-                    <CardAction className="">
-                      <Button
-                        className="w-6 h-6 cursor-pointer"
-                        onClick={() => {
-                          editDispatch({ type: 'EDIT', key: key, value: value })
-                        }}
-                      >
-                        <FaEdit />
-                      </Button>
+                    <CardAction>
+                      {editState.editingKey === key && (
+                        <>
+                          <Button
+                            className="w-6 h-6 cursor-pointer"
+                            onClick={() => {
+                              editDispatch({ type: 'CANCEL' })
+                            }}
+                          >
+                            <GiCancel />
+                          </Button>
+                          <Button
+                            className="w-6 h-6 cursor-pointer"
+                            onClick={() => {
+                              editDispatch({ type: 'CANCEL' })
+                            }}
+                          >
+                            <VscSaveAs />
+                          </Button>
+                        </>
+                      )}
+                      {editState.editingKey !== key && (
+                        <Button
+                          className="w-6 h-6 cursor-pointer"
+                          onClick={() => {
+                            editDispatch({
+                              type: 'EDIT',
+                              key: key,
+                              value: value,
+                            })
+                          }}
+                        >
+                          <FaEdit />
+                        </Button>
+                      )}
                     </CardAction>
                   </li>
                 ),
