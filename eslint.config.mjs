@@ -27,7 +27,7 @@ const eslintConfig = [
     },
   },
   {
-    ignores: ['.next', 'tailwind.config.ts'],
+    ignores: ['.next', 'tailwind.config.ts', 'lib/supabase/types.ts'],
   },
 ]
 
