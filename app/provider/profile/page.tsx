@@ -28,6 +28,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import EditableBooleanField from '@/components/ui/providerProfile/editableBooleanField'
+import EditableStringField from '@/components/ui/providerProfile/editableStringField'
 
 export type ProviderDetails = [
   { label: string; key: 'name'; value: string; icon: IconType },
@@ -243,68 +245,32 @@ export default function ProfilePage() {
                               />
                             </>
                           )}
-                        {editState.editingKey === key &&
-                          key === 'newPatients' &&
-                          typeof editState.editableValue === 'boolean' && (
-                            <div className="flex gap-2">
-                              <label htmlFor="yes-option">
-                                {value ? ' Yes' : 'No'}
-                              </label>
-                              <input
-                                type="radio"
-                                name="choice"
-                                value="yes"
-                                checked={
-                                  typeof editState.editableValue === 'boolean'
-                                    ? editState.editableValue
-                                    : value
-                                }
-                                id="yes-option"
-                                onChange={(e) =>
-                                  editDispatch({
-                                    type: 'UPDATE',
-                                    value: e.target.value,
-                                  })
-                                }
-                              />
-                              <label htmlFor="no-option">
-                                {value ? ' No' : 'Yes'}
-                              </label>
-                              <input
-                                type="radio"
-                                name="choice"
-                                value="no"
-                                checked={
-                                  typeof editState.editableValue === 'boolean'
-                                    ? !editState.editableValue
-                                    : !value
-                                }
-                                id="no-option"
-                                onChange={(e) =>
-                                  editDispatch({
-                                    type: 'UPDATE',
-                                    value: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          )}
-                        {editState.editingKey === key &&
-                          key !== 'emergencyContact' &&
-                          key != 'newPatients' &&
-                          typeof editState.editableValue === 'string' && (
-                            <Input
-                              className="bg-muted"
+                        {key === 'newPatients' && (
+                          <EditableBooleanField
+                            value={
+                              editState.editingKey === key &&
+                              typeof editState.editableValue === 'boolean'
+                                ? editState.editableValue
+                                : (value as boolean)
+                            }
+                            editing={editState.editingKey === key}
+                            onUpdate={(val) =>
+                              editDispatch({ type: 'UPDATE', value: val })
+                            }
+                          />
+                        )}
+                        {key !== 'emergencyContact' &&
+                          key !== 'newPatients' && (
+                            <EditableStringField
                               value={
+                                editState.editingKey === key &&
                                 typeof editState.editableValue === 'string'
                                   ? editState.editableValue
-                                  : value
+                                  : (value as string)
                               }
-                              onChange={(e) =>
-                                editDispatch({
-                                  type: 'UPDATE',
-                                  value: e.target.value,
-                                })
+                              editing={editState.editingKey === key}
+                              onUpdate={(val) =>
+                                editDispatch({ type: 'UPDATE', value: val })
                               }
                             />
                           )}
@@ -318,44 +284,14 @@ export default function ProfilePage() {
                               <p>{value.phone}</p>
                             </>
                           )}
-                        {editState.editingKey !== key &&
-                          key === 'newPatients' &&
-                          typeof value === 'boolean' && (
-                            <div className="flex gap-2">
-                              <label htmlFor="yes-option">
-                                {value ? ' Yes' : 'No'}
-                              </label>
-                              <input
-                                type="radio"
-                                name="choice"
-                                value="yes"
-                                checked={value}
-                                id="yes-option"
-                                readOnly
-                              />
-                              <label htmlFor="no-option">
-                                {value ? ' No' : 'Yes'}
-                              </label>
-                              <input
-                                type="radio"
-                                name="choice"
-                                value="no"
-                                checked={!value}
-                                id="no-option"
-                                readOnly
-                              />
-                            </div>
-                          )}
-                        {editState.editingKey !== key &&
-                          key !== 'emergencyContact' &&
-                          key !== 'newPatients' && <p>{value}</p>}
                       </div>
                     </div>
                     <CardAction>
                       {editState.editingKey === key && (
-                        <>
+                        <div className="flex gap-1">
                           <Button
                             className="w-6 h-6 cursor-pointer"
+                            aria-label="Cancel edit"
                             onClick={() => {
                               editDispatch({ type: 'CANCEL' })
                             }}
@@ -364,17 +300,19 @@ export default function ProfilePage() {
                           </Button>
                           <Button
                             className="w-6 h-6 cursor-pointer"
+                            aria-label="Save changes"
                             onClick={() => {
-                              editDispatch({ type: 'CANCEL' })
+                              editDispatch({ type: 'SAVE' })
                             }}
                           >
                             <VscSaveAs />
                           </Button>
-                        </>
+                        </div>
                       )}
                       {editState.editingKey !== key && (
                         <Button
                           className="w-6 h-6 cursor-pointer"
+                          aria-label="Edit Field"
                           onClick={() => {
                             editDispatch({
                               type: 'EDIT',
