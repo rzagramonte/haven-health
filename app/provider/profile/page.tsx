@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useState } from 'react'
 import type { IconType } from 'react-icons'
 import {
   FaEdit,
@@ -22,7 +25,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
 
 export type ProviderDetailsBlock = [
   { label: string; key: 'name'; value: string; icon: IconType },
@@ -76,6 +78,13 @@ const providerDummyData: ProviderDetailsBlock = [
 ]
 
 export default function ProfilePage() {
+  const [isEditing, setIsEditing] = useState<boolean>(false)
+
+  const toggleEditMode = () => {
+    console.log(isEditing)
+    setIsEditing((prev) => !prev)
+  }
+
   return (
     <main className="flex-grow p-5">
       <div className="border-3 border-black w-full max-w-[110px]">
@@ -99,7 +108,10 @@ export default function ProfilePage() {
               Where Provider Profile Details Live
             </CardDescription>
             <CardAction>
-              <Button className="w-full max-w-[30px] h-full cursor-pointer">
+              <Button
+                className="w-full max-w-[30px] h-full cursor-pointer"
+                onClick={toggleEditMode}
+              >
                 <FaEdit className="w-full" />
               </Button>
             </CardAction>
@@ -124,9 +136,28 @@ export default function ProfilePage() {
                         <p>{value.phone}</p>
                       </>
                     ) : key === 'newPatients' ? (
-                      <Checkbox checked={value}>
-                        <span>{value ? ' Yes' : 'No'}</span>
-                      </Checkbox>
+                      <div className="flex gap-2">
+                        <label htmlFor="yes-option">
+                          {value ? ' Yes' : 'No'}
+                        </label>
+                        <input
+                          type="radio"
+                          name="choice"
+                          value="yes"
+                          checked={value}
+                          id="yes-option"
+                        />
+                        <label htmlFor="no-option">
+                          {value ? ' No' : 'Yes'}
+                        </label>
+                        <input
+                          type="radio"
+                          name="choice"
+                          value="no"
+                          checked={!value}
+                          id="no-option"
+                        />
+                      </div>
                     ) : (
                       <p>{value}</p>
                     )}
