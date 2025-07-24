@@ -107,61 +107,64 @@ export default function ProfilePage() {
             <CardDescription>
               Where Provider Profile Details Live
             </CardDescription>
-            <CardAction>
-              <Button
-                className="w-full max-w-[30px] h-full cursor-pointer"
-                onClick={toggleEditMode}
-              >
-                <FaEdit className="w-full" />
-              </Button>
-            </CardAction>
           </CardHeader>
           <CardContent className="border-1 border-black flex flex-col items-center">
             <ul className="flex flex-col gap-1">
               {providerDummyData.map(({ key, label, value, icon: Icon }) => (
                 <li
                   key={key}
-                  className="border-1 border-black flex items-center gap-2"
+                  className="border-1 border-black flex items-center justify-between gap-2 p-1"
                 >
-                  <div className="w-8 h-8 flex items-center justify-center">
-                    <Icon className="w-6 h-6" />
+                  <div className="flex gap-2">
+                    <div className="w-8 h-8 flex items-center justify-center">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <div className="flex flex-col">
+                      <p className="text-xs font-semibold">{label}</p>
+                      {key === 'emergencyContact' &&
+                      typeof value === 'object' ? (
+                        <>
+                          <p>
+                            {value.firstName} {value.lastName}
+                          </p>
+                          <p>{value.phone}</p>
+                        </>
+                      ) : key === 'newPatients' ? (
+                        <div className="flex gap-2">
+                          <label htmlFor="yes-option">
+                            {value ? ' Yes' : 'No'}
+                          </label>
+                          <input
+                            type="radio"
+                            name="choice"
+                            value="yes"
+                            checked={value}
+                            id="yes-option"
+                          />
+                          <label htmlFor="no-option">
+                            {value ? ' No' : 'Yes'}
+                          </label>
+                          <input
+                            type="radio"
+                            name="choice"
+                            value="no"
+                            checked={!value}
+                            id="no-option"
+                          />
+                        </div>
+                      ) : (
+                        <p>{value}</p>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex flex-col">
-                    <p className="text-xs font-semibold">{label}</p>
-                    {key === 'emergencyContact' && typeof value === 'object' ? (
-                      <>
-                        <p>
-                          {value.firstName} {value.lastName}
-                        </p>
-                        <p>{value.phone}</p>
-                      </>
-                    ) : key === 'newPatients' ? (
-                      <div className="flex gap-2">
-                        <label htmlFor="yes-option">
-                          {value ? ' Yes' : 'No'}
-                        </label>
-                        <input
-                          type="radio"
-                          name="choice"
-                          value="yes"
-                          checked={value}
-                          id="yes-option"
-                        />
-                        <label htmlFor="no-option">
-                          {value ? ' No' : 'Yes'}
-                        </label>
-                        <input
-                          type="radio"
-                          name="choice"
-                          value="no"
-                          checked={!value}
-                          id="no-option"
-                        />
-                      </div>
-                    ) : (
-                      <p>{value}</p>
-                    )}
-                  </div>
+                  <CardAction className="">
+                    <Button
+                      className="w-6 h-6 cursor-pointer"
+                      onClick={toggleEditMode}
+                    >
+                      <FaEdit />
+                    </Button>
+                  </CardAction>
                 </li>
               ))}
             </ul>
