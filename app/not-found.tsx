@@ -14,7 +14,7 @@ export default function NotFound() {
         >
           <Image src="/icons/googley-eyes.png" fill alt="googlyeye" />
         </div>
-        <div className="text-center px-4 py-8 sm:px-6 sm:py-10 bg-card">
+        <div className="text-center px-4 py-8 sm:px-2 sm:py-10 bg-card">
           <p className="text-base font-semibold text-accent">404</p>
           <h1 className="mt-4 text-5xl font-semibold tracking-tight text-balance text-foreground sm:text-7xl">
             Page not found
