@@ -1,3 +1,9 @@
+## [1.12.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.11.0...v1.12.0) (2025-07-25)
+
+### Features
+
+* **light/dark toggle:** added toggle, changed buttons to theme colors ([bea1afc](https://github.com/ncharris93/dsd-east-coast-goats/commit/bea1afc8cfad7285ccb7fce46600a2a9007780ea))
+
 ## [1.11.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.10.0...v1.11.0) (2025-07-25)
 
 ### Features
