@@ -14,7 +14,7 @@ export default function ProviderAuthHeader() {
         width="100"
         height="100"
       />
-      <div className="flex flex-row mt-2 gap-x-8 items-center">
+      <div className="flex mt-2 gap-x-8 items-center">
         <NavLinks />
         <ModeToggle />
         <HeaderActions />
