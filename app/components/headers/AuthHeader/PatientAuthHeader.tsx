@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { ModeToggle } from '../components/LightDarkToggle'
 import HeaderActions from './HeaderActions'
 import NavLinks from './navlinks/AuthNavLinks'
 
@@ -16,6 +17,7 @@ export default function PatientAuthHeader() {
       <div className="flex flex-row justify-around mt-2 items-center gap-x-10">
         <NavLinks />
         <div className="flex flex-row gap-x-5 ">
+          <ModeToggle />
           <HeaderActions />
         </div>
       </div>
