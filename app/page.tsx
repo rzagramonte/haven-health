@@ -1,6 +1,6 @@
 import { hasEnvVars } from '@/lib/utils'
 
-import Header from './components/headers/Header'
+import Header from '../components/headers/Header'
 
 export default function Home() {
   return (
