@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import NavLinks from './navlinks/LandingNavLinks'
 
 export default function PublicHeader() {

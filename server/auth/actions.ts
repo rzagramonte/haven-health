@@ -1,16 +1,32 @@
 'use server'
 import { redirect } from 'next/navigation'
 
-// to be moved to lib/types folder once merge is approved
-export type ActionResponse = {
-  success: boolean
-  message: string
-  errors?: Record<string, string[]>
-  error?: string
-}
+import { createClient } from '@/lib/supabase/server'
+import { ActionResponse } from '@/lib/types/auth'
 
-export async function signIn(): Promise<ActionResponse> {
+export async function login({
+  email,
+  password,
+}: {
+  email: string
+  password: string
+}): Promise<ActionResponse> {
+  const supabase = await createClient()
+
   try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
     return {
       success: true,
       message: 'Signed in successfully',
@@ -25,14 +41,41 @@ export async function signIn(): Promise<ActionResponse> {
   }
 }
 
-export async function signUp(): Promise<ActionResponse> {
+export async function signUp({
+  firstName,
+  lastName,
+  email,
+  password,
+}: {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}): Promise<ActionResponse> {
+  const supabase = await createClient()
+
   try {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { first_name: firstName, last_name: lastName } },
+    })
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message || `Something went wrong`,
+        error: error.name,
+      }
+    }
+
     return {
       success: true,
       message: 'Signed up successfully',
     }
   } catch (err) {
     console.error('Sign up error:', err)
+
     return {
       success: false,
       message: 'An error occurred while signing up',
