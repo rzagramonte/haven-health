@@ -14,28 +14,18 @@ export default function NotFound() {
         >
           <Image src="/icons/googley-eyes.png" fill alt="googlyeye" />
         </div>
-        <div className="text-center px-4 py-8 sm:px-2 sm:py-10 bg-card">
-          <p className="text-base font-semibold text-accent">404</p>
+        <div className="text-center px-4 py-8 sm:px-2 sm:py-10">
           <h1 className="mt-4 text-5xl font-semibold tracking-tight text-balance text-foreground sm:text-7xl">
-            Page not found
+            404, Page not found
           </h1>
-          <p className="mt-6 text-lg font-medium text-pretty text-muted-foreground sm:text-xl/8">
-            Sorry, we couldn’t find the page you’re looking for.
-          </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Button
               asChild
               aria-label="Go Back Home"
               className="cursor-pointer hover:bg-white hover:text-black"
+              variant="secondary"
             >
-              <Link href="/">Go Back Home</Link>
-            </Button>
-            <Button
-              aria-label="Contact Support"
-              variant="outline"
-              className="cursor-pointer"
-            >
-              Contact Support <span aria-hidden="true">&rarr;</span>
+              <Link href="/">Please Take Me Home</Link>
             </Button>
           </div>
         </div>
