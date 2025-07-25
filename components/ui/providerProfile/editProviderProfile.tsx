@@ -117,7 +117,7 @@ const editProfileReducer = (
   }
 }
 
-export default function EditProfileClient() {
+export default function EditProviderProfile() {
   const [editState, editDispatch] = useReducer(editProfileReducer, {
     providerDetails: providerDummyData,
     editingKey: null,
