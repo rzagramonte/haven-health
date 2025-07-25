@@ -1,3 +1,10 @@
+## [1.9.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.1...v1.9.0) (2025-07-24)
+
+### Features
+
+* **server/auth/actions.ts:** created server actions for authentication ([1dd092a](https://github.com/ncharris93/dsd-east-coast-goats/commit/1dd092af239edc18934ea62130103882377d0140))
+* **server:** created placeholder files for all server actions, queries, and mutations ([e4fd3e7](https://github.com/ncharris93/dsd-east-coast-goats/commit/e4fd3e72ad726cec131954fd8cdc78600243dde4))
+
 ## [1.8.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.0...v1.8.1) (2025-07-23)
 
 ### Bug Fixes
