@@ -16,7 +16,7 @@ export default function PatientAuthHeader() {
       />
       <div className="flex justify-around mt-2 items-center gap-x-10">
         <NavLinks />
-        <div className="flex flex-row gap-x-5 ">
+        <div className="flex gap-x-5 ">
           <ModeToggle />
           <HeaderActions />
         </div>
