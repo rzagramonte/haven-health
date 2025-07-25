@@ -1,3 +1,22 @@
+## [1.11.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.10.0...v1.11.0) (2025-07-25)
+
+### Features
+
+* **auth:** implement signup with supabase integration ([#44](https://github.com/ncharris93/dsd-east-coast-goats/issues/44)) ([5b72500](https://github.com/ncharris93/dsd-east-coast-goats/commit/5b7250034dbec44217d66bd216e89a81a3397ce0))
+
+## [1.10.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.9.0...v1.10.0) (2025-07-25)
+
+### Features
+
+* **auth headers:** added patient and provider auths with profile dropdown feature ([261ba8c](https://github.com/ncharris93/dsd-east-coast-goats/commit/261ba8c338daa03c55043e9c6f175502da3e467f))
+* **auth-headers:** added patientauthheader and providerauthheader ([a59819e](https://github.com/ncharris93/dsd-east-coast-goats/commit/a59819e0a23e1c58e88c26050b83b78d3623ad26))
+
+### Bug Fixes
+
+* **auth headers:** fixed links for provider header, cleaned up header.tsx to remove background color ([ab9adf5](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab9adf5504bf9a5e25b9308a45ad593e18aaf0fa))
+* **delete header file:** delete unused header component and merge ([fb34924](https://github.com/ncharris93/dsd-east-coast-goats/commit/fb34924588b8422b5490338d3c5163d45676510e))
+* **removed unused file:** removed unused file in headers ([8289f34](https://github.com/ncharris93/dsd-east-coast-goats/commit/8289f34ac12a83449ef94a072a5f91f7c4d78b27))
+
 ## [1.9.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.1...v1.9.0) (2025-07-24)
 
 ### Features
