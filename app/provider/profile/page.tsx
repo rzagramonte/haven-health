@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import EditProviderProfile from '@/components/ui/providerProfile/editProviderProfile'
+import EditProviderProfile from '@/components/ui/provider/editProviderProfile'
 
 export default function ProfilePage() {
   return (
