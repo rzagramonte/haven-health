@@ -1,4 +1,5 @@
 import { Input } from '../input'
+
 export type EmergencyContact = {
   firstName: string
   lastName: string

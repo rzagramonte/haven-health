@@ -11,15 +11,15 @@ export default function EditableStringField({
   editing,
   onUpdate,
 }: EditableStringFieldProps) {
-  return editing ? (
-    <>
-      <Input
-        className="bg-muted"
-        value={value}
-        onChange={(e) => onUpdate(e.target.value)}
-      />
-    </>
-  ) : (
-    <p>{value}</p>
+  if (!editing) {
+    return <p>{value}</p>
+  }
+
+  return (
+    <Input
+      className="bg-muted"
+      value={value}
+      onChange={(e) => onUpdate(e.target.value)}
+    />
   )
 }
