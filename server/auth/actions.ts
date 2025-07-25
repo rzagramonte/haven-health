@@ -4,8 +4,29 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { ActionResponse } from '@/lib/types/auth'
 
-export async function signIn(): Promise<ActionResponse> {
+export async function login({
+  email,
+  password,
+}: {
+  email: string
+  password: string
+}): Promise<ActionResponse> {
+  const supabase = await createClient()
+
   try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
     return {
       success: true,
       message: 'Signed in successfully',
