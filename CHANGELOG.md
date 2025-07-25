@@ -1,3 +1,9 @@
+## [1.11.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.10.0...v1.11.0) (2025-07-25)
+
+### Features
+
+* **auth:** implement signup with supabase integration ([#44](https://github.com/ncharris93/dsd-east-coast-goats/issues/44)) ([5b72500](https://github.com/ncharris93/dsd-east-coast-goats/commit/5b7250034dbec44217d66bd216e89a81a3397ce0))
+
 ## [1.10.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.9.0...v1.10.0) (2025-07-25)
 
 ### Features
