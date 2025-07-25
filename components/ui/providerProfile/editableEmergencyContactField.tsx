@@ -7,7 +7,7 @@ export type EmergencyContact = {
 }
 
 export interface EmergencyContactFieldProps {
-  value: EmergencyContact
+  value: EmergencyContact | null
   editing: boolean
   onUpdate: (val: EmergencyContact) => void
 }
@@ -17,6 +17,10 @@ export default function EditableEmergencyContactField({
   editing,
   onUpdate,
 }: EmergencyContactFieldProps) {
+  if (!value) {
+    return
+  }
+
   if (!editing) {
     return (
       <>

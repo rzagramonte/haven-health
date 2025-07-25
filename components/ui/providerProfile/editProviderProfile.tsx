@@ -17,19 +17,13 @@ import EditableEmergencyContactField, {
 } from './editableEmergencyContactField'
 import EditableStringField from './editableStringField'
 
-type EditableValue = string | boolean | EmergencyContact
+type EditableValue = string | boolean | EmergencyContact | null
 
 type EditAction =
   | { type: 'EDIT'; key: string; value: EditableValue }
   | { type: 'UPDATE'; value: EditableValue }
   | { type: 'SAVE' }
   | { type: 'CANCEL' }
-
-type EditState = {
-  providerDetails: ProviderDetails
-  editingKey: string | null
-  editableValue: EditableValue | null
-}
 
 export type ProviderDetails = [
   { label: string; key: 'name'; value: string; icon: IconType },
@@ -48,6 +42,12 @@ export type ProviderDetails = [
   },
   { label: string; key: 'newPatients'; value: boolean; icon: IconType },
 ]
+
+type EditState = {
+  providerDetails: ProviderDetails
+  editingKey: string | null
+  editableValue: EditableValue | null
+}
 
 const providerDummyData: ProviderDetails = [
   { label: 'Name & Title', key: 'name', value: 'Bob Ross M.D.', icon: FaUser },
@@ -142,7 +142,6 @@ export default function EditProfileClient() {
                   <EditableEmergencyContactField
                     value={
                       editState.editingKey === key &&
-                      editState.editableValue !== null &&
                       typeof editState.editableValue === 'object'
                         ? editState.editableValue
                         : (value as EmergencyContact)
