@@ -9,7 +9,7 @@ export default function EditableBooleanField({
   editing,
   onUpdate,
 }: EditableBooleanFieldProps) {
-  return editing ? (
+  return (
     <div className="flex gap-2" role="radiogroup" aria-label="Boolean Field">
       <label>
         <input
@@ -17,6 +17,7 @@ export default function EditableBooleanField({
           name="choice"
           checked={value}
           onChange={() => onUpdate(true)}
+          readOnly={editing}
         />
         Yes
       </label>
@@ -26,29 +27,7 @@ export default function EditableBooleanField({
           name="choice"
           checked={!value}
           onChange={() => onUpdate(false)}
-        />
-        No
-      </label>
-    </div>
-  ) : (
-    <div className="flex gap-2" role="radiogroup" aria-label="Boolean Field">
-      <label>
-        <input
-          type="radio"
-          name="choice"
-          checked={value}
-          onChange={() => onUpdate(true)}
-          readOnly
-        />
-        Yes
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="choice"
-          checked={!value}
-          onChange={() => onUpdate(false)}
-          readOnly
+          readOnly={editing}
         />
         No
       </label>
