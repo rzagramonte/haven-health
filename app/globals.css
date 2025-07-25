@@ -51,58 +51,58 @@
 
 @layer base {
   :root {
-    --background: hsl(40 33% 96%);             /* Linen */
-    --foreground: hsl(218 19% 38%);            /* Charcoal Blue */
-    --card: hsl(37 24% 86%);                   /* Beige Gray */
-    --card-foreground: hsl(218 19% 38%);       /* Charcoal Blue */
-    --popover: hsl(42 33% 94%);                /* Eggshell */
-    --popover-foreground: hsl(218 19% 38%);    /* Charcoal Blue */
-    --primary: hsl(342 63% 30%);               /* Rasberry Wine */
-    --primary-foreground: hsl(40 33% 96%);     /* Linen */
-    --secondary: hsl(189 31% 32%);             /* Teal Slate */
-    --secondary-foreground: hsl(40 33% 96%);   /* Linen */
-    --muted: hsl(40 12% 78%);                  /* Griege */
-    --muted-foreground: hsl(218 19% 38%);      /* Charcoal Blue */
-    --accent: hsl(27 100% 33%);                /* Burnt Orange */
-    --accent-foreground: hsl(40 33% 96%);      /* Linen */
-    --destructive: hsl(0 60% 45%);             /* Clinic Brick */
+    --background: hsl(40 33% 96%); /* Linen */
+    --foreground: hsl(218 19% 38%); /* Charcoal Blue */
+    --card: hsl(37 24% 86%); /* Beige Gray */
+    --card-foreground: hsl(218 19% 38%); /* Charcoal Blue */
+    --popover: hsl(42 33% 94%); /* Eggshell */
+    --popover-foreground: hsl(218 19% 38%); /* Charcoal Blue */
+    --primary: hsl(342 63% 30%); /* Rasberry Wine */
+    --primary-foreground: hsl(40 33% 96%); /* Linen */
+    --secondary: hsl(189 31% 32%); /* Teal Slate */
+    --secondary-foreground: hsl(40 33% 96%); /* Linen */
+    --muted: hsl(40 12% 78%); /* Griege */
+    --muted-foreground: hsl(218 19% 38%); /* Charcoal Blue */
+    --accent: hsl(27 100% 33%); /* Burnt Orange */
+    --accent-foreground: hsl(40 33% 96%); /* Linen */
+    --destructive: hsl(0 60% 45%); /* Clinic Brick */
     --destructive-foreground: hsl(40 33% 96%); /* Linen */
-    --border: hsl(0 0% 89.8%);                 /* Gray */
-    --input: hsl(0 0% 89.8%);                  /* Gray */
-    --ring: hsl(218 19% 38%);                  /* Charcoal Blue */
-    --chart-1: hsl(12 76% 55%);	              /* Terracotta Clay */
-    --chart-2: hsl(172 35% 36%);	              /* Vintage Teal */
-    --chart-3: hsl(207 23% 38%);	              /* Weathered Blue */
-    --chart-4: hsl(44 72% 58%);	              /* Buttery Gold */
-    --chart-5: hsl(27 78% 48%);                /* Glazed Caramel */
+    --border: hsl(0 0% 89.8%); /* Gray */
+    --input: hsl(0 0% 89.8%); /* Gray */
+    --ring: hsl(218 19% 38%); /* Charcoal Blue */
+    --chart-1: hsl(12 76% 55%); /* Terracotta Clay */
+    --chart-2: hsl(172 35% 36%); /* Vintage Teal */
+    --chart-3: hsl(207 23% 38%); /* Weathered Blue */
+    --chart-4: hsl(44 72% 58%); /* Buttery Gold */
+    --chart-5: hsl(27 78% 48%); /* Glazed Caramel */
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: hsl(240 10% 10%);            /* Charcoal Linen */
-    --foreground: hsl(40 33% 96%);             /* Linen */
-    --card: hsl(218 12% 14%);                  /* Ink Gray */
-    --card-foreground: hsl(40 33% 96%);        /* Linen */
-    --popover: hsl(218 11% 18%);               /* Slate Mist */
-    --popover-foreground: hsl(40 33% 96%);     /* Linen */
-    --primary: hsl(342 63% 60%);               /* Raspberry Tint */
-    --primary-foreground: hsl(240 10% 10%);    /* Charcoal Linen */
-    --secondary: hsl(189 31% 45%);             /* Lighter Teal Slate */
-    --secondary-foreground: hsl(240 10% 10%);  /* Charcoal Linen */
-    --muted: hsl(40 12% 30%);                  /* Earth Griege */
-    --muted-foreground: hsl(40 33% 96%);       /* Linen */
-    --accent: hsl(7 100% 55%);                 /* Toasted Orange */
-    --accent-foreground: hsl(240 10% 10%);     /* Charcoal Linen */
-    --destructive: hsl(0 60% 38%);             /* Dark Clinic Brick */
+    --background: hsl(240 10% 10%); /* Charcoal Linen */
+    --foreground: hsl(40 33% 96%); /* Linen */
+    --card: hsl(218 12% 14%); /* Ink Gray */
+    --card-foreground: hsl(40 33% 96%); /* Linen */
+    --popover: hsl(218 11% 18%); /* Slate Mist */
+    --popover-foreground: hsl(40 33% 96%); /* Linen */
+    --primary: hsl(342 63% 60%); /* Raspberry Tint */
+    --primary-foreground: hsl(240 10% 10%); /* Charcoal Linen */
+    --secondary: hsl(189 31% 45%); /* Lighter Teal Slate */
+    --secondary-foreground: hsl(240 10% 10%); /* Charcoal Linen */
+    --muted: hsl(40 12% 30%); /* Earth Griege */
+    --muted-foreground: hsl(40 33% 96%); /* Linen */
+    --accent: hsl(7 100% 55%); /* Toasted Orange */
+    --accent-foreground: hsl(240 10% 10%); /* Charcoal Linen */
+    --destructive: hsl(0 60% 38%); /* Dark Clinic Brick */
     --destructive-foreground: hsl(40 33% 96%); /* Linen */
-    --border: hsl(240 6% 20%);                 /* Dusty Charcoal */
-    --input: hsl(240 6% 20%);                  /* Dusty Charcoal */
-    --ring: hsl(342 63% 60%);                  /* Raspberry Tint */
-    --chart-1: hsl(12 60% 60%);                /* Clay Light */
-    --chart-2: hsl(172 35% 50%);               /* Dusty Teal */
-    --chart-3: hsl(207 23% 55%);               /* Pale Weathered Blue */
-    --chart-4: hsl(44 72% 60%);                /* Buttery Gold */
-    --chart-5: hsl(27 78% 60%);                /* Caramel Pop */
+    --border: hsl(240 6% 20%); /* Dusty Charcoal */
+    --input: hsl(240 6% 20%); /* Dusty Charcoal */
+    --ring: hsl(342 63% 60%); /* Raspberry Tint */
+    --chart-1: hsl(12 60% 60%); /* Clay Light */
+    --chart-2: hsl(172 35% 50%); /* Dusty Teal */
+    --chart-3: hsl(207 23% 55%); /* Pale Weathered Blue */
+    --chart-4: hsl(44 72% 60%); /* Buttery Gold */
+    --chart-5: hsl(27 78% 60%); /* Caramel Pop */
   }
 }
 
