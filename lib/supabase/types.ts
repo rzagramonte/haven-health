@@ -60,6 +60,10 @@ export type Database = {
       }
       appointment_booking: {
         Row: {
+          appointment_time: string | null
+          appointment_type:
+            | Database["public"]["Enums"]["appointment_type_enums"]
+            | null
           created_at: string | null
           date_of_birth: string | null
           date_paid: string | null
@@ -68,9 +72,14 @@ export type Database = {
           insurance_flag: boolean | null
           person_id: number | null
           sex: string | null
+          status: Database["public"]["Enums"]["appointment_status_enum"] | null
           updated_at: string | null
         }
         Insert: {
+          appointment_time?: string | null
+          appointment_type?:
+            | Database["public"]["Enums"]["appointment_type_enums"]
+            | null
           created_at?: string | null
           date_of_birth?: string | null
           date_paid?: string | null
@@ -79,9 +88,14 @@ export type Database = {
           insurance_flag?: boolean | null
           person_id?: number | null
           sex?: string | null
+          status?: Database["public"]["Enums"]["appointment_status_enum"] | null
           updated_at?: string | null
         }
         Update: {
+          appointment_time?: string | null
+          appointment_type?:
+            | Database["public"]["Enums"]["appointment_type_enums"]
+            | null
           created_at?: string | null
           date_of_birth?: string | null
           date_paid?: string | null
@@ -90,6 +104,7 @@ export type Database = {
           insurance_flag?: boolean | null
           person_id?: number | null
           sex?: string | null
+          status?: Database["public"]["Enums"]["appointment_status_enum"] | null
           updated_at?: string | null
         }
         Relationships: []
@@ -256,6 +271,16 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      appointment_status_enum:
+        | "scheduled"
+        | "completed"
+        | "canceled"
+        | "no-show"
+      appointment_type_enums:
+        | "General Checkup"
+        | "Chronic Condition Follow-Up"
+        | "Vaccination & Immunization"
+        | "Mental Health Consultation"
       contact_type: "phone" | "email"
       user_role: "patient" | "admin" | "provider"
     }
@@ -385,6 +410,18 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      appointment_status_enum: [
+        "scheduled",
+        "completed",
+        "canceled",
+        "no-show",
+      ],
+      appointment_type_enums: [
+        "General Checkup",
+        "Chronic Condition Follow-Up",
+        "Vaccination & Immunization",
+        "Mental Health Consultation",
+      ],
       contact_type: ["phone", "email"],
       user_role: ["patient", "admin", "provider"],
     },
