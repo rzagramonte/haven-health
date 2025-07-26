@@ -13,8 +13,21 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: 'Next.js and Supabase Starter Kit',
-  description: 'The fastest way to build apps with Next.js and Supabase',
+  title: 'Haven Health',
+  description: 'Your Wellness, Our Committment',
+  openGraph: {
+    title: 'Haven Health | Your Wellness, Our Commitment',
+    description: 'Haven Health Community Health Clinic',
+    url: 'https://dsd-east-coast-goats.vercel.app/',
+    siteName: 'Haven Health',
+    images: [
+      {
+        url: 'https://dsd-east-coast-goats.vercel.app/opengraph-image.png',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
 }
 
 const inter = Inter({
