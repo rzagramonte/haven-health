@@ -1,34 +1,91 @@
-ALTER TABLE public.contact DROP CONSTRAINT fk_contact_person;
-ALTER TABLE public.address DROP CONSTRAINT fk_address_person;
-ALTER TABLE public.patient DROP CONSTRAINT fk_patient_person;
-ALTER TABLE public.appointment_booking DROP CONSTRAINT fk_appointment_patient;
-ALTER TABLE public.medical_visit DROP CONSTRAINT fk_visit_doctor;
+DROP TABLE IF EXISTS public.medical_visit;
+DROP TABLE IF EXISTS public.appointment_booking;
+DROP TABLE IF EXISTS public.patient;
+DROP TABLE IF EXISTS public.address;
+DROP TABLE IF EXISTS public.contact;
+DROP TABLE IF EXISTS public.person;
 
-ALTER TABLE public.contact ALTER COLUMN person_id TYPE uuid;
-ALTER TABLE public.address ALTER COLUMN person_id TYPE uuid;
-ALTER TABLE public.patient ALTER COLUMN person_id TYPE uuid;
-ALTER TABLE public.appointment_booking ALTER COLUMN person_id TYPE uuid;
-ALTER TABLE public.medical_visit ALTER COLUMN doctor_id TYPE uuid;
+DROP TYPE IF EXISTS public.contact_type;
+DROP TYPE IF EXISTS public.user_role;
 
-ALTER TABLE public.person
-  ALTER COLUMN id DROP DEFAULT,
-  ALTER COLUMN id TYPE uuid,
-  ALTER COLUMN id SET NOT NULL;
+CREATE TYPE public.user_role AS ENUM (
+  'patient',
+  'admin',
+  'provider'
+);
 
-ALTER TABLE public.contact
-  ADD CONSTRAINT fk_contact_person FOREIGN KEY (person_id) REFERENCES public.person (id) ON DELETE CASCADE;
+CREATE TYPE public.contact_type AS ENUM (
+  'phone',
+  'email'
+);
 
-ALTER TABLE public.address
-  ADD CONSTRAINT fk_address_person FOREIGN KEY (person_id) REFERENCES public.person (id) ON DELETE CASCADE;
+CREATE TABLE public.person (
+  id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  first_name varchar(255),
+  last_name varchar(255),
+  role public.user_role,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+);
 
-ALTER TABLE public.patient
-  ADD CONSTRAINT fk_patient_person FOREIGN KEY (person_id) REFERENCES public.person (id) ON DELETE CASCADE;
+CREATE TABLE public.contact (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  person_id uuid,
+  contact_type public.contact_type,
+  contact_value varchar(50),
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  CONSTRAINT fk_contact_person FOREIGN KEY (person_id) REFERENCES public.person(id) ON DELETE CASCADE
+);
 
-ALTER TABLE public.appointment_booking
-  ADD CONSTRAINT fk_appointment_patient FOREIGN KEY (person_id) REFERENCES public.person (id) ON DELETE CASCADE;
+CREATE TABLE public.address (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  person_id uuid,
+  streetA varchar(255),
+  streetB varchar(255),
+  city varchar(255),
+  address_state varchar(25),
+  zip_code varchar(10),
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  CONSTRAINT fk_address_person FOREIGN KEY (person_id) REFERENCES public.person(id) ON DELETE CASCADE
+);
 
-ALTER TABLE public.medical_visit
-  ADD CONSTRAINT fk_visit_doctor FOREIGN KEY (doctor_id) REFERENCES public.person (id) ON DELETE CASCADE;
+CREATE TABLE public.patient (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  person_id uuid UNIQUE,
+  date_of_birth date,
+  sex varchar(10),
+  insurance_flag boolean,
+  emergency_contact json,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  CONSTRAINT fk_patient_person FOREIGN KEY (person_id) REFERENCES public.person(id) ON DELETE CASCADE
+);
 
-ALTER TABLE public.person
-  ADD CONSTRAINT fk_user FOREIGN KEY (id) REFERENCES auth.users (id) ON DELETE CASCADE;
+CREATE TABLE public.appointment_booking (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  person_id uuid,
+  date_of_birth date,
+  date_paid date,
+  sex varchar(10),
+  insurance_flag boolean,
+  emergency_contact json,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  CONSTRAINT fk_appointment_patient FOREIGN KEY (person_id) REFERENCES public.person(id) ON DELETE CASCADE
+);
+
+CREATE TABLE public.medical_visit (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  patient_id uuid,
+  doctor_id uuid,
+  allergies varchar[],
+  prescriptions varchar[],
+  summary_notes text,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  followup_needed date,
+  CONSTRAINT fk_visit_patient FOREIGN KEY (patient_id) REFERENCES public.patient(id) ON DELETE CASCADE,
+  CONSTRAINT fk_visit_doctor FOREIGN KEY (doctor_id) REFERENCES public.person(id) ON DELETE CASCADE
+);
