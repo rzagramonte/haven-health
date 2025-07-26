@@ -20,12 +20,14 @@ const buttonVariants = cva(
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
+        cta: 'bg-chart-2 text-accent-foreground shadow-xl transition delay-100 duration-200 ease-in-out hover:scale-110 hover:brightness-110 dark:hover:brightness-90',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
         sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
         icon: 'size-9',
+        cta: 'h-14 rounded-lg px-8',
       },
     },
     defaultVariants: {
