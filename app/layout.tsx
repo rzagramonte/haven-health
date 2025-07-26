@@ -5,16 +5,27 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 
-import { Footer } from '@/components/ui/footer'
-
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : 'http://localhost:3000'
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: 'Next.js and Supabase Starter Kit',
-  description: 'The fastest way to build apps with Next.js and Supabase',
+  title: 'Haven Health',
+  description: 'Your Wellness, Our Committment',
+  openGraph: {
+    title: 'Haven Health | Your Wellness, Our Commitment',
+    description: 'Haven Health Community Health Clinic',
+    url: 'https://dsd-east-coast-goats.vercel.app/',
+    siteName: 'Haven Health',
+    images: [
+      {
+        url: 'https://dsd-east-coast-goats.vercel.app/opengraph-image.png',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
 }
 
 const inter = Inter({
@@ -39,7 +50,6 @@ export default function RootLayout({
         >
           {children}
           <Toaster position="top-center" richColors />
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

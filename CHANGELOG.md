@@ -1,3 +1,55 @@
+## [1.13.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.12.0...v1.13.0) (2025-07-26)
+
+### Features
+
+* **component:** made the patient intake form mobile-friendly ([7413379](https://github.com/ncharris93/dsd-east-coast-goats/commit/741337917a15c89f5f425ce87e661f510f9b970e))
+* **file name:** create a patient intake form and rendered it on the patient-intake route ([f1d8a09](https://github.com/ncharris93/dsd-east-coast-goats/commit/f1d8a09d368aecb6afa79bca574ee9f2a1618bf7))
+* **intake page and component:** added patient intake form to /intake-form route ([7ec4751](https://github.com/ncharris93/dsd-east-coast-goats/commit/7ec4751f6cf9c31095b82132a911b7f2a2940c28))
+* worked on refining the patient intake form ([2a19c94](https://github.com/ncharris93/dsd-east-coast-goats/commit/2a19c94d672ef4abda3e243a96567040de11cd24))
+
+### Reverts
+
+* **page:** added a patient intake form to a intake_form route ([7f99f14](https://github.com/ncharris93/dsd-east-coast-goats/commit/7f99f14ba5d8a935bf9838d74c7a756b6d5471f7))
+
+## [1.12.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.11.0...v1.12.0) (2025-07-25)
+
+### Features
+
+* **light/dark toggle:** added toggle, changed buttons to theme colors ([bea1afc](https://github.com/ncharris93/dsd-east-coast-goats/commit/bea1afc8cfad7285ccb7fce46600a2a9007780ea))
+
+## [1.11.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.10.0...v1.11.0) (2025-07-25)
+
+### Features
+
+* **auth:** implement signup with supabase integration ([#44](https://github.com/ncharris93/dsd-east-coast-goats/issues/44)) ([5b72500](https://github.com/ncharris93/dsd-east-coast-goats/commit/5b7250034dbec44217d66bd216e89a81a3397ce0))
+
+## [1.10.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.9.0...v1.10.0) (2025-07-25)
+
+### Features
+
+* **auth headers:** added patient and provider auths with profile dropdown feature ([261ba8c](https://github.com/ncharris93/dsd-east-coast-goats/commit/261ba8c338daa03c55043e9c6f175502da3e467f))
+* **auth-headers:** added patientauthheader and providerauthheader ([a59819e](https://github.com/ncharris93/dsd-east-coast-goats/commit/a59819e0a23e1c58e88c26050b83b78d3623ad26))
+
+### Bug Fixes
+
+* **auth headers:** fixed links for provider header, cleaned up header.tsx to remove background color ([ab9adf5](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab9adf5504bf9a5e25b9308a45ad593e18aaf0fa))
+* **delete header file:** delete unused header component and merge ([fb34924](https://github.com/ncharris93/dsd-east-coast-goats/commit/fb34924588b8422b5490338d3c5163d45676510e))
+* **removed unused file:** removed unused file in headers ([8289f34](https://github.com/ncharris93/dsd-east-coast-goats/commit/8289f34ac12a83449ef94a072a5f91f7c4d78b27))
+
+
+## [1.9.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.1...v1.9.0) (2025-07-24)
+
+### Features
+
+* **server/auth/actions.ts:** created server actions for authentication ([1dd092a](https://github.com/ncharris93/dsd-east-coast-goats/commit/1dd092af239edc18934ea62130103882377d0140))
+* **server:** created placeholder files for all server actions, queries, and mutations ([e4fd3e7](https://github.com/ncharris93/dsd-east-coast-goats/commit/e4fd3e72ad726cec131954fd8cdc78600243dde4))
+
+## [1.8.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.0...v1.8.1) (2025-07-23)
+
+### Bug Fixes
+
+* **migrations:** added foreign key to appointment, made patient's person_id unique to prevent dupes ([a49164d](https://github.com/ncharris93/dsd-east-coast-goats/commit/a49164dc8c620b36d64d39dc40b2af4f1b12aeaa))
+
 ## [1.8.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.7.0...v1.8.0) (2025-07-22)
 
 ### Features
