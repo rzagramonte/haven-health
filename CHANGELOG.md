@@ -1,4 +1,15 @@
+## [1.13.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.12.0...v1.13.0) (2025-07-26)
 
+### Features
+
+* **component:** made the patient intake form mobile-friendly ([7413379](https://github.com/ncharris93/dsd-east-coast-goats/commit/741337917a15c89f5f425ce87e661f510f9b970e))
+* **file name:** create a patient intake form and rendered it on the patient-intake route ([f1d8a09](https://github.com/ncharris93/dsd-east-coast-goats/commit/f1d8a09d368aecb6afa79bca574ee9f2a1618bf7))
+* **intake page and component:** added patient intake form to /intake-form route ([7ec4751](https://github.com/ncharris93/dsd-east-coast-goats/commit/7ec4751f6cf9c31095b82132a911b7f2a2940c28))
+* worked on refining the patient intake form ([2a19c94](https://github.com/ncharris93/dsd-east-coast-goats/commit/2a19c94d672ef4abda3e243a96567040de11cd24))
+
+### Reverts
+
+* **page:** added a patient intake form to a intake_form route ([7f99f14](https://github.com/ncharris93/dsd-east-coast-goats/commit/7f99f14ba5d8a935bf9838d74c7a756b6d5471f7))
 
 ## [1.12.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.11.0...v1.12.0) (2025-07-25)
 
