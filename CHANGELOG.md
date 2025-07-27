@@ -1,3 +1,16 @@
+## [1.13.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.12.0...v1.13.0) (2025-07-26)
+
+### Features
+
+* **component:** made the patient intake form mobile-friendly ([7413379](https://github.com/ncharris93/dsd-east-coast-goats/commit/741337917a15c89f5f425ce87e661f510f9b970e))
+* **file name:** create a patient intake form and rendered it on the patient-intake route ([f1d8a09](https://github.com/ncharris93/dsd-east-coast-goats/commit/f1d8a09d368aecb6afa79bca574ee9f2a1618bf7))
+* **intake page and component:** added patient intake form to /intake-form route ([7ec4751](https://github.com/ncharris93/dsd-east-coast-goats/commit/7ec4751f6cf9c31095b82132a911b7f2a2940c28))
+* worked on refining the patient intake form ([2a19c94](https://github.com/ncharris93/dsd-east-coast-goats/commit/2a19c94d672ef4abda3e243a96567040de11cd24))
+
+### Reverts
+
+* **page:** added a patient intake form to a intake_form route ([7f99f14](https://github.com/ncharris93/dsd-east-coast-goats/commit/7f99f14ba5d8a935bf9838d74c7a756b6d5471f7))
+
 ## [1.12.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.11.0...v1.12.0) (2025-07-25)
 
 ### Features
@@ -22,6 +35,7 @@
 * **auth headers:** fixed links for provider header, cleaned up header.tsx to remove background color ([ab9adf5](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab9adf5504bf9a5e25b9308a45ad593e18aaf0fa))
 * **delete header file:** delete unused header component and merge ([fb34924](https://github.com/ncharris93/dsd-east-coast-goats/commit/fb34924588b8422b5490338d3c5163d45676510e))
 * **removed unused file:** removed unused file in headers ([8289f34](https://github.com/ncharris93/dsd-east-coast-goats/commit/8289f34ac12a83449ef94a072a5f91f7c4d78b27))
+
 
 ## [1.9.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.1...v1.9.0) (2025-07-24)
 
