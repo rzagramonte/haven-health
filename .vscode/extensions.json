@@ -1,10 +1,5 @@
 {
   "recommendations": [
-    "streetsidesoftware.code-spell-checker",
-    "naumovs.color-highlight",
-    "mikestead.dotenv",
-    "yoavbls.pretty-ts-errors",
-    "vitest.explorer",
-    "bierner.markdown-mermaid"
+    "denoland.vscode-deno"
   ]
 }
