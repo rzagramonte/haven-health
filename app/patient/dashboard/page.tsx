@@ -65,8 +65,8 @@ export default function DashboardPage() {
         const appt = appointmentsData?.[0]
         if (appt) {
           setAppointments({
-            date: appt?.appointment_date,
-            time: appt?.appointment_time,
+            date: appt?.appointment_date_time,
+            time: appt?.appointment_date_time,
           })
           // Fetch provider
           const { data: providerData, error: providerError } = await supabase
