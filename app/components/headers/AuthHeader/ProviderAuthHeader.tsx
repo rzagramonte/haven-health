@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { ModeToggle } from '../components/LightDarkToggle'
 
+import { ModeToggle } from '../components/LightDarkToggle'
 import HeaderActions from './HeaderActions'
 import NavLinks from './navlinks/AuthNavLinks'
 
