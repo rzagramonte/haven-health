@@ -1,3 +1,47 @@
+## [1.14.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.13.0...v1.14.0) (2025-07-27)
+
+### Features
+
+* **app/layout.tsx:** added footer back to root layout ([3aaa40b](https://github.com/ncharris93/dsd-east-coast-goats/commit/3aaa40bd57d10ccc90f826b71f074b0038b8dff7))
+* **app/provider:** installed card component from shad-ui and installed shad ([2114cbb](https://github.com/ncharris93/dsd-east-coast-goats/commit/2114cbb19adc01b02b55732ffbe7ef2743c29982))
+* **provider/profile/page.tsx:** provider icon and button implemented ([171aafe](https://github.com/ncharris93/dsd-east-coast-goats/commit/171aafe8edabe818b549381d42759f3df869c8ef))
+* **provider/profile:** cancel and save buttons ([ab46c7d](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab46c7d6258904a7fa321c5cb504524fd0d6423f))
+* **provider/profile:** completed the card component for showing dynamic provider data ([d40c3af](https://github.com/ncharris93/dsd-east-coast-goats/commit/d40c3afb659d81cff423ae172715678d708d2422))
+* **provider/profile:** edit toggle ([ada6b87](https://github.com/ncharris93/dsd-east-coast-goats/commit/ada6b8786fb957adf91eeb0fb6a7f90c3a43b40c))
+* **provider/profile:** editProfileReducer ([5c7f693](https://github.com/ncharris93/dsd-east-coast-goats/commit/5c7f693b53c395f31bfe5e6569a44b78ceec6de8))
+* **providerprofile/editproviderprofile:** editProviderProfile component ([3e27345](https://github.com/ncharris93/dsd-east-coast-goats/commit/3e273453657a8740d6d4e3762ae55e14df63f725))
+* **ui/providerprofile:** editableBooleanField and editableStringField ([a8851bd](https://github.com/ncharris93/dsd-east-coast-goats/commit/a8851bd852bbee1f315ec7e6bf3e9955a94d8c24))
+
+### Bug Fixes
+
+* **app/provider/profile:** fixed white space beneath footer ([ac3b254](https://github.com/ncharris93/dsd-east-coast-goats/commit/ac3b254319a371e9b153edb3e0bf13f8fb3d0a40))
+* **provider/profile:** fixed checkbox bug ([c47d4cb](https://github.com/ncharris93/dsd-east-coast-goats/commit/c47d4cbc7e16bc72ec8441928ff536702e26a6c4))
+
+### Code Refactoring
+
+* **editablebooleanfield:** removed ternary logic ([94bdcba](https://github.com/ncharris93/dsd-east-coast-goats/commit/94bdcba1c4831a3511faa4706d31774547d37306))
+* **editableemergencycontactfield.tsx:** added early return for null value ([9b8b172](https://github.com/ncharris93/dsd-east-coast-goats/commit/9b8b172c065092988f3e7001d53beeb57368a8bc))
+* **editablestringfield.tsx:** refactored conditional logic ([29eae9b](https://github.com/ncharris93/dsd-east-coast-goats/commit/29eae9bbf28d170ceb49dfb5424d5adec76eea10))
+
+## [1.13.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.12.0...v1.13.0) (2025-07-26)
+
+### Features
+
+* **component:** made the patient intake form mobile-friendly ([7413379](https://github.com/ncharris93/dsd-east-coast-goats/commit/741337917a15c89f5f425ce87e661f510f9b970e))
+* **file name:** create a patient intake form and rendered it on the patient-intake route ([f1d8a09](https://github.com/ncharris93/dsd-east-coast-goats/commit/f1d8a09d368aecb6afa79bca574ee9f2a1618bf7))
+* **intake page and component:** added patient intake form to /intake-form route ([7ec4751](https://github.com/ncharris93/dsd-east-coast-goats/commit/7ec4751f6cf9c31095b82132a911b7f2a2940c28))
+* worked on refining the patient intake form ([2a19c94](https://github.com/ncharris93/dsd-east-coast-goats/commit/2a19c94d672ef4abda3e243a96567040de11cd24))
+
+### Reverts
+
+* **page:** added a patient intake form to a intake_form route ([7f99f14](https://github.com/ncharris93/dsd-east-coast-goats/commit/7f99f14ba5d8a935bf9838d74c7a756b6d5471f7))
+
+## [1.12.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.11.0...v1.12.0) (2025-07-25)
+
+### Features
+
+* **light/dark toggle:** added toggle, changed buttons to theme colors ([bea1afc](https://github.com/ncharris93/dsd-east-coast-goats/commit/bea1afc8cfad7285ccb7fce46600a2a9007780ea))
+
 ## [1.11.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.10.0...v1.11.0) (2025-07-25)
 
 ### Features
@@ -16,6 +60,7 @@
 * **auth headers:** fixed links for provider header, cleaned up header.tsx to remove background color ([ab9adf5](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab9adf5504bf9a5e25b9308a45ad593e18aaf0fa))
 * **delete header file:** delete unused header component and merge ([fb34924](https://github.com/ncharris93/dsd-east-coast-goats/commit/fb34924588b8422b5490338d3c5163d45676510e))
 * **removed unused file:** removed unused file in headers ([8289f34](https://github.com/ncharris93/dsd-east-coast-goats/commit/8289f34ac12a83449ef94a072a5f91f7c4d78b27))
+
 
 ## [1.9.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.8.1...v1.9.0) (2025-07-24)
 
