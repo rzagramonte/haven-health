@@ -9,23 +9,34 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command'
+import { supabase } from '@/lib/supabase/client'
+
+type Patient = {
+  id: number
+  first_name: string
+  last_name: string
+  role: string
+  created_at: string
+  updated_at: string
+}
 
 export default function PatientFinder() {
   const [input, setInput] = useState('')
-  const [results, setResults] = useState('')
+  const [results, setResults] = useState<Patient[]>([])
 
-  const patients = [
-    { id: 1, name: 'Alice Johnson', email: 'alice.johnson@example.com' },
-    { id: 2, name: 'Brian Smith', email: 'brian.smith@example.com' },
-    { id: 3, name: 'Carla Diaz', email: 'carla.diaz@example.com' },
-    { id: 4, name: 'Daniel Lee', email: 'daniel.lee@example.com' },
-    { id: 5, name: 'Emma Brown', email: 'emma.brown@example.com' },
-  ]
-
-  function handleSearch(name: string) {
-    console.log(patients[0].name)
-    setResults(name)
-    setInput(name)
+  async function fetchData(value: string) {
+    const { data, error } = await supabase
+      .from('person')
+      .select('*')
+      .eq('role', 'patient')
+      .ilike('first_name', `%${value}`)
+    if (error) {
+      console.log(error)
+      return null
+    }
+    if (data) {
+      setResults(data)
+    }
   }
 
   return (
@@ -36,14 +47,20 @@ export default function PatientFinder() {
         </CardHeader>
         <Command>
           <CommandInput
-            placeholder="Type patient's name"
+            placeholder="Start typing"
             value={input}
             onValueChange={(value) => {
-              handleSearch(value)
+              setInput(value)
+              fetchData(value)
             }}
           />
           <CommandList>
-            <CommandItem> {results} </CommandItem>
+            {results.map((patient) => (
+              <CommandItem key={patient.id}>
+                {' '}
+                {patient.first_name} {patient.last_name}{' '}
+              </CommandItem>
+            ))}
           </CommandList>
         </Command>
       </Card>

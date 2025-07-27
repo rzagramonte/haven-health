@@ -1,11 +1,8 @@
-import { createBrowserClient } from '@supabase/ssr'
+import { createClient } from '@supabase/supabase-js'
 
-import { AppConfig } from '../config'
-import type { Database } from './types'
+console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
 
-export function createClient() {
-  return createBrowserClient<Database>(
-    AppConfig.supabase.url,
-    AppConfig.supabase.anonKey,
-  )
-}
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+)
