@@ -67,7 +67,7 @@ export async function signUp({
         error: error.name,
       }
     }
-    
+
     return {
       success: true,
       message: 'Signed up successfully',

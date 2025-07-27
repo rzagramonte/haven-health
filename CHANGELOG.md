@@ -1,3 +1,28 @@
+## [1.14.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.13.0...v1.14.0) (2025-07-27)
+
+### Features
+
+* **app/layout.tsx:** added footer back to root layout ([3aaa40b](https://github.com/ncharris93/dsd-east-coast-goats/commit/3aaa40bd57d10ccc90f826b71f074b0038b8dff7))
+* **app/provider:** installed card component from shad-ui and installed shad ([2114cbb](https://github.com/ncharris93/dsd-east-coast-goats/commit/2114cbb19adc01b02b55732ffbe7ef2743c29982))
+* **provider/profile/page.tsx:** provider icon and button implemented ([171aafe](https://github.com/ncharris93/dsd-east-coast-goats/commit/171aafe8edabe818b549381d42759f3df869c8ef))
+* **provider/profile:** cancel and save buttons ([ab46c7d](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab46c7d6258904a7fa321c5cb504524fd0d6423f))
+* **provider/profile:** completed the card component for showing dynamic provider data ([d40c3af](https://github.com/ncharris93/dsd-east-coast-goats/commit/d40c3afb659d81cff423ae172715678d708d2422))
+* **provider/profile:** edit toggle ([ada6b87](https://github.com/ncharris93/dsd-east-coast-goats/commit/ada6b8786fb957adf91eeb0fb6a7f90c3a43b40c))
+* **provider/profile:** editProfileReducer ([5c7f693](https://github.com/ncharris93/dsd-east-coast-goats/commit/5c7f693b53c395f31bfe5e6569a44b78ceec6de8))
+* **providerprofile/editproviderprofile:** editProviderProfile component ([3e27345](https://github.com/ncharris93/dsd-east-coast-goats/commit/3e273453657a8740d6d4e3762ae55e14df63f725))
+* **ui/providerprofile:** editableBooleanField and editableStringField ([a8851bd](https://github.com/ncharris93/dsd-east-coast-goats/commit/a8851bd852bbee1f315ec7e6bf3e9955a94d8c24))
+
+### Bug Fixes
+
+* **app/provider/profile:** fixed white space beneath footer ([ac3b254](https://github.com/ncharris93/dsd-east-coast-goats/commit/ac3b254319a371e9b153edb3e0bf13f8fb3d0a40))
+* **provider/profile:** fixed checkbox bug ([c47d4cb](https://github.com/ncharris93/dsd-east-coast-goats/commit/c47d4cbc7e16bc72ec8441928ff536702e26a6c4))
+
+### Code Refactoring
+
+* **editablebooleanfield:** removed ternary logic ([94bdcba](https://github.com/ncharris93/dsd-east-coast-goats/commit/94bdcba1c4831a3511faa4706d31774547d37306))
+* **editableemergencycontactfield.tsx:** added early return for null value ([9b8b172](https://github.com/ncharris93/dsd-east-coast-goats/commit/9b8b172c065092988f3e7001d53beeb57368a8bc))
+* **editablestringfield.tsx:** refactored conditional logic ([29eae9b](https://github.com/ncharris93/dsd-east-coast-goats/commit/29eae9bbf28d170ceb49dfb5424d5adec76eea10))
+
 ## [1.13.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.12.0...v1.13.0) (2025-07-26)
 
 ### Features
