@@ -7,6 +7,8 @@ import { Toaster } from 'sonner'
 
 import { Footer } from '@/components/ui/footer'
 
+import Header from './components/headers/Header'
+
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : 'http://localhost:3000'
@@ -36,7 +38,7 @@ const inter = Inter({
   subsets: ['latin'],
 })
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
@@ -50,6 +52,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           {children}
           <Footer />
           <Toaster position="top-center" richColors />
