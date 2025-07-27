@@ -3,33 +3,21 @@
 import { useEffect, useState } from 'react'
 
 import { createClient } from '@/lib/supabase/client'
+import { Appointment, Message, Patient, Provider } from '@/lib/types/patient'
 
 import PatientDashboard from '../../../components/dashboard/PatientDashboard'
 
-type Appointment = {
-  date: string[]
-  time: string[]
-}
-
-type Message = {
-  id: number
-  sender: string
-  user: string
-  message: string
-}
-
 export default function DashboardPage() {
-  const supabase = createClient()
-  const [patient, setPatient] = useState<string>('')
-  const [provider, setProvider] = useState<string>('')
+  const [patient, setPatient] = useState<Patient>('')
+  const [provider, setProvider] = useState<Provider>('')
   const [messages, setMessages] = useState<Message[]>([])
   const [appointments, setAppointments] = useState<Appointment>({
-    date: [],
-    time: [],
+    date: '',
+    time: '',
   })
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const supabase = createClient()
     const fetchData = async () => {
       const {
         data: { user },
@@ -40,14 +28,23 @@ export default function DashboardPage() {
         console.error('Error getting user:', userError)
         return
       }
+      const { data: personData, error: personError } = await supabase
+        .from('person')
+        .select('first_name, last_name')
+        .eq('user_id', +user?.id)
+        .single()
 
-      setPatient(user.id)
+      if (personError || !personData) {
+        console.error('Error fetching patient name:', personError)
+      }
+
+      setPatient(`${personData?.first_name}`)
 
       // Fetch messages
       const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
         .select('*')
-        .eq('recipient_id', user.id)
+        .eq('recipient_id', +user?.id)
 
       if (messagesError) {
         console.error('Error fetching messages:', messagesError)
@@ -60,7 +57,7 @@ export default function DashboardPage() {
         await supabase
           .from('appointment_booking')
           .select('*')
-          .eq('person_id', +user.id)
+          .eq('person_id', +user?.id)
 
       if (appointmentsError) {
         console.error('Error fetching appointments:', appointmentsError)
@@ -68,22 +65,26 @@ export default function DashboardPage() {
         const appt = appointmentsData?.[0]
         if (appt) {
           setAppointments({
-            date: [appt.date],
-            time: [appt.time],
+            date: appt?.appointment_date,
+            time: appt?.appointment_time,
           })
-          setProvider(appt.provider || '')
+          // Fetch provider
+          const { data: providerData, error: providerError } = await supabase
+            .from('person')
+            .select('first_name, last_name')
+            .eq('id', appt?.doctor_id)
+            .single()
+          if (providerError) {
+            console.error('Error fetching provider:', providerError)
+          } else {
+            const fullName = `${providerData?.first_name} ${providerData?.last_name}`
+            setProvider(fullName)
+          }
         }
       }
-
-      setLoading(false)
     }
-
     fetchData()
   }, [])
-
-  if (loading) {
-    return <p className="p-4">Loading dashboard...</p>
-  }
 
   return (
     <PatientDashboard
