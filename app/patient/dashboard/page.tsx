@@ -11,9 +11,8 @@ export default function DashboardPage() {
   const [patient, setPatient] = useState<Patient>('')
   const [provider, setProvider] = useState<Provider>('')
   const [messages, setMessages] = useState<Message[]>([])
-  const [appointments, setAppointments] = useState<Appointment>({
-    date: '',
-    time: '',
+  const [appointment, setAppointment] = useState<Appointment>({
+    appointment_date_time: '',
   })
 
   useEffect(() => {
@@ -64,10 +63,7 @@ export default function DashboardPage() {
       } else {
         const appt = appointmentsData?.[0]
         if (appt) {
-          setAppointments({
-            date: appt?.appointment_date_time,
-            time: appt?.appointment_date_time,
-          })
+          setAppointment({ appointment_date_time: appt?.appointment_date_time })
           // Fetch provider
           const { data: providerData, error: providerError } = await supabase
             .from('person')
@@ -90,7 +86,7 @@ export default function DashboardPage() {
     <PatientDashboard
       patient={patient}
       provider={provider}
-      appointments={appointments}
+      appointment={appointment}
       messages={messages}
     />
   )

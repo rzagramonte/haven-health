@@ -32,13 +32,14 @@ export default function UpcomingAppointment({
       <CardHeader>
         <CardTitle className="font-bold">Upcoming Appointment</CardTitle>
       </CardHeader>
-      {!appointments.date ? (
+      {!appointments.appointment_date_time ? (
         <CardContent>No upcoming appointments found.</CardContent>
       ) : (
         <CardContent className="flex items-center gap-2">
           <CardDescription>
-            Your appointment with {provider} is on {appointments.date} at{' '}
-            {appointments.time}.
+            Your appointment with {provider} is on{' '}
+            {appointments.appointment_date_time} at{' '}
+            {appointments.appointment_date_time}.
           </CardDescription>
           <CardAction>
             <Button variant="link" className="text-accent">

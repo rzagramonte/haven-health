@@ -1,13 +1,13 @@
 export type Appointment = {
-  date: string
-  time: string
+  appointment_date_time: string
 }
 
 export type Message = {
-  id: number
-  sender: string
-  user: string
-  message: string
+  id: string
+  sender_id: string
+  recipient_id: string
+  message_text: string
+  created_at: string
 }
 
 export type Provider = string
