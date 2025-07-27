@@ -97,7 +97,7 @@ export const locationHours = [
 
 const Footer = () => {
   return (
-    <section className="p-5 bg-muted">
+    <footer className="p-5 bg-muted h-95">
       <div className="flex w-full flex-col justify-between gap-4 lg:flex-row lg:items-start lg:text-left">
         <div className="flex w-full max-w-[90%] flex-col justify-between gap-3 lg:items-start">
           <p className="text-muted-foreground max-w-[70%] text-sm">
@@ -172,7 +172,7 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-    </section>
+    </footer>
   )
 }
 
