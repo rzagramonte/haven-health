@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".prettierrc.ts"
-  ],
+, "components/ui/providerProfile/editableStringFieldtsx"  ],
   "exclude": ["node_modules"]
 }
