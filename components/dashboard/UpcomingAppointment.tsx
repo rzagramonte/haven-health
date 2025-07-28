@@ -15,12 +15,12 @@ import {
 import { Appointment, Provider } from '@/lib/types/patient'
 
 type UpcomingAppointmentProps = {
-  appointments: Appointment
+  appointment: Appointment
   provider: Provider
 }
 
 export default function UpcomingAppointment({
-  appointments,
+  appointment,
   provider,
 }: UpcomingAppointmentProps) {
   const router = useRouter()
@@ -32,14 +32,13 @@ export default function UpcomingAppointment({
       <CardHeader>
         <CardTitle className="font-bold">Upcoming Appointment</CardTitle>
       </CardHeader>
-      {!appointments.appointment_date_time ? (
+      {!appointment?.date_time ? (
         <CardContent>No upcoming appointments found.</CardContent>
       ) : (
         <CardContent className="flex items-center gap-2">
           <CardDescription>
-            Your appointment with {provider} is on{' '}
-            {appointments.appointment_date_time} at{' '}
-            {appointments.appointment_date_time}.
+            Your appointment with {provider} is on {appointment.date_time} at{' '}
+            {appointment.date_time}.
           </CardDescription>
           <CardAction>
             <Button variant="link" className="text-accent">
