@@ -1,14 +1,9 @@
 export type Appointment = {
-  appointment_date_time: string
-}
-
+  date_time: string
+} | null
 export type Message = {
-  id: string
-  sender_id: string
-  recipient_id: string
-  message_text: string
-  created_at: string
+  sender_name: string
+  content: string
 }
-
-export type Provider = string
 export type Patient = string
+export type Provider = string
