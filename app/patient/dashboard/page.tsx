@@ -57,7 +57,11 @@ export default function DashboardPage() {
         const formattedMessages: Message[] = (messagesData ?? []).map(
           (msg) => ({
             content: msg.content ?? '',
-            sender_name: `${msg.sender ?? ''}`,
+            sender_name: `${msg.sender ?? ''} ${msg.sender ?? ''}`.trim(),
+            sender: {
+              first_name: msg.sender ?? '',
+              last_name: msg.sender ?? '',
+            },
           }),
         )
 

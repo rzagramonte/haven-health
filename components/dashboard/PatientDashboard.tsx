@@ -26,7 +26,7 @@ export default function PatientDashboard({
       </div>
       <div className="container m-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="lg:space-y-15 space-y-6 lg:m-7 lg:flex flex-col items-end ">
-          <UpcomingAppointment appointments={appointment} provider={provider} />
+          <UpcomingAppointment appointment={appointment} provider={provider} />
           <Scheduler />
         </div>
         <div className="lg:m-7 lg:flex flex-col items-start  ">
