@@ -2,7 +2,7 @@ export type Appointment = {
   date_time: string
 } | null
 export type Message = {
-  sender_name: string
+  sender: string
   content: string
 }
 export type Patient = string
