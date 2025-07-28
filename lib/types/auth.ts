@@ -20,18 +20,3 @@ export interface Person {
   createdAt: string | null
   updatedAt: string | null
 }
-
-export interface Patient {
-  id: number
-  personId: number
-  dateOfBirth: Date
-  sex: string
-  insuranceFlag: boolean
-  emergencyContact: EmergencyContact
-  createdAt: string | null
-  updatedAt: string | null
-}
-
-export interface Provider extends Person {
-  newPatientsFlag: boolean
-}

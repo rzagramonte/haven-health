@@ -1,16 +1,16 @@
 import Image from 'next/image'
 
-import { Provider } from '@/lib/types/auth'
+import { Person } from '@/lib/types/auth'
 
 import { ModeToggle } from '../components/LightDarkToggle'
 import HeaderActions from './HeaderActions'
 import NavLinks from './navlinks/AuthNavLinks'
 
 export interface ProviderAuthProps {
-  provider: Provider
+  person: Person
 }
 
-export default function ProviderAuthHeader({ provider }: ProviderAuthProps) {
+export default function ProviderAuthHeader({ person }: ProviderAuthProps) {
   //if role === 'provider'
   return (
     <header className="flex justify-between m-2">
@@ -23,7 +23,7 @@ export default function ProviderAuthHeader({ provider }: ProviderAuthProps) {
       <div className="flex mt-2 gap-x-8 items-center">
         <NavLinks />
         <ModeToggle />
-        {provider && <HeaderActions provider={provider} />}
+        <HeaderActions person={person} />
       </div>
     </header>
   )

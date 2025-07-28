@@ -1,4 +1,3 @@
-import { Patient, Provider } from '@/lib/types/auth'
 import { getCurrentPerson, getCurrentUser } from '@/server/auth/queries'
 
 import PatientAuthHeader from './AuthHeader/PatientAuthHeader'
@@ -10,20 +9,48 @@ export default async function Header() {
   //return session ? AuthHeader: PublicHeader
 
   const user = await getCurrentUser()
-  const person = await getCurrentPerson(user.data?.id ?? '')
 
-  console.log('current user:', user)
-  console.log('current person:', person)
-  console.log('current person role:', person.data?.role)
+  if (!user.data) {
+    return (
+      <div className="bg-background">
+        {!user.success && (
+          <p className="text-red-600 text-sm mt-4 text-center">
+            {user.message}
+          </p>
+        )}
+        <PublicHeader />
+      </div>
+    )
+  }
+
+  const person = await getCurrentPerson(user.data.id)
+
+  if (!person.success) {
+    return (
+      <div className="bg-background">
+        <p className="text-red-600 text-sm mt-4 text-center">
+          {person.message}
+        </p>
+        <PublicHeader />
+      </div>
+    )
+  }
 
   return (
     <div className="bg-background">
-      {!person && <PublicHeader />}
-      {person && person.data?.role === 'provider' && (
-        <ProviderAuthHeader provider={person.data as Provider} />
+      {person.data?.role === 'provider' && (
+        <ProviderAuthHeader person={person.data} />
       )}
-      {person && person.data?.role === 'patient' && (
-        <PatientAuthHeader patient={person.data as unknown as Patient} />
+      {person.data?.role === 'patient' && (
+        <PatientAuthHeader person={person.data} />
+      )}
+      {!person.data?.role && (
+        <div className="bg-background">
+          <p className="text-red-600 text-sm mt-4">
+            Your role is not recognized. Please contact support.
+          </p>
+          <PublicHeader />
+        </div>
       )}
     </div>
   )

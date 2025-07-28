@@ -5,21 +5,27 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useTransition } from 'react'
 
-import { Patient, Provider } from '@/lib/types/auth'
+import { Person } from '@/lib/types/auth'
 import { logOut } from '@/server/auth/actions'
+import { showError, showSuccess } from '@/utils/toast'
 
 export interface UserDropdownProps {
-  provider?: Provider
-  patient?: Patient
+  person: Person
 }
 
-export const UserDropdown = ({ provider, patient }: UserDropdownProps) => {
+export const UserDropdown = ({ person }: UserDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isPending, startTransition] = useTransition()
 
   const handleLogOut = () => {
     startTransition(async () => {
-      await logOut()
+      const result = await logOut()
+
+      if (!result.success) {
+        showError(result.message)
+      }
+
+      showSuccess(result.message)
     })
   }
 
@@ -35,7 +41,9 @@ export const UserDropdown = ({ provider, patient }: UserDropdownProps) => {
         <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-md p-2 z-50">
           <Link
             href={
-              provider && !patient ? '/provider/profile' : '/patient/profile'
+              person.role === 'provider' || person.role === 'admin'
+                ? '/provider/profile'
+                : '/patient/profile'
             }
             className="block px-4 py-2 hover:bg-gray-100"
           >
