@@ -91,7 +91,6 @@ export default function PatientIntakeForm() {
           name="dob"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Sex</FormLabel>
               <FormControl>
                 <DatePicker value={field.value} onChange={field.onChange} />
               </FormControl>
