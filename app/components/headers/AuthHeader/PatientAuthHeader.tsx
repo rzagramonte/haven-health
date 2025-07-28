@@ -1,10 +1,16 @@
 import Image from 'next/image'
 
+import { Patient } from '@/lib/types/auth'
+
 import { ModeToggle } from '../components/LightDarkToggle'
 import HeaderActions from './HeaderActions'
 import NavLinks from './navlinks/AuthNavLinks'
 
-export default function PatientAuthHeader() {
+export interface PatientAuthProps {
+  patient: Patient
+}
+
+export default function PatientAuthHeader({ patient }: PatientAuthProps) {
   //if role === 'patient' this renders
   return (
     <header className="flex bg-[var(--background)] justify-between m-2">
@@ -18,7 +24,7 @@ export default function PatientAuthHeader() {
         <NavLinks />
         <div className="flex gap-x-5 ">
           <ModeToggle />
-          <HeaderActions />
+          {patient && <HeaderActions patient={patient} />}
         </div>
       </div>
     </header>

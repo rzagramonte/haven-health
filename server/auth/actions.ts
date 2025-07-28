@@ -83,7 +83,7 @@ export async function signUp({
   }
 }
 
-export async function signOut(): Promise<void> {
+export async function logOut(): Promise<void> {
   try {
   } catch (err) {
     console.error('Sign out error:', err)
