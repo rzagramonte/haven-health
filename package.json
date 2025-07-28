@@ -14,6 +14,7 @@
     "sb:typegen:local": "npx supabase gen types typescript --schema public > lib/supabase/types.ts",
     "sb:typegen:remote": "npx supabase gen types typescript --linked --schema public > lib/supabase/types.ts",
     "prepare": "husky",
+    "tsc": "tsc --noEmit",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
