@@ -37,7 +37,7 @@ export const UserDropdown = ({ person }: UserDropdownProps) => {
         onClick={() => setIsOpen(!isOpen)}
         className="rounded-lg text-black px-5 py-2.5"
       >
-        <CircleUserRoundIcon className="h-6 w-6 cursor-pointer" />
+        <CircleUserRoundIcon className="size-6 cursor-pointer" />
       </button>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-md p-2 z-50">
