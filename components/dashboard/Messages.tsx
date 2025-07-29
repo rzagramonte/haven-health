@@ -22,29 +22,61 @@ export default function Messages({ messages }: { messages: Message[] }) {
     router.push('/patient/messages')
   }
 
+  const messageCounts = messages?.reduce(
+    (acc, msg) => {
+      acc[msg.sender] = (acc[msg.sender] || 0) + 1
+      return acc
+    },
+    {} as Record<string, number>,
+  )
+
+  const seen = new Set<string>()
+
   return (
     <Card className="bg-card-2 w-full max-w-md">
       <CardHeader>
         <CardTitle className="font-bold">Messages</CardTitle>
       </CardHeader>
-      {!messages.length ? (
-        <CardContent>No messages found.</CardContent>
-      ) : (
-        messages?.map((msg, index) => (
-          <CardContent key={index} className="flex items-center gap-2">
-            <CardDescription>1 new message from {msg.sender}</CardDescription>
-            <CardAction>
-              <Button
-                variant="link"
-                onClick={handleClickMessage}
-                className="text-accent"
+
+      <div className="overflow-auto sm:max-h-61 lg:max-h-65 scrollbar-thin [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-card-4 dark:[&::-webkit-scrollbar-thumb]:bg-card-4">
+        {!messages.length ? (
+          <CardContent className="">No messages found.</CardContent>
+        ) : (
+          messages.map((m, i) => {
+            if (seen.has(m.sender)) {
+              return null
+            }
+            seen.add(m.sender)
+
+            const count = messageCounts[m.sender]
+            const label =
+              count > 1
+                ? `${count} new messages from ${m.sender}`
+                : `1 new message from ${m.sender}`
+
+            return (
+              <CardContent
+                key={i}
+                className="container flex justify-between py-2.5"
               >
-                View More
-              </Button>
-            </CardAction>
-          </CardContent>
-        ))
-      )}
+                <CardDescription className="break-words pl-4">
+                  {label}
+                </CardDescription>
+                <CardAction>
+                  <Button
+                    variant="link"
+                    onClick={handleClickMessage}
+                    className="text-accent"
+                  >
+                    View More
+                  </Button>
+                </CardAction>
+              </CardContent>
+            )
+          })
+        )}
+      </div>
+
       <CardFooter className="flex-col gap-2">
         <Button
           onClick={handleClickMessages}

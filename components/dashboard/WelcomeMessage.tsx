@@ -9,7 +9,7 @@ export default function WelcomeMessage({ patient }: { patient: Patient }) {
         Welcome, {patient || 'Jane Doe'}!
       </h1>
 
-      <p className="mt-1">
+      <p className="mt-1 pl-5">
         We&apos;re glad you&apos;re here. Let’s get you up to speed.
       </p>
     </div>

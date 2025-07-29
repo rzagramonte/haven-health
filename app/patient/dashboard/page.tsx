@@ -96,14 +96,56 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
 }
 
 export default function DashboardPage() {
-  const [patient /*setPatient*/] = useState<Patient>('')
-  const [provider, setProvider] = useState<Provider>('')
-  const [messages /*, setMessages*/] = useState<Message[]>([
+  const messagesData = [
     {
       content: 'Radiology results are back',
+      sender: 'Dr. Rachel Kim',
+    },
+    {
+      content: 'Lipid panel results are back',
+      sender: 'Dr. Elijah Thompson',
+    },
+    {
+      content: 'Follow-up needed',
       sender: 'Dr. Elias Hunt',
     },
-  ])
+    {
+      content: 'MRI Clean',
+      sender: 'Dr. José Martínez',
+    },
+    {
+      content: 'Radiology results are back',
+      sender: 'Dr. Rachel Kim',
+    },
+    {
+      content: 'Lipid panel results are back',
+      sender: 'Dr. Elijah Thompson',
+    },
+    {
+      content: 'Follow-up needed',
+      sender: 'Dr. Elias Hunt',
+    },
+    {
+      content: 'MRI Clean',
+      sender: 'Dr. José Martínez',
+    },
+    {
+      content: 'MRI Clean',
+      sender: 'Dr. Josh Martínez',
+    },
+    {
+      content: 'Prescripton sent out',
+      sender: 'Dr. José Martínez',
+    },
+    {
+      content: 'MRI Clean',
+      sender: 'Dr. José Martínez',
+    },
+  ]
+
+  const [patient /*setPatient*/] = useState<Patient>('')
+  const [provider, setProvider] = useState<Provider>('')
+  const [messages /*, setMessages*/] = useState<Message[]>(messagesData)
   const [appointment, setAppointment] = useState<Appointment | null>(null)
 
   useEffect(() => {

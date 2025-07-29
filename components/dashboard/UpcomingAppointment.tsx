@@ -33,7 +33,9 @@ export default function UpcomingAppointment({
         <CardTitle className="font-bold">Upcoming Appointment</CardTitle>
       </CardHeader>
       {!appointment?.appointment_time ? (
-        <CardContent>No upcoming appointments found.</CardContent>
+        <CardContent className="pl-10">
+          No upcoming appointments found.
+        </CardContent>
       ) : (
         <CardContent className="flex items-center gap-2">
           <CardDescription>

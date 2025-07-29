@@ -25,11 +25,11 @@ export default function PatientDashboard({
         <WelcomeMessage patient={patient} />
       </div>
       <div className="container m-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="lg:space-y-15 space-y-6 lg:m-7 lg:flex flex-col items-end ">
+        <div className="sm:items-center lg:space-y-15 space-y-6 lg:m-7 flex flex-col lg:items-end ">
           <UpcomingAppointment appointment={appointment} provider={provider} />
           <Scheduler />
         </div>
-        <div className="lg:m-7 lg:flex flex-col items-start  ">
+        <div className="sm:items-center lg:space-y-15 space-y-6 lg:m-7 flex flex-col lg:items-start  ">
           <Messages messages={messages} />
         </div>
       </div>
