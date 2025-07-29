@@ -9,7 +9,7 @@ import WelcomeMessage from './WelcomeMessage'
 type PatientDashboardProps = {
   patient: Patient
   provider: Provider
-  appointment: Appointment
+  appointment: Appointment | null
   messages: Message[]
 }
 

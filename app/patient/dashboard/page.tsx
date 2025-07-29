@@ -7,36 +7,31 @@ import { Appointment, Message, Patient, Provider } from '@/lib/types/patient'
 
 import PatientDashboard from '../../../components/dashboard/PatientDashboard'
 
-export default function DashboardPage() {
-  const [patient, setPatient] = useState<Patient>('')
-  const [provider, setProvider] = useState<Provider>('')
-  const [messages, setMessages] = useState<Message[]>([])
-  const [appointment, setAppointment] = useState<Appointment>(null)
+async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
+  // ... all that logic to get user, patient, messages, appointment
 
-  useEffect(() => {
-    const supabase = createClient()
-    const fetchData = async () => {
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser()
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser()
 
-      if (userError || !user) {
-        console.error('Error getting user:', userError)
-        return
-      }
-      const { data: personData, error: personError } = await supabase
-        .from('person')
-        .select('first_name, last_name')
-        .eq('user_id', user.id)
-        .single()
+  if (userError || !user) {
+    console.error('Error getting user:', userError)
+    return
+  }
+  const { data: personData, error: personError } = await supabase
+    .from('person')
+    .select('first_name, last_name')
+    .eq('user_id', user.id)
+    .single()
 
-      if (personError || !personData) {
-        console.error('Error fetching patient name:', personError)
-      }
+  if (personError || !personData) {
+    console.error('Error fetching patient name:', personError)
+  }
 
-      setPatient(`${personData?.first_name}`)
+  const patient = personData?.first_name
 
+  /*
       // Fetch messages
       const { data: messagesData, error: messagesError } = await supabase
         .from('messages')
@@ -56,45 +51,72 @@ export default function DashboardPage() {
       } else {
         const formattedMessages: Message[] = (messagesData ?? []).map(
           (msg) => ({
-            content: msg.content ?? '',
-            sender_name: `${msg.sender ?? ''} ${msg.sender ?? ''}`.trim(),
-            sender: {
-              first_name: msg.sender ?? '',
-              last_name: msg.sender ?? '',
-            },
+            content: msg.content,
+            sender_name: msg.sender,
           }),
         )
 
         setMessages(formattedMessages)
       }
-      // Fetch appointments
-      const { data: appointmentsData, error: appointmentsError } =
-        await supabase
-          .from('appointment')
-          .select(
-            `
-  date_time,
+*/
+  // Fetch appointments
+  const { data: appointmentsData, error: appointmentsError } = await supabase
+    .from('appointment_booking')
+    .select(
+      `
+  appointment_time,
   doctor:doctor_id!appointment_doctor_id_fkey (
     first_name,
     last_name
   )
 `,
-          )
+    )
 
-          .eq('patient_id', user.id)
+    .eq('patient_id', user.id)
 
-      if (appointmentsError) {
-        console.error('Error fetching appointments:', appointmentsError)
-      } else {
-        const appt = appointmentsData?.[0]
-        if (appt) {
-          setAppointment({ date_time: appt.date_time })
-          const fullName = `${appt?.doctor}`
-          setProvider(fullName)
-        }
-      }
+  let appointment: Appointment | null = null
+  let provider = ''
+
+  if (appointmentsError) {
+    console.error('Error fetching appointments:', appointmentsError)
+  } else {
+    const appt = appointmentsData?.[0]
+    if (appt) {
+      appointment = { appointment_time: appt?.appointment_time }
+      provider = appt?.doctor
     }
-    fetchData()
+  }
+
+  return {
+    patient,
+    provider,
+    appointment,
+    //messages,
+  }
+}
+
+export default function DashboardPage() {
+  const [patient /*setPatient*/] = useState<Patient>('')
+  const [provider, setProvider] = useState<Provider>('')
+  const [messages /*, setMessages*/] = useState<Message[]>([
+    {
+      content: 'Radiology results are back',
+      sender: 'Dr. Elias Hunt',
+    },
+  ])
+  const [appointment, setAppointment] = useState<Appointment | null>(null)
+
+  useEffect(() => {
+    const supabase = createClient()
+    fetchDashboardData(supabase).then((data) => {
+      if (!data) {
+        return
+      }
+      //setPatient(data.patient)
+      setProvider(data.provider)
+      setAppointment(data.appointment)
+      //setMessages(data.messages)
+    })
   }, [])
 
   return (

@@ -32,9 +32,7 @@ export default function Messages({ messages }: { messages: Message[] }) {
       ) : (
         messages?.map((msg, index) => (
           <CardContent key={index} className="flex items-center gap-2">
-            <CardDescription>
-              1 new message from {msg.sender.first_name} {msg.sender.last_name}
-            </CardDescription>
+            <CardDescription>1 new message from {msg.sender}</CardDescription>
             <CardAction>
               <Button
                 variant="link"
