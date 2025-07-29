@@ -40,7 +40,6 @@ export async function login({
   }
 }
 
-
 export async function signUp({
   firstName,
   lastName,
@@ -68,7 +67,7 @@ export async function signUp({
         error: error.name,
       }
     }
-    
+
     return {
       success: true,
       message: 'Signed up successfully',
