@@ -19,7 +19,7 @@ export default function ProfilePage() {
           <FaHandHoldingMedical className="w-[60px] h-[60px] text-foreground" />
         </Avatar>
       </div>
-      <h1>Patient Profile</h1>
+      <h1>Provider Profile</h1>
       <div className="p-3 flex flex-col gap-1 items-center">
         <div className=" w-full max-w-[500px]">
           <Link href="/provider/dashboard">
