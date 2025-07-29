@@ -8,24 +8,37 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
     const supabase = await createClient()
 
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
+
     try {
-      const {
-        data: { user },
-        error,
-      } = await supabase.auth.getUser()
+      if (session) {
+        const {
+          data: { user },
+          error,
+        } = await supabase.auth.getUser()
 
-      if (error) {
-        return {
-          success: false,
-          message: error.message,
-          error: error.name,
+        if (error) {
+          return {
+            success: false,
+            message: error?.message || 'User authentication failed',
+            error: error?.name || 'Authentication',
+          }
         }
-      }
 
-      return {
-        success: true,
-        data: user,
-        message: 'Retrieved the current user',
+        return {
+          success: true,
+          data: user,
+          message: 'Retrieved the current user',
+        }
+      } else {
+        console.log()
+        return {
+          success: true,
+          data: null,
+          message: 'No active user session found',
+        }
       }
     } catch (err) {
       console.error('Get current user error:', err)
@@ -38,6 +51,38 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   },
 )
 
+// export const getCurrentUser = async (): Promise<ActionResponse<User>> => {
+//   const supabase = createClient()
+
+//   try {
+//     const {
+//       data: { user },
+//       error,
+//     } = await supabase.auth.getUser()
+
+//     if (error || !user) {
+//       return {
+//         success: false,
+//         message: error?.message || 'User authentication failed',
+//         error: error?.name || 'Authentication',
+//       }
+//     }
+
+//     return {
+//       success: true,
+//       data: user,
+//       message: 'Retrieved the current user',
+//     }
+//   } catch (err) {
+//     console.error('Get current user error:', err)
+//     return {
+//       success: false,
+//       message: 'An error occurred while retrieving the current user',
+//       error: 'Failed to get current user',
+//     }
+//   }
+// }
+
 export async function getCurrentPerson(
   userId: string,
 ): Promise<ActionResponse<Person>> {
@@ -47,7 +92,8 @@ export async function getCurrentPerson(
     const { data, error } = await supabase
       .from('person')
       .select('*')
-      .eq('user_id', userId)
+      .eq('person_uuid', userId)
+      .single()
 
     if (error) {
       return {
@@ -57,15 +103,13 @@ export async function getCurrentPerson(
       }
     }
 
-    const personData = data[0]
-
     const person = {
-      id: personData.id,
-      firstName: personData.first_name,
-      lastName: personData.last_name,
-      role: personData.role,
-      createdAt: personData.created_at,
-      updatedAt: personData.updated_at,
+      id: data.id,
+      firstName: data.first_name,
+      lastName: data.last_name,
+      role: data.role,
+      createdAt: data.created_at,
+      updatedAt: data.updated_at,
     }
 
     return {

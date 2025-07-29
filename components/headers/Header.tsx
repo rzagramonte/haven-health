@@ -9,6 +9,7 @@ export default async function Header() {
   //return session ? AuthHeader: PublicHeader
 
   const user = await getCurrentUser()
+  console.log('current user:', user)
 
   if (!user.data) {
     return (
@@ -24,6 +25,7 @@ export default async function Header() {
   }
 
   const person = await getCurrentPerson(user.data.id)
+  console.log('current person:', person)
 
   if (!person.success) {
     return (
