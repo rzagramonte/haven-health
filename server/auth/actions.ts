@@ -1,6 +1,4 @@
 'use server'
-import { redirect } from 'next/navigation'
-
 import { createClient } from '@/lib/supabase/server'
 import { ActionResponse } from '@/lib/types/auth'
 
@@ -83,13 +81,31 @@ export async function signUp({
   }
 }
 
-export async function signOut(): Promise<void> {
+export async function logOut(): Promise<ActionResponse> {
+  const supabase = await createClient()
+
   try {
+    const { error } = await supabase.auth.signOut()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message || 'Log out went wrong',
+        error: error.name,
+      }
+    }
+
+    return {
+      success: true,
+      message: 'Log out was successful',
+    }
   } catch (err) {
     console.error('Sign out error:', err)
-    throw new Error('Failed to sign out')
-  } finally {
-    redirect('/login')
+    return {
+      success: false,
+      message: 'An error occurred while signing out',
+      error: 'Failed to sign out',
+    }
   }
 }
 
