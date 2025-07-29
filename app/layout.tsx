@@ -6,7 +6,6 @@ import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 
 import { Footer } from '@/components/ui/footer'
-import { getCurrentUser } from '@/server/auth/queries'
 
 import Header from './components/headers/Header'
 
@@ -44,9 +43,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const currentUser = await getCurrentUser()
-  console.log('current user:', currentUser)
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans flex flex-col`}>

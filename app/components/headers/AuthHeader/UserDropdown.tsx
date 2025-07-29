@@ -23,9 +23,11 @@ export const UserDropdown = ({ person }: UserDropdownProps) => {
 
       if (!result.success) {
         showError(result.message)
+        return
       }
 
       showSuccess(result.message)
+      return
     })
   }
 
