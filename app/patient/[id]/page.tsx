@@ -1,7 +1,10 @@
 // import PatientContactInfoView from '@/components/ui/patient/patientDetails/PatientContactInfoView'
 // import PatientMedicalRecordView from '@/components/ui/patient/patientDetails/PatientMedicalRecordView'
-import type { Icon } from 'next/dist/lib/metadata/types/metadata-types'
+import type { IconType } from 'react-icons'
+import { BiSolidContact } from 'react-icons/bi'
+import { FaBriefcaseMedical } from 'react-icons/fa6'
 
+import { Separator } from '@/components/ui/separator'
 import {
   Sidebar,
   SidebarContent,
@@ -17,28 +20,35 @@ import {
 
 export interface SidebarItem {
   title: string
-  icon: Icon
+  icon: IconType
 }
 
 export type SidebarItems = SidebarItem[]
 
 const sidebarItems: SidebarItems = [
-  { title: 'Contact Information', icon: '' },
-  { title: 'Medical Record', icon: '' },
+  { title: 'Contact Information', icon: BiSolidContact },
+  { title: 'Medical Record', icon: FaBriefcaseMedical },
 ]
 
 export default function PatientDetails() {
   return (
     <SidebarProvider>
       <Sidebar>
-        <SidebarContent>
+        <SidebarContent className="bg-foreground text-white ">
           <SidebarGroup>
-            <SidebarGroupLabel>Patient Details</SidebarGroupLabel>
+            <SidebarGroupLabel className="text-white mb-10 p-2 flex-col text-lg items-start">
+              Patient Details
+              <Separator />
+            </SidebarGroupLabel>
+
             <SidebarGroupContent>
-              <SidebarMenu>
-                {sidebarItems.map((sidebarItem: SidebarItem) => (
-                  <SidebarMenuItem key={sidebarItem.title}>
-                    <SidebarMenuButton>{sidebarItem.title}</SidebarMenuButton>
+              <SidebarMenu className="gap-3">
+                {sidebarItems.map(({ title, icon: Icon }) => (
+                  <SidebarMenuItem key={title}>
+                    <SidebarMenuButton className="cursor-pointer text-lg">
+                      <Icon />
+                      {title}
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
               </SidebarMenu>
@@ -46,8 +56,8 @@ export default function PatientDetails() {
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
-      <main className="border-3 border-yellow w-full">
-        <SidebarTrigger />
+      <main className="border-3 border-yellow w-full bg-background">
+        <SidebarTrigger className="hover:bg-foreground cursor-pointer" />
         <h1>Welcome to the Patient Details page</h1>
       </main>
     </SidebarProvider>
