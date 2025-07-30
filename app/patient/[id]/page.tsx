@@ -1,23 +1,55 @@
-import PatientContactInfoView from '@/components/ui/patient/patientDetails/PatientContactInfoView'
-import PatientMedicalRecordView from '@/components/ui/patient/patientDetails/PatientMedicalRecordView'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+// import PatientContactInfoView from '@/components/ui/patient/patientDetails/PatientContactInfoView'
+// import PatientMedicalRecordView from '@/components/ui/patient/patientDetails/PatientMedicalRecordView'
+import type { Icon } from 'next/dist/lib/metadata/types/metadata-types'
+
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger,
+} from '@/components/ui/sidebar'
+
+export interface SidebarItem {
+  title: string
+  icon: Icon
+}
+
+export type SidebarItems = SidebarItem[]
+
+const sidebarItems: SidebarItems = [
+  { title: 'Contact Information', icon: '' },
+  { title: 'Medical Record', icon: '' },
+]
 
 export default function PatientDetails() {
   return (
-    <main>
-      <h1>Welcome to the Patient Details page</h1>
-      <Tabs defaultValue="contactInfo">
-        <TabsList>
-          <TabsTrigger value="contactInfo">Contact Info</TabsTrigger>
-          <TabsTrigger value="medicalRecord">Medical Record</TabsTrigger>
-        </TabsList>
-        <TabsContent value="contactInfo">
-          <PatientContactInfoView />
-        </TabsContent>
-        <TabsContent value="medicalRecord">
-          <PatientMedicalRecordView />
-        </TabsContent>
-      </Tabs>
-    </main>
+    <SidebarProvider>
+      <Sidebar>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Patient Details</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {sidebarItems.map((sidebarItem: SidebarItem) => (
+                  <SidebarMenuItem key={sidebarItem.title}>
+                    <SidebarMenuButton>{sidebarItem.title}</SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+      <main className="border-3 border-yellow w-full">
+        <SidebarTrigger />
+        <h1>Welcome to the Patient Details page</h1>
+      </main>
+    </SidebarProvider>
   )
 }
