@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import {
@@ -22,20 +22,54 @@ type Patient = {
 
 export default function PatientFinder() {
   const [input, setInput] = useState('')
+  const [hasSearched, setHasSearched] = useState(false)
   const [results, setResults] = useState<Patient[]>([])
+  const lastQueryRef = useRef<string>('')
 
   async function fetchData(value: string) {
-    const { data, error } = await supabase
-      .from('person')
-      .select('*')
-      .eq('role', 'patient')
-      .ilike('first_name', `%${value}`)
-    if (error) {
-      console.log(error)
-      return null
+    if (value.length < 2) {
+      setResults([])
+      setHasSearched(false)
+      return
     }
-    if (data) {
-      setResults(data)
+
+    lastQueryRef.current = value
+
+    try {
+      const { data, error } = await supabase
+        .from('person')
+        .select('*')
+        .eq('role', 'patient')
+        .or(`first_name.ilike.%${value}%`)
+        .order('first_name')
+        .limit(10)
+
+      if (error) {
+        return
+      }
+
+      if (lastQueryRef.current === value) {
+        setResults(data || [])
+        setHasSearched(true)
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchData(input)
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [input])
+
+  const handleInputChange = (value: string) => {
+    setInput(value)
+    if (value.length === 0) {
+      setResults([])
+      setHasSearched(false)
     }
   }
 
@@ -45,22 +79,22 @@ export default function PatientFinder() {
         <CardHeader>
           <CardTitle className="font-bold">Find a Patient</CardTitle>
         </CardHeader>
-        <Command>
+        <Command shouldFilter={false}>
           <CommandInput
-            placeholder="Start typing"
+            placeholder="Start typing a name..."
             value={input}
-            onValueChange={(value) => {
-              setInput(value)
-              fetchData(value)
-            }}
+            onValueChange={handleInputChange}
           />
           <CommandList>
-            {results.map((patient) => (
-              <CommandItem key={patient.id}>
-                {' '}
-                {patient.first_name} {patient.last_name}{' '}
-              </CommandItem>
-            ))}
+            {results.length > 0 &&
+              results.map((patient) => (
+                <CommandItem key={patient.id}>
+                  {patient.first_name} {patient.last_name}
+                </CommandItem>
+              ))}
+            {hasSearched && results.length === 0 && (
+              <CommandItem>No patients found</CommandItem>
+            )}
           </CommandList>
         </Command>
       </Card>
