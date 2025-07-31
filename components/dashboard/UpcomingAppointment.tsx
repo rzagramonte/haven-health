@@ -27,6 +27,24 @@ export default function UpcomingAppointment({
   const handleClick = () => {
     router.push('/appointment')
   }
+
+  if (!appointment?.appointment_time) {
+    return null
+  }
+  const date = new Date(appointment?.appointment_time)
+
+  const localDate = date.toLocaleDateString(undefined, {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
+
+  const localTime = date.toLocaleTimeString(undefined, {
+    hour: 'numeric',
+    minute: 'numeric',
+  })
+
   return (
     <Card className="bg-card-1 w-full max-w-md">
       <CardHeader>
@@ -39,8 +57,7 @@ export default function UpcomingAppointment({
       ) : (
         <CardContent className="flex items-center gap-2">
           <CardDescription>
-            Your appointment with {provider} is on{' '}
-            {appointment?.appointment_time} at {appointment?.appointment_time}.
+            Your appointment with {provider} is on {localDate} at {localTime}.
           </CardDescription>
           <CardAction>
             <Button variant="link" className="text-accent">

@@ -22,7 +22,7 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
   const { data: personData, error: personError } = await supabase
     .from('person')
     .select('first_name, last_name')
-    .eq('user_id', user.id)
+    .eq('person_uuid', user.id)
     .single()
 
   if (personError || !personData) {
