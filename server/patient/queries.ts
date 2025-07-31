@@ -12,7 +12,7 @@ export async function getPatient(
   try {
     const { data, error } = await supabase
       .from('patient')
-      .select('*, person(*)')
+      .select('*, person(*), medical_visit(*)')
       .eq('id', patientId)
       .single()
 
