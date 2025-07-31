@@ -47,7 +47,7 @@ export default function PatientDetailsSidebar({
             <SidebarMenu className="gap-3">
               {sidebarItems.map(({ title, icon: Icon, href }) => (
                 <SidebarMenuItem key={title}>
-                  <Link href={`${patientId}/${href}`}>
+                  <Link href={`/patient/${patientId}/${href}`}>
                     <SidebarMenuButton className="cursor-pointer text-lg">
                       <Icon />
                       {title}
