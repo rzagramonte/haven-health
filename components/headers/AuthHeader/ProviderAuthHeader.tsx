@@ -11,7 +11,6 @@ export interface ProviderAuthProps {
 }
 
 export default function ProviderAuthHeader({ person }: ProviderAuthProps) {
-  //if role === 'provider'
   return (
     <header className="flex justify-between m-2">
       <Image

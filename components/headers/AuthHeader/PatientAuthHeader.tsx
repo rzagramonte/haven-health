@@ -11,7 +11,6 @@ export interface PatientAuthProps {
 }
 
 export default function PatientAuthHeader({ person }: PatientAuthProps) {
-  //if role === 'patient' this renders
   return (
     <header className="flex bg-[var(--background)] justify-between m-2">
       <Image
