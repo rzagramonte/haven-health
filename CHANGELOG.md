@@ -1,3 +1,13 @@
+## [1.17.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.16.0...v1.17.0) (2025-07-31)
+
+### Features
+
+* **app/patient/dashboard/page.tsx components/dashboard/messages.tsx:** fetching data ([3bdc2d0](https://github.com/ncharris93/dsd-east-coast-goats/commit/3bdc2d06f752f38400c08418fc97b7034ca4316a))
+* migrate IDs to UUID, add messages table, and restructure schema ([9f5dde7](https://github.com/ncharris93/dsd-east-coast-goats/commit/9f5dde7ad8f87c752f98246476c7a43d605e3e9a))
+* update dashboard ([446d626](https://github.com/ncharris93/dsd-east-coast-goats/commit/446d626dd7b295334a2ad1f630a7faf90f558a92))
+* updated column names within dashboard to match tables ([8321809](https://github.com/ncharris93/dsd-east-coast-goats/commit/832180953d8f610fe80207505065237da318090d))
+* working on patient dashboard ([8655e28](https://github.com/ncharris93/dsd-east-coast-goats/commit/8655e28fcd78758c766c23d11896e5bb74f7599d))
+
 ## [1.16.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.15.0...v1.16.0) (2025-07-31)
 
 ### Features
