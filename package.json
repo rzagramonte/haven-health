@@ -14,7 +14,7 @@
     "sb:typegen:local": "npx supabase gen types typescript --schema public > lib/supabase/types.ts",
     "sb:typegen:remote": "npx supabase gen types typescript --linked --schema public > lib/supabase/types.ts",
     "prepare": "husky",
-    "typecheck": "tsc --noEmit"
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@commitlint/config-conventional": "^19.8.1",
@@ -40,7 +40,6 @@
     "react-hook-form": "^7.60.0",
     "react-icons": "^5.5.0",
     "sonner": "^2.0.6",
-    "react-icons": "^5.5.0",
     "tailwind-merge": "^3.3.0",
     "zod": "^4.0.5"
   },
