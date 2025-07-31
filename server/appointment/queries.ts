@@ -27,7 +27,7 @@ export async function getAppointment(
     return {
       success: true,
       data: data,
-      message: 'Retrieved current patient',
+      message: 'Retrieved current appointment',
     }
   } catch (err) {
     console.error('Get current appointment error:', err)
