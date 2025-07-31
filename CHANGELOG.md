@@ -1,3 +1,53 @@
+## [1.15.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.14.0...v1.15.0) (2025-07-28)
+
+### Features
+
+* **app/error404:** created an error404page component ([d750d18](https://github.com/ncharris93/dsd-east-coast-goats/commit/d750d188792af1ef8ff86a9a0e76c0752914d953))
+* **app/error404:** css variables not working ([e39abbd](https://github.com/ncharris93/dsd-east-coast-goats/commit/e39abbdfc89acc8ed9c04c532fb7f4a8964a886a))
+* **app:** merge main ([27c4cba](https://github.com/ncharris93/dsd-east-coast-goats/commit/27c4cbabd0bfd3e87e63c07316a417d97522d4ac))
+* **error.tsx:** error.tsx file created ([25ad800](https://github.com/ncharris93/dsd-east-coast-goats/commit/25ad800fe761d479deb4ee37800cdcd6a2094b12))
+* **error404/page.tsx:** created error404 component ([a68549b](https://github.com/ncharris93/dsd-east-coast-goats/commit/a68549be78c8d3a49b2edc8b7f7315f4d848238f))
+* **not-found.tsx:** moved error404 page to not-found.tsx ([fafebe3](https://github.com/ncharris93/dsd-east-coast-goats/commit/fafebe3435fdf439fa1a184c0f0be0d3704dfcdc))
+* **not-found.tsx:** removed card background ([98d1b60](https://github.com/ncharris93/dsd-east-coast-goats/commit/98d1b6026d1f5a6c998caa745758d115a4e6afda))
+* **package-lock.json:** package-lock json merge conflict resolved ([04f3e91](https://github.com/ncharris93/dsd-east-coast-goats/commit/04f3e915c21479d2747aa590fbfec7591440b0af))
+
+### Bug Fixes
+
+* **error.tsx:** add use client to top of error.tsx ([60970da](https://github.com/ncharris93/dsd-east-coast-goats/commit/60970da81adb11265a354f528c3a99a13b322d2e))
+* **error404:** googleye img successfully uploaded ([6f39716](https://github.com/ncharris93/dsd-east-coast-goats/commit/6f39716c9799c124f5642eaafd4a0212ffd22010))
+* **not-found.tsx:** fixed padding on mobile ([b8ec2f3](https://github.com/ncharris93/dsd-east-coast-goats/commit/b8ec2f38df5f4210c7d1255ca11ad6385c11dd60))
+* **not-found.tsx:** responsive bug on img and div container ([7928996](https://github.com/ncharris93/dsd-east-coast-goats/commit/7928996f77d149b015ba8e44611124a4d1fa543a))
+* **package-lock.json layout.tsx:** merge conflict resolved ([6efe021](https://github.com/ncharris93/dsd-east-coast-goats/commit/6efe02157a1fe95f3fdcbda6ac1e28d8c57aecef))
+
+### Code Refactoring
+
+* **error404:** tried adding svg ([28448e5](https://github.com/ncharris93/dsd-east-coast-goats/commit/28448e5006c659a813ab6ac4c022cdb5a00a14c1))
+
+## [1.14.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.13.0...v1.14.0) (2025-07-27)
+
+### Features
+
+* **app/layout.tsx:** added footer back to root layout ([3aaa40b](https://github.com/ncharris93/dsd-east-coast-goats/commit/3aaa40bd57d10ccc90f826b71f074b0038b8dff7))
+* **app/provider:** installed card component from shad-ui and installed shad ([2114cbb](https://github.com/ncharris93/dsd-east-coast-goats/commit/2114cbb19adc01b02b55732ffbe7ef2743c29982))
+* **provider/profile/page.tsx:** provider icon and button implemented ([171aafe](https://github.com/ncharris93/dsd-east-coast-goats/commit/171aafe8edabe818b549381d42759f3df869c8ef))
+* **provider/profile:** cancel and save buttons ([ab46c7d](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab46c7d6258904a7fa321c5cb504524fd0d6423f))
+* **provider/profile:** completed the card component for showing dynamic provider data ([d40c3af](https://github.com/ncharris93/dsd-east-coast-goats/commit/d40c3afb659d81cff423ae172715678d708d2422))
+* **provider/profile:** edit toggle ([ada6b87](https://github.com/ncharris93/dsd-east-coast-goats/commit/ada6b8786fb957adf91eeb0fb6a7f90c3a43b40c))
+* **provider/profile:** editProfileReducer ([5c7f693](https://github.com/ncharris93/dsd-east-coast-goats/commit/5c7f693b53c395f31bfe5e6569a44b78ceec6de8))
+* **providerprofile/editproviderprofile:** editProviderProfile component ([3e27345](https://github.com/ncharris93/dsd-east-coast-goats/commit/3e273453657a8740d6d4e3762ae55e14df63f725))
+* **ui/providerprofile:** editableBooleanField and editableStringField ([a8851bd](https://github.com/ncharris93/dsd-east-coast-goats/commit/a8851bd852bbee1f315ec7e6bf3e9955a94d8c24))
+
+### Bug Fixes
+
+* **app/provider/profile:** fixed white space beneath footer ([ac3b254](https://github.com/ncharris93/dsd-east-coast-goats/commit/ac3b254319a371e9b153edb3e0bf13f8fb3d0a40))
+* **provider/profile:** fixed checkbox bug ([c47d4cb](https://github.com/ncharris93/dsd-east-coast-goats/commit/c47d4cbc7e16bc72ec8441928ff536702e26a6c4))
+
+### Code Refactoring
+
+* **editablebooleanfield:** removed ternary logic ([94bdcba](https://github.com/ncharris93/dsd-east-coast-goats/commit/94bdcba1c4831a3511faa4706d31774547d37306))
+* **editableemergencycontactfield.tsx:** added early return for null value ([9b8b172](https://github.com/ncharris93/dsd-east-coast-goats/commit/9b8b172c065092988f3e7001d53beeb57368a8bc))
+* **editablestringfield.tsx:** refactored conditional logic ([29eae9b](https://github.com/ncharris93/dsd-east-coast-goats/commit/29eae9bbf28d170ceb49dfb5424d5adec76eea10))
+
 ## [1.13.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.12.0...v1.13.0) (2025-07-26)
 
 ### Features
