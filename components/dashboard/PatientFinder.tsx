@@ -67,10 +67,6 @@ export default function PatientFinder() {
 
   const handleInputChange = (value: string) => {
     setInput(value)
-    if (value.length === 0) {
-      setResults([])
-      setHasSearched(false)
-    }
   }
 
   return (
@@ -79,7 +75,7 @@ export default function PatientFinder() {
         <CardHeader>
           <CardTitle className="font-bold">Find a Patient</CardTitle>
         </CardHeader>
-        <Command shouldFilter={false}>
+        <Command>
           <CommandInput
             placeholder="Start typing a name..."
             value={input}
