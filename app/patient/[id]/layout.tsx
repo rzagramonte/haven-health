@@ -7,14 +7,14 @@ export default async function Layout({
   children,
   params,
   patientDetails,
-  contactInfo,
-  medicalRecord,
+  // contactInfo,
+  // medicalRecord,
 }: {
   children: React.ReactNode
   params: Promise<{ id: number }>
   patientDetails: React.ReactNode
-  contactInfo: React.ReactNode
-  medicalRecord: React.ReactNode
+  // contactInfo: React.ReactNode
+  // medicalRecord: React.ReactNode
 }) {
   const { id } = await params
 
@@ -27,8 +27,8 @@ export default async function Layout({
         <SidebarTrigger className="hover:bg-foreground cursor-pointer" />
         {children}
         {patientDetails}
-        {contactInfo}
-        {medicalRecord}
+        {/* {contactInfo}
+        {medicalRecord} */}
       </main>
     </SidebarProvider>
   )
