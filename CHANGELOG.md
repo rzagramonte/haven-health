@@ -1,3 +1,17 @@
+## [1.16.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.15.0...v1.16.0) (2025-07-31)
+
+### Features
+
+* **server/auth/actions.ts:** implemented logout functionality in server ([4b584cb](https://github.com/ncharris93/dsd-east-coast-goats/commit/4b584cb9a98058f7ae6f1d846eecfec7efb2bd0b)), closes [PR#54](https://github.com/ncharris93/PR/issues/54) [#54](https://github.com/ncharris93/dsd-east-coast-goats/issues/54)
+
+### Bug Fixes
+
+* **migrations:** fixed script to appropriately rewrite id values with uuid, id pulled from auth uuid ([5ecae6f](https://github.com/ncharris93/dsd-east-coast-goats/commit/5ecae6f9f1c4deda16709ae32392a7ee9c9f80d0))
+
+### Code Refactoring
+
+* **server/auth/actions.ts:** added redirect to login for logout server action ([a4c4feb](https://github.com/ncharris93/dsd-east-coast-goats/commit/a4c4feb064fffe650d248cf0b0e031c506a8db69))
+
 ## [1.15.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.14.0...v1.15.0) (2025-07-28)
 
 ### Features
