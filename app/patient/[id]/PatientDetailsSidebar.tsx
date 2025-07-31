@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { IconType } from 'react-icons'
 import { BiSolidContact } from 'react-icons/bi'
 import { FaBriefcaseMedical } from 'react-icons/fa6'
@@ -17,16 +18,23 @@ import {
 export interface SidebarItem {
   title: string
   icon: IconType
+  href: string
 }
 
 export type SidebarItems = SidebarItem[]
 
 const sidebarItems: SidebarItems = [
-  { title: 'Contact Information', icon: BiSolidContact },
-  { title: 'Medical Record', icon: FaBriefcaseMedical },
+  { title: 'Contact Information', icon: BiSolidContact, href: 'contactInfo' },
+  { title: 'Medical Record', icon: FaBriefcaseMedical, href: 'medicalRecord' },
 ]
 
-export default function PatientDetailsSidebar() {
+export interface PatientSidebarProps {
+  patientId: number
+}
+
+export default function PatientDetailsSidebar({
+  patientId,
+}: PatientSidebarProps) {
   return (
     <Sidebar>
       <SidebarContent className="bg-foreground text-white ">
@@ -37,12 +45,14 @@ export default function PatientDetailsSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="gap-3">
-              {sidebarItems.map(({ title, icon: Icon }) => (
+              {sidebarItems.map(({ title, icon: Icon, href }) => (
                 <SidebarMenuItem key={title}>
-                  <SidebarMenuButton className="cursor-pointer text-lg">
-                    <Icon />
-                    {title}
-                  </SidebarMenuButton>
+                  <Link href={`${patientId}/${href}`}>
+                    <SidebarMenuButton className="cursor-pointer text-lg">
+                      <Icon />
+                      {title}
+                    </SidebarMenuButton>
+                  </Link>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
