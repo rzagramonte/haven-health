@@ -13,32 +13,28 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
     } = await supabase.auth.getSession()
 
     try {
-      if (session) {
-        const {
-          data: { user },
-          error,
-        } = await supabase.auth.getUser()
-
-        if (error) {
-          return {
-            success: false,
-            message: error?.message || 'User authentication failed',
-            error: error?.name || 'Authentication',
-          }
-        }
-
-        return {
-          success: true,
-          data: user,
-          message: 'Retrieved the current user',
-        }
-      } else {
-        console.log()
+      if (!session) {
         return {
           success: true,
           data: null,
           message: 'No active user session found',
         }
+      }
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser()
+      if (error) {
+        return {
+          success: false,
+          message: error?.message || 'User authentication failed',
+          error: error?.name || 'Authentication',
+        }
+      }
+      return {
+        success: true,
+        data: user,
+        message: 'Retrieved the current user',
       }
     } catch (err) {
       console.error('Get current user error:', err)
@@ -50,38 +46,6 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
     }
   },
 )
-
-// export const getCurrentUser = async (): Promise<ActionResponse<User>> => {
-//   const supabase = createClient()
-
-//   try {
-//     const {
-//       data: { user },
-//       error,
-//     } = await supabase.auth.getUser()
-
-//     if (error || !user) {
-//       return {
-//         success: false,
-//         message: error?.message || 'User authentication failed',
-//         error: error?.name || 'Authentication',
-//       }
-//     }
-
-//     return {
-//       success: true,
-//       data: user,
-//       message: 'Retrieved the current user',
-//     }
-//   } catch (err) {
-//     console.error('Get current user error:', err)
-//     return {
-//       success: false,
-//       message: 'An error occurred while retrieving the current user',
-//       error: 'Failed to get current user',
-//     }
-//   }
-// }
 
 export async function getCurrentPerson(
   userId: string,

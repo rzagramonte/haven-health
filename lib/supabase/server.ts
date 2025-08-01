@@ -7,9 +7,6 @@ import type { Database } from './types'
 export async function createClient() {
   const cookieStore = await cookies()
 
-  const allCookies = cookieStore.getAll()
-  console.log('[Supabase] All cookies:', allCookies)
-
   return createServerClient<Database>(
     AppConfig.supabase.url,
     AppConfig.supabase.anonKey,
