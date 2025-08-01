@@ -1,3 +1,10 @@
+## [1.17.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.0...v1.17.1) (2025-08-01)
+
+### Bug Fixes
+
+* **component:** fix: patient intake form two sex titles bug ([615eb1e](https://github.com/ncharris93/dsd-east-coast-goats/commit/615eb1ebf727a7dee3fceb16863da3972a3bac8a))
+* **componeny:** moved Date of Birth title from DatePicker component to parent component ([df7f765](https://github.com/ncharris93/dsd-east-coast-goats/commit/df7f765930595e241ae4080b644ca1387422cafa))
+
 ## [1.17.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.16.0...v1.17.0) (2025-07-31)
 
 ### Features
