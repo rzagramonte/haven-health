@@ -8,8 +8,6 @@ import { Appointment, Message, Patient, Provider } from '@/lib/types/patient'
 import PatientDashboard from '../../../components/dashboard/PatientDashboard'
 
 async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
-  // ... all that logic to get user, patient, messages, appointment
-
   const {
     data: { user },
     error: userError,
@@ -72,7 +70,7 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
 `,
     )
 
-    .eq('patient_id', user.id)
+    .eq('patient_id', +user.id)
 
   let appointment: Appointment | null = null
   let provider = ''
