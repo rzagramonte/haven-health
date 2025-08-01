@@ -1,27 +1,30 @@
+'use client'
+
+import { useState } from 'react'
+
+import { Appointment, Message, Provider } from '@/lib/types/patient'
+
 import ProviderDashboard from '../../../components/dashboard/ProviderDashboard'
 
 export default function DashboardPage() {
-  const mockData = {
-    patient: 'Jane Smith',
-    provider: 'Elias Hartman',
-    appointments: {
-      date: ['2025-07-26'],
-      time: ['2:00 PM'],
-    },
-    messages: [
-      {
-        sender: 'Dr. Elias Hartman',
-        user: 'TBD',
-        message: "Here's your result",
-      },
-      {
-        sender: 'Radiology',
-        user: 'TBD',
-        message: 'Please review the scan',
-      },
-      { sender: 'Pharmacy', user: 'Roosiel', message: 'Prescription ready' },
-    ],
-  }
+  const messagesData: Message[] = [
+    { content: 'Radiology results are back', sender: 'Dr. Rachel Kim' },
+    { content: 'Lipid panel results are back', sender: 'Dr. Elijah Thompson' },
+    { content: 'Follow-up needed', sender: 'Dr. Elias Hunt' },
+    { content: 'MRI Clean', sender: 'Dr. José Martínez' },
+    { content: 'Prescripton sent out', sender: 'Dr. José Martínez' },
+    { content: 'MRI Clean', sender: 'Dr. Josh Martínez' },
+  ]
 
-  return <ProviderDashboard {...mockData} />
+  const [provider] = useState<Provider>('')
+  const [messages] = useState<Message[]>(messagesData)
+  const [appointment] = useState<Appointment | null>(null)
+
+  return (
+    <ProviderDashboard
+      provider={provider}
+      appointment={appointment}
+      messages={messages}
+    />
+  )
 }

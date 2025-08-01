@@ -40,7 +40,7 @@ export default function PatientFinder() {
         .from('person')
         .select('*')
         .eq('role', 'patient')
-        .or(`first_name.ilike.%${value}%`)
+        .or(`first_name.ilike.%${value}%,last_name.ilike.%${value}%`)
         .order('first_name')
         .limit(10)
 
@@ -70,21 +70,24 @@ export default function PatientFinder() {
   }
 
   return (
-    <div className="container mx-auto py-8 space-y-6">
-      <Card className="bg-card-2 w-full max-w-sm">
+    <div className="flex justify-center py-8">
+      <Card className="bg-card-2 w-full max-w-md">
         <CardHeader>
           <CardTitle className="font-bold">Find a Patient</CardTitle>
         </CardHeader>
         <Command>
           <CommandInput
-            placeholder="Start typing a name..."
+            placeholder="Start typing a name"
             value={input}
             onValueChange={handleInputChange}
           />
           <CommandList>
             {results.length > 0 &&
               results.map((patient) => (
-                <CommandItem key={patient.id}>
+                <CommandItem
+                  key={patient.id}
+                  value={`${patient.first_name} ${patient.last_name}`}
+                >
                   {patient.first_name} {patient.last_name}
                 </CommandItem>
               ))}

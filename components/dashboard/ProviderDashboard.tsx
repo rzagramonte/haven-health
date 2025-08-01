@@ -1,42 +1,40 @@
+'use client'
+import { Appointment, Message } from '@/lib/types/patient'
+
 import Messages from './Messages'
 import PatientFinder from './PatientFinder'
 import Scheduler from './Scheduler'
 import UpcomingAppointment from './UpcomingAppointment'
-import WelcomeMessage from './WelcomeMessage'
 
-type Appointment = {
-  date: string[]
-  time: string[]
-}
-
-type Message = {
-  sender: string
-  user: string
-  message: string
-}
-
-type ProviderDashboardProps = {
-  patient: string
+type ProviderDashboard = {
   provider: string
-  appointments: Appointment
+  appointment: Appointment | null
   messages: Message[]
 }
 
 export default function ProviderDashboard({
-  patient,
   provider,
-  appointments,
+  appointment,
   messages,
-}: ProviderDashboardProps) {
+}: ProviderDashboard) {
   return (
-    <main className="container m-auto p-8 ">
-      <WelcomeMessage patient={patient} />
-      <div className="container grid gap-6 sm:grid-cols-1 md:grid-cols-2">
-        <UpcomingAppointment provider={provider} appointments={appointments} />
-        <Messages messages={messages} />
-        <Scheduler />
-        <PatientFinder />
+    <main className="container mx-auto p-8">
+      <div className="flex justify-center mb-8">
+        <span className="text-xl font-semibold">Welcome</span>
       </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex flex-col space-y-6 lg:space-y-15 lg:m-7 lg:items-end">
+          <UpcomingAppointment appointment={appointment} provider={provider} />
+          <Scheduler />
+        </div>
+
+        <div className="flex flex-col space-y-6 lg:space-y-15 lg:m-7 lg:items-start">
+          <Messages messages={messages} />
+        </div>
+      </div>
+
+      <PatientFinder />
     </main>
   )
 }
