@@ -166,7 +166,7 @@ export default function DashboardPage() {
     },
   ]
 
-  const [patientName /*setPatient*/] = useState<PatientName>('')
+  const [patientName /*, setPatientName*/] = useState<PatientName>('')
   const [provider, setProvider] = useState<Provider>('')
   const [messages /*, setMessages*/] = useState<Message[]>(messagesData)
   const [appointment, setAppointment] = useState<Appointment | null>(null)
@@ -177,7 +177,7 @@ export default function DashboardPage() {
       if (!data) {
         return
       }
-      //setPatient(data.patient)
+      //setPatientName(data.patientName)
       setProvider(data.provider)
       setAppointment(data.appointment)
       //setMessages(data.messages)
