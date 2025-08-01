@@ -11,7 +11,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-card: var(--card);
+  --color-card-1: var(--card-1);
+  --color-card-2: var(--card-2);
+  --color-card-3: var(--card-3);
+  --color-card-4: var(--card-4);
   --color-card-foreground: var(--card-foreground);
 
   --color-popover: var(--popover);
@@ -51,58 +54,64 @@
 
 @layer base {
   :root {
-    --background: hsl(40 33% 96%); /* Linen */
-    --foreground: hsl(218 19% 38%); /* Charcoal Blue */
-    --card: hsl(37 24% 86%); /* Beige Gray */
-    --card-foreground: hsl(218 19% 38%); /* Charcoal Blue */
-    --popover: hsl(42 33% 94%); /* Eggshell */
-    --popover-foreground: hsl(218 19% 38%); /* Charcoal Blue */
-    --primary: hsl(342 63% 30%); /* Rasberry Wine */
-    --primary-foreground: hsl(40 33% 96%); /* Linen */
-    --secondary: hsl(189 31% 32%); /* Teal Slate */
-    --secondary-foreground: hsl(40 33% 96%); /* Linen */
-    --muted: hsl(40 12% 78%); /* Griege */
-    --muted-foreground: hsl(218 19% 38%); /* Charcoal Blue */
-    --accent: hsl(27 100% 33%); /* Burnt Orange */
-    --accent-foreground: hsl(40 33% 96%); /* Linen */
-    --destructive: hsl(0 60% 45%); /* Clinic Brick */
-    --destructive-foreground: hsl(40 33% 96%); /* Linen */
-    --border: hsl(0 0% 89.8%); /* Gray */
-    --input: hsl(0 0% 89.8%); /* Gray */
-    --ring: hsl(218 19% 38%); /* Charcoal Blue */
-    --chart-1: hsl(12 76% 55%); /* Terracotta Clay */
-    --chart-2: hsl(172 35% 36%); /* Vintage Teal */
-    --chart-3: hsl(207 23% 38%); /* Weathered Blue */
-    --chart-4: hsl(44 72% 58%); /* Buttery Gold */
-    --chart-5: hsl(27 78% 48%); /* Glazed Caramel */
+    --background: hsl(40 33% 96%);
+    --foreground: hsl(210 22% 20%);
+    --card-1: hsl(355 20% 81%);
+    --card-2: hsl(75 7% 90%);
+    --card-3: hsl(18 32% 93%);
+    --card-4: hsl(170 10% 84%);
+    --card-foreground: hsl(210 22% 20%);
+    --popover: hsl(42 33% 94%);
+    --popover-foreground: hsl(210 22% 20%);
+    --primary: hsl(342 63% 30%);
+    --primary-foreground: hsl(40 33% 96%);
+    --secondary: hsl(189 31% 32%);
+    --secondary-foreground: hsl(40 33% 96%);
+    --muted: hsl(42 14% 93%);
+    --muted-foreground: hsl(210 22% 20%);
+    --accent: hsl(27 100% 33%);
+    --accent-foreground: hsl(40 33% 96%);
+    --destructive: hsl(0 60% 45%);
+    --destructive-foreground: hsl(40 33% 96%);
+    --border: hsl(0 0% 89.8%);
+    --input: hsl(0 0% 89.8%);
+    --ring: hsl(210 22% 20%);
+    --chart-1: hsl(12 76% 55%);
+    --chart-2: hsl(172 35% 36%);
+    --chart-3: hsl(207 23% 38%);
+    --chart-4: hsl(44 72% 58%);
+    --chart-5: hsl(27 78% 48%);
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: hsl(240 10% 10%); /* Charcoal Linen */
-    --foreground: hsl(40 33% 96%); /* Linen */
-    --card: hsl(218 12% 14%); /* Ink Gray */
-    --card-foreground: hsl(40 33% 96%); /* Linen */
-    --popover: hsl(218 11% 18%); /* Slate Mist */
-    --popover-foreground: hsl(40 33% 96%); /* Linen */
-    --primary: hsl(342 63% 60%); /* Raspberry Tint */
-    --primary-foreground: hsl(240 10% 10%); /* Charcoal Linen */
-    --secondary: hsl(189 31% 45%); /* Lighter Teal Slate */
-    --secondary-foreground: hsl(240 10% 10%); /* Charcoal Linen */
-    --muted: hsl(40 12% 30%); /* Earth Griege */
-    --muted-foreground: hsl(40 33% 96%); /* Linen */
-    --accent: hsl(7 100% 55%); /* Toasted Orange */
-    --accent-foreground: hsl(240 10% 10%); /* Charcoal Linen */
-    --destructive: hsl(0 60% 38%); /* Dark Clinic Brick */
-    --destructive-foreground: hsl(40 33% 96%); /* Linen */
-    --border: hsl(240 6% 20%); /* Dusty Charcoal */
-    --input: hsl(240 6% 20%); /* Dusty Charcoal */
-    --ring: hsl(342 63% 60%); /* Raspberry Tint */
-    --chart-1: hsl(12 60% 60%); /* Clay Light */
-    --chart-2: hsl(172 35% 50%); /* Dusty Teal */
-    --chart-3: hsl(207 23% 55%); /* Pale Weathered Blue */
-    --chart-4: hsl(44 72% 60%); /* Buttery Gold */
-    --chart-5: hsl(27 78% 60%); /* Caramel Pop */
+    --background: hsl(210 22% 20%);
+    --foreground: hsl(40 33% 96%);
+    --card-1: hsl(305 12% 29%);
+    --card-2: hsl(206 22% 23%);
+    --card-3: hsl(225 15% 23%);
+    --card-4: hsl(200 21% 27%);
+    --card-foreground: hsl(40 33% 96%);
+    --popover: hsl(210 22% 20%);
+    --popover-foreground: hsl(40 33% 96%);
+    --primary: hsl(340 86% 70%);
+    --primary-foreground: hsl(210 22% 20%);
+    --secondary: hsl(188 24% 55%);
+    --secondary-foreground: hsl(210 22% 20%);
+    --muted: hsl(212 17% 24%);
+    --muted-foreground: hsl(40 33% 96%);
+    --accent: hsl(6 74% 70%);
+    --accent-foreground: hsl(210 22% 20%);
+    --destructive: hsl(0 60% 38%);
+    --destructive-foreground: hsl(40 33% 96%);
+    --border: hsl(210 22% 20%);
+    --input: hsl(210 22% 20%);
+    --ring: hsl(342 63% 60%);
+    --chart-1: hsl(12 60% 60%);
+    --chart-2: hsl(172 35% 50%);
+    --chart-3: hsl(207 23% 55%);
+    --chart-4: hsl(44 72% 60%);
+    --chart-5: hsl(27 78% 60%);
   }
 }
 
