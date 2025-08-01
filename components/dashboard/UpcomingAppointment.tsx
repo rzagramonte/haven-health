@@ -28,22 +28,23 @@ export default function UpcomingAppointment({
     router.push('/appointment')
   }
 
+  let localDate = ''
+  let localTime = ''
+
   if (!appointment?.appointment_time) {
-    return null
+    const date = new Date(appointment?.appointment_time as string)
+
+    localDate = date.toLocaleDateString(undefined, {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    })
+    localTime = date.toLocaleTimeString(undefined, {
+      hour: 'numeric',
+      minute: 'numeric',
+    })
   }
-  const date = new Date(appointment?.appointment_time)
-
-  const localDate = date.toLocaleDateString(undefined, {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  })
-
-  const localTime = date.toLocaleTimeString(undefined, {
-    hour: 'numeric',
-    minute: 'numeric',
-  })
 
   return (
     <Card className="bg-card-1 w-full max-w-md">

@@ -21,11 +21,19 @@ export function RadioGroupDemo({
       className="flex flex-row"
     >
       <div className="flex items-center gap-3">
-        <RadioGroupItem value={opt1} id="r1" className="border-green-300" />
+        <RadioGroupItem
+          value={opt1}
+          id="r1"
+          className="border-accent bg-input"
+        />
         <Label htmlFor="r1">{opt1}</Label>
       </div>
       <div className="flex items-center gap-3">
-        <RadioGroupItem value={opt2} id="r2" className="border-green-300" />
+        <RadioGroupItem
+          value={opt2}
+          id="r2"
+          className="border-accent bg-input"
+        />
         <Label htmlFor="r2">{opt2}</Label>
       </div>
     </RadioGroup>

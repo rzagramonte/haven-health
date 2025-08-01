@@ -44,7 +44,7 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
           id="date"
           value={formatted}
           placeholder="June 01, 2025"
-          className="bg-white"
+          className="bg-input"
           onChange={(e) => {
             const date = new Date(e.target.value)
             setOpen(true)
