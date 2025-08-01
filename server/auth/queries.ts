@@ -92,6 +92,50 @@ export async function getCurrentPerson(
   }
 }
 
+export async function getPerson(
+  personId: number | null,
+): Promise<ActionResponse<Tables<'person'>>> {
+  if (!personId) {
+    return {
+      success: false,
+      message: 'Need a proper patient Id',
+    }
+  }
+
+  const supabase = await createClient()
+
+  try {
+    const { data, error } = await supabase
+      .from('person')
+      .select('*')
+      .eq('id', personId)
+      .single()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
+    console.log('get person data:', data)
+
+    return {
+      success: true,
+      data: data,
+      message: 'Retrieved the selected person',
+    }
+  } catch (err) {
+    console.error('Get selected user error:', err)
+    return {
+      success: false,
+      message: 'An error occurred while getting the  selected person',
+      error: 'Failed to get the selected person',
+    }
+  }
+}
+
 export const getUserByEmail = cache(async () => {})
 
 export const getUsers = cache(async () => {})

@@ -3,6 +3,7 @@ import React from 'react'
 import PatientDetailsSidebar from '@/app/patient/[id]/PatientDetailsSidebar'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { getAppointment } from '@/server/appointment/queries'
+import { getPerson } from '@/server/auth/queries'
 import { getPatient } from '@/server/patient/queries'
 
 import PatientContextProvider from './PatientContext'
@@ -20,11 +21,11 @@ export default async function Layout({
 
   console.log('current patient id:', id)
 
-  const response = await getPatient(id)
+  const patientData = await getPatient(id)
 
-  console.log('current patient:', response)
+  console.log('current patient:', patientData)
 
-  if (!response.data) {
+  if (!patientData.data) {
     return (
       <SidebarProvider>
         <PatientDetailsSidebar patientId={id} />
@@ -36,11 +37,17 @@ export default async function Layout({
     )
   }
 
-  if (!response.data.person_id) {
+  const personData = await getPerson(patientData.data.person_id)
+
+  if (!personData.data) {
     return null
   }
 
-  const appointmentData = await getAppointment(response.data.person_id)
+  if (!patientData.data.person_id) {
+    return null
+  }
+
+  const appointmentData = await getAppointment(patientData.data.person_id)
 
   if (!appointmentData.data) {
     return null
@@ -50,8 +57,9 @@ export default async function Layout({
 
   return (
     <PatientContextProvider
-      patient={response.data}
+      patient={patientData.data}
       appointment={appointmentData.data}
+      person={personData.data}
     >
       <SidebarProvider>
         <PatientDetailsSidebar patientId={id} />

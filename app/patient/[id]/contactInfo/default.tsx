@@ -3,7 +3,6 @@
 export default function Default() {
   return (
     // redirect(`/patient/${params.id}`)
-    // <h1>Patient details default</h1>
-    null
+    <h1>Patient Contact Info Default</h1>
   )
 }
