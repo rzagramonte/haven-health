@@ -7,12 +7,22 @@ import { formatDate, getAge } from '@/utils/helpers'
 
 import { PatientContext } from '../../PatientContext'
 
-export default function Page() {
-  const { patient, appointment, person } = useContext(PatientContext)
+type EmergencyContact = {
+  firstName: string
+  lastName: string
+  phone: string
+}
 
+export default function Page() {
+  const { patient, appointment, person, medicalVisit } =
+    useContext(PatientContext)
   console.log('contact info current patient:', patient)
   console.log('contact info current appointment:', appointment)
   console.log('contact info current person:', person)
+  console.log('contact info current person:', medicalVisit)
+  console.log('emergency contact in patient:', patient?.emergency_contact)
+  const emergencyContact = patient?.emergency_contact as EmergencyContact | null
+  console.log('emergency contact:', emergencyContact)
 
   return (
     <section className="border-3 border-black p-2">
@@ -57,6 +67,11 @@ export default function Page() {
               </div>
               <div className="flex flex-col border-3 border-black-300">
                 <h3 className="font-bold text-3xl">Contact Details</h3>
+                <h4>Emergency Contact</h4>
+                <span>
+                  {emergencyContact?.firstName} {emergencyContact?.lastName}
+                </span>
+                <span>{emergencyContact?.phone}</span>
               </div>
             </div>
           </div>

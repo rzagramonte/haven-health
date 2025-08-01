@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { getAppointment } from '@/server/appointment/queries'
 import { getPerson } from '@/server/auth/queries'
 import { getPatient } from '@/server/patient/queries'
+import { getMedicalVisit } from '@/server/patient/queries'
 
 import PatientContextProvider from './PatientContext'
 
@@ -51,6 +52,13 @@ export default async function Layout({
     return null
   }
 
+  const medicalVisitData = await getMedicalVisit(patientData.data.id)
+
+  if (!medicalVisitData.data) {
+    console.log('appointment data check failed')
+    return null
+  }
+
   const appointmentData = await getAppointment(patientData.data.person_id)
 
   console.log('current appointment:', appointmentData)
@@ -67,6 +75,7 @@ export default async function Layout({
       patient={patientData.data}
       appointment={appointmentData.data}
       person={personData.data}
+      medicalVisit={medicalVisitData.data}
     >
       <SidebarProvider>
         <PatientDetailsSidebar patientId={id} />
