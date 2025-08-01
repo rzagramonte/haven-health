@@ -3,7 +3,12 @@
 import { useEffect, useState } from 'react'
 
 import { createClient } from '@/lib/supabase/client'
-import { Appointment, Message, Patient, Provider } from '@/lib/types/patient'
+import {
+  Appointment,
+  Message,
+  PatientName,
+  Provider,
+} from '@/lib/types/patient'
 
 import PatientDashboard from '../../../components/dashboard/PatientDashboard'
 
@@ -17,17 +22,22 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
     console.error('Error getting user:', userError)
     return
   }
+
   const { data: personData, error: personError } = await supabase
     .from('person')
-    .select('first_name, last_name')
-    .eq('person_uuid', user.id)
+    .select('first_name, last_name, id')
+    .eq('user_id', user.id)
     .single()
 
-  if (personError || !personData) {
+  const person = personData
+  const patientName = `${person?.first_name} ${person?.last_name}`
+
+  if (personError || !personData || !person) {
     console.error('Error fetching patient name:', personError)
+    return
   }
 
-  const patient = personData?.first_name
+  //
 
   /*
       // Fetch messages
@@ -57,20 +67,34 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
         setMessages(formattedMessages)
       }
 */
+
+  const { data: patientData, error: patientError } = await supabase
+    .from('patient')
+    .select('*')
+    .eq('person_id', person.id)
+    .single()
+
+  const patient = patientData
+
+  if (patientError || !patientData || !patient) {
+    console.error('Error fetching patient:', patientError)
+    return
+  }
+
   // Fetch appointments
   const { data: appointmentsData, error: appointmentsError } = await supabase
     .from('appointment_booking')
     .select(
       `
   appointment_time,
+  id,
   doctor:doctor_id!appointment_doctor_id_fkey (
     first_name,
     last_name
   )
 `,
     )
-
-    .eq('patient_id', +user.id)
+    .eq('patient_id', patient.id)
 
   let appointment: Appointment | null = null
   let provider = ''
@@ -86,7 +110,7 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
   }
 
   return {
-    patient,
+    patientName,
     provider,
     appointment,
     //messages,
@@ -141,7 +165,7 @@ export default function DashboardPage() {
     },
   ]
 
-  const [patient /*setPatient*/] = useState<Patient>('')
+  const [patientName /*setPatient*/] = useState<PatientName>('')
   const [provider, setProvider] = useState<Provider>('')
   const [messages /*, setMessages*/] = useState<Message[]>(messagesData)
   const [appointment, setAppointment] = useState<Appointment | null>(null)
@@ -161,7 +185,7 @@ export default function DashboardPage() {
 
   return (
     <PatientDashboard
-      patient={patient}
+      patient={patientName}
       provider={provider}
       appointment={appointment}
       messages={messages}
