@@ -5,7 +5,7 @@ import { Tables } from '@/lib/supabase/types'
 import { ActionResponse } from '@/lib/types/auth'
 
 export async function getAppointment(
-  personId: number,
+  patientId: number,
 ): Promise<ActionResponse<Tables<'appointment_booking'>>> {
   const supabase = await createClient()
 
@@ -13,7 +13,7 @@ export async function getAppointment(
     const { data, error } = await supabase
       .from('appointment_booking')
       .select('*')
-      .eq('person_id', personId)
+      .eq('patient_id', patientId)
       .single()
 
     if (error) {

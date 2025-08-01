@@ -39,21 +39,28 @@ export default async function Layout({
 
   const personData = await getPerson(patientData.data.person_id)
 
+  console.log('patient layout personData:', personData.data)
+
   if (!personData.data) {
+    console.log('person data check failed')
     return null
   }
 
   if (!patientData.data.person_id) {
+    console.log('patient data person id check failed')
     return null
   }
 
   const appointmentData = await getAppointment(patientData.data.person_id)
 
+  console.log('current appointment:', appointmentData)
+
   if (!appointmentData.data) {
+    console.log('appointment data check failed')
     return null
   }
 
-  console.log('current appointment:', appointmentData)
+  console.log('patient layout appointment data:', appointmentData.data)
 
   return (
     <PatientContextProvider
