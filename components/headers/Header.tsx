@@ -5,9 +5,6 @@ import ProviderAuthHeader from './AuthHeader/ProviderAuthHeader'
 import PublicHeader from './PublicHeader/PublicHeader'
 
 export default async function Header() {
-  //put in a session here
-  //return session ? AuthHeader: PublicHeader
-
   const user = await getCurrentUser()
   console.log('current user:', user)
 
