@@ -107,7 +107,7 @@ export async function getPerson(
   try {
     const { data, error } = await supabase
       .from('person')
-      .select('*')
+      .select('* , address(*)')
       .eq('id', personId)
       .single()
 

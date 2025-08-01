@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { useContext } from 'react'
 
+import { formatDate, getAge } from '@/utils/helpers'
+
 import { PatientContext } from '../../PatientContext'
 
 export default function Page() {
@@ -22,8 +24,9 @@ export default function Page() {
         {/* main patient div */}
         <div className="border-3 border-lime-300 flex justify-center">
           <div className="border-3 border-red-300 max-w-[1000px] flex grow">
-            <div className="flex flex-col gap-3">
-              <div className="relative size-75">
+            {/* patient pic and name */}
+            <div className="flex flex-col p-2 border-8 border-yellow-500">
+              <div className="relative size-75 border-3 border-purple-300">
                 <Image
                   src="/images/default-user-image.jpg"
                   alt="patient-image"
@@ -31,9 +34,30 @@ export default function Page() {
                   className="object-cover"
                 />
               </div>
-              <p className="font-bold text-4xl">
+              <span className="font-bold text-4xl">
                 {person?.first_name} {person?.last_name}
-              </p>
+              </span>
+              <span className="text-2xl">
+                {patient?.date_of_birth
+                  ? getAge(patient?.date_of_birth)
+                  : 'No age found'}
+                , {patient?.sex}
+              </span>
+            </div>
+
+            {/* appointment and address */}
+            <div className="border-3 border-black-300 w-full p-5 flex flex-col gap-2">
+              <div className="border-3 border-black-300 w-full">
+                <h3 className="font-bold text-3xl">Scheduled Appointment</h3>
+                <span className="text-xl">
+                  {appointment?.appointment_time
+                    ? formatDate(appointment?.appointment_time)
+                    : 'No Appointment Scheduled'}
+                </span>
+              </div>
+              <div className="flex flex-col border-3 border-black-300">
+                <h3 className="font-bold text-3xl">Contact Details</h3>
+              </div>
             </div>
           </div>
         </div>

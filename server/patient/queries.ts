@@ -41,4 +41,39 @@ export async function getPatient(
   }
 }
 
+export async function getMedicalVisit(
+  patientId: number,
+): Promise<ActionResponse<Tables<'medical_visit'>>> {
+  const supabase = await createClient()
+
+  try {
+    const { data: medicalVisit, error } = await supabase
+      .from('medical_visit')
+      .select('*')
+      .eq('id', patientId)
+      .single()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
+    return {
+      success: true,
+      data: medicalVisit,
+      message: 'Retrieved current patient',
+    }
+  } catch (err) {
+    console.error('Get medical visit error:', err)
+    return {
+      success: false,
+      message: 'An error occured retrieving medical visit',
+      error: 'Failed to get medical visit',
+    }
+  }
+}
+
 export async function getPatients() {}
