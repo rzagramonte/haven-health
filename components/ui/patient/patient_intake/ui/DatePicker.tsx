@@ -5,7 +5,6 @@ import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import {
   Popover,
   PopoverContent,
@@ -40,9 +39,6 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
   const formatted = formatDate(value)
   return (
     <div className="flex flex-col gap-3">
-      <Label htmlFor="date" className="px-1">
-        Date of Birth
-      </Label>
       <div className="relative flex gap-2">
         <Input
           id="date"
