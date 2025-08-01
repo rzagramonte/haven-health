@@ -8,14 +8,14 @@ import { MdAlternateEmail } from 'react-icons/md'
 import { RiContactsBookFill } from 'react-icons/ri'
 import { VscSaveAs } from 'react-icons/vsc'
 
+import EmergencyContactField, {
+  EmergencyContact,
+} from '@/components/profile/patient/EmergencyContactField'
+import { Button } from '@/components/ui/button'
 import { CardAction, CardContent } from '@/components/ui/card'
 
-import { Button } from '../button'
-import EditableBooleanField from './editableBooleanField'
-import EditableEmergencyContactField, {
-  EmergencyContact,
-} from './editableEmergencyContactField'
-import EditableStringField from './editableStringField'
+import EditableBooleanField from './InsuredBooleanField'
+import EditableStringField from './StringField'
 
 type EditableValue = string | boolean | EmergencyContact | null
 
@@ -25,7 +25,7 @@ type EditAction =
   | { type: 'SAVE' }
   | { type: 'CANCEL' }
 
-export type ProviderDetails = [
+export type PatientDetails = [
   { label: string; key: 'name'; value: string; icon: IconType },
   { label: string; key: 'phone'; value: string; icon: IconType },
   { label: string; key: 'email'; value: string; icon: IconType },
@@ -40,22 +40,22 @@ export type ProviderDetails = [
     }
     icon: IconType
   },
-  { label: string; key: 'newPatients'; value: boolean; icon: IconType },
+  { label: string; key: 'insuredFlag'; value: boolean; icon: IconType },
 ]
 
 type EditState = {
-  providerDetails: ProviderDetails
+  patientDetails: PatientDetails
   editingKey: string | null
   editableValue: EditableValue | null
 }
 
-const providerDummyData: ProviderDetails = [
-  { label: 'Name & Title', key: 'name', value: 'Bob Ross M.D.', icon: FaUser },
+const patientDummyData: PatientDetails = [
+  { label: 'Name & Title', key: 'name', value: 'Sara Sneeze', icon: FaUser },
   { label: 'Phone', key: 'phone', value: '(555) 555-5555', icon: FaPhone },
   {
     label: 'Email',
     key: 'email',
-    value: 'provider@email.com',
+    value: 'patient@email.com',
     icon: MdAlternateEmail,
   },
   {
@@ -75,8 +75,8 @@ const providerDummyData: ProviderDetails = [
     icon: RiContactsBookFill,
   },
   {
-    label: 'Are you accepting new patients?',
-    key: 'newPatients',
+    label: 'Are you currently insured?',
+    key: 'insuredFlag',
     value: true,
     icon: FaUserFriends,
   },
@@ -93,18 +93,18 @@ const editProfileReducer = (
     case 'UPDATE':
       return { ...state, editableValue: action.value }
 
-    // udpate provider details state based on matching item.key to state.editingKey
+    // udpate patient details state based on matching item.key to state.editingKey
     case 'SAVE':
       if (!state.editingKey) {
         return state
       }
       return {
         ...state,
-        providerDetails: state.providerDetails.map((item) =>
+        patientDetails: state.patientDetails.map((item) =>
           item.key === state.editingKey
             ? { ...item, value: state.editableValue }
             : item,
-        ) as ProviderDetails,
+        ) as PatientDetails,
         editingKey: null,
         editableValue: null,
       }
@@ -117,9 +117,9 @@ const editProfileReducer = (
   }
 }
 
-export default function EditProviderProfile() {
+export const EditPatientProfile = () => {
   const [editState, editDispatch] = useReducer(editProfileReducer, {
-    providerDetails: providerDummyData,
+    patientDetails: patientDummyData,
     editingKey: null,
     editableValue: null,
   })
@@ -127,7 +127,7 @@ export default function EditProviderProfile() {
   return (
     <CardContent className="flex flex-col items-center">
       <ul className=" w-full max-w-[350px] flex flex-col gap-3">
-        {editState.providerDetails.map(({ key, label, value, icon: Icon }) => (
+        {editState.patientDetails.map(({ key, label, value, icon: Icon }) => (
           <li
             key={key}
             className="flex items-center w-full justify-between gap-2 p-1 border-b-1 border-destructive"
@@ -139,7 +139,7 @@ export default function EditProviderProfile() {
               <div className="flex flex-col">
                 <p className="text-xs font-semibold">{label}</p>
                 {key === 'emergencyContact' && (
-                  <EditableEmergencyContactField
+                  <EmergencyContactField
                     value={
                       editState.editingKey === key &&
                       typeof editState.editableValue === 'object'
@@ -152,7 +152,7 @@ export default function EditProviderProfile() {
                     }
                   />
                 )}
-                {key === 'newPatients' && (
+                {key === 'insuredFlag' && (
                   <EditableBooleanField
                     value={
                       editState.editingKey === key &&
@@ -166,7 +166,7 @@ export default function EditProviderProfile() {
                     }
                   />
                 )}
-                {key !== 'emergencyContact' && key !== 'newPatients' && (
+                {key !== 'emergencyContact' && key !== 'insuredFlag' && (
                   <EditableStringField
                     value={
                       editState.editingKey === key &&

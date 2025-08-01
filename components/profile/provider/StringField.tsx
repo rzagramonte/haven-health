@@ -1,16 +1,12 @@
-import { Input } from '../input'
+import { Input } from '@/components/ui/input'
 
-export interface EditableStringFieldProps {
+export interface StringFieldProps {
   value: string
   editing: boolean
   onUpdate: (val: string) => void
 }
 
-export default function EditableStringField({
-  value,
-  editing,
-  onUpdate,
-}: EditableStringFieldProps) {
+export const StringField = ({ value, editing, onUpdate }: StringFieldProps) => {
   if (!editing) {
     return <p>{value}</p>
   }

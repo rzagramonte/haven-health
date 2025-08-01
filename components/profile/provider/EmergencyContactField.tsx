@@ -1,4 +1,4 @@
-import { Input } from '../input'
+import { Input } from '@/components/ui/input'
 
 export type EmergencyContact = {
   firstName: string
@@ -12,7 +12,7 @@ export interface EmergencyContactFieldProps {
   onUpdate: (val: EmergencyContact) => void
 }
 
-export default function EditableEmergencyContactField({
+export default function EmergencyContactField({
   value,
   editing,
   onUpdate,

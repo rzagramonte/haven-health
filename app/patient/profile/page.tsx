@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaHandHoldingMedical } from 'react-icons/fa'
 
+import { EditPatientProfile } from '@/components/profile/patient/editPatientProfile'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -9,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import EditPatientProfile from '@/components/ui/patient/profile/editPatientProfile'
 
 export default function ProfilePage() {
   return (
