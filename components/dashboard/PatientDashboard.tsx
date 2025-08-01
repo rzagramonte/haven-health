@@ -1,39 +1,37 @@
+'use client'
+import { Appointment, Message, Patient, Provider } from '@/lib/types/patient'
+
 import Messages from './Messages'
 import Scheduler from './Scheduler'
 import UpcomingAppointment from './UpcomingAppointment'
 import WelcomeMessage from './WelcomeMessage'
 
-type Appointment = {
-  date: string[]
-  time: string[]
-}
-
-type Message = {
-  sender: string
-  user: string
-  message: string
-}
-
 type PatientDashboardProps = {
-  patient: string
-  provider: string
-  appointments: Appointment
+  patient: Patient
+  provider: Provider
+  appointment: Appointment | null
   messages: Message[]
 }
 
 export default function PatientDashboard({
   patient,
   provider,
-  appointments,
+  appointment,
   messages,
 }: PatientDashboardProps) {
   return (
-    <main className="container m-auto p-8 ">
-      <WelcomeMessage patient={patient} />
-      <div className="container grid gap-6 sm:grid-cols-1 md:grid-cols-2">
-        <UpcomingAppointment provider={provider} appointments={appointments} />
-        <Messages messages={messages} />
-        <Scheduler />
+    <main className="container m-auto p-8">
+      <div className="container m-auto p-8">
+        <WelcomeMessage patient={patient} />
+      </div>
+      <div className="container m-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="sm:items-center lg:space-y-15 space-y-6 lg:m-7 flex flex-col lg:items-end ">
+          <UpcomingAppointment appointment={appointment} provider={provider} />
+          <Scheduler />
+        </div>
+        <div className="sm:items-center lg:space-y-15 space-y-6 lg:m-7 flex flex-col lg:items-start  ">
+          <Messages messages={messages} />
+        </div>
       </div>
     </main>
   )
