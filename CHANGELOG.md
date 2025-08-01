@@ -1,3 +1,9 @@
+## [1.17.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.1...v1.17.2) (2025-08-01)
+
+### Reverts
+
+* **page.tsx:** branched off of main instead of styling branch ([f960cb9](https://github.com/ncharris93/dsd-east-coast-goats/commit/f960cb9c67e2ff975e5b235ffab6a1091fd8b537))
+
 ## [1.17.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.0...v1.17.1) (2025-08-01)
 
 ### Bug Fixes
