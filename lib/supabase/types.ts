@@ -7,11 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
-  }
   public: {
     Tables: {
       address: {
@@ -278,7 +273,7 @@ export type Database = {
           {
             foreignKeyName: "fk_patient_person"
             columns: ["person_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "person"
             referencedColumns: ["id"]
           },
@@ -478,3 +473,4 @@ export const Constants = {
     },
   },
 } as const
+
