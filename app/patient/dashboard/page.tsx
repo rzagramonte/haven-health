@@ -13,6 +13,7 @@ import {
 import PatientDashboard from '../../../components/dashboard/PatientDashboard'
 
 async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
+  //Fetch auth user
   const {
     data: { user },
     error: userError,
@@ -23,6 +24,7 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
     return
   }
 
+  //Fetch person
   const { data: personData, error: personError } = await supabase
     .from('person')
     .select('first_name, last_name, id')
@@ -36,8 +38,6 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
     console.error('Error fetching patient name:', personError)
     return
   }
-
-  //
 
   /*
       // Fetch messages
@@ -68,6 +68,7 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
       }
 */
 
+  //Fetch patient
   const { data: patientData, error: patientError } = await supabase
     .from('patient')
     .select('*')
