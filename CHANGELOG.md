@@ -1,3 +1,40 @@
+## [1.17.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.1...v1.17.2) (2025-08-01)
+
+### Reverts
+
+* **page.tsx:** branched off of main instead of styling branch ([f960cb9](https://github.com/ncharris93/dsd-east-coast-goats/commit/f960cb9c67e2ff975e5b235ffab6a1091fd8b537))
+
+## [1.17.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.0...v1.17.1) (2025-08-01)
+
+### Bug Fixes
+
+* **component:** fix: patient intake form two sex titles bug ([615eb1e](https://github.com/ncharris93/dsd-east-coast-goats/commit/615eb1ebf727a7dee3fceb16863da3972a3bac8a))
+* **componeny:** moved Date of Birth title from DatePicker component to parent component ([df7f765](https://github.com/ncharris93/dsd-east-coast-goats/commit/df7f765930595e241ae4080b644ca1387422cafa))
+
+## [1.17.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.16.0...v1.17.0) (2025-07-31)
+
+### Features
+
+* **app/patient/dashboard/page.tsx components/dashboard/messages.tsx:** fetching data ([3bdc2d0](https://github.com/ncharris93/dsd-east-coast-goats/commit/3bdc2d06f752f38400c08418fc97b7034ca4316a))
+* migrate IDs to UUID, add messages table, and restructure schema ([9f5dde7](https://github.com/ncharris93/dsd-east-coast-goats/commit/9f5dde7ad8f87c752f98246476c7a43d605e3e9a))
+* update dashboard ([446d626](https://github.com/ncharris93/dsd-east-coast-goats/commit/446d626dd7b295334a2ad1f630a7faf90f558a92))
+* updated column names within dashboard to match tables ([8321809](https://github.com/ncharris93/dsd-east-coast-goats/commit/832180953d8f610fe80207505065237da318090d))
+* working on patient dashboard ([8655e28](https://github.com/ncharris93/dsd-east-coast-goats/commit/8655e28fcd78758c766c23d11896e5bb74f7599d))
+
+## [1.16.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.15.0...v1.16.0) (2025-07-31)
+
+### Features
+
+* **server/auth/actions.ts:** implemented logout functionality in server ([4b584cb](https://github.com/ncharris93/dsd-east-coast-goats/commit/4b584cb9a98058f7ae6f1d846eecfec7efb2bd0b)), closes [PR#54](https://github.com/ncharris93/PR/issues/54) [#54](https://github.com/ncharris93/dsd-east-coast-goats/issues/54)
+
+### Bug Fixes
+
+* **migrations:** fixed script to appropriately rewrite id values with uuid, id pulled from auth uuid ([5ecae6f](https://github.com/ncharris93/dsd-east-coast-goats/commit/5ecae6f9f1c4deda16709ae32392a7ee9c9f80d0))
+
+### Code Refactoring
+
+* **server/auth/actions.ts:** added redirect to login for logout server action ([a4c4feb](https://github.com/ncharris93/dsd-east-coast-goats/commit/a4c4feb064fffe650d248cf0b0e031c506a8db69))
+
 ## [1.15.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.14.0...v1.15.0) (2025-07-28)
 
 ### Features

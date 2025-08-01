@@ -65,13 +65,10 @@ export type Database = {
             | Database["public"]["Enums"]["appointment_type_enums"]
             | null
           created_at: string | null
-          date_of_birth: string | null
           date_paid: string | null
-          emergency_contact: Json | null
           id: number
-          insurance_flag: boolean | null
-          person_id: number | null
-          sex: string | null
+          patient_id: number
+          provider_id: number
           status: Database["public"]["Enums"]["appointment_status_enum"] | null
           updated_at: string | null
         }
@@ -81,13 +78,10 @@ export type Database = {
             | Database["public"]["Enums"]["appointment_type_enums"]
             | null
           created_at?: string | null
-          date_of_birth?: string | null
           date_paid?: string | null
-          emergency_contact?: Json | null
           id?: number
-          insurance_flag?: boolean | null
-          person_id?: number | null
-          sex?: string | null
+          patient_id: number
+          provider_id: number
           status?: Database["public"]["Enums"]["appointment_status_enum"] | null
           updated_at?: string | null
         }
@@ -97,17 +91,29 @@ export type Database = {
             | Database["public"]["Enums"]["appointment_type_enums"]
             | null
           created_at?: string | null
-          date_of_birth?: string | null
           date_paid?: string | null
-          emergency_contact?: Json | null
           id?: number
-          insurance_flag?: boolean | null
-          person_id?: number | null
-          sex?: string | null
+          patient_id?: number
+          provider_id?: number
           status?: Database["public"]["Enums"]["appointment_status_enum"] | null
           updated_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "appointment_booking_provider_id_fkey"
+            columns: ["provider_id"]
+            isOneToOne: false
+            referencedRelation: "person"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_appointment_patient"
+            columns: ["patient_id"]
+            isOneToOne: false
+            referencedRelation: "patient"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       contact: {
         Row: {
@@ -195,6 +201,48 @@ export type Database = {
           },
         ]
       }
+      messages: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: number
+          recipient_id: number
+          sender_id: number
+          updated_at: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: number
+          recipient_id: number
+          sender_id: number
+          updated_at?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: number
+          recipient_id?: number
+          sender_id?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_recipient_id_fkey"
+            columns: ["recipient_id"]
+            isOneToOne: false
+            referencedRelation: "person"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_sender_id_fkey"
+            columns: ["sender_id"]
+            isOneToOne: false
+            referencedRelation: "person"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       patient: {
         Row: {
           created_at: string | null
@@ -242,6 +290,7 @@ export type Database = {
           first_name: string | null
           id: number
           last_name: string | null
+          person_uuid: string | null
           role: Database["public"]["Enums"]["user_role"] | null
           updated_at: string | null
         }
@@ -250,6 +299,7 @@ export type Database = {
           first_name?: string | null
           id?: number
           last_name?: string | null
+          person_uuid?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
           updated_at?: string | null
         }
@@ -258,6 +308,7 @@ export type Database = {
           first_name?: string | null
           id?: number
           last_name?: string | null
+          person_uuid?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
           updated_at?: string | null
         }
