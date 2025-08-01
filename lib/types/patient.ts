@@ -6,5 +6,5 @@ export type Message = {
   sender: string
 }
 
-export type Patient = string
+export type PatientName = string
 export type Provider = string

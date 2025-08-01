@@ -1,5 +1,10 @@
 'use client'
-import { Appointment, Message, Patient, Provider } from '@/lib/types/patient'
+import {
+  Appointment,
+  Message,
+  PatientName,
+  Provider,
+} from '@/lib/types/patient'
 
 import Messages from './Messages'
 import Scheduler from './Scheduler'
@@ -7,7 +12,7 @@ import UpcomingAppointment from './UpcomingAppointment'
 import WelcomeMessage from './WelcomeMessage'
 
 type PatientDashboardProps = {
-  patient: Patient
+  patient: PatientName
   provider: Provider
   appointment: Appointment | null
   messages: Message[]
