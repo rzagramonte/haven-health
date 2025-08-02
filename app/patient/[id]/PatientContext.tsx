@@ -10,6 +10,7 @@ export interface PatientContextProps {
   appointment: Tables<'appointment_booking'> | null
   person: Tables<'person'> | null
   medicalVisit: Tables<'medical_visit'> | null
+  address: Tables<'address'> | null
 }
 
 interface PatientContextType {
@@ -17,12 +18,14 @@ interface PatientContextType {
   appointment: Tables<'appointment_booking'> | null
   person: Tables<'person'> | null
   medicalVisit: Tables<'medical_visit'> | null
+  address: Tables<'address'> | null
 }
 export const PatientContext = createContext<PatientContextType>({
   patient: null,
   appointment: null,
   person: null,
   medicalVisit: null,
+  address: null,
 })
 
 export default function PatientContextProvider({
@@ -31,10 +34,11 @@ export default function PatientContextProvider({
   appointment,
   person,
   medicalVisit,
+  address,
 }: PatientContextProps) {
   return (
     <PatientContext.Provider
-      value={{ patient, appointment, person, medicalVisit }}
+      value={{ patient, appointment, person, medicalVisit, address }}
     >
       {children}
     </PatientContext.Provider>

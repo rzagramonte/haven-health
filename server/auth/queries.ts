@@ -107,7 +107,7 @@ export async function getPerson(
   try {
     const { data, error } = await supabase
       .from('person')
-      .select('* , address(*)')
+      .select('*')
       .eq('id', personId)
       .single()
 
@@ -132,6 +132,41 @@ export async function getPerson(
       success: false,
       message: 'An error occurred while getting the  selected person',
       error: 'Failed to get the selected person',
+    }
+  }
+}
+
+export async function getAddress(
+  personId: number,
+): Promise<ActionResponse<Tables<'address'>>> {
+  const supabase = await createClient()
+
+  try {
+    const { data: address, error } = await supabase
+      .from('address')
+      .select('*')
+      .eq('id', personId)
+      .single()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
+    return {
+      success: true,
+      data: address,
+      message: 'Retrieved the selected person',
+    }
+  } catch (err) {
+    console.error('Get selected user error:', err)
+    return {
+      success: false,
+      message: 'An error occurred while getting address',
+      error: 'Failed to get the selected address',
     }
   }
 }
