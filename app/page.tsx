@@ -18,11 +18,11 @@ export default function Home() {
     <main className="flex flex-col gap-32 w-full mb-32">
       <section
         id="hero"
-        className="bg-[url(/images/hero-image.webp)] bg-center bg-cover h-svh text-[#F8F6F1] dark:text-foreground"
+        className="bg-[url(/images/hero-image.webp)] bg-center bg-cover h-svh text-[#f9f7f3] dark:text-foreground"
       >
         <div className="flex flex-col gap-8 items-center justify-center h-full backdrop-blur-sm backdrop-brightness-60 text-center px-4 2xl:gap-16">
           <div className="flex flex-col gap-2">
-            <h1 className="text-4xl font-bold text-balance 2xl:text-5xl">
+            <h1 className="text-4xl font-bold text-balance 2xl:text-5xl text-[#f9f7f3]">
               Welcome to Haven Health
             </h1>
             <p className="text-2xl text-balance 2xl:text-3xl">
@@ -59,7 +59,7 @@ export default function Home() {
           {/* Service Cards */}
           <article
             id="check-up"
-            className="bg-card p-4 rounded-lg flex gap-4 items-center shadow-lg"
+            className="bg-card-4 p-4 rounded-lg flex gap-4 items-center shadow-lg"
           >
             <div className="bg-accent p-3 rounded-full flex items-center justify-center">
               <Stethoscope className="size-8 text-accent-foreground" />
@@ -74,7 +74,7 @@ export default function Home() {
           </article>
           <article
             id="chronic-condition"
-            className="bg-card p-4 rounded-lg flex gap-4 items-center shadow-lg"
+            className="bg-card-4 p-4 rounded-lg flex gap-4 items-center shadow-lg"
           >
             <div className="bg-accent p-3 rounded-full flex items-center justify-center">
               <PillBottle className="size-8 text-accent-foreground" />
@@ -89,7 +89,7 @@ export default function Home() {
           </article>
           <article
             id="vaccinations"
-            className="bg-card p-4 rounded-lg flex gap-4 items-center shadow-lg"
+            className="bg-card-4 p-4 rounded-lg flex gap-4 items-center shadow-lg"
           >
             <div className="bg-accent p-3 rounded-full flex items-center justify-center">
               <Syringe className="size-8 text-accent-foreground" />
@@ -103,7 +103,7 @@ export default function Home() {
           </article>
           <article
             id="mental-health"
-            className="bg-card p-4 rounded-lg flex gap-4 items-center shadow-lg"
+            className="bg-card-4 p-4 rounded-lg flex gap-4 items-center shadow-lg"
           >
             <div className="bg-accent p-3 rounded-full flex items-center justify-center">
               <HandHeart className="size-8 text-accent-foreground" />
@@ -118,15 +118,15 @@ export default function Home() {
         </div>
         <div className="flex justify-center">
           <Link href="/appointment">
-            <Button variant="cta" size="cta" className="text-lg">
+            <Button size="cta" className="text-lg bg-chart-2">
               <CalendarHeart className="size-6" />
               Schedule Appointment
             </Button>
           </Link>
         </div>
       </section>
-      <section id="about" className="max-w-screen-xl px-4 mx-auto">
-        <div className="flex flex-col gap-16 p-8 mx-auto bg-card rounded-3xl shadow-2xl">
+      <section id="about" className="max-w-screen-xl px-4 mx-auto ">
+        <div className="bg-card-3 flex flex-col gap-16 p-8 mx-auto rounded-3xl shadow-2xl dark:bg-card-2">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 justify-center text-pretty">
             {/* Text content */}
             <div className="grid gap-8 place-items-center lg:col-span-2 order-1 xl:order-1">
