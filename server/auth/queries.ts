@@ -13,11 +13,10 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
     const supabase = await createClient()
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
-
     try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
       if (session) {
         const {
           data: { user },
@@ -67,6 +66,8 @@ export async function getCurrentPerson(
       .eq('person_uuid', userId)
       .single()
 
+    console.log('get current person data:', data)
+
     if (error) {
       return {
         success: false,
@@ -74,8 +75,6 @@ export async function getCurrentPerson(
         error: error.name,
       }
     }
-
-    console.log('get current person data:', data)
 
     return {
       success: true,

@@ -10,8 +10,36 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import EditProviderProfile from '@/components/ui/provider/editProviderProfile'
+import { getCurrentUser } from '@/server/auth/queries'
+import { getProviderAccountSettings } from '@/server/provider/queries'
 
-export default function ProfilePage() {
+export default async function ProfilePage({
+  params,
+}: {
+  params: Promise<{ id: number }>
+}) {
+  const { id } = await params
+
+  console.log('current provider id:', id)
+
+  const userData = await getCurrentUser()
+
+  console.log('get current user data:', userData)
+
+  if (!userData.data) {
+    console.log('user data check failed')
+    return <p>User Data not Found</p>
+  }
+
+  const providerData = await getProviderAccountSettings(userData.data?.id)
+
+  console.log('provider data:', providerData)
+
+  if (!providerData?.data) {
+    console.log('user data check failed')
+    return <p>User Data not Found</p>
+  }
+
   return (
     <main className="flex-grow p-5">
       <div className="w-full max-w-[110px]">

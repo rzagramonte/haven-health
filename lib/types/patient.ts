@@ -8,3 +8,20 @@ export type Message = {
 
 export type PatientName = string
 export type Provider = string
+
+export type EmergencyContact = {
+  firstName: string
+  lastName: string
+  phone: string
+}
+
+export interface Patient {
+  id: number
+  personId: number | null
+  birthDate: Date
+  sex: string
+  insuranceFlag: boolean
+  emergencyContact: EmergencyContact
+  createdAt: string
+  updatedAt: string
+}

@@ -10,7 +10,17 @@ export interface Person {
   id: number
   firstName: string | null
   lastName: string | null
-  role: 'provider' | 'patient' | 'admin' | null
+  role: string
   createdAt: string | null
   updatedAt: string | null
+}
+
+export interface Address {
+  id: number
+  personId: number | null
+  streetA: string | null
+  streetB?: string | null
+  city: string | null
+  state: string | null
+  zipCode: string | null
 }
