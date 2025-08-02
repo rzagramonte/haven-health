@@ -17,7 +17,7 @@ export type EmergencyContact = {
 
 export interface Patient {
   id: number
-  personId: number | null
+  personId: number
   birthDate: Date
   sex: string
   insuranceFlag: boolean

@@ -26,12 +26,14 @@ export default async function ProfilePage({
 
   console.log('get current user data:', userData)
 
-  if (!userData.data) {
-    console.log('user data check failed')
-    return <p>User Data not Found</p>
+  if (!userData.data?.id || !userData.data?.email) {
+    return <p>User data is incomplete</p>
   }
 
-  const providerData = await getProviderAccountSettings(userData.data?.id)
+  const providerData = await getProviderAccountSettings(
+    userData.data?.id,
+    userData.data?.email,
+  )
 
   console.log('provider data:', providerData)
 
@@ -39,6 +41,8 @@ export default async function ProfilePage({
     console.log('user data check failed')
     return <p>User Data not Found</p>
   }
+
+  console.log('provider data data:', providerData.data)
 
   return (
     <main className="flex-grow p-5">
@@ -63,7 +67,7 @@ export default async function ProfilePage({
               Where Provider Profile Details Live
             </CardDescription>
           </CardHeader>
-          <EditProviderProfile />
+          <EditProviderProfile providerDetails={providerData.data} />
         </Card>
       </div>
     </main>

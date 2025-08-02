@@ -2,6 +2,7 @@ import 'server-only'
 
 import { createClient } from '@/lib/supabase/server'
 import { ActionResponse } from '@/lib/types/auth'
+import { EmergencyContact } from '@/lib/types/patient'
 import { ProviderAccountSettings } from '@/lib/types/provider'
 
 export async function getProvider() {}
@@ -10,6 +11,7 @@ export async function getProviders() {}
 
 export async function getProviderAccountSettings(
   authId: string,
+  email: string,
 ): Promise<ActionResponse<ProviderAccountSettings>> {
   const supabase = await createClient()
 
@@ -44,7 +46,8 @@ export async function getProviderAccountSettings(
         state: data.address[0].address_state,
         zipCode: data.address[0].zip_code,
       },
-      emergencyContact: data.patient?.emergency_contact,
+      emergencyContact: data.patient?.emergency_contact as EmergencyContact,
+      email: email,
     }
 
     return {

@@ -1,6 +1,5 @@
 'use client'
 import { useReducer } from 'react'
-import type { IconType } from 'react-icons'
 import { FaEdit, FaPhone, FaUser, FaUserFriends } from 'react-icons/fa'
 import { FaHouse } from 'react-icons/fa6'
 import { GiCancel } from 'react-icons/gi'
@@ -9,6 +8,9 @@ import { RiContactsBookFill } from 'react-icons/ri'
 import { VscSaveAs } from 'react-icons/vsc'
 
 import { CardAction, CardContent } from '@/components/ui/card'
+// import type { IconType } from 'react-icons'
+import { ProviderAccountSettings } from '@/lib/types/provider'
+import { ProviderDetails } from '@/lib/types/provider'
 
 import { Button } from '../button'
 import EditableBooleanField from './editableBooleanField'
@@ -25,62 +27,91 @@ type EditAction =
   | { type: 'SAVE' }
   | { type: 'CANCEL' }
 
-export type ProviderDetails = [
-  { label: string; key: 'name'; value: string; icon: IconType },
-  { label: string; key: 'phone'; value: string; icon: IconType },
-  { label: string; key: 'email'; value: string; icon: IconType },
-  { label: string; key: 'address'; value: string; icon: IconType },
-  {
-    label: string
-    key: 'emergencyContact'
-    value: {
-      firstName: string
-      lastName: string
-      phone: string
-    }
-    icon: IconType
-  },
-  { label: string; key: 'newPatients'; value: boolean; icon: IconType },
-]
-
 type EditState = {
   providerDetails: ProviderDetails
   editingKey: string | null
   editableValue: EditableValue | null
 }
 
-const providerDummyData: ProviderDetails = [
-  { label: 'Name & Title', key: 'name', value: 'Bob Ross M.D.', icon: FaUser },
-  { label: 'Phone', key: 'phone', value: '(555) 555-5555', icon: FaPhone },
-  {
-    label: 'Email',
-    key: 'email',
-    value: 'provider@email.com',
-    icon: MdAlternateEmail,
-  },
-  {
-    label: 'Address',
-    key: 'address',
-    value: '123 Main St., Islip, NY 11751',
-    icon: FaHouse,
-  },
-  {
-    label: 'Emergency Contact',
-    key: 'emergencyContact',
-    value: {
-      firstName: 'Jane',
-      lastName: 'Ross',
-      phone: '(555) 555-5555',
+export function transformProviderSettings(
+  data: ProviderAccountSettings,
+): ProviderDetails {
+  return [
+    {
+      label: 'Name & Title',
+      key: 'name',
+      value: `${data.firstName ?? ''} ${data.lastName ?? ''}`,
+      icon: FaUser,
     },
-    icon: RiContactsBookFill,
-  },
-  {
-    label: 'Are you accepting new patients?',
-    key: 'newPatients',
-    value: true,
-    icon: FaUserFriends,
-  },
-]
+    {
+      label: 'Phone',
+      key: 'phone',
+      value: '(555) 555-555',
+      icon: FaPhone,
+    },
+    {
+      label: 'Email',
+      key: 'email',
+      value: data.email ?? '(no email)',
+      icon: MdAlternateEmail,
+    },
+    {
+      label: 'Address',
+      key: 'address',
+      value: `${data.address?.streetA ?? ''}, ${data.address?.city ?? ''} ${data.address?.state ?? ''} ${data.address?.zipCode ?? ''}`,
+      icon: FaHouse,
+    },
+    {
+      label: 'Emergency Contact',
+      key: 'emergencyContact',
+      value: {
+        firstName: data.emergencyContact?.firstName ?? '',
+        lastName: data.emergencyContact?.lastName ?? '',
+        phone: data.emergencyContact?.phone ?? '',
+      },
+      icon: RiContactsBookFill,
+    },
+    {
+      label: 'Are you accepting new patients?',
+      key: 'newPatients',
+      value: true,
+      icon: FaUserFriends,
+    },
+  ]
+}
+
+// const providerDummyData: ProviderDetails = [
+//   { label: 'Name & Title', key: 'name', value: 'Bob Ross M.D.', icon: FaUser },
+//   { label: 'Phone', key: 'phone', value: '(555) 555-5555', icon: FaPhone },
+//   {
+//     label: 'Email',
+//     key: 'email',
+//     value: 'provider@email.com',
+//     icon: MdAlternateEmail,
+//   },
+//   {
+//     label: 'Address',
+//     key: 'address',
+//     value: '123 Main St., Islip, NY 11751',
+//     icon: FaHouse,
+//   },
+//   {
+//     label: 'Emergency Contact',
+//     key: 'emergencyContact',
+//     value: {
+//       firstName: 'Jane',
+//       lastName: 'Ross',
+//       phone: '(555) 555-5555',
+//     },
+//     icon: RiContactsBookFill,
+//   },
+//   {
+//     label: 'Are you accepting new patients?',
+//     key: 'newPatients',
+//     value: true,
+//     icon: FaUserFriends,
+//   },
+// ]
 
 const editProfileReducer = (
   state: EditState,
@@ -117,12 +148,23 @@ const editProfileReducer = (
   }
 }
 
-export default function EditProviderProfile() {
+interface ProviderProfileProps {
+  providerDetails: ProviderAccountSettings
+}
+
+export default function EditProviderProfile({
+  providerDetails,
+}: ProviderProfileProps) {
   const [editState, editDispatch] = useReducer(editProfileReducer, {
-    providerDetails: providerDummyData,
+    providerDetails: transformProviderSettings(providerDetails),
     editingKey: null,
     editableValue: null,
   })
+
+  console.log(
+    'provider account settings in edit provider profile:',
+    providerDetails,
+  )
 
   return (
     <CardContent className="flex flex-col items-center">
