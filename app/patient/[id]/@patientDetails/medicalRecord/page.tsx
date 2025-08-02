@@ -43,7 +43,7 @@ export default function Page() {
         <Accordion type="single" collapsible>
           <AccordionItem value="prescriptions">
             <AccordionTrigger>Prescriptions</AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
               <ul>
                 {medicalVisit?.prescriptions?.map((prescription: string) => (
                   <li key={prescription}>

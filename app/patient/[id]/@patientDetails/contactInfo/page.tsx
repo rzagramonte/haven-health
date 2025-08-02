@@ -24,13 +24,13 @@ type EmergencyContact = {
 export default function Page() {
   const { patient, appointment, person, medicalVisit, address } =
     useContext(PatientContext)
-  console.log('contact info current patient:', patient)
-  console.log('contact info current appointment:', appointment)
-  console.log('contact info current person:', person)
-  console.log('contact info current person:', medicalVisit)
-  console.log('emergency contact in patient:', patient?.emergency_contact)
+  // console.log('contact info current patient:', patient)
+  // console.log('contact info current appointment:', appointment)
+  // console.log('contact info current person:', person)
+  // console.log('contact info current person:', medicalVisit)
+  // console.log('emergency contact in patient:', patient?.emergency_contact)
   const emergencyContact = patient?.emergency_contact as EmergencyContact | null
-  console.log('emergency contact:', emergencyContact)
+  // console.log('emergency contact:', emergencyContact)
 
   return (
     <section className="border-3 border-black p-2 flex flex-col items-center">
