@@ -10,7 +10,7 @@ import { VscSaveAs } from 'react-icons/vsc'
 
 import { CardAction, CardContent } from '@/components/ui/card'
 
-import { Button } from '../button'
+import { Button } from '../ui/button'
 import EditableBooleanField from './editableBooleanField'
 import EditableEmergencyContactField, {
   EmergencyContact,
