@@ -8,11 +8,11 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
     const supabase = await createClient()
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
-
     try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+
       if (!session) {
         return {
           success: true,
@@ -48,7 +48,7 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
 )
 
 export async function getCurrentPerson(
-  userId: string,
+  authId: string,
 ): Promise<ActionResponse<Person>> {
   const supabase = await createClient()
 
@@ -56,7 +56,7 @@ export async function getCurrentPerson(
     const { data, error } = await supabase
       .from('person')
       .select('*')
-      .eq('person_uuid', userId)
+      .eq('person_uuid', authId)
       .single()
 
     if (error) {
