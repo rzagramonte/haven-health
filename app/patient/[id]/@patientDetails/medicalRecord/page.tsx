@@ -1,5 +1,11 @@
 'use client'
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@radix-ui/react-accordion'
 import { SlashIcon } from 'lucide-react'
 import { useContext } from 'react'
 
@@ -13,9 +19,10 @@ import {
 import { PatientContext } from '../../PatientContext'
 
 export default function Page() {
-  const patient = useContext(PatientContext)
+  const { patient, medicalVisit } = useContext(PatientContext)
 
   console.log('current patient in medical record page:', patient)
+  console.log('medical visit in medical record page:', medicalVisit)
 
   return (
     <section className="border-3 border-black p-2 flex flex-col items-center">
@@ -33,6 +40,21 @@ export default function Page() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="prescriptions">
+            <AccordionTrigger>Prescriptions</AccordionTrigger>
+            <AccordionContent>
+              <ul>
+                {medicalVisit?.prescriptions?.map((prescription: string) => (
+                  <li key={prescription}>
+                    <span>{prescription}</span>
+                  </li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <hr />
       </div>
     </section>
   )
