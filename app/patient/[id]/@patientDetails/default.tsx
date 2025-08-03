@@ -1,9 +1,0 @@
-// import { redirect } from "next/navigation";
-
-export default function Default() {
-  return (
-    // redirect(`/patient/${params.id}`)
-    // <h1>Patient details default</h1>
-    null
-  )
-}
