@@ -35,13 +35,13 @@ export default function EditableEmergencyContactField({
   return (
     <>
       <Input
-        aria-label="First Name"
+        aria-label="Emergency Contact First Name"
         className="bg-muted"
         value={value.firstName}
         onChange={(e) => onUpdate({ ...value, firstName: e.target.value })}
       />
       <Input
-        aria-label="Last Name"
+        aria-label="Emergency Contact Last Name"
         className="bg-muted"
         value={value.lastName}
         onChange={(e) => onUpdate({ ...value, lastName: e.target.value })}

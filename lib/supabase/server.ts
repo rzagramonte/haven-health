@@ -1,4 +1,5 @@
 import { createServerClient } from '@supabase/ssr'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 
 import { AppConfig } from '../config'
@@ -29,4 +30,13 @@ export async function createClient() {
       },
     },
   )
+}
+
+export function createAdminClient(url: string, serviceRoleKey: string) {
+  return createSupabaseClient(url, serviceRoleKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  })
 }

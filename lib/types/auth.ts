@@ -11,8 +11,8 @@ export interface Person {
   firstName: string | null
   lastName: string | null
   role: string
-  createdAt: string | null
-  updatedAt: string | null
+  createdAt?: string | null
+  updatedAt?: string | null
 }
 
 export interface Address {

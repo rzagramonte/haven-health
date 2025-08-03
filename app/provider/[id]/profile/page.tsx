@@ -67,7 +67,10 @@ export default async function ProfilePage({
               Where Provider Profile Details Live
             </CardDescription>
           </CardHeader>
-          <EditProviderProfile providerDetails={providerData.data} />
+          <EditProviderProfile
+            providerDetails={providerData.data}
+            userId={userData.data?.id}
+          />
         </Card>
       </div>
     </main>

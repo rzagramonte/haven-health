@@ -1,117 +1,32 @@
 'use client'
 import { useReducer } from 'react'
-import { FaEdit, FaPhone, FaUser, FaUserFriends } from 'react-icons/fa'
-import { FaHouse } from 'react-icons/fa6'
+import { useTransition } from 'react'
+import { FaEdit } from 'react-icons/fa'
 import { GiCancel } from 'react-icons/gi'
-import { MdAlternateEmail } from 'react-icons/md'
-import { RiContactsBookFill } from 'react-icons/ri'
 import { VscSaveAs } from 'react-icons/vsc'
 
 import { CardAction, CardContent } from '@/components/ui/card'
-// import type { IconType } from 'react-icons'
-import { ProviderAccountSettings } from '@/lib/types/provider'
-import { ProviderDetails } from '@/lib/types/provider'
+import { UpdatedSettingValues } from '@/lib/types/provider'
+import {
+  EditableName,
+  EditableValue,
+  EditAction,
+  EditState,
+  ProviderAccountSettings,
+  ProviderDetails,
+} from '@/lib/types/provider'
+import { updateProviderSettings } from '@/server/provider/actions'
+import { transformProviderSettings } from '@/utils/provider'
+import { showError, showSuccess } from '@/utils/toast'
 
 import { Button } from '../button'
+import EditableAddressField, { EditableAddress } from './editableAddressField'
 import EditableBooleanField from './editableBooleanField'
 import EditableEmergencyContactField, {
   EmergencyContact,
 } from './editableEmergencyContactField'
+import EditableNameField from './editableNameField'
 import EditableStringField from './editableStringField'
-
-type EditableValue = string | boolean | EmergencyContact | null
-
-type EditAction =
-  | { type: 'EDIT'; key: string; value: EditableValue }
-  | { type: 'UPDATE'; value: EditableValue }
-  | { type: 'SAVE' }
-  | { type: 'CANCEL' }
-
-type EditState = {
-  providerDetails: ProviderDetails
-  editingKey: string | null
-  editableValue: EditableValue | null
-}
-
-export function transformProviderSettings(
-  data: ProviderAccountSettings,
-): ProviderDetails {
-  return [
-    {
-      label: 'Name & Title',
-      key: 'name',
-      value: `${data.firstName ?? ''} ${data.lastName ?? ''}`,
-      icon: FaUser,
-    },
-    {
-      label: 'Phone',
-      key: 'phone',
-      value: '(555) 555-555',
-      icon: FaPhone,
-    },
-    {
-      label: 'Email',
-      key: 'email',
-      value: data.email ?? '(no email)',
-      icon: MdAlternateEmail,
-    },
-    {
-      label: 'Address',
-      key: 'address',
-      value: `${data.address?.streetA ?? ''}, ${data.address?.city ?? ''} ${data.address?.state ?? ''} ${data.address?.zipCode ?? ''}`,
-      icon: FaHouse,
-    },
-    {
-      label: 'Emergency Contact',
-      key: 'emergencyContact',
-      value: {
-        firstName: data.emergencyContact?.firstName ?? '',
-        lastName: data.emergencyContact?.lastName ?? '',
-        phone: data.emergencyContact?.phone ?? '',
-      },
-      icon: RiContactsBookFill,
-    },
-    {
-      label: 'Are you accepting new patients?',
-      key: 'newPatients',
-      value: true,
-      icon: FaUserFriends,
-    },
-  ]
-}
-
-// const providerDummyData: ProviderDetails = [
-//   { label: 'Name & Title', key: 'name', value: 'Bob Ross M.D.', icon: FaUser },
-//   { label: 'Phone', key: 'phone', value: '(555) 555-5555', icon: FaPhone },
-//   {
-//     label: 'Email',
-//     key: 'email',
-//     value: 'provider@email.com',
-//     icon: MdAlternateEmail,
-//   },
-//   {
-//     label: 'Address',
-//     key: 'address',
-//     value: '123 Main St., Islip, NY 11751',
-//     icon: FaHouse,
-//   },
-//   {
-//     label: 'Emergency Contact',
-//     key: 'emergencyContact',
-//     value: {
-//       firstName: 'Jane',
-//       lastName: 'Ross',
-//       phone: '(555) 555-5555',
-//     },
-//     icon: RiContactsBookFill,
-//   },
-//   {
-//     label: 'Are you accepting new patients?',
-//     key: 'newPatients',
-//     value: true,
-//     icon: FaUserFriends,
-//   },
-// ]
 
 const editProfileReducer = (
   state: EditState,
@@ -150,21 +65,52 @@ const editProfileReducer = (
 
 interface ProviderProfileProps {
   providerDetails: ProviderAccountSettings
+  userId: string
 }
 
 export default function EditProviderProfile({
   providerDetails,
+  userId,
 }: ProviderProfileProps) {
+  console.log('provider details in provider profile:', providerDetails)
   const [editState, editDispatch] = useReducer(editProfileReducer, {
+    providerId: providerDetails.id,
     providerDetails: transformProviderSettings(providerDetails),
     editingKey: null,
     editableValue: null,
   })
 
-  console.log(
-    'provider account settings in edit provider profile:',
-    providerDetails,
-  )
+  const [isPending, startTransition] = useTransition()
+
+  console.log('Use is pending:', isPending)
+
+  const handleSubmit = (
+    editKey: string | null,
+    editableValue: EditableValue,
+  ) => {
+    const settings: UpdatedSettingValues = {
+      authId: userId,
+      providerId: providerDetails.id,
+      settingKey: editKey,
+      settingValue: editableValue,
+    }
+
+    startTransition(async () => {
+      console.log('start transition called and update provider queued')
+
+      const response = await updateProviderSettings(settings)
+
+      if (response.success) {
+        showSuccess(response.message)
+      } else {
+        showError(
+          response.message || 'Something went wrong in updating your settings',
+        )
+      }
+
+      editDispatch({ type: 'SAVE' })
+    })
+  }
 
   return (
     <CardContent className="flex flex-col items-center">
@@ -184,9 +130,25 @@ export default function EditProviderProfile({
                   <EditableEmergencyContactField
                     value={
                       editState.editingKey === key &&
-                      typeof editState.editableValue === 'object'
+                      typeof editState.editableValue === 'object' &&
+                      editState.editableValue !== null &&
+                      'phone' in editState.editableValue
                         ? editState.editableValue
                         : (value as EmergencyContact)
+                    }
+                    editing={editState.editingKey === key}
+                    onUpdate={(val) =>
+                      editDispatch({ type: 'UPDATE', value: val })
+                    }
+                  />
+                )}
+                {key === 'address' && (
+                  <EditableAddressField
+                    value={
+                      editState.editingKey === key &&
+                      typeof editState.editableValue === 'object'
+                        ? (editState.editableValue as EditableAddress)
+                        : (value as EditableAddress)
                     }
                     editing={editState.editingKey === key}
                     onUpdate={(val) =>
@@ -208,13 +170,14 @@ export default function EditProviderProfile({
                     }
                   />
                 )}
-                {key !== 'emergencyContact' && key !== 'newPatients' && (
-                  <EditableStringField
+
+                {key === 'name' && (
+                  <EditableNameField
                     value={
                       editState.editingKey === key &&
-                      typeof editState.editableValue === 'string'
-                        ? editState.editableValue
-                        : (value as string)
+                      typeof editState.editableValue === 'object'
+                        ? (editState.editableValue as EditableName)
+                        : (value as EditableName)
                     }
                     editing={editState.editingKey === key}
                     onUpdate={(val) =>
@@ -222,6 +185,23 @@ export default function EditProviderProfile({
                     }
                   />
                 )}
+                {key !== 'emergencyContact' &&
+                  key !== 'newPatients' &&
+                  key !== 'address' &&
+                  key !== 'name' && (
+                    <EditableStringField
+                      value={
+                        editState.editingKey === key &&
+                        typeof editState.editableValue === 'string'
+                          ? editState.editableValue
+                          : (value as string)
+                      }
+                      editing={editState.editingKey === key}
+                      onUpdate={(val) =>
+                        editDispatch({ type: 'UPDATE', value: val })
+                      }
+                    />
+                  )}
               </div>
             </div>
             <CardAction>
@@ -239,9 +219,12 @@ export default function EditProviderProfile({
                   <Button
                     className="w-6 h-6 cursor-pointer"
                     aria-label="Save changes"
-                    onClick={() => {
-                      editDispatch({ type: 'SAVE' })
-                    }}
+                    onClick={() =>
+                      handleSubmit(
+                        editState.editingKey,
+                        editState.editableValue,
+                      )
+                    }
                   >
                     <VscSaveAs />
                   </Button>

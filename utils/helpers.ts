@@ -27,3 +27,7 @@ export const getAge = (dateOfBirth: string) => {
   const age = today.getFullYear() - birthDate.getFullYear()
   return age
 }
+
+// export const formatPhoneNumber = (phoneNumber: string) {
+
+// }

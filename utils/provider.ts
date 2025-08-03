@@ -1,0 +1,54 @@
+import { FaPhone, FaUser, FaUserFriends } from 'react-icons/fa'
+import { FaHouse } from 'react-icons/fa6'
+import { MdAlternateEmail } from 'react-icons/md'
+import { RiContactsBookFill } from 'react-icons/ri'
+
+import { ProviderAccountSettings, ProviderDetails } from '@/lib/types/provider'
+export function transformProviderSettings(
+  data: ProviderAccountSettings,
+): ProviderDetails {
+  return [
+    {
+      label: 'Name & Title',
+      key: 'name',
+      value: { firstName: data.firstName ?? '', lastName: data.lastName ?? '' },
+      icon: FaUser,
+    },
+    {
+      label: 'Phone',
+      key: 'phone',
+      value: '(555) 555-555',
+      icon: FaPhone,
+    },
+    {
+      label: 'Email',
+      key: 'email',
+      value: data.email ?? '(no email)',
+      icon: MdAlternateEmail,
+    },
+    {
+      label: 'Address',
+      key: 'address',
+      value: {
+        ...data.address,
+      },
+      icon: FaHouse,
+    },
+    {
+      label: 'Emergency Contact',
+      key: 'emergencyContact',
+      value: {
+        firstName: data.emergencyContact?.firstName ?? '',
+        lastName: data.emergencyContact?.lastName ?? '',
+        phone: data.emergencyContact?.phone ?? '',
+      },
+      icon: RiContactsBookFill,
+    },
+    {
+      label: 'Are you accepting new patients?',
+      key: 'newPatients',
+      value: true,
+      icon: FaUserFriends,
+    },
+  ]
+}
