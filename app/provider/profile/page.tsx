@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import { Suspense } from 'react'
 import { FaHandHoldingMedical } from 'react-icons/fa'
 
+import ProfileSkeleton from '@/components/loading/ProfileSkeleton'
 import EditProviderProfile from '@/components/provider/editProviderProfile'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -52,10 +54,12 @@ export default async function ProfilePage() {
               Where Provider Profile Details Live
             </CardDescription>
           </CardHeader>
-          <EditProviderProfile
-            providerDetails={providerData.data}
-            userId={userData.data?.id}
-          />
+          <Suspense fallback={<ProfileSkeleton />}>
+            <EditProviderProfile
+              providerDetails={providerData.data}
+              userId={userData.data?.id}
+            />
+          </Suspense>
         </Card>
       </div>
     </main>

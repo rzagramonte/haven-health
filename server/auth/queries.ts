@@ -6,11 +6,13 @@ import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
 import { Tables } from '@/lib/supabase/types'
 import { ActionResponse } from '@/lib/types/auth'
+import { mockDelay } from '@/utils/helpers'
 
 export async function createUser() {}
 
 export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
+    mockDelay(1000)
     const supabase = await createClient()
 
     try {

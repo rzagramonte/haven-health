@@ -5,6 +5,7 @@ import { ActionResponse } from '@/lib/types/auth'
 import { EmergencyContact } from '@/lib/types/patient'
 import { EditableValue, ProviderAccountSettings } from '@/lib/types/provider'
 import { formatPhoneNumber } from '@/utils/helpers'
+import { mockDelay } from '@/utils/helpers'
 
 export async function getProvider() {}
 
@@ -14,6 +15,7 @@ export async function getProviderAccountSettings(
   authId: string,
   email: string,
 ): Promise<ActionResponse<ProviderAccountSettings>> {
+  mockDelay(1000)
   const supabase = await createClient()
 
   try {
