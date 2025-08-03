@@ -43,7 +43,7 @@ export default async function ProfilePage() {
         <div className=" w-full max-w-[500px]">
           <Link href="/provider/dashboard">
             <Button className="w-full max-w-[125px] text-xs cursor-pointer">
-              Back to Dashbooard
+              Back to Dashboard
             </Button>
           </Link>
         </div>

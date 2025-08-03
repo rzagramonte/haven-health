@@ -1,3 +1,19 @@
+## [1.18.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.3...v1.18.0) (2025-08-03)
+
+### Features
+
+* **patient profile:** added patient profile based off of provider profile, added insurance flag ([392ef97](https://github.com/ncharris93/dsd-east-coast-goats/commit/392ef97f854e57d4c60ad352a037e0f161435d48))
+
+### Bug Fixes
+
+* **provider profile:** fixed accidental change on provider profile ([c827501](https://github.com/ncharris93/dsd-east-coast-goats/commit/c827501584dc918e16c1ab7ae0e3ec22a20750d9))
+
+## [1.17.3](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.2...v1.17.3) (2025-08-01)
+
+### Bug Fixes
+
+* **page.tsx:** import fixed ([6e44936](https://github.com/ncharris93/dsd-east-coast-goats/commit/6e44936817e4f4a823f80564f404de1c6e1ad3dd))
+
 ## [1.17.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.1...v1.17.2) (2025-08-01)
 
 ### Reverts

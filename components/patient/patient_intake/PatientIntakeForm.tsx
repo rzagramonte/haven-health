@@ -46,7 +46,7 @@ export default function PatientIntakeForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormDescription>
           Please input your information below. All fields are required.
         </FormDescription>
@@ -57,7 +57,7 @@ export default function PatientIntakeForm() {
             <FormItem>
               <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white" />
+                <Input {...field} className="bg-input" />
               </FormControl>
             </FormItem>
           )}
@@ -69,7 +69,7 @@ export default function PatientIntakeForm() {
             <FormItem>
               <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white" />
+                <Input {...field} className="bg-input" />
               </FormControl>
             </FormItem>
           )}
@@ -81,7 +81,7 @@ export default function PatientIntakeForm() {
             <FormItem>
               <FormLabel>Home Address</FormLabel>
               <FormControl>
-                <Input {...field} type="text" className="bg-white" />
+                <Input {...field} type="text" className="bg-input" />
               </FormControl>
             </FormItem>
           )}
@@ -142,12 +142,12 @@ export default function PatientIntakeForm() {
             <FormItem>
               <FormLabel>Emergency Contact</FormLabel>
               <FormControl>
-                <Input {...field} type="text" className="bg-white" />
+                <Input {...field} type="text" className="bg-input" />
               </FormControl>
             </FormItem>
           )}
         />
-        <Button className="bg-green-800 w-full mb-4" type="submit">
+        <Button className="bg-secondary w-full mb-8" type="submit">
           Submit
         </Button>
       </form>

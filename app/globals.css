@@ -38,6 +38,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -54,11 +56,11 @@
 
 @layer base {
   :root {
-    --background: hsl(40 33% 96%);
+    --background: #f8f6f1;
     --foreground: hsl(210 22% 20%);
     --card-1: hsl(355 20% 81%);
     --card-2: hsl(75 7% 90%);
-    --card-3: hsl(18 32% 93%);
+    --card-3: #f3ebe7;
     --card-4: hsl(170 10% 84%);
     --card-foreground: hsl(210 22% 20%);
     --popover: hsl(42 33% 94%);
@@ -69,13 +71,15 @@
     --secondary-foreground: hsl(40 33% 96%);
     --muted: hsl(42 14% 93%);
     --muted-foreground: hsl(210 22% 20%);
-    --accent: hsl(27 100% 33%);
+    --accent: #a84c00;
     --accent-foreground: hsl(40 33% 96%);
     --destructive: hsl(0 60% 45%);
     --destructive-foreground: hsl(40 33% 96%);
     --border: hsl(0 0% 89.8%);
-    --input: hsl(0 0% 89.8%);
+    --input: hsl(42 14% 93%);
     --ring: hsl(210 22% 20%);
+    --cta: hsl(342 63% 30%);
+    --cta-foreground: hsl(40 33% 96%);
     --chart-1: hsl(12 76% 55%);
     --chart-2: hsl(172 35% 36%);
     --chart-3: hsl(207 23% 38%);
@@ -105,8 +109,10 @@
     --destructive: hsl(0 60% 38%);
     --destructive-foreground: hsl(40 33% 96%);
     --border: hsl(210 22% 20%);
-    --input: hsl(210 22% 20%);
+    --input: hsl(212 17% 24%);
     --ring: hsl(342 63% 60%);
+    --cta: hsl(342 63% 30%);
+    --cta-foreground: hsl(40 33% 96%);
     --chart-1: hsl(12 60% 60%);
     --chart-2: hsl(172 35% 50%);
     --chart-3: hsl(207 23% 55%);
