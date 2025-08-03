@@ -1,3 +1,5 @@
+import { parsePhoneNumberFromString } from 'libphonenumber-js'
+
 export function formatDate(dateString: string) {
   const date = new Date(dateString)
   const monthNames = [
@@ -28,6 +30,19 @@ export const getAge = (dateOfBirth: string) => {
   return age
 }
 
-// export const formatPhoneNumber = (phoneNumber: string) {
+export const formatPhoneNumber = (phoneNumberString: string) => {
+  const defaultCountry = 'US'
 
-// }
+  const phoneNumber = parsePhoneNumberFromString(
+    phoneNumberString,
+    defaultCountry,
+  )
+
+  console.log('phone number:', phoneNumber)
+
+  if (!phoneNumber) {
+    throw new Error('Could not parse phone number')
+  }
+
+  return phoneNumber.format('E.164')
+}

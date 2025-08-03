@@ -4,6 +4,7 @@ import { createAdminClient, createClient } from '@/lib/supabase/server'
 import { ActionResponse } from '@/lib/types/auth'
 import { EmergencyContact } from '@/lib/types/patient'
 import { EditableValue, ProviderAccountSettings } from '@/lib/types/provider'
+import { formatPhoneNumber } from '@/utils/helpers'
 
 export async function getProvider() {}
 
@@ -70,17 +71,16 @@ export async function updateEmergencyContact(
   providerId: number,
   settingValue: EditableValue,
 ): Promise<ActionResponse> {
-  if (!providerId || !settingValue) {
-    throw new Error('Missing credentials')
-  }
-
-  if (!(typeof settingValue === 'object' && 'phone' in settingValue)) {
-    throw new Error('Invalid format for emergency contact')
-  }
-
-  const supabase = await createClient()
-
   try {
+    if (!providerId || !settingValue) {
+      throw new Error('Missing credentials')
+    }
+
+    if (!(typeof settingValue === 'object' && 'phone' in settingValue)) {
+      throw new Error('Invalid format for emergency contact')
+    }
+
+    const supabase = await createClient()
     const { error } = await supabase
       .from('patient')
       .update({
@@ -115,19 +115,16 @@ export async function updateAddress(
   providerId: number,
   settingValue: EditableValue,
 ): Promise<ActionResponse> {
-  console.log('udpate address setting value:', settingValue)
-
-  if (!providerId || !settingValue) {
-    throw new Error('Missing credentials')
-  }
-
-  if (!(typeof settingValue === 'object' && 'streetA' in settingValue)) {
-    throw new Error('Invalid format for address')
-  }
-
-  const supabase = await createClient()
-
   try {
+    if (!providerId || !settingValue) {
+      throw new Error('Missing credentials')
+    }
+
+    if (!(typeof settingValue === 'object' && 'streetA' in settingValue)) {
+      throw new Error('Invalid format for address')
+    }
+
+    const supabase = await createClient()
     const { error } = await supabase
       .from('address')
       .update({
@@ -166,19 +163,17 @@ export async function updateName(
   providerId: number,
   settingValue: EditableValue,
 ) {
-  console.log('udpate address setting value:', settingValue)
-
-  if (!providerId || !settingValue) {
-    throw new Error('Missing credentials')
-  }
-
-  if (!(typeof settingValue === 'object' && 'firstName' in settingValue)) {
-    throw new Error('Invalid format for name')
-  }
-
-  const supabase = await createClient()
-
   try {
+    if (!providerId || !settingValue) {
+      throw new Error('Missing credentials')
+    }
+
+    if (!(typeof settingValue === 'object' && 'firstName' in settingValue)) {
+      throw new Error('Invalid format for name')
+    }
+
+    const supabase = await createClient()
+
     const { error } = await supabase
       .from('person')
       .update({
@@ -213,20 +208,20 @@ export async function updateEmail(
   authId: string,
   settingValue: EditableValue,
 ): Promise<ActionResponse> {
-  if (!authId || !settingValue) {
-    throw new Error('Missing credentials')
-  }
-
-  if (typeof settingValue !== 'string') {
-    throw new Error('Invalid format for email')
-  }
-
-  const supabaseAdmin = createAdminClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_KEY!,
-  )
-
   try {
+    if (!authId || !settingValue) {
+      throw new Error('Missing credentials')
+    }
+
+    if (typeof settingValue !== 'string') {
+      throw new Error('Invalid format for email')
+    }
+
+    const supabaseAdmin = createAdminClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_KEY!,
+    )
+
     const { error } = await supabaseAdmin.auth.admin.updateUserById(authId, {
       email: settingValue,
     })
@@ -258,22 +253,24 @@ export async function updatePhone(
   authId: string,
   settingValue: EditableValue,
 ): Promise<ActionResponse> {
-  if (!authId || !settingValue) {
-    throw new Error('Missing credentials')
-  }
-
-  if (typeof settingValue !== 'string') {
-    throw new Error('Invalid format for email')
-  }
-
-  const supabaseAdmin = createAdminClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_KEY!,
-  )
-
   try {
+    if (!authId || !settingValue) {
+      throw new Error('Missing credentials')
+    }
+
+    if (typeof settingValue !== 'string') {
+      throw new Error('Invalid format for email')
+    }
+
+    const formattedPhone = formatPhoneNumber(settingValue)
+
+    const supabaseAdmin = createAdminClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_KEY!,
+    )
+
     const { error } = await supabaseAdmin.auth.admin.updateUserById(authId, {
-      phone: settingValue,
+      phone: formattedPhone,
     })
 
     if (error) {
