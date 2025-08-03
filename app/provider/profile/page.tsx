@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { FaHandHoldingMedical } from 'react-icons/fa'
 
+import EditProviderProfile from '@/components/provider/editProviderProfile'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -9,25 +10,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import EditProviderProfile from '@/components/ui/provider/editProviderProfile'
 import { getCurrentUser } from '@/server/auth/queries'
 import { getProviderAccountSettings } from '@/server/provider/queries'
 
-export default async function ProfilePage({
-  params,
-}: {
-  params: Promise<{ id: number }>
-}) {
-  const { id } = await params
-
-  console.log('current provider id:', id)
-
+export default async function ProfilePage() {
   const userData = await getCurrentUser()
 
-  console.log('get current user data:', userData)
-
   if (!userData.data?.id || !userData.data?.email) {
-    return <p>User data is incomplete</p>
+    throw new Error('User data is incomplete')
   }
 
   const providerData = await getProviderAccountSettings(
@@ -35,14 +25,9 @@ export default async function ProfilePage({
     userData.data?.email,
   )
 
-  console.log('provider data:', providerData)
-
   if (!providerData?.data) {
-    console.log('user data check failed')
-    return <p>User Data not Found</p>
+    throw new Error('User data is incomplete')
   }
-
-  console.log('provider data data:', providerData.data)
 
   return (
     <main className="flex-grow p-5">

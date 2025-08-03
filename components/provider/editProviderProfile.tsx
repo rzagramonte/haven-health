@@ -16,10 +16,12 @@ import {
   ProviderDetails,
 } from '@/lib/types/provider'
 import { updateProviderSettings } from '@/server/provider/actions'
+import { mockDelay } from '@/utils/helpers'
 import { transformProviderSettings } from '@/utils/provider'
 import { showError, showSuccess } from '@/utils/toast'
 
-import { Button } from '../button'
+import LoadSpinner from '../loading/Spinner'
+import { Button } from '../ui/button'
 import EditableAddressField, { EditableAddress } from './editableAddressField'
 import EditableBooleanField from './editableBooleanField'
 import EditableEmergencyContactField, {
@@ -72,7 +74,6 @@ export default function EditProviderProfile({
   providerDetails,
   userId,
 }: ProviderProfileProps) {
-  console.log('provider details in provider profile:', providerDetails)
   const [editState, editDispatch] = useReducer(editProfileReducer, {
     providerId: providerDetails.id,
     providerDetails: transformProviderSettings(providerDetails),
@@ -81,8 +82,6 @@ export default function EditProviderProfile({
   })
 
   const [isPending, startTransition] = useTransition()
-
-  console.log('Use is pending:', isPending)
 
   const handleSubmit = (
     editKey: string | null,
@@ -96,8 +95,7 @@ export default function EditProviderProfile({
     }
 
     startTransition(async () => {
-      console.log('start transition called and update provider queued')
-
+      mockDelay(1000)
       const response = await updateProviderSettings(settings)
 
       if (response.success) {
@@ -226,7 +224,7 @@ export default function EditProviderProfile({
                       )
                     }
                   >
-                    <VscSaveAs />
+                    {isPending ? <LoadSpinner /> : <VscSaveAs />}
                   </Button>
                 </div>
               )}

@@ -1,4 +1,4 @@
-import { Input } from '../input'
+import { Input } from '../ui/input'
 
 export type EmergencyContact = {
   firstName: string

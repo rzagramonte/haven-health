@@ -1,5 +1,9 @@
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 
+export function mockDelay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 export function formatDate(dateString: string) {
   const date = new Date(dateString)
   const monthNames = [

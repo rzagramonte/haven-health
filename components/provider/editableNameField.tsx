@@ -1,6 +1,6 @@
 import { EditableName } from '@/lib/types/provider'
 
-import { Input } from '../input'
+import { Input } from '../ui/input'
 
 export interface EditableNameProps {
   value: EditableName | null
@@ -14,7 +14,6 @@ export default function EditableNameField({
   editing,
   onUpdate,
 }: EditableNameProps) {
-  console.log('editable name fields:', value)
   if (!value) {
     return null
   }

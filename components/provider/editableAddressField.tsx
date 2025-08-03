@@ -1,4 +1,4 @@
-import { Input } from '../input'
+import { Input } from '../ui/input'
 
 export type EditableAddress = {
   streetA: string | null
@@ -19,7 +19,6 @@ export default function EditableAddressField({
   editing,
   onUpdate,
 }: AddressFieldProps) {
-  console.log('editable address value:', value)
   if (!value) {
     return null
   }
