@@ -27,13 +27,6 @@ export function formatDate(dateString: string) {
   return `${day} ${month}, ${year}`
 }
 
-export const getAge = (dateOfBirth: string) => {
-  const today = new Date()
-  const birthDate = new Date(dateOfBirth)
-  const age = today.getFullYear() - birthDate.getFullYear()
-  return age
-}
-
 export const formatPhoneNumber = (phoneNumberString: string) => {
   const defaultCountry = 'US'
 
