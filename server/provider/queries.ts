@@ -25,6 +25,8 @@ export async function getProviderAccountSettings(
       .eq('person_uuid', authId)
       .single()
 
+    console.log('account provider settings data:', data)
+
     if (error) {
       return {
         success: false,

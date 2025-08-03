@@ -14,14 +14,3 @@ export type EmergencyContact = {
   lastName: string
   phone: string
 }
-
-export interface Patient {
-  id: number
-  personId: number
-  birthDate: Date
-  sex: string
-  insuranceFlag: boolean
-  emergencyContact: EmergencyContact
-  createdAt: string
-  updatedAt: string
-}

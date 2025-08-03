@@ -1,4 +1,4 @@
-import PatientIntakeForm from '@/components/ui/patient/patient_intake/PatientIntakeForm'
+import PatientIntakeForm from '@/components/patient/patient_intake/PatientIntakeForm'
 
 export default function IntakeFormPage() {
   return (
