@@ -9,15 +9,16 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command'
-import { supabase } from '@/lib/supabase/client'
+import { createClient } from '@/lib/supabase/client'
 
 type Patient = {
+  created_at: string | null
+  first_name: string | null
   id: number
-  first_name: string
-  last_name: string
-  role: string
-  created_at: string
-  updated_at: string
+  last_name: string | null
+  person_uuid: string | null
+  role: 'patient' | 'admin' | 'provider' | null
+  updated_at: string | null
 }
 
 export default function PatientFinder() {
@@ -36,6 +37,7 @@ export default function PatientFinder() {
     lastQueryRef.current = value
 
     try {
+      const supabase = createClient()
       const { data, error } = await supabase
         .from('person')
         .select('*')
