@@ -6,24 +6,29 @@ import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
 import { Tables } from '@/lib/supabase/types'
 import { ActionResponse } from '@/lib/types/auth'
-import { mockDelay } from '@/utils/helpers'
+// import { mockDelay } from '@/utils/helpers'
 
 export async function createUser() {}
 
 export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
-    await mockDelay(1000)
+    // await mockDelay(1000)
     const supabase = await createClient()
 
     try {
       const {
         data: { session },
       } = await supabase.auth.getSession()
+
+      console.log('current user session:', session)
+
       if (session) {
         const {
           data: { user },
           error,
         } = await supabase.auth.getUser()
+
+        console.log('current user data:', user)
 
         if (error) {
           return {

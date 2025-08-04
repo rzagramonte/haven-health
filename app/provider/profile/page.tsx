@@ -18,9 +18,13 @@ import { getProviderAccountSettings } from '@/server/provider/queries'
 export default async function ProfilePage() {
   const userData = await getCurrentUser()
 
-  if (!userData.data?.id || !userData.data?.email || !userData.data.phone) {
+  console.log('current user profile page:', userData.data)
+
+  if (!userData.data?.id || !userData.data?.email) {
     throw new Error('User data is incomplete')
   }
+
+  // || !userData.data.phone
 
   console.log('user:', userData.data)
 

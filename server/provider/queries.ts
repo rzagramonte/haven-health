@@ -22,7 +22,7 @@ export async function getProviderAccountSettings(
   try {
     const { data, error } = await supabase
       .from('person')
-      .select('*, patient(emergency_contact), address(*)')
+      .select('*, patient!inner(emergency_contact), address(*)')
       .eq('person_uuid', authId)
       .single()
 
@@ -52,6 +52,7 @@ export async function getProviderAccountSettings(
         state: data.address[0].address_state,
         zipCode: data.address[0].zip_code,
       },
+      //@ts-expect-error :: emergency contact is not an array
       emergencyContact: data.patient?.emergency_contact as EmergencyContact,
       email: email,
       phone: phone,
