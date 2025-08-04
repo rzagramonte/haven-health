@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { FaHandHoldingMedical } from 'react-icons/fa'
 
-import EditProviderProfile from '@/components/provider/editProviderProfile'
+
+import { EditProviderProfile } from '@/components/profile/provider/editProviderProfile'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -24,7 +25,7 @@ export default function ProfilePage() {
         <div className=" w-full max-w-[500px]">
           <Link href="/provider/dashboard">
             <Button className="w-full max-w-[125px] text-xs cursor-pointer">
-              Back to Dashbooard
+              Back to Dashboard
             </Button>
           </Link>
         </div>

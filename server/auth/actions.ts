@@ -59,7 +59,6 @@ export async function signUp({
       options: { data: { first_name: firstName, last_name: lastName } },
     })
 
-
     if (error || !data?.user) {
       console.error('Signup auth error:', error?.message)
       return {
