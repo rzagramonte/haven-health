@@ -65,6 +65,7 @@ export interface ProviderAccountSettings extends Person {
   address: Omit<Address, 'id' | 'personId'>
   emergencyContact: EmergencyContact
   email: string
+  phone: string
 }
 
 export interface UpdatedSettingValues {

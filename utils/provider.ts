@@ -17,7 +17,7 @@ export function transformProviderSettings(
     {
       label: 'Phone',
       key: 'phone',
-      value: '(555) 555-555',
+      value: data.phone,
       icon: FaPhone,
     },
     {

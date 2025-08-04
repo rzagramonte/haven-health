@@ -35,8 +35,6 @@ export const formatPhoneNumber = (phoneNumberString: string) => {
     defaultCountry,
   )
 
-  console.log('phone number:', phoneNumber)
-
   if (!phoneNumber) {
     throw new Error('Could not parse phone number')
   }

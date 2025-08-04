@@ -14,8 +14,9 @@ export async function getProviders() {}
 export async function getProviderAccountSettings(
   authId: string,
   email: string,
+  phone: string,
 ): Promise<ActionResponse<ProviderAccountSettings>> {
-  mockDelay(1000)
+  await mockDelay(1000)
   const supabase = await createClient()
 
   try {
@@ -53,11 +54,12 @@ export async function getProviderAccountSettings(
       },
       emergencyContact: data.patient?.emergency_contact as EmergencyContact,
       email: email,
+      phone: phone,
     }
 
     return {
       success: true,
-      message: 'Provider account setttings successfully retreived',
+      message: 'Provider account setttings successfully retrieved',
       data: providerAccountSettings,
     }
   } catch (err) {
@@ -263,7 +265,7 @@ export async function updatePhone(
     }
 
     if (typeof settingValue !== 'string') {
-      throw new Error('Invalid format for email')
+      throw new Error('Invalid format for phone')
     }
 
     const formattedPhone = formatPhoneNumber(settingValue)
@@ -294,7 +296,7 @@ export async function updatePhone(
     console.error('Failed to update phone number:', err)
     return {
       success: false,
-      message: 'Failed to udpate phone number',
+      message: 'Failed to update phone number',
       error: 'Phone number update error',
     }
   }

@@ -12,7 +12,7 @@ export async function createUser() {}
 
 export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
-    mockDelay(1000)
+    await mockDelay(1000)
     const supabase = await createClient()
 
     try {
@@ -49,7 +49,7 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
       console.error('Get current user error:', err)
       return {
         success: false,
-        message: 'An error occurred while retrievig the current user',
+        message: 'An error occurred while retrieving  the current user',
         error: 'Failed to get current user',
       }
     }
