@@ -127,7 +127,7 @@ export default function EditProviderProfile({
                 {key === 'emergencyContact' && (
                   <EditableEmergencyContactField
                     value={
-                      editState.editingKey === key &&
+                      // editState.editingKey === key &&
                       typeof editState.editableValue === 'object' &&
                       editState.editableValue !== null &&
                       'phone' in editState.editableValue
@@ -143,7 +143,7 @@ export default function EditProviderProfile({
                 {key === 'address' && (
                   <EditableAddressField
                     value={
-                      editState.editingKey === key &&
+                      // editState.editingKey === key &&
                       typeof editState.editableValue === 'object'
                         ? (editState.editableValue as EditableAddress)
                         : (value as EditableAddress)
