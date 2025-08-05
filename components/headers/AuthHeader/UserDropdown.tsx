@@ -57,12 +57,15 @@ export const UserDropdown = ({ person }: UserDropdownProps) => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="rounded-lg text-foreground px-5 py-2.5"
+        className="rounded-lg px-5 py-2.5"
       >
         <CircleUserRoundIcon className="size-6 cursor-pointer" />
       </button>
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-md p-2 z-50">
+        <div
+          className="absolute right-0 mt-2 w-48 border bg-background
+         rounded shadow-md p-2 z-50"
+        >
           <Link
             href={
               person.role === 'provider' || person.role === 'admin'
