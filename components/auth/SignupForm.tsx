@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
@@ -167,6 +168,12 @@ export default function SignupForm() {
             </Button>
           </form>
         </Form>
+        <div className="text-center mt-4">
+          <p> Already have an account?</p>
+          <Link href="/login" className="text-orange-800 hover:underline">
+            Sign In
+          </Link>
+        </div>
       </div>
     </div>
   )
