@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 
+import Header from '@/components/headers/Header'
 import { Footer } from '@/components/ui/footer'
 
 const defaultUrl = process.env.VERCEL_URL
@@ -50,6 +51,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           {children}
           <Footer />
           <Toaster position="top-center" richColors />

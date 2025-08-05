@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 
@@ -13,8 +14,16 @@ export default function PublicHeader() {
         <NavLinks />
         <ModeToggle />
         <div className="flex flex-row gap-x-5 ">
-          <Button variant="default">Register</Button>
-          <Button variant="secondary">Log In</Button>
+          <Link href="/signup">
+            <Button className="cursor-pointer" variant="default">
+              Register
+            </Button>
+          </Link>
+          <Link href="/login">
+            <Button className="cursor-pointer" variant="secondary">
+              Log In
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
