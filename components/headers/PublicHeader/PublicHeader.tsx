@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { PublicMobileHeader } from '@/components/headers/components/PublicMobileHeader'
+import { MobileHeader } from '@/components/headers/components/MobileHeader'
 import { Button } from '@/components/ui/button'
 
 import { ModeToggle } from '../components/LightDarkToggle'
@@ -31,7 +31,7 @@ export default function PublicHeader() {
       </header>
 
       <div className="md:hidden">
-        <PublicMobileHeader />
+        <MobileHeader />
       </div>
     </>
   )

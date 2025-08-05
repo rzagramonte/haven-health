@@ -6,10 +6,16 @@ import { useState } from 'react'
 
 import NavLinks from '@/components/headers/PublicHeader/navlinks/LandingNavLinks'
 import { Button } from '@/components/ui/button'
+import type { Person } from '@/lib/types/auth'
 
+import HeaderActions from '../AuthHeader/HeaderActions'
 import { ModeToggle } from '../components/LightDarkToggle'
 
-export const PublicMobileHeader = () => {
+type MobileHeaderProps = {
+  person?: Person
+}
+
+export const MobileHeader = ({ person }: MobileHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -18,6 +24,7 @@ export const PublicMobileHeader = () => {
         <Image src="/icons/logo_dark.svg" alt="Logo" width="100" height="100" />
         <div className="flex items-center gap-x-4">
           <ModeToggle />
+          {person && <HeaderActions person={person} />}
           <button
             onClick={() => setIsMenuOpen(true)}
             aria-label="Toggle navigation menu"
@@ -46,16 +53,16 @@ export const PublicMobileHeader = () => {
           onClick={() => setIsMenuOpen(false)}
         >
           <NavLinks className="flex flex-col items-center gap-y-2" />
-          <div className="flex flex-col gap-y-2 w-full pt-4 mt-4 border-t">
-            <Link href="/signup">
-              <Button className="w-full">Register</Button>
-            </Link>
-            <Link href="/login">
-              <Button className="w-full" variant="secondary">
-                Log In
+          {!person && (
+            <div className="flex flex-col gap-y-2 w-full pt-4 mt-4 border-t">
+              <Button asChild className="w-full">
+                <Link href="/signup">Register</Link>
               </Button>
-            </Link>
-          </div>
+              <Button asChild className="w-full" variant="secondary">
+                <Link href="/login">Log In</Link>
+              </Button>
+            </div>
+          )}
         </div>
       </nav>
     </>
