@@ -1,3 +1,14 @@
+## [1.20.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.19.0...v1.20.0) (2025-08-05)
+
+### Features
+
+* **hamburger menu:** added hamburger menu for mobile/smaller view with smooth pop out ([cbfc859](https://github.com/ncharris93/dsd-east-coast-goats/commit/cbfc85978393d281489215b2d02d08f4337895b1))
+
+### Bug Fixes
+
+* **header dropdown:** fixed color issue on dropdown styling for profile icon ([bc02daa](https://github.com/ncharris93/dsd-east-coast-goats/commit/bc02daaeb09477e28c8722300267a3e227aff66b))
+* **mobile header:** cleaned up and set up logged in patient logic for mobile header ([dc61bf4](https://github.com/ncharris93/dsd-east-coast-goats/commit/dc61bf45fade0788dd53eca21b7825019cd4e46d))
+
 ## [1.19.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.18.0...v1.19.0) (2025-08-04)
 
 ### Features
