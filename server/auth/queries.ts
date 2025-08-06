@@ -1,18 +1,11 @@
-import 'server-only'
-
 import type { User } from '@supabase/supabase-js'
 import { cache } from 'react'
 
 import { createClient } from '@/lib/supabase/server'
-import { Tables } from '@/lib/supabase/types'
-import { ActionResponse } from '@/lib/types/auth'
-// import { mockDelay } from '@/utils/helpers'
-
-export async function createUser() {}
+import { ActionResponse, Person, Role } from '@/lib/types/auth'
 
 export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
-    // await mockDelay(1000)
     const supabase = await createClient()
 
     try {
@@ -20,35 +13,28 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
         data: { session },
       } = await supabase.auth.getSession()
 
-      console.log('current user session:', session)
-
-      if (session) {
-        const {
-          data: { user },
-          error,
-        } = await supabase.auth.getUser()
-
-        console.log('current user data:', user)
-
-        if (error) {
-          return {
-            success: false,
-            message: error?.message || 'User authentication failed',
-            error: error?.name || 'Authentication',
-          }
-        }
-
-        return {
-          success: true,
-          data: user,
-          message: 'Retrieved the current user',
-        }
-      } else {
+      if (!session) {
         return {
           success: true,
           data: null,
           message: 'No active user session found',
         }
+      }
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser()
+      if (error) {
+        return {
+          success: false,
+          message: error?.message || 'User authentication failed',
+          error: error?.name || 'Authentication',
+        }
+      }
+      return {
+        success: true,
+        data: user,
+        message: 'Retrieved the current user',
       }
     } catch (err) {
       console.error('Get current user error:', err)
@@ -62,18 +48,16 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
 )
 
 export async function getCurrentPerson(
-  userId: string,
-): Promise<ActionResponse<Tables<'person'>>> {
+  authId: string,
+): Promise<ActionResponse<Person>> {
   const supabase = await createClient()
 
   try {
     const { data, error } = await supabase
       .from('person')
       .select('*')
-      .eq('person_uuid', userId)
+      .eq('person_uuid', authId)
       .single()
-
-    console.log('get current person data:', data)
 
     if (error) {
       return {
@@ -83,9 +67,16 @@ export async function getCurrentPerson(
       }
     }
 
+    const person = {
+      id: data.id,
+      firstName: data.first_name,
+      lastName: data.last_name,
+      role: data.role as Role,
+    }
+
     return {
       success: true,
-      data: data,
+      data: person,
       message: 'Retrieved the current person',
     }
   } catch (err) {
@@ -97,6 +88,8 @@ export async function getCurrentPerson(
     }
   }
 }
+
+export async function createUser() {}
 
 export const getUserByEmail = cache(async () => {})
 

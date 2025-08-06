@@ -3,7 +3,7 @@ import 'server-only'
 import type { User } from '@supabase/supabase-js'
 
 import { createAdminClient, createClient } from '@/lib/supabase/server'
-import { ActionResponse } from '@/lib/types/auth'
+import { ActionResponse, Role } from '@/lib/types/auth'
 import { EmergencyContact } from '@/lib/types/patient'
 import { EditableValue, ProviderAccountSettings } from '@/lib/types/provider'
 import { formatPhoneNumber } from '@/utils/helpers'
@@ -41,7 +41,7 @@ export async function getProviderAccountSettings(
       id: data.id,
       firstName: data.first_name,
       lastName: data.last_name,
-      role: 'provider',
+      role: 'provider' as Role,
       createdAt: data.created_at,
       updatedAt: data.updated_at,
       address: {

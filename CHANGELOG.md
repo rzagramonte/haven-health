@@ -1,3 +1,47 @@
+## [1.20.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.19.0...v1.20.0) (2025-08-05)
+
+### Features
+
+* **hamburger menu:** added hamburger menu for mobile/smaller view with smooth pop out ([cbfc859](https://github.com/ncharris93/dsd-east-coast-goats/commit/cbfc85978393d281489215b2d02d08f4337895b1))
+
+### Bug Fixes
+
+* **header dropdown:** fixed color issue on dropdown styling for profile icon ([bc02daa](https://github.com/ncharris93/dsd-east-coast-goats/commit/bc02daaeb09477e28c8722300267a3e227aff66b))
+* **mobile header:** cleaned up and set up logged in patient logic for mobile header ([dc61bf4](https://github.com/ncharris93/dsd-east-coast-goats/commit/dc61bf45fade0788dd53eca21b7825019cd4e46d))
+
+## [1.19.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.18.0...v1.19.0) (2025-08-04)
+
+### Features
+
+* **.env.example:** reverted .env.example ([00e198b](https://github.com/ncharris93/dsd-east-coast-goats/commit/00e198b0e3db367ef6765d75f53a49c1deda82fe))
+* **app/header.tsx:** removed Provider and Patient types ([97c587b](https://github.com/ncharris93/dsd-east-coast-goats/commit/97c587bb82bcacf57bb571f0e9a7754f54f214c7))
+* **app/header.tsx:** set conditional logic for header ([c6ba4f7](https://github.com/ncharris93/dsd-east-coast-goats/commit/c6ba4f7f3a164d92e93723cb3c1403198118d0fc))
+* **app:** committed changes before checking out ([783a560](https://github.com/ncharris93/dsd-east-coast-goats/commit/783a560fac0074575d49d4637ab92e118f432de3))
+* **app:** implemented noah suggestions ([2acf51f](https://github.com/ncharris93/dsd-east-coast-goats/commit/2acf51f5b8d3647ca414dca1c5ae4b6b1682d424))
+* **app:** merge main, including error.tsx and new sql migrations ([a305880](https://github.com/ncharris93/dsd-east-coast-goats/commit/a3058809453974c8042f7b6eb536304d1066422b))
+* **auth/actions.ts:** merged latest pull changes for logout functionality ([896f39d](https://github.com/ncharris93/dsd-east-coast-goats/commit/896f39df46b7e34c365b7fab7d17670565574fc1))
+* **auth/queries and header:** added Links to Header and created a getCurrentUser query ([16aa9c3](https://github.com/ncharris93/dsd-east-coast-goats/commit/16aa9c316d081eae22b42803902ec7271f428009))
+* **supabase and .vscode:** reverted supabase/config.toml and .vscode/settings.json ([957dc92](https://github.com/ncharris93/dsd-east-coast-goats/commit/957dc92bf4567948771ff7b4471b6f8415eecda4))
+
+### Bug Fixes
+
+* **header.tsx and auth/actions.ts:** fixed missing auth session error ([44a20aa](https://github.com/ncharris93/dsd-east-coast-goats/commit/44a20aadbd59c421b30203b18d4b9f6619ba4cad))
+* **migrations:** reverted initial sql migrations ([7e46086](https://github.com/ncharris93/dsd-east-coast-goats/commit/7e460862168b6e580b3c3bb30d4c3bea9a4d884a))
+* **package.json:** reinstalled react-icons ([21c2736](https://github.com/ncharris93/dsd-east-coast-goats/commit/21c273652c4718dc1ed2a8537c594a7dd761ef76))
+* **package.json:** removed supabase as dev dependency ([cf855e6](https://github.com/ncharris93/dsd-east-coast-goats/commit/cf855e64de7894ee4ec8e0f8ec08a65caaa5aa43))
+* **patient/dashboard/page.tsx:** removed comments from patient dashboard and ran local type ([a22e369](https://github.com/ncharris93/dsd-east-coast-goats/commit/a22e369fdd25210968328b5aaff9b6fa5e30eb13))
+* **ran local typegen command:** ran local typegen command ([1205f3c](https://github.com/ncharris93/dsd-east-coast-goats/commit/1205f3cdbb95f24df57fa848c90fa8c8688c3212))
+
+### Code Refactoring
+
+* **.vscode:** deno removed ([9513847](https://github.com/ncharris93/dsd-east-coast-goats/commit/95138478bc1c45c6342b66a4406b4efffe07b093))
+* **a[[:** updated branch ([c9f79a2](https://github.com/ncharris93/dsd-east-coast-goats/commit/c9f79a2419d6315ac3bdb050d2d938f0aad6c6b4))
+* **app/layout.tsx:** removed async from RootLayout ([2af5fa8](https://github.com/ncharris93/dsd-east-coast-goats/commit/2af5fa8c8f54339a00dd539d128e3e99e2bcc777))
+* **app:** implemented noah's feedback ([805fe82](https://github.com/ncharris93/dsd-east-coast-goats/commit/805fe82867d7d7ea228efc064a11e44a2b6c60fa))
+* **header.tsx:** refactored re KHRM's comments ([aa3a319](https://github.com/ncharris93/dsd-east-coast-goats/commit/aa3a319f1115e7ab8b437c64572b31d9c7917673))
+* **package.json package-lock.json:** save local changes before pull ([990ae7d](https://github.com/ncharris93/dsd-east-coast-goats/commit/990ae7d8af630bb24128e2e9d9e2bccd9357da0a))
+* **userdropdown.tsx:** size-6 ([169c4ac](https://github.com/ncharris93/dsd-east-coast-goats/commit/169c4ac432a708788bd47645172f88acaafe4dc4))
+
 ## [1.18.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.17.3...v1.18.0) (2025-08-03)
 
 ### Features
