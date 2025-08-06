@@ -4,7 +4,7 @@ export interface EditableBooleanFieldProps {
   onUpdate: (val: boolean) => void
 }
 
-export default function EditableBooleanField({
+export default function NewPatientField({
   value,
   editing,
   onUpdate,

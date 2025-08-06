@@ -8,7 +8,7 @@ export interface EmergencyContactFieldProps {
   onUpdate: (val: EmergencyContact) => void
 }
 
-export default function EditableEmergencyContactField({
+export default function EmergencyContactField({
   value,
   editing,
   onUpdate,

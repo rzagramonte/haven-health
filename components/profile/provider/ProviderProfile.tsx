@@ -65,7 +65,7 @@ interface ProviderProfileProps {
   userId: string
 }
 
-export default function EditProviderProfile({
+export default function ProviderProfile({
   providerDetails,
   userId,
 }: ProviderProfileProps) {

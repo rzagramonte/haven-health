@@ -9,7 +9,7 @@ export interface EditableNameProps {
   onUpdate: (val: EditableName) => void
 }
 
-export default function EditableNameField({
+export default function NameField({
   value,
   editing,
   onUpdate,

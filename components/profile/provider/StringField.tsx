@@ -6,7 +6,7 @@ export interface EditableStringFieldProps {
   onUpdate: (val: string) => void
 }
 
-export default function EditableStringField({
+export default function StringField({
   value,
   editing,
   onUpdate,
