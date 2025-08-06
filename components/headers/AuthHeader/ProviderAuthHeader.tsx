@@ -4,7 +4,7 @@ import { Person } from '@/lib/types/auth'
 
 import { ModeToggle } from '../components/LightDarkToggle'
 import HeaderActions from './HeaderActions'
-import NavLinks from './navlinks/AuthNavLinks'
+import NavLinks from './ProviderNavLinks/AuthNavLinks'
 
 export interface ProviderAuthProps {
   person: Person
