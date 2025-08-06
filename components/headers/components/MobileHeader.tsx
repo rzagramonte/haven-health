@@ -21,7 +21,20 @@ export const MobileHeader = ({ person }: MobileHeaderProps) => {
   return (
     <>
       <header className="flex justify-between items-center px-4 py-2">
-        <Image src="/icons/logo_dark.svg" alt="Logo" width="100" height="100" />
+        <Image
+          src="/icons/logo.svg"
+          alt="Haven Health"
+          width={150}
+          height={32}
+          className="block dark:hidden"
+        />
+        <Image
+          src="/icons/logo_dark.svg"
+          alt="Haven Health"
+          width={150}
+          height={32}
+          className="hidden dark:block"
+        />
         <div className="flex items-center gap-x-4">
           <ModeToggle />
           {person && <HeaderActions person={person} />}

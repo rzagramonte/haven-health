@@ -14,10 +14,18 @@ export default function ProviderAuthHeader({ person }: ProviderAuthProps) {
   return (
     <header className="flex justify-between m-2">
       <Image
-        src="/images/logo_placeholder.jpeg"
-        alt="Logo"
-        width="100"
-        height="100"
+        src="/icons/logo.svg"
+        alt="Haven Health"
+        width={200}
+        height={32}
+        className="block dark:hidden"
+      />
+      <Image
+        src="/icons/logo_dark.svg"
+        alt="Haven Health"
+        width={200}
+        height={32}
+        className="hidden dark:block"
       />
       <div className="flex mt-2 gap-x-8 items-center">
         <NavLinks />

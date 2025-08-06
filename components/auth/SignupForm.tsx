@@ -52,17 +52,17 @@ export default function SignupForm() {
       <div className="w-full max-w-md bg-card-3 p-6 rounded-lg shadow-md border border-border ">
         <div className="flex justify-center mb-4">
           <Image
-            src="/icons/logo.svg"
+            src="/icons/icon.svg"
             alt="Haven Health"
-            width={120}
-            height={120}
+            width={50}
+            height={50}
             className="block dark:hidden mx-auto mb-4"
           />
           <Image
-            src="/icons/logo_dark.svg"
+            src="/icons/icon_dark.svg"
             alt="Haven Health"
-            width={120}
-            height={120}
+            width={50}
+            height={50}
             className="hidden dark:block mx-auto mb-4"
           />
         </div>
@@ -170,7 +170,7 @@ export default function SignupForm() {
         </Form>
         <div className="text-center mt-4">
           <p> Already have an account?</p>
-          <Link href="/login" className="text-orange-800 hover:underline">
+          <Link href="/login" className="text-accent hover:underline">
             Sign In
           </Link>
         </div>

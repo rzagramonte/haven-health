@@ -72,7 +72,7 @@ export const UserDropdown = ({ person }: UserDropdownProps) => {
                 ? '/provider/profile'
                 : '/patient/profile'
             }
-            className="block px-4 py-2 hover:bg-gray-100"
+            className="block px-4 py-2"
           >
             <button onClick={() => setIsOpen(false)} className="cursor-pointer">
               Account Settings
@@ -81,7 +81,7 @@ export const UserDropdown = ({ person }: UserDropdownProps) => {
           <button
             onClick={handleLogOut}
             disabled={isPending}
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+            className="block w-full text-left px-4 py-2 cursor-pointer"
           >
             {isPending ? 'Logging Out' : 'Log Out'}
           </button>

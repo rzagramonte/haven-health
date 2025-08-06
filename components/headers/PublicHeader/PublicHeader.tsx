@@ -11,7 +11,20 @@ export default function PublicHeader() {
   return (
     <>
       <header className="hidden md:flex flex-row justify-between m-2">
-        <Image src="/icons/logo_dark.svg" alt="Logo" width="100" height="100" />
+        <Image
+          src="/icons/logo.svg"
+          alt="Haven Health"
+          width={200}
+          height={32}
+          className="block dark:hidden"
+        />
+        <Image
+          src="/icons/logo_dark.svg"
+          alt="Haven Health"
+          width={200}
+          height={32}
+          className="hidden dark:block"
+        />
         <div className="flex flex-row justify-around mt-2 items-center gap-x-10">
           <NavLinks />
           <ModeToggle />

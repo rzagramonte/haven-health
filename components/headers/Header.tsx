@@ -11,7 +11,7 @@ export default async function Header() {
     return (
       <div className="bg-background">
         {!user.success && (
-          <p className="text-red-600 text-sm mt-4 text-center">
+          <p className="text-destructive text-sm mt-4 text-center">
             {user.message}
           </p>
         )}
@@ -25,7 +25,7 @@ export default async function Header() {
   if (!person.success) {
     return (
       <div className="bg-background">
-        <p className="text-red-600 text-sm mt-4 text-center">
+        <p className="text-destructive text-sm mt-4 text-center">
           {person.message}
         </p>
         <PublicHeader />
@@ -43,7 +43,7 @@ export default async function Header() {
       )}
       {!person.data?.role && (
         <div className="bg-background">
-          <p className="text-red-600 text-sm mt-4">
+          <p className="text-destructive text-sm mt-4">
             Your role is not recognized. Please contact support.
           </p>
           <PublicHeader />

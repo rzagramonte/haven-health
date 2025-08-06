@@ -15,7 +15,20 @@ export default function PatientAuthHeader({ person }: PatientAuthProps) {
   return (
     <>
       <header className="hidden md:flex bg-background justify-between m-2">
-        <Image src="/icons/logo.svg" alt="Logo" width="100" height="100" />
+        <Image
+          src="/icons/logo.svg"
+          alt="Haven Health"
+          width={200}
+          height={32}
+          className="block dark:hidden"
+        />
+        <Image
+          src="/icons/logo_dark.svg"
+          alt="Haven Health"
+          width={200}
+          height={32}
+          className="hidden dark:block"
+        />
         <div className="flex justify-around mt-2 items-center gap-x-10">
           <NavLinks />
           <div className="flex gap-x-5 ">

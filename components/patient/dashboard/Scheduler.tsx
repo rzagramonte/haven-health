@@ -1,4 +1,6 @@
 'use client'
+
+import { CalendarPlus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
@@ -28,6 +30,7 @@ export default function Scheduler() {
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button onClick={handleClick} className="bg-secondary w-full">
+          <CalendarPlus />
           Book Now
         </Button>
       </CardFooter>

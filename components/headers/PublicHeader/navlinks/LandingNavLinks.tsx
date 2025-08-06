@@ -8,10 +8,10 @@ export default function LandingNavLinks({ className }: { className?: string }) {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/services">Services</Link>
+          <Link href="#services">Services</Link>
         </li>
         <li>
-          <Link href="/about">About</Link>
+          <Link href="#about">About</Link>
         </li>
         <li>
           <Link href="/contact">Contact Us</Link>
