@@ -3,6 +3,7 @@ import { FaHouse } from 'react-icons/fa6'
 import { MdAlternateEmail } from 'react-icons/md'
 import { RiContactsBookFill } from 'react-icons/ri'
 
+import { EditState } from '@/lib/types/provider'
 import { ProviderAccountSettings, ProviderDetails } from '@/lib/types/provider'
 export function transformProviderSettings(
   data: ProviderAccountSettings,
@@ -53,6 +54,34 @@ export function transformProviderSettings(
   ]
 }
 
-// export async function getEditableValue() {
+export function getFieldValue<T>(
+  key: string,
+  editState: EditState,
+  originalValue: T,
+): T {
+  if (editState.editingKey === key && editState.editableValue !== null) {
+    // Type guards for more specific types
+    if (
+      typeof originalValue === 'string' &&
+      typeof editState.editableValue === 'string'
+    ) {
+      return editState.editableValue as T
+    }
 
-// }
+    if (
+      typeof originalValue === 'boolean' &&
+      typeof editState.editableValue === 'boolean'
+    ) {
+      return editState.editableValue as T
+    }
+
+    if (
+      typeof originalValue === 'object' &&
+      typeof editState.editableValue === 'object'
+    ) {
+      return editState.editableValue as T
+    }
+  }
+
+  return originalValue
+}
