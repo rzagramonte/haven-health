@@ -1,10 +1,6 @@
-import { Input } from '@/components/ui/input'
+import type { EmergencyContact } from '@/lib/types/patient'
 
-export type EmergencyContact = {
-  firstName: string
-  lastName: string
-  phone: string
-}
+import { Input } from '../../ui/input'
 
 export interface EmergencyContactFieldProps {
   value: EmergencyContact | null
@@ -12,7 +8,7 @@ export interface EmergencyContactFieldProps {
   onUpdate: (val: EmergencyContact) => void
 }
 
-export default function EmergencyContactField({
+export default function EditableEmergencyContactField({
   value,
   editing,
   onUpdate,
@@ -35,13 +31,13 @@ export default function EmergencyContactField({
   return (
     <>
       <Input
-        aria-label="First Name"
+        aria-label="Emergency Contact First Name"
         className="bg-muted"
         value={value.firstName}
         onChange={(e) => onUpdate({ ...value, firstName: e.target.value })}
       />
       <Input
-        aria-label="Last Name"
+        aria-label="Emergency Contact Last Name"
         className="bg-muted"
         value={value.lastName}
         onChange={(e) => onUpdate({ ...value, lastName: e.target.value })}

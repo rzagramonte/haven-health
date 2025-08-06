@@ -1,9 +1,7 @@
 import Link from 'next/link'
-import { Suspense } from 'react'
 import { FaHandHoldingMedical } from 'react-icons/fa'
 
-import ProfileSkeleton from '@/components/loading/ProfileSkeleton'
-import EditProviderProfile from '@/components/provider/editProviderProfile'
+import ProviderProfile from '@/components/profile/provider/ProviderProfile'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -24,15 +22,9 @@ export default async function ProfilePage() {
     throw new Error('User data is incomplete')
   }
 
-  // || !userData.data.phone
-
   console.log('user:', userData.data)
 
-  const providerData = await getProviderAccountSettings(
-    userData.data?.id,
-    userData.data?.email,
-    userData.data?.phone,
-  )
+  const providerData = await getProviderAccountSettings(userData)
 
   if (!providerData?.data) {
     throw new Error('User data is incomplete')
@@ -61,12 +53,10 @@ export default async function ProfilePage() {
               Where Provider Profile Details Live
             </CardDescription>
           </CardHeader>
-          <Suspense fallback={<ProfileSkeleton />}>
-            <EditProviderProfile
-              providerDetails={providerData.data}
-              userId={userData.data?.id}
-            />
-          </Suspense>
+          <ProviderProfile
+            providerDetails={providerData.data}
+            userId={userData.data?.id}
+          />
         </Card>
       </div>
     </main>

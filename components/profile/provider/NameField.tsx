@@ -1,6 +1,6 @@
 import { EditableName } from '@/lib/types/provider'
 
-import { Input } from '../ui/input'
+import { Input } from '../../ui/input'
 
 export interface EditableNameProps {
   value: EditableName | null

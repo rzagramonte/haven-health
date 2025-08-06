@@ -1,5 +1,7 @@
 import 'server-only'
 
+import type { User } from '@supabase/supabase-js'
+
 import { createAdminClient, createClient } from '@/lib/supabase/server'
 import { ActionResponse } from '@/lib/types/auth'
 import { EmergencyContact } from '@/lib/types/patient'
@@ -12,9 +14,7 @@ export async function getProvider() {}
 export async function getProviders() {}
 
 export async function getProviderAccountSettings(
-  authId: string,
-  email: string,
-  phone: string,
+  userData: ActionResponse<User>,
 ): Promise<ActionResponse<ProviderAccountSettings>> {
   await mockDelay(1000)
   const supabase = await createClient()
@@ -23,7 +23,7 @@ export async function getProviderAccountSettings(
     const { data, error } = await supabase
       .from('person')
       .select('*, patient!inner(emergency_contact), address(*)')
-      .eq('person_uuid', authId)
+      .eq('person_uuid', userData.data?.id ?? '')
       .single()
 
     console.log('account provider settings data:', data)
@@ -45,8 +45,6 @@ export async function getProviderAccountSettings(
       createdAt: data.created_at,
       updatedAt: data.updated_at,
       address: {
-        // id: data.address[0].id,
-        // personId: data.address[0].person_id,
         streetA: data.address[0].streeta,
         city: data.address[0].city,
         state: data.address[0].address_state,
@@ -54,8 +52,8 @@ export async function getProviderAccountSettings(
       },
       //@ts-expect-error :: emergency contact is not an array
       emergencyContact: data.patient?.emergency_contact as EmergencyContact,
-      email: email,
-      phone: phone,
+      email: userData.data?.email ?? '',
+      phone: userData.data?.phone ?? '',
     }
 
     return {

@@ -8,8 +8,6 @@ import { VscSaveAs } from 'react-icons/vsc'
 import { CardAction, CardContent } from '@/components/ui/card'
 import { UpdatedSettingValues } from '@/lib/types/provider'
 import {
-  EditableName,
-  EditableValue,
   EditAction,
   EditState,
   ProviderAccountSettings,
@@ -17,18 +15,16 @@ import {
 } from '@/lib/types/provider'
 import { updateProviderSettings } from '@/server/provider/actions'
 import { mockDelay } from '@/utils/helpers'
-import { transformProviderSettings } from '@/utils/provider'
+import { getFieldValue, transformProviderSettings } from '@/utils/provider'
 import { showError, showSuccess } from '@/utils/toast'
 
-import LoadSpinner from '../loading/Spinner'
-import { Button } from '../ui/button'
-import EditableAddressField, { EditableAddress } from './editableAddressField'
-import EditableBooleanField from './editableBooleanField'
-import EditableEmergencyContactField, {
-  EmergencyContact,
-} from './editableEmergencyContactField'
-import EditableNameField from './editableNameField'
-import EditableStringField from './editableStringField'
+import LoadSpinner from '../../loading/Spinner'
+import { Button } from '../../ui/button'
+import AddressField from './AddressField'
+import EmergencyContactField from './EmergencyContactField'
+import NameField from './NameField'
+import NewPatientField from './NewPatientField'
+import StringField from './StringField'
 
 const editProfileReducer = (
   state: EditState,
@@ -41,7 +37,6 @@ const editProfileReducer = (
     case 'UPDATE':
       return { ...state, editableValue: action.value }
 
-    // udpate provider details state based on matching item.key to state.editingKey
     case 'SAVE':
       if (!state.editingKey) {
         return state
@@ -83,15 +78,12 @@ export default function EditProviderProfile({
 
   const [isPending, startTransition] = useTransition()
 
-  const handleSubmit = (
-    editKey: string | null,
-    editableValue: EditableValue,
-  ) => {
+  const handleSubmit = (editState: EditState) => {
     const settings: UpdatedSettingValues = {
       authId: userId,
       providerId: providerDetails.id,
-      settingKey: editKey,
-      settingValue: editableValue,
+      settingKey: editState.editingKey,
+      settingValue: editState.editableValue,
     }
 
     startTransition(async () => {
@@ -110,6 +102,8 @@ export default function EditProviderProfile({
     })
   }
 
+  console.log('edit state provider details:', editState.providerDetails)
+
   return (
     <CardContent className="flex flex-col items-center">
       <ul className=" w-full max-w-[350px] flex flex-col gap-3">
@@ -125,15 +119,8 @@ export default function EditProviderProfile({
               <div className="flex flex-col">
                 <p className="text-xs font-semibold">{label}</p>
                 {key === 'emergencyContact' && (
-                  <EditableEmergencyContactField
-                    value={
-                      // editState.editingKey === key &&
-                      typeof editState.editableValue === 'object' &&
-                      editState.editableValue !== null &&
-                      'phone' in editState.editableValue
-                        ? editState.editableValue
-                        : (value as EmergencyContact)
-                    }
+                  <EmergencyContactField
+                    value={getFieldValue(key, editState, value)}
                     editing={editState.editingKey === key}
                     onUpdate={(val) =>
                       editDispatch({ type: 'UPDATE', value: val })
@@ -141,13 +128,8 @@ export default function EditProviderProfile({
                   />
                 )}
                 {key === 'address' && (
-                  <EditableAddressField
-                    value={
-                      // editState.editingKey === key &&
-                      typeof editState.editableValue === 'object'
-                        ? (editState.editableValue as EditableAddress)
-                        : (value as EditableAddress)
-                    }
+                  <AddressField
+                    value={getFieldValue(key, editState, value)}
                     editing={editState.editingKey === key}
                     onUpdate={(val) =>
                       editDispatch({ type: 'UPDATE', value: val })
@@ -155,13 +137,8 @@ export default function EditProviderProfile({
                   />
                 )}
                 {key === 'newPatients' && (
-                  <EditableBooleanField
-                    value={
-                      editState.editingKey === key &&
-                      typeof editState.editableValue === 'boolean'
-                        ? editState.editableValue
-                        : (value as boolean)
-                    }
+                  <NewPatientField
+                    value={getFieldValue(key, editState, value)}
                     editing={editState.editingKey === key}
                     onUpdate={(val) =>
                       editDispatch({ type: 'UPDATE', value: val })
@@ -170,36 +147,24 @@ export default function EditProviderProfile({
                 )}
 
                 {key === 'name' && (
-                  <EditableNameField
-                    value={
-                      editState.editingKey === key &&
-                      typeof editState.editableValue === 'object'
-                        ? (editState.editableValue as EditableName)
-                        : (value as EditableName)
-                    }
+                  <NameField
+                    value={getFieldValue(key, editState, value)}
                     editing={editState.editingKey === key}
                     onUpdate={(val) =>
                       editDispatch({ type: 'UPDATE', value: val })
                     }
                   />
                 )}
-                {key !== 'emergencyContact' &&
-                  key !== 'newPatients' &&
-                  key !== 'address' &&
-                  key !== 'name' && (
-                    <EditableStringField
-                      value={
-                        editState.editingKey === key &&
-                        typeof editState.editableValue === 'string'
-                          ? editState.editableValue
-                          : (value as string)
-                      }
+                {key === 'phone' ||
+                  (key === 'email' && (
+                    <StringField
+                      value={getFieldValue(key, editState, value)}
                       editing={editState.editingKey === key}
                       onUpdate={(val) =>
                         editDispatch({ type: 'UPDATE', value: val })
                       }
                     />
-                  )}
+                  ))}
               </div>
             </div>
             <CardAction>
@@ -217,12 +182,7 @@ export default function EditProviderProfile({
                   <Button
                     className="w-6 h-6 cursor-pointer"
                     aria-label="Save changes"
-                    onClick={() =>
-                      handleSubmit(
-                        editState.editingKey,
-                        editState.editableValue,
-                      )
-                    }
+                    onClick={() => handleSubmit(editState)}
                   >
                     {isPending ? <LoadSpinner /> : <VscSaveAs />}
                   </Button>
