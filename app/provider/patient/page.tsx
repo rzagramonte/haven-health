@@ -13,6 +13,7 @@ import { getAppointments } from '@/server/appointment/queries'
 import { getAddress, getPerson } from '@/server/auth/queries'
 import { getPatient } from '@/server/patient/queries'
 import { getMedicalVisit } from '@/server/patient/queries'
+import { formatDate, getAge } from '@/utils/helpers'
 
 export function assertData<T>(result: ActionResponse<T>, message: string): T {
   if (!result.data) {
@@ -44,6 +45,10 @@ export default async function PatientDetailsPage({
   const address = assertData(await getAddress(person.id), 'Address not found')
 
   console.log(appointments, patient, person, medicalVisit, address)
+
+  const scheduledAppointment = appointments?.find(
+    (appointment) => appointment.status == 'scheduled',
+  )
 
   return (
     <section className=" p-2 flex flex-col items-center">
@@ -78,11 +83,54 @@ export default async function PatientDetailsPage({
                 {person?.firstName} {person?.lastName}
               </span>
               <span className="text-lg sm:text-xl md:text-2xl text-">
-                {/* {patient?.dateOfBirth
-                   ? getAge(patient?.dateOfBirth)
-                   : 'No age found'}
-                 , {patient?.sex} */}
+                {patient?.dateOfBirth
+                  ? getAge(patient?.dateOfBirth)
+                  : 'No age found'}
+                , {patient?.sex}
               </span>
+            </div>
+
+            <div className=" w-full flex flex-col justify-center gap-2 ">
+              <div className=" w-full flex justify-between gap-2 p-2">
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-bold text-xl sm:text-2xl md:text-3xl">
+                    Scheduled Appointment
+                  </h3>
+                  <span className="text-xl">
+                    {scheduledAppointment?.time
+                      ? formatDate(scheduledAppointment.time)
+                      : 'No Appointment Scheduled'}
+                  </span>
+                </div>
+                <div className=" w-full max-w-[50%] ">
+                  <h4 className="text-lg font-bold">Special Notes</h4>
+                  <span className="text-sm sm:text-base md:text-lg leading-snug text-secondary">
+                    {medicalVisit?.summaryNotes}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-1 ">
+                <h3 className="font-bold text-xl sm:text-2xl md:text-3xl">
+                  Contact Details
+                </h3>
+                <div className="flex justify-between">
+                  <div className="flex flex-col w-full">
+                    <h4 className="font-bold text-lg">Emergency Contact</h4>
+                    <span>
+                      {patient?.emergencyContact?.firstName}{' '}
+                      {patient?.emergencyContact?.lastName}
+                    </span>
+                    <span>{patient?.emergencyContact?.phone}</span>
+                  </div>
+                  <div className=" w-full flex flex-col gap-1 text-sm">
+                    <h4 className="text-lg font-bold">Address</h4>
+                    <span>
+                      {address?.streetA}, {address?.city} {address?.state}{' '}
+                      {address?.zipCode}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </CardContent>
