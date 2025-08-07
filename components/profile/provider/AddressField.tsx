@@ -1,17 +1,11 @@
+import type { Address } from '@/lib/types/auth'
+
 import { Input } from '../../ui/input'
 
-export type EditableAddress = {
-  streetA: string | null
-  streetB?: string | null
-  city: string | null
-  state: string | null
-  zipCode: string | null
-}
-
 export interface AddressFieldProps {
-  value: EditableAddress | null
+  value: Address | null
   editing: boolean
-  onUpdate: (val: EditableAddress) => void
+  onUpdate: (val: Address) => void
 }
 
 export default function AddressField({
