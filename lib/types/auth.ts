@@ -1,9 +1,3 @@
-export type EmergencyContact = {
-  firstName: string
-  lastName: string
-  phone: string
-}
-
 export type ActionResponse<T = undefined> = {
   success: boolean
   message: string

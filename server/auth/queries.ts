@@ -2,7 +2,7 @@ import type { User } from '@supabase/supabase-js'
 import { cache } from 'react'
 
 import { createClient } from '@/lib/supabase/server'
-import { ActionResponse, Person } from '@/lib/types/auth'
+import { ActionResponse, Address, Person, Role } from '@/lib/types/auth'
 
 export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
@@ -71,7 +71,7 @@ export async function getCurrentPerson(
       id: data.id,
       firstName: data.first_name,
       lastName: data.last_name,
-      role: data.role,
+      role: data.role as Role,
       createdAt: data.created_at,
       updatedAt: data.updated_at,
     }
