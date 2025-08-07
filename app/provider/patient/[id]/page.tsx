@@ -73,7 +73,7 @@ export default async function PatientDetailsPage({
             <div className="flex flex-col gap-3">
               <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 ">
                 <Image
-                  src="/images/patient-profile.jpeg"
+                  src="/images/danny-patient-profile.jpeg"
                   alt="patient-image"
                   fill
                   className="object-cover rounded-lg"
