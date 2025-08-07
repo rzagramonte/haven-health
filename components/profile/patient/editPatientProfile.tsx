@@ -17,6 +17,24 @@ import { CardAction, CardContent } from '@/components/ui/card'
 import EditableBooleanField from './InsuredBooleanField'
 import EditableStringField from './StringField'
 
+type PatientProfile = {
+  fullName: {
+    firstName: string
+    lastName: string
+  }
+  phone: string | null
+  email: string | null
+  address: {
+    streeta: string | null
+    streetb: string | null
+    city: string | null
+    state: string | null
+    zip: string | null
+  }
+  emergencyContact: EmergencyContact | null
+  insurance_flag: boolean
+}
+
 type EditableValue = string | boolean | EmergencyContact | null
 
 type EditAction =
@@ -49,39 +67,6 @@ type EditState = {
   editableValue: EditableValue | null
 }
 
-const patientDummyData: PatientDetails = [
-  { label: 'Name & Title', key: 'name', value: 'Sara Sneeze', icon: FaUser },
-  { label: 'Phone', key: 'phone', value: '(555) 555-5555', icon: FaPhone },
-  {
-    label: 'Email',
-    key: 'email',
-    value: 'patient@email.com',
-    icon: MdAlternateEmail,
-  },
-  {
-    label: 'Address',
-    key: 'address',
-    value: '123 Main St., Islip, NY 11751',
-    icon: FaHouse,
-  },
-  {
-    label: 'Emergency Contact',
-    key: 'emergencyContact',
-    value: {
-      firstName: 'Jane',
-      lastName: 'Ross',
-      phone: '(555) 555-5555',
-    },
-    icon: RiContactsBookFill,
-  },
-  {
-    label: 'Are you currently insured?',
-    key: 'insuredFlag',
-    value: true,
-    icon: FaUserFriends,
-  },
-]
-
 const editProfileReducer = (
   state: EditState,
   action: EditAction,
@@ -93,7 +78,6 @@ const editProfileReducer = (
     case 'UPDATE':
       return { ...state, editableValue: action.value }
 
-    // udpate patient details state based on matching item.key to state.editingKey
     case 'SAVE':
       if (!state.editingKey) {
         return state
@@ -117,9 +101,72 @@ const editProfileReducer = (
   }
 }
 
-export const EditPatientProfile = () => {
+const formatAddress = (address: PatientProfile['address']) => {
+  if (!address) {
+    return 'Not available'
+  }
+
+  const streetLine = [address.streeta, address.streetb]
+    .filter(Boolean)
+    .join(' ')
+
+  const fullAddress = [streetLine, address.city, address.state, address.zip]
+    .filter(Boolean)
+    .join(', ')
+
+  return fullAddress || 'Not available'
+}
+
+export const EditPatientProfile = ({
+  profile,
+}: {
+  profile: PatientProfile
+}) => {
+  const initialPatientDetails: PatientDetails = [
+    {
+      label: 'Name',
+      key: 'name',
+      value: `${profile.fullName.firstName} ${profile.fullName.lastName}`,
+      icon: FaUser,
+    },
+    {
+      label: 'Phone',
+      key: 'phone',
+      value: profile.phone || 'Not provided',
+      icon: FaPhone,
+    },
+    {
+      label: 'Email',
+      key: 'email',
+      value: profile.email || 'Not provided',
+      icon: MdAlternateEmail,
+    },
+    {
+      label: 'Address',
+      key: 'address',
+      value: formatAddress(profile.address),
+      icon: FaHouse,
+    },
+    {
+      label: 'Emergency Contact',
+      key: 'emergencyContact',
+      value: profile.emergencyContact || {
+        firstName: '',
+        lastName: '',
+        phone: '',
+      },
+      icon: RiContactsBookFill,
+    },
+    {
+      label: 'Are you currently insured?',
+      key: 'insuredFlag',
+      value: profile.insurance_flag,
+      icon: FaUserFriends,
+    },
+  ]
+
   const [editState, editDispatch] = useReducer(editProfileReducer, {
-    patientDetails: patientDummyData,
+    patientDetails: initialPatientDetails,
     editingKey: null,
     editableValue: null,
   })

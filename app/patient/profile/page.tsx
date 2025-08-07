@@ -10,8 +10,22 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { getPatientProfile } from '@/server/patient/queries'
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const userData = await getPatientProfile()
+  if (!userData) {
+    return (
+      <main className="flex-grow p-5 text-center">
+        <h1>Profile Not Found</h1>
+        <p>
+          We could not load the patient profile. Please ensure you are logged
+          in.
+        </p>
+      </main>
+    )
+  }
+
   return (
     <main className="flex-grow p-5">
       <div className="w-full max-w-[110px]">
@@ -35,7 +49,7 @@ export default function ProfilePage() {
               Where Patient Profile Details Live
             </CardDescription>
           </CardHeader>
-          <EditPatientProfile />
+          <EditPatientProfile profile={userData} />
         </Card>
       </div>
     </main>
