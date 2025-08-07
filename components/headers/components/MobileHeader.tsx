@@ -29,7 +29,7 @@ const MobileHeader = ({ person }: MobileHeaderProps) => {
 
   return (
     <>
-      <header className="flex justify-between items-center px-4 py-2">
+      <header className="flex justify-between px-6 py-3">
         <Image
           src="/icons/logo.svg"
           alt="Haven Health"
@@ -51,6 +51,7 @@ const MobileHeader = ({ person }: MobileHeaderProps) => {
             onClick={() => setIsMenuOpen(true)}
             aria-label="Toggle navigation menu"
             variant="outline"
+            className="drop-shadow-sm hover:drop-shadow-accent hover:border-accent"
           >
             <Menu className="size-5" />
           </Button>
@@ -65,13 +66,13 @@ const MobileHeader = ({ person }: MobileHeaderProps) => {
       )}
 
       <nav
-        className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-background p-6 shadow-lg z-40
+        className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-muted p-6 drop-shadow-lg z-40
           transition-transform duration-300 ease-in-out
           ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
       >
         <div
-          className="flex flex-col items-center gap-y-4 mt-8"
+          className="flex flex-col items-center gap-y-6"
           onClick={() => setIsMenuOpen(false)}
         >
           <Image

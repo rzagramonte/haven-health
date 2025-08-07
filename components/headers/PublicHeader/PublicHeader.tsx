@@ -10,7 +10,7 @@ import NavLinks from './navlinks/LandingNavLinks'
 export default function PublicHeader() {
   return (
     <>
-      <header className="hidden lg:flex bg-background justify-between m-2">
+      <header className="hidden lg:flex bg-background justify-between px-6 py-4 mb-4">
         <Image
           src="/icons/logo.svg"
           alt="Haven Health"

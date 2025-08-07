@@ -60,10 +60,7 @@ export const UserDropdown = ({ person }: UserDropdownProps) => {
         <CircleUserRoundIcon className="cursor-pointer size-5" />
       </Button>
       {isOpen && (
-        <div
-          className="absolute right-0 mt-2 w-48 border bg-background
-         rounded shadow-md p-2 z-50"
-        >
+        <div className="absolute right-0 mt-2 w-48 border bg-muted rounded shadow-md p-2 z-50">
           <Link
             href={
               person.role === 'provider' || person.role === 'admin'

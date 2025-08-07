@@ -13,13 +13,13 @@ import {
 } from '@/components/ui/card'
 import { Appointments } from '@/lib/types/patient'
 
-type UpcomingAppointmentProps = {
+type UpcomingAppointmentsProps = {
   appointments: Appointments
 }
 
-export default function UpcomingAppointment({
+export default function UpcomingAppointments({
   appointments,
-}: UpcomingAppointmentProps) {
+}: UpcomingAppointmentsProps) {
   const router = useRouter()
   const handleClick = () => {
     router.push('/appointment')
@@ -53,8 +53,8 @@ export default function UpcomingAppointment({
       {!appointments?.appointment_time ? (
         <CardContent className="">No upcoming appointments found.</CardContent>
       ) : (
-        <CardContent className="flex">
-          <CardContent className="w-1/2 py-4">
+        <CardContent className="md:flex">
+          <CardContent className="md:w-1/2 py-4">
             Your {appointments.appointment_type?.toLowerCase()} with{' '}
             {appointments.provider} is on{' '}
             <span className="font-semibold">
@@ -62,7 +62,7 @@ export default function UpcomingAppointment({
             </span>
             .
           </CardContent>
-          <CardFooter className="flex justify-center gap-2 p-4 w-1/2">
+          <CardFooter className="flex justify-center gap-2 p-4 md:w-1/2">
             <Button onClick={handleClick} className="w-1/2">
               <CalendarCog />
               Reschedule

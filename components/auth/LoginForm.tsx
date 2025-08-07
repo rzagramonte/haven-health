@@ -44,7 +44,7 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-background">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-card-3 p-6 rounded-lg shadow-md border border-border">
         <div className="flex justify-center mb-4">
           <Image
