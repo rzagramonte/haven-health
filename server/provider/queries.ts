@@ -13,7 +13,7 @@ export async function getProvider() {}
 
 export async function getProviders() {}
 
-export async function getProviderAccountSettings(
+export async function getProviderProfile(
   userData: ActionResponse<User>,
 ): Promise<ActionResponse<ProviderProfile>> {
   await mockDelay(1000)
