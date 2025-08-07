@@ -11,19 +11,11 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Card, CardContent } from '@/components/ui/card'
 import { CardHeader, CardTitle } from '@/components/ui/card'
-import type { ActionResponse } from '@/lib/types/auth'
 import { getAppointments } from '@/server/appointment/queries'
 import { getAddress, getPerson } from '@/server/auth/queries'
 import { getPatient } from '@/server/patient/queries'
 import { getMedicalVisit } from '@/server/patient/queries'
-import { formatDate, getAge } from '@/utils/helpers'
-
-export function assertData<T>(result: ActionResponse<T>, message: string): T {
-  if (!result.data) {
-    throw new Error(message)
-  }
-  return result.data
-}
+import { assertData, formatDate, getAge } from '@/utils/helpers'
 
 export default async function PatientDetailsPage({
   params,

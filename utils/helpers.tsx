@@ -1,3 +1,5 @@
+import { ActionResponse } from '@/lib/types/auth'
+
 export function formatDate(dateString: string) {
   const date = new Date(dateString)
   const monthNames = [
@@ -26,4 +28,11 @@ export const getAge = (dateOfBirth: string) => {
   const birthDate = new Date(dateOfBirth)
   const age = today.getFullYear() - birthDate.getFullYear()
   return age
+}
+
+export function assertData<T>(result: ActionResponse<T>, message: string): T {
+  if (!result.data) {
+    throw new Error(message)
+  }
+  return result.data
 }
