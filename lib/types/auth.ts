@@ -20,8 +20,6 @@ export interface Person {
 }
 
 export interface Address {
-  id: number
-  personId: number | null
   streetA: string | null
   streetB?: string | null
   city: string | null

@@ -26,8 +26,6 @@ export async function getProviderProfile(
       .eq('person_uuid', userData.data?.id ?? '')
       .single()
 
-    console.log('account provider settings data:', data)
-
     if (error) {
       return {
         success: false,
@@ -37,7 +35,7 @@ export async function getProviderProfile(
       }
     }
 
-    const providerAccountSettings = {
+    const providerProfile = {
       id: data.id,
       firstName: data.first_name,
       lastName: data.last_name,
@@ -56,12 +54,10 @@ export async function getProviderProfile(
       phone: userData.data?.phone ?? '',
     }
 
-    console.log('provider account settings:', providerAccountSettings)
-
     return {
       success: true,
       message: 'Provider account setttings successfully retrieved',
-      data: providerAccountSettings,
+      data: providerProfile,
     }
   } catch (err) {
     console.error('There was an error getting your contact info:', err)

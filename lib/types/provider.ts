@@ -61,7 +61,7 @@ export type ProviderDetails = [
   { label: string; key: 'newPatients'; value: boolean; icon: IconType },
 ]
 
-export interface ProviderAccountSettings extends Person {
+export interface ProviderProfile extends Person {
   address: Omit<Address, 'id' | 'personId'>
   emergencyContact: EmergencyContact
   email: string
