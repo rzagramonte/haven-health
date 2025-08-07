@@ -13,7 +13,6 @@ export default function AddressField({
   editing,
   onUpdate,
 }: AddressFieldProps) {
-  console.log('editable address field value:', value)
   if (!value) {
     return null
   }

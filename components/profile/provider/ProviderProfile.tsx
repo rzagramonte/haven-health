@@ -102,8 +102,6 @@ export default function ProviderProfile({
     })
   }
 
-  console.log('edit state provider details:', editState.providerDetails)
-
   return (
     <CardContent className="flex flex-col items-center">
       <ul className=" w-full max-w-[350px] flex flex-col gap-3">

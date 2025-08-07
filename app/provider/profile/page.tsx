@@ -23,7 +23,7 @@ export default async function ProfilePage() {
   const providerData = await getProviderProfile(userData)
 
   if (!providerData?.data) {
-    throw new Error('User data is incomplete')
+    throw new Error('Provider data is incomplete')
   }
 
   return (
