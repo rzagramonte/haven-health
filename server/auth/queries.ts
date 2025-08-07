@@ -91,6 +91,100 @@ export async function getCurrentPerson(
   }
 }
 
+export async function getPerson(
+  personId: number | null,
+): Promise<ActionResponse<Person>> {
+  if (!personId) {
+    return {
+      success: false,
+      message: 'Need a proper patient Id',
+    }
+  }
+
+  const supabase = await createClient()
+
+  try {
+    const { data, error } = await supabase
+      .from('person')
+      .select('*')
+      .eq('id', personId)
+      .single()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
+    const person: Person = {
+      id: data.id,
+      firstName: data.first_name,
+      lastName: data.last_name,
+      role: data.role as Role,
+    }
+
+    return {
+      success: true,
+      data: person,
+      message: 'Retrieved the selected person',
+    }
+  } catch (err) {
+    console.error('Get selected user error:', err)
+    return {
+      success: false,
+      message: 'An error occurred while getting the  selected person',
+      error: 'Failed to get the selected person',
+    }
+  }
+}
+
+export async function getAddress(
+  personId: number,
+): Promise<ActionResponse<Address>> {
+  const supabase = await createClient()
+
+  try {
+    const { data, error } = await supabase
+      .from('address')
+      .select('*')
+      .eq('id', personId)
+      .single()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
+    const address = {
+      id: data.id,
+      personId: data.person_id,
+      streetA: data.streeta,
+      streetB: data.streetb || '',
+      city: data.city,
+      state: data.address_state,
+      zipCode: data.zip_code,
+    }
+
+    return {
+      success: true,
+      data: address,
+      message: 'Retrieved the selected person',
+    }
+  } catch (err) {
+    console.error('Get selected user error:', err)
+    return {
+      success: false,
+      message: 'An error occurred while getting address',
+      error: 'Failed to get the selected address',
+    }
+  }
+}
+
 export async function createUser() {}
 
 export const getUserByEmail = cache(async () => {})
