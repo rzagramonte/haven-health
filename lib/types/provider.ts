@@ -19,8 +19,6 @@ export interface EditableName {
   lastName: string
 }
 
-export type EditableEmergencyContact = Omit<Address, 'id' | 'personId'>
-
 export type EditableValue =
   | string
   | boolean

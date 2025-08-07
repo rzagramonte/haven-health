@@ -11,7 +11,6 @@ export default function StringField({
   editing,
   onUpdate,
 }: EditableStringFieldProps) {
-  console.log('value:', value)
   if (!editing) {
     return <p>{value}</p>
   }

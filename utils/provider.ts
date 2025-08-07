@@ -5,7 +5,7 @@ import { RiContactsBookFill } from 'react-icons/ri'
 
 import { EditState } from '@/lib/types/provider'
 import { ProviderDetails, ProviderProfile } from '@/lib/types/provider'
-export function transformProviderSettings(
+export function transformProviderProfile(
   data: ProviderProfile,
 ): ProviderDetails {
   return [
@@ -60,7 +60,6 @@ export function getFieldValue<T>(
   originalValue: T,
 ): T {
   if (editState.editingKey === key && editState.editableValue !== null) {
-    // Type guards for more specific types
     if (
       typeof originalValue === 'string' &&
       typeof editState.editableValue === 'string'

@@ -2,7 +2,7 @@ import { EditableName } from '@/lib/types/provider'
 
 import { Input } from '../../ui/input'
 
-export interface EditableNameProps {
+export interface NameFieldProps {
   value: EditableName | null
   editing: boolean
 
@@ -13,7 +13,7 @@ export default function NameField({
   value,
   editing,
   onUpdate,
-}: EditableNameProps) {
+}: NameFieldProps) {
   if (!value) {
     return null
   }

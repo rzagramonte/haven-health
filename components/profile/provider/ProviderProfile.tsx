@@ -15,7 +15,7 @@ import type {
 import { UpdatedSettingValues } from '@/lib/types/provider'
 import { updateProviderSettings } from '@/server/provider/actions'
 import { mockDelay } from '@/utils/helpers'
-import { getFieldValue, transformProviderSettings } from '@/utils/provider'
+import { getFieldValue, transformProviderProfile } from '@/utils/provider'
 import { showError, showSuccess } from '@/utils/toast'
 
 import LoadSpinner from '../../loading/Spinner'
@@ -71,7 +71,7 @@ export default function ProviderProfile({
 }: ProviderProfileProps) {
   const [editState, editDispatch] = useReducer(editProfileReducer, {
     providerId: providerDetails.id,
-    providerDetails: transformProviderSettings(providerDetails),
+    providerDetails: transformProviderProfile(providerDetails),
     editingKey: null,
     editableValue: null,
   })
