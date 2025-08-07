@@ -11,7 +11,7 @@ import {
   updatePhone,
 } from './queries'
 
-export async function updateProviderSettings(
+export async function updateProviderProfile(
   updatedValues: UpdatedValues,
 ): Promise<ActionResponse> {
   const { key, updatedValue, providerId, authId } = updatedValues

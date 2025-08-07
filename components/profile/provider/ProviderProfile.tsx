@@ -13,7 +13,7 @@ import type {
   ProviderProfile,
 } from '@/lib/types/provider'
 import { UpdatedValues } from '@/lib/types/provider'
-import { updateProviderSettings } from '@/server/provider/actions'
+import { updateProviderProfile } from '@/server/provider/actions'
 import { mockDelay } from '@/utils/helpers'
 import { getFieldValue, transformProviderProfile } from '@/utils/provider'
 import { showError, showSuccess } from '@/utils/toast'
@@ -79,7 +79,7 @@ export default function ProviderProfile({
   const [isPending, startTransition] = useTransition()
 
   const handleSubmit = (editState: EditState) => {
-    const settings: UpdatedValues = {
+    const updatedValues: UpdatedValues = {
       authId: userId,
       providerId: providerDetails.id,
       key: editState.editingKey,
@@ -88,7 +88,7 @@ export default function ProviderProfile({
 
     startTransition(async () => {
       mockDelay(1000)
-      const response = await updateProviderSettings(settings)
+      const response = await updateProviderProfile(updatedValues)
 
       if (response.success) {
         showSuccess(response.message)
