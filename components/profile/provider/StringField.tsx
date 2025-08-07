@@ -1,6 +1,6 @@
 import { Input } from '../../ui/input'
 
-export interface EditableStringFieldProps {
+export interface StringFieldProps {
   value: string
   editing: boolean
   onUpdate: (val: string) => void
@@ -10,7 +10,7 @@ export default function StringField({
   value,
   editing,
   onUpdate,
-}: EditableStringFieldProps) {
+}: StringFieldProps) {
   if (!editing) {
     return <p>{value}</p>
   }

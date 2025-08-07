@@ -75,9 +75,9 @@ export interface ProviderProfile extends AuthPerson {
   phone: string
 }
 
-export interface UpdatedSettingValues {
-  settingKey: string | null
-  settingValue: EditableValue
+export interface UpdatedValues {
+  key: string | null
+  updatedValue: EditableValue
   providerId: number
   authId: string
 }

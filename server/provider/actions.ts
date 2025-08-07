@@ -1,7 +1,7 @@
 'use server'
 
 import { ActionResponse } from '@/lib/types/auth'
-import { UpdatedSettingValues } from '@/lib/types/provider'
+import { UpdatedValues } from '@/lib/types/provider'
 
 import {
   updateAddress,
@@ -12,29 +12,29 @@ import {
 } from './queries'
 
 export async function updateProviderSettings(
-  updatedSetting: UpdatedSettingValues,
+  updatedValues: UpdatedValues,
 ): Promise<ActionResponse> {
-  const { settingKey, settingValue, providerId, authId } = updatedSetting
+  const { key, updatedValue, providerId, authId } = updatedValues
 
-  switch (settingKey) {
+  switch (key) {
     case 'emergencyContact': {
-      return await updateEmergencyContact(providerId, settingValue)
+      return await updateEmergencyContact(providerId, updatedValue)
     }
 
     case 'address': {
-      return await updateAddress(providerId, settingValue)
+      return await updateAddress(providerId, updatedValue)
     }
 
     case 'name': {
-      return await updateName(providerId, settingValue)
+      return await updateName(providerId, updatedValue)
     }
 
     case 'email': {
-      return await updateEmail(authId, settingValue)
+      return await updateEmail(authId, updatedValue)
     }
 
     case 'phone': {
-      return await updatePhone(authId, settingValue)
+      return await updatePhone(authId, updatedValue)
     }
 
     default:
