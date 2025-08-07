@@ -5,7 +5,7 @@ import type { User } from '@supabase/supabase-js'
 import { createAdminClient, createClient } from '@/lib/supabase/server'
 import { ActionResponse, Role } from '@/lib/types/auth'
 import { EmergencyContact } from '@/lib/types/patient'
-import { EditableValue, ProviderAccountSettings } from '@/lib/types/provider'
+import { EditableValue, ProviderProfile } from '@/lib/types/provider'
 import { formatPhoneNumber } from '@/utils/helpers'
 import { mockDelay } from '@/utils/helpers'
 
@@ -15,7 +15,7 @@ export async function getProviders() {}
 
 export async function getProviderAccountSettings(
   userData: ActionResponse<User>,
-): Promise<ActionResponse<ProviderAccountSettings>> {
+): Promise<ActionResponse<ProviderProfile>> {
   await mockDelay(1000)
   const supabase = await createClient()
 

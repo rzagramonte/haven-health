@@ -14,7 +14,7 @@ export interface AddressFieldProps {
   onUpdate: (val: EditableAddress) => void
 }
 
-export default function EditableAddressField({
+export default function AddressField({
   value,
   editing,
   onUpdate,

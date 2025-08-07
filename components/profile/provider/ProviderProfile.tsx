@@ -6,13 +6,13 @@ import { GiCancel } from 'react-icons/gi'
 import { VscSaveAs } from 'react-icons/vsc'
 
 import { CardAction, CardContent } from '@/components/ui/card'
-import { UpdatedSettingValues } from '@/lib/types/provider'
-import {
+import type {
   EditAction,
   EditState,
   ProviderDetails,
   ProviderProfile,
 } from '@/lib/types/provider'
+import { UpdatedSettingValues } from '@/lib/types/provider'
 import { updateProviderSettings } from '@/server/provider/actions'
 import { mockDelay } from '@/utils/helpers'
 import { getFieldValue, transformProviderSettings } from '@/utils/provider'
