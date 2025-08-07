@@ -56,11 +56,11 @@
 
 @layer base {
   :root {
-    --background: #f8f6f1;
+    --background: hsl(40, 33%, 96%);
     --foreground: hsl(210 22% 20%);
     --card-1: hsl(355 20% 81%);
     --card-2: hsl(75 7% 90%);
-    --card-3: #f3ebe7;
+    --card-3: hsl(20, 33%, 93%);
     --card-4: hsl(170 10% 84%);
     --card-foreground: hsl(210 22% 20%);
     --popover: hsl(42 33% 94%);
@@ -71,7 +71,7 @@
     --secondary-foreground: hsl(40 33% 96%);
     --muted: hsl(42 14% 93%);
     --muted-foreground: hsl(210 22% 20%);
-    --accent: #a84c00;
+    --accent: hsl(27, 100%, 33%);
     --accent-foreground: hsl(40 33% 96%);
     --destructive: hsl(0 60% 45%);
     --destructive-foreground: hsl(40 33% 96%);
@@ -108,7 +108,7 @@
     --accent-foreground: hsl(210 22% 20%);
     --destructive: hsl(0 60% 38%);
     --destructive-foreground: hsl(40 33% 96%);
-    --border: hsl(210 22% 20%);
+    --border: hsl(212 17% 24%);
     --input: hsl(212 17% 24%);
     --ring: hsl(342 63% 60%);
     --cta: hsl(342 63% 30%);

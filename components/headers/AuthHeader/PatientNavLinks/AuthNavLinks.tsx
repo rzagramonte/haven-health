@@ -5,16 +5,13 @@ export default function LandingNavLinks() {
     <nav>
       <ul className="flex flex-row gap-x-6 list-none m-2">
         <li>
-          <Link href="/">Home</Link>
+          <Link href="/patient/dashboard">Dashboard</Link>
         </li>
         <li>
-          <Link href="#services">Services</Link>
+          <Link href="/patient/appointments">Appointments</Link>
         </li>
         <li>
-          <Link href="#about">About</Link>
-        </li>
-        <li>
-          <Link href="/contact">Contact</Link>
+          <Link href="/patient/provider-search">Providers</Link>
         </li>
       </ul>
     </nav>

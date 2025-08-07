@@ -1,7 +1,6 @@
 import { getCurrentPerson, getCurrentUser } from '@/server/auth/queries'
 
-import PatientAuthHeader from './AuthHeader/PatientAuthHeader'
-import ProviderAuthHeader from './AuthHeader/ProviderAuthHeader'
+import AuthHeader from './AuthHeader/AuthHeader'
 import PublicHeader from './PublicHeader/PublicHeader'
 
 export default async function Header() {
@@ -35,12 +34,7 @@ export default async function Header() {
 
   return (
     <div className="bg-background">
-      {person.data?.role === 'provider' && (
-        <ProviderAuthHeader person={person.data} />
-      )}
-      {person.data?.role === 'patient' && (
-        <PatientAuthHeader person={person.data} />
-      )}
+      {person.data?.role && <AuthHeader person={person.data} />}
       {!person.data?.role && (
         <div className="bg-background">
           <p className="text-destructive text-sm mt-4">

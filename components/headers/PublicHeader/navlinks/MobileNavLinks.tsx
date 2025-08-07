@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function LandingNavLinks() {
   return (
     <nav>
-      <ul className="flex flex-row gap-x-6 list-none m-2">
+      <ul className="flex flex-col items-center gap-y-2 mt-4">
         <li>
           <Link href="/">Home</Link>
         </li>
@@ -14,7 +14,7 @@ export default function LandingNavLinks() {
           <Link href="#about">About</Link>
         </li>
         <li>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact">Contact Us</Link>
         </li>
       </ul>
     </nav>

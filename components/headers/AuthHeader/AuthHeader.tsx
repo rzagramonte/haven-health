@@ -7,11 +7,11 @@ import { MobileHeader } from '../components/MobileHeader'
 import HeaderActions from './HeaderActions'
 import NavLinks from './ProviderNavLinks/AuthNavLinks'
 
-export interface PatientAuthProps {
+export interface AuthHeader {
   person: Person
 }
 
-export default function PatientAuthHeader({ person }: PatientAuthProps) {
+export default function AuthHeader({ person }: AuthHeader) {
   return (
     <>
       <header className="hidden md:flex bg-background justify-between m-2">
@@ -37,7 +37,6 @@ export default function PatientAuthHeader({ person }: PatientAuthProps) {
           </div>
         </div>
       </header>
-
       <div className="md:hidden">
         <MobileHeader person={person} />
       </div>

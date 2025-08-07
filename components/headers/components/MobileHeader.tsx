@@ -1,10 +1,12 @@
 'use client'
-
+import { Menu } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
-import NavLinks from '@/components/headers/PublicHeader/navlinks/LandingNavLinks'
+import PatientNavLinks from '@/components/headers/AuthHeader/PatientNavLinks/MobileNavLinks'
+import ProviderNavLinks from '@/components/headers/AuthHeader/ProviderNavLinks/MobileNavLinks'
+import PublicNavLinks from '@/components/headers/PublicHeader/navlinks/MobileNavLinks'
 import { Button } from '@/components/ui/button'
 import type { Person } from '@/lib/types/auth'
 
@@ -15,8 +17,15 @@ type MobileHeaderProps = {
   person?: Person
 }
 
-export const MobileHeader = ({ person }: MobileHeaderProps) => {
+const MobileHeader = ({ person }: MobileHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const NavComponent =
+    person?.role == 'provider'
+      ? ProviderNavLinks
+      : person?.role == 'patient'
+        ? PatientNavLinks
+        : PublicNavLinks
 
   return (
     <>
@@ -24,27 +33,27 @@ export const MobileHeader = ({ person }: MobileHeaderProps) => {
         <Image
           src="/icons/logo.svg"
           alt="Haven Health"
-          width={150}
+          width={200}
           height={32}
           className="block dark:hidden"
         />
         <Image
           src="/icons/logo_dark.svg"
           alt="Haven Health"
-          width={150}
+          width={200}
           height={32}
           className="hidden dark:block"
         />
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-1">
           <ModeToggle />
           {person && <HeaderActions person={person} />}
-          <button
+          <Button
             onClick={() => setIsMenuOpen(true)}
             aria-label="Toggle navigation menu"
-            className="text-2xl"
+            variant="outline"
           >
-            ☰
-          </button>
+            <Menu className="size-5" />
+          </Button>
         </div>
       </header>
 
@@ -62,17 +71,37 @@ export const MobileHeader = ({ person }: MobileHeaderProps) => {
         `}
       >
         <div
-          className="flex flex-col items-center gap-y-4"
+          className="flex flex-col items-center gap-y-4 mt-8"
           onClick={() => setIsMenuOpen(false)}
         >
-          <NavLinks className="flex flex-col items-center gap-y-2" />
+          <Image
+            src="/icons/logo.svg"
+            alt="Haven Health"
+            width={200}
+            height={32}
+            className="block dark:hidden"
+          />
+          <Image
+            src="/icons/logo_dark.svg"
+            alt="Haven Health"
+            width={200}
+            height={32}
+            className="hidden dark:block"
+          />
+
+          <NavComponent />
+
           {!person && (
-            <div className="flex flex-col gap-y-2 w-full pt-4 mt-4 border-t">
-              <Button asChild className="w-full">
-                <Link href="/signup">Register</Link>
-              </Button>
-              <Button asChild className="w-full" variant="secondary">
+            <div className="flex justify-center gap-3 w-full pt-4 mt-2 border-t">
+              <Button asChild className="w-1/4" variant="default">
                 <Link href="/login">Log In</Link>
+              </Button>
+              <Button
+                asChild
+                className="w-1/4 border border-primary"
+                variant="outline"
+              >
+                <Link href="/signup">Register</Link>
               </Button>
             </div>
           )}
@@ -81,3 +110,5 @@ export const MobileHeader = ({ person }: MobileHeaderProps) => {
     </>
   )
 }
+
+export { MobileHeader }
