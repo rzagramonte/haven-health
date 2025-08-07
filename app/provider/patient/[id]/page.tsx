@@ -1,6 +1,8 @@
 import { SlashIcon } from 'lucide-react'
 import Image from 'next/image'
 
+import AppointmentAccordion from '@/components/provider/patient-details/AppointmentAccordion'
+import MedicalAccordion from '@/components/provider/patient-details/MedicalAccordion'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,6 +10,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { Card, CardContent } from '@/components/ui/card'
+import { CardHeader, CardTitle } from '@/components/ui/card'
 import type { ActionResponse } from '@/lib/types/auth'
 import { getAppointments } from '@/server/appointment/queries'
 import { getAddress, getPerson } from '@/server/auth/queries'
@@ -51,7 +54,7 @@ export default async function PatientDetailsPage({
   )
 
   return (
-    <section className=" p-2 flex flex-col items-center">
+    <section className=" p-2 flex flex-col items-center gap-10">
       <Card className="w-full max-w-screen-lg mx-auto sm:p-6 md:p-8 bg-card-2 text-foreground">
         <CardContent className="p-0">
           <div className="b flex flex-col justify-center">
@@ -133,6 +136,37 @@ export default async function PatientDetailsPage({
               </div>
             </div>
           </div>
+        </CardContent>
+      </Card>
+      <Card className=" bg-card-2 w-full max-w-screen-lg mx-auto sm:p-6 md:p-8 flex flex-col justify-center mb-10 ">
+        <CardHeader className="font-bold text-xl sm:text-2xl md:text-3xl w-full justify-center">
+          <CardTitle>Medical Record</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col text-foreground w-full items-center">
+          {medicalVisit?.prescriptions && (
+            <MedicalAccordion
+              data={medicalVisit?.prescriptions}
+              label="prescriptions"
+            />
+          )}
+          {medicalVisit?.allergies && (
+            <MedicalAccordion
+              data={medicalVisit?.allergies}
+              label="allergies"
+            />
+          )}
+        </CardContent>
+        <CardHeader className="font-bold text-xl sm:text-2xl md:text-3xl w-full justify-center">
+          <CardTitle>Past Appointments</CardTitle>
+        </CardHeader>
+        <CardContent className="">
+          <ul>
+            {appointments?.map((appointment) => (
+              <li key={appointment.id} className="w-full flex justify-center">
+                <AppointmentAccordion appointment={appointment} />
+              </li>
+            ))}
+          </ul>
         </CardContent>
       </Card>
     </section>

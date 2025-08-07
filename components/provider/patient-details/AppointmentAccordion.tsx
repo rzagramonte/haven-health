@@ -24,7 +24,7 @@ export default function AppointmentAccordion({
     <Accordion
       type="single"
       collapsible
-      className="flex flex-col max-w-[400px] gap-5"
+      className="flex flex-col w-full max-w-[400px] gap-5"
     >
       <AccordionItem
         value={formatDate(appointment.time ?? '')}
