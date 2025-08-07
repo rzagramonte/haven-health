@@ -10,8 +10,8 @@ import { UpdatedSettingValues } from '@/lib/types/provider'
 import {
   EditAction,
   EditState,
-  ProviderAccountSettings,
   ProviderDetails,
+  ProviderProfile,
 } from '@/lib/types/provider'
 import { updateProviderSettings } from '@/server/provider/actions'
 import { mockDelay } from '@/utils/helpers'
@@ -61,7 +61,7 @@ const editProfileReducer = (
 }
 
 interface ProviderProfileProps {
-  providerDetails: ProviderAccountSettings
+  providerDetails: ProviderProfile
   userId: string
 }
 
@@ -155,16 +155,15 @@ export default function ProviderProfile({
                     }
                   />
                 )}
-                {key === 'phone' ||
-                  (key === 'email' && (
-                    <StringField
-                      value={getFieldValue(key, editState, value)}
-                      editing={editState.editingKey === key}
-                      onUpdate={(val) =>
-                        editDispatch({ type: 'UPDATE', value: val })
-                      }
-                    />
-                  ))}
+                {(key === 'phone' || key === 'email') && (
+                  <StringField
+                    value={getFieldValue(key, editState, value)}
+                    editing={editState.editingKey === key}
+                    onUpdate={(val) =>
+                      editDispatch({ type: 'UPDATE', value: val })
+                    }
+                  />
+                )}
               </div>
             </div>
             <CardAction>

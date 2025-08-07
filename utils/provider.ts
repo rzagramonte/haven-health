@@ -4,9 +4,9 @@ import { MdAlternateEmail } from 'react-icons/md'
 import { RiContactsBookFill } from 'react-icons/ri'
 
 import { EditState } from '@/lib/types/provider'
-import { ProviderAccountSettings, ProviderDetails } from '@/lib/types/provider'
+import { ProviderDetails, ProviderProfile } from '@/lib/types/provider'
 export function transformProviderSettings(
-  data: ProviderAccountSettings,
+  data: ProviderProfile,
 ): ProviderDetails {
   return [
     {

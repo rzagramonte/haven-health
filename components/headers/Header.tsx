@@ -6,6 +6,7 @@ import PublicHeader from './PublicHeader/PublicHeader'
 
 export default async function Header() {
   const user = await getCurrentUser()
+  console.log('user:', user)
 
   if (!user.data) {
     return (
@@ -21,6 +22,8 @@ export default async function Header() {
   }
 
   const person = await getCurrentPerson(user.data.id)
+
+  console.log('person:', person)
 
   if (!person.success) {
     return (

@@ -56,6 +56,8 @@ export async function getProviderAccountSettings(
       phone: userData.data?.phone ?? '',
     }
 
+    console.log('provider account settings:', providerAccountSettings)
+
     return {
       success: true,
       message: 'Provider account setttings successfully retrieved',
