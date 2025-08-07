@@ -47,8 +47,6 @@ export default async function PatientDetailsPage({
   )
   const address = assertData(await getAddress(person.id), 'Address not found')
 
-  console.log(appointments, patient, person, medicalVisit, address)
-
   const scheduledAppointment = appointments?.find(
     (appointment) => appointment.status == 'scheduled',
   )
