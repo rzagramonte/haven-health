@@ -1,14 +1,14 @@
-export interface NewPatientsBooleanFieldProps {
+export interface NewPatientFieldProps {
   value: boolean
   editing: boolean
   onUpdate: (val: boolean) => void
 }
 
-export default function NewPatientsBooleanField({
+export default function NewPatientField({
   value,
   editing,
   onUpdate,
-}: NewPatientsBooleanFieldProps) {
+}: NewPatientFieldProps) {
   return (
     <div className="flex gap-2" role="radiogroup" aria-label="Boolean Field">
       <label>

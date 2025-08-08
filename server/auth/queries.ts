@@ -2,7 +2,7 @@ import type { User } from '@supabase/supabase-js'
 import { cache } from 'react'
 
 import { createClient } from '@/lib/supabase/server'
-import { ActionResponse, Person } from '@/lib/types/auth'
+import { ActionResponse, Person, Role } from '@/lib/types/auth'
 
 export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
   async () => {
@@ -40,7 +40,7 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
       console.error('Get current user error:', err)
       return {
         success: false,
-        message: 'An error occurred while retrievig the current user',
+        message: 'An error occurred while retrieving  the current user',
         error: 'Failed to get current user',
       }
     }
@@ -71,9 +71,7 @@ export async function getCurrentPerson(
       id: data.id,
       firstName: data.first_name,
       lastName: data.last_name,
-      role: data.role,
-      createdAt: data.created_at,
-      updatedAt: data.updated_at,
+      role: data.role as Role,
     }
 
     return {
