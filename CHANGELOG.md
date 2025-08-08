@@ -1,3 +1,19 @@
+## [1.21.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.20.0...v1.21.0) (2025-08-08)
+
+### Features
+
+* **component:** added a component that fetches patients based on typed input ([b55ab68](https://github.com/ncharris93/dsd-east-coast-goats/commit/b55ab68ccb8049438b89e648de95209335f8cec4))
+* **component:** added a patient finder component to the page ([cdd3ecb](https://github.com/ncharris93/dsd-east-coast-goats/commit/cdd3ecb9ba506d0810acd1d31d314dd1f2fc2fe2))
+* **component:** danielgorbachev@MacBookPro Provider Dashboard % git commit -m " ([f92ecf8](https://github.com/ncharris93/dsd-east-coast-goats/commit/f92ecf8e72caba2e01b8b1bb4352aaf76d539819))
+
+### Bug Fixes
+
+* added tsc script ([9557733](https://github.com/ncharris93/dsd-east-coast-goats/commit/955773365655d2f125453cb3963e6dfde7b2b77d))
+
+### Performance Improvements
+
+* **component:** removed a duplicate conditional that checked the length of the input ([50609a5](https://github.com/ncharris93/dsd-east-coast-goats/commit/50609a5cd64a49414f28d09c8fa0e1cd5e60630f))
+
 ## [1.20.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.19.0...v1.20.0) (2025-08-05)
 
 ### Features
