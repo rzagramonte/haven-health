@@ -3,17 +3,12 @@
 import { useEffect, useState } from 'react'
 
 import { createClient } from '@/lib/supabase/client'
-import {
-  Appointment,
-  Message,
-  PatientName,
-  Provider,
-} from '@/lib/types/patient'
+import { Appointment, Message, Patient, Provider } from '@/lib/types/patient'
 
-import PatientDashboard from '../../../components/dashboard/PatientDashboard'
+import PatientDashboard from '../../../components/patient/dashboard/PatientDashboard'
 
 async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
-  //Fetch auth user
+  // Fetch auth.user
   const {
     data: { user },
     error: userError,
@@ -24,169 +19,143 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
     return
   }
 
-  //Fetch person
-  const { data: personData, error: personError } = await supabase
+  // Use auth.user.id to fetch person
+  const { data: person, error: personError } = await supabase
     .from('person')
-    .select('first_name, last_name, id')
-    .eq('user_id', user.id)
+    .select('id, first_name, last_name')
+    .eq('person_uuid', user.id)
     .single()
 
-  const person = personData
-  const patientName = `${person?.first_name} ${person?.last_name}`
-
-  if (personError || !personData || !person) {
+  if (personError || !person) {
     console.error('Error fetching patient name:', personError)
     return
   }
+  const patientName =
+    `${person.first_name ?? ''} ${person.last_name ?? ''}`.trim()
 
-  /*
-      // Fetch messages
-      const { data: messagesData, error: messagesError } = await supabase
-        .from('messages')
-        .select(
-          `
-    content,
-    sender:sender_id!messages_sender_id_fkey (
-      first_name,
-      last_name
+  // Use person.id to fetch messages
+  const { data: messages, error: messagesError } = await supabase
+    .from('messages')
+    .select(
+      `id, content,sender:sender_id!messages_sender_id_fkey (first_name, last_name)`,
     )
-  `,
-        )
-        .eq('recipient_id', user.id)
+    .eq('recipient_id', person.id)
 
-      if (messagesError) {
-        console.error('Error fetching messages:', messagesError)
-      } else {
-        const formattedMessages: Message[] = (messagesData ?? []).map(
-          (msg) => ({
-            content: msg.content,
-            sender_name: msg.sender,
-          }),
-        )
+  if (messagesError || !messages) {
+    console.error('Error fetching messages:', messagesError)
+    return
+  }
 
-        setMessages(formattedMessages)
-      }
-*/
-
-  //Fetch patient
-  const { data: patientData, error: patientError } = await supabase
+  // Use person.id to fetch patient
+  const { data: patient, error: patientError } = await supabase
     .from('patient')
-    .select('*')
+    .select('id')
     .eq('person_id', person.id)
     .single()
 
-  const patient = patientData
-
-  if (patientError || !patientData || !patient) {
+  if (patientError || !patient) {
     console.error('Error fetching patient:', patientError)
     return
   }
 
-  // Fetch appointments
-  const { data: appointmentsData, error: appointmentsError } = await supabase
+  // Use patient.id to fetch appointments
+  const { data: appointment, error: appointmentError } = await supabase
     .from('appointment_booking')
     .select(
-      `
-  appointment_time,
-  id,
-  doctor:doctor_id!appointment_doctor_id_fkey (
-    first_name,
-    last_name
-  )
-`,
+      `id, appointment_time,
+      provider:provider_id!appointment_provider_id_fkey (first_name, last_name)`,
     )
     .eq('patient_id', patient.id)
+    .gt('appointment_time', new Date().toISOString())
+    .order('appointment_time', { ascending: true })
+    .limit(1)
+    .single()
 
-  let appointment: Appointment | null = null
-  let provider = ''
-
-  if (appointmentsError) {
-    console.error('Error fetching appointments:', appointmentsError)
-  } else {
-    const appt = appointmentsData?.[0]
-    if (appt) {
-      appointment = { appointment_time: appt?.appointment_time }
-      provider = appt?.doctor
-    }
+  if (appointmentError || !appointment) {
+    console.error('Error fetching appointments:', appointmentError)
+    return
   }
 
   return {
-    patientName,
-    provider,
     appointment,
-    //messages,
+    messages,
+    patientName,
   }
 }
 
 export default function DashboardPage() {
-  const messagesData = [
-    {
-      content: 'Radiology results are back',
-      sender: 'Dr. Rachel Kim',
-    },
-    {
-      content: 'Lipid panel results are back',
-      sender: 'Dr. Elijah Thompson',
-    },
-    {
-      content: 'Follow-up needed',
-      sender: 'Dr. Elias Hunt',
-    },
-    {
-      content: 'MRI Clean',
-      sender: 'Dr. José Martínez',
-    },
-    {
-      content: 'Radiology results are back',
-      sender: 'Dr. Rachel Kim',
-    },
-    {
-      content: 'Lipid panel results are back',
-      sender: 'Dr. Elijah Thompson',
-    },
-    {
-      content: 'Follow-up needed',
-      sender: 'Dr. Elias Hunt',
-    },
-    {
-      content: 'MRI Clean',
-      sender: 'Dr. José Martínez',
-    },
-    {
-      content: 'MRI Clean',
-      sender: 'Dr. Josh Martínez',
-    },
-    {
-      content: 'Prescripton sent out',
-      sender: 'Dr. José Martínez',
-    },
-    {
-      content: 'MRI Clean',
-      sender: 'Dr. José Martínez',
-    },
-  ]
-
-  const [patientName /*, setPatientName*/] = useState<PatientName>('')
+  const [patient, setPatient] = useState<Patient>('')
   const [provider, setProvider] = useState<Provider>('')
-  const [messages /*, setMessages*/] = useState<Message[]>(messagesData)
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      sender: 'Dr. Rachel Kim',
+      content: 'Radiology results are back',
+    },
+    {
+      sender: 'Dr. Amelia Grant',
+      content: 'Lipid panel results are back',
+    },
+    {
+      sender: 'Dr. Amelia Grant',
+      content: 'Follow-up needed',
+    },
+    {
+      sender: 'Dr. Fatima Hassan',
+      content: 'MRI Clean',
+    },
+    {
+      sender: 'Dr. Rachel Kim',
+      content: 'Radiology results are back',
+    },
+    {
+      sender: 'Dr. Lydia Chen',
+      content: 'Lipid panel results are back',
+    },
+    {
+      sender: 'Dr. Harper Lin',
+      content: 'Follow-up needed',
+    },
+    {
+      sender: 'Dr. Dahlia Stone',
+      content: 'MRI Clean',
+    },
+    {
+      sender: 'Dr. Sandy Alberca',
+      content: 'MRI Clean',
+    },
+    {
+      sender: 'Dr. Sandy Alberca',
+      content: 'Prescripton sent out',
+    },
+    {
+      sender: 'Dr. Sandy Alberca',
+      content: 'MRI Clean',
+    },
+  ])
   const [appointment, setAppointment] = useState<Appointment | null>(null)
 
   useEffect(() => {
     const supabase = createClient()
-    fetchDashboardData(supabase).then((data) => {
+
+    const fetchData = async () => {
+      const data = await fetchDashboardData(supabase)
+
       if (!data) {
         return
       }
-      //setPatientName(data.patientName)
-      setProvider(data.provider)
+
+      setPatient(data.patientName)
+      setProvider(data.appointment.provider)
       setAppointment(data.appointment)
-      //setMessages(data.messages)
-    })
+      setMessages(data.messages)
+    }
+
+    fetchData()
   }, [])
 
   return (
     <PatientDashboard
-      patient={patientName}
+      patient={patient}
       provider={provider}
       appointment={appointment}
       messages={messages}

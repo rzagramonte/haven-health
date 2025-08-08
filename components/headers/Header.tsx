@@ -1,7 +1,6 @@
 import { getCurrentPerson, getCurrentUser } from '@/server/auth/queries'
 
-import PatientAuthHeader from './AuthHeader/PatientAuthHeader'
-import ProviderAuthHeader from './AuthHeader/ProviderAuthHeader'
+import AuthHeader from './AuthHeader/AuthHeader'
 import PublicHeader from './PublicHeader/PublicHeader'
 
 export default async function Header() {
@@ -9,9 +8,9 @@ export default async function Header() {
 
   if (!user.data) {
     return (
-      <div className="bg-background">
+      <div>
         {!user.success && (
-          <p className="text-red-600 text-sm mt-4 text-center">
+          <p className="text-destructive text-sm mt-4 text-center">
             {user.message}
           </p>
         )}
@@ -24,8 +23,8 @@ export default async function Header() {
 
   if (!person.success) {
     return (
-      <div className="bg-background">
-        <p className="text-red-600 text-sm mt-4 text-center">
+      <div>
+        <p className="text-destructive text-sm mt-4 text-center">
           {person.message}
         </p>
         <PublicHeader />
@@ -34,16 +33,11 @@ export default async function Header() {
   }
 
   return (
-    <div className="bg-background">
-      {person.data?.role === 'provider' && (
-        <ProviderAuthHeader person={person.data} />
-      )}
-      {person.data?.role === 'patient' && (
-        <PatientAuthHeader person={person.data} />
-      )}
+    <div>
+      {person.data?.role && <AuthHeader person={person.data} />}
       {!person.data?.role && (
-        <div className="bg-background">
-          <p className="text-red-600 text-sm mt-4">
+        <div>
+          <p className="text-destructive text-sm ">
             Your role is not recognized. Please contact support.
           </p>
           <PublicHeader />

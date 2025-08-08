@@ -1,4 +1,6 @@
 'use client'
+
+import { MessagesSquare } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
@@ -82,6 +84,7 @@ export default function Messages({ messages }: { messages: Message[] }) {
           onClick={handleClickMessages}
           className="w-full bg-secondary text-secondary-foreground"
         >
+          <MessagesSquare />
           View All Messages
         </Button>
       </CardFooter>
