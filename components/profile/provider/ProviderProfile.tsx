@@ -19,8 +19,6 @@ import { showError, showSuccess } from '@/utils/toast'
 
 import LoadSpinner from '../../loading/Spinner'
 import { Button } from '../../ui/button'
-import AddressField from './AddressField'
-import EmergencyContactField from './EmergencyContactField'
 import NameField from './NameField'
 import NewPatientField from './NewPatientField'
 import StringField from './StringField'
@@ -114,24 +112,6 @@ export default function ProviderProfile({
               </div>
               <div className="flex flex-col">
                 <p className="text-xs font-semibold">{label}</p>
-                {key === 'emergencyContact' && (
-                  <EmergencyContactField
-                    value={getFieldValue(key, editState, value)}
-                    editing={editState.editingKey === key}
-                    onUpdate={(val) =>
-                      editDispatch({ type: 'UPDATE', value: val })
-                    }
-                  />
-                )}
-                {key === 'address' && (
-                  <AddressField
-                    value={getFieldValue(key, editState, value)}
-                    editing={editState.editingKey === key}
-                    onUpdate={(val) =>
-                      editDispatch({ type: 'UPDATE', value: val })
-                    }
-                  />
-                )}
                 {key === 'newPatients' && (
                   <NewPatientField
                     value={getFieldValue(key, editState, value)}
