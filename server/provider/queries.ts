@@ -8,7 +8,6 @@ import { EmergencyContact } from '@/lib/types/patient'
 import { ProviderInfo } from '@/lib/types/provider'
 import { EditableValue, ProviderProfile } from '@/lib/types/provider'
 import { formatPhoneNumber } from '@/utils/helpers'
-import { mockDelay } from '@/utils/helpers'
 
 export async function getProvider(): Promise<ProviderInfo> {
   const supabase = await createClient()
@@ -39,7 +38,6 @@ export async function getProviders() {}
 export async function getProviderProfile(
   userData: ActionResponse<User>,
 ): Promise<ActionResponse<ProviderProfile>> {
-  await mockDelay(1000)
   const supabase = await createClient()
 
   try {

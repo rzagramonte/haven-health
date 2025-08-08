@@ -14,7 +14,6 @@ import type {
 } from '@/lib/types/provider'
 import { UpdatedValues } from '@/lib/types/provider'
 import { updateProviderProfile } from '@/server/provider/actions'
-import { mockDelay } from '@/utils/helpers'
 import { getFieldValue, transformProviderProfile } from '@/utils/provider'
 import { showError, showSuccess } from '@/utils/toast'
 
@@ -87,7 +86,6 @@ export default function ProviderProfile({
     }
 
     startTransition(async () => {
-      mockDelay(1000)
       const response = await updateProviderProfile(updatedValues)
 
       if (response.success) {
