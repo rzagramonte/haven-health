@@ -1,3 +1,9 @@
+## [1.22.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.21.0...v1.22.0) (2025-08-08)
+
+### Features
+
+* **patient appt page and various other files:** patient appt page & gnrl styling ([1c67673](https://github.com/ncharris93/dsd-east-coast-goats/commit/1c67673aa8703bb6e5ca7389901ef2e4e3ddbb92))
+
 ## [1.21.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.20.0...v1.21.0) (2025-08-08)
 
 ### Features
