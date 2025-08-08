@@ -26,3 +26,11 @@ export interface Address {
   state: string | null
   zipCode: string | null
 }
+
+export interface Address {
+  streetA: string | null
+  streetB?: string | null
+  city: string | null
+  state: string | null
+  zipCode: string | null
+}
