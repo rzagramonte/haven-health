@@ -2,8 +2,7 @@ import { IconType } from 'react-icons'
 
 import { Database } from '@/lib/supabase/types'
 
-import { Address as AuthAddress, Person as AuthPerson } from './auth'
-import { EmergencyContact } from './patient'
+import { Person as AuthPerson } from './auth'
 
 export type Person = Database['public']['Tables']['person']['Row']
 export type Contact = Database['public']['Tables']['contact']['Row']
@@ -19,26 +18,13 @@ export interface EditableName {
   lastName: string
 }
 
-export type EditableValue =
-  | string
-  | boolean
-  | EmergencyContact
-  | EditableName
-  | AuthAddress
-  | null
+export type EditableValue = string | boolean | EditableName | null
 
 export type EditAction =
   | { type: 'EDIT'; key: string; value: EditableValue }
   | { type: 'UPDATE'; value: EditableValue }
   | { type: 'SAVE' }
   | { type: 'CANCEL' }
-
-export type EditState = {
-  providerId: number
-  providerDetails: ProviderDetails
-  editingKey: string | null
-  editableValue: EditableValue | null
-}
 
 export type ProviderDetails = [
   {
@@ -49,28 +35,17 @@ export type ProviderDetails = [
   },
   { label: string; key: 'phone'; value: string; icon: IconType },
   { label: string; key: 'email'; value: string; icon: IconType },
-  {
-    label: string
-    key: 'address'
-    value: AuthAddress
-    icon: IconType
-  },
-  {
-    label: string
-    key: 'emergencyContact'
-    value: {
-      firstName: string
-      lastName: string
-      phone: string
-    }
-    icon: IconType
-  },
   { label: string; key: 'newPatients'; value: boolean; icon: IconType },
 ]
 
+export type EditState = {
+  providerId: number
+  providerDetails: ProviderDetails
+  editingKey: string | null
+  editableValue: EditableValue | null
+}
+
 export interface ProviderProfile extends AuthPerson {
-  address: AuthAddress
-  emergencyContact: EmergencyContact
   email: string
   phone: string
 }

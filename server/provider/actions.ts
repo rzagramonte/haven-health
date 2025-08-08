@@ -3,13 +3,7 @@
 import { ActionResponse } from '@/lib/types/auth'
 import { UpdatedValues } from '@/lib/types/provider'
 
-import {
-  updateAddress,
-  updateEmail,
-  updateEmergencyContact,
-  updateName,
-  updatePhone,
-} from './queries'
+import { updateEmail, updateName, updatePhone } from './queries'
 
 export async function updateProviderProfile(
   updatedValues: UpdatedValues,
@@ -17,14 +11,6 @@ export async function updateProviderProfile(
   const { key, updatedValue, providerId, authId } = updatedValues
 
   switch (key) {
-    case 'emergencyContact': {
-      return await updateEmergencyContact(providerId, updatedValue)
-    }
-
-    case 'address': {
-      return await updateAddress(providerId, updatedValue)
-    }
-
     case 'name': {
       return await updateName(providerId, updatedValue)
     }

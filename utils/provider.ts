@@ -1,7 +1,5 @@
 import { FaPhone, FaUser, FaUserFriends } from 'react-icons/fa'
-import { FaHouse } from 'react-icons/fa6'
 import { MdAlternateEmail } from 'react-icons/md'
-import { RiContactsBookFill } from 'react-icons/ri'
 
 import { EditState } from '@/lib/types/provider'
 import { ProviderDetails, ProviderProfile } from '@/lib/types/provider'
@@ -26,24 +24,6 @@ export function transformProviderProfile(
       key: 'email',
       value: data.email ?? '(no email)',
       icon: MdAlternateEmail,
-    },
-    {
-      label: 'Address',
-      key: 'address',
-      value: {
-        ...data.address,
-      },
-      icon: FaHouse,
-    },
-    {
-      label: 'Emergency Contact',
-      key: 'emergencyContact',
-      value: {
-        firstName: data.emergencyContact?.firstName ?? '',
-        lastName: data.emergencyContact?.lastName ?? '',
-        phone: data.emergencyContact?.phone ?? '',
-      },
-      icon: RiContactsBookFill,
     },
     {
       label: 'Are you accepting new patients?',

@@ -5,7 +5,6 @@ import type { User } from '@supabase/supabase-js'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
 import { ActionResponse, Role } from '@/lib/types/auth'
-import { EmergencyContact } from '@/lib/types/patient'
 import { ProviderInfo } from '@/lib/types/provider'
 import { EditableValue, ProviderProfile } from '@/lib/types/provider'
 import { formatPhoneNumber } from '@/utils/helpers'
@@ -62,16 +61,6 @@ export async function getProviderProfile(
       firstName: data.first_name,
       lastName: data.last_name,
       role: 'provider' as Role,
-      createdAt: data.created_at,
-      updatedAt: data.updated_at,
-      address: {
-        streetA: data.address[0].streeta,
-        city: data.address[0].city,
-        state: data.address[0].address_state,
-        zipCode: data.address[0].zip_code,
-      },
-      //@ts-expect-error :: emergency contact is not an array
-      emergencyContact: data.patient?.emergency_contact as EmergencyContact,
       email: userData.data?.email ?? '',
       phone: userData.data?.phone ?? '',
     }
@@ -88,98 +77,6 @@ export async function getProviderProfile(
       success: false,
       message: 'There was an error getting your contact information',
       error: 'Error getting your contact info',
-    }
-  }
-}
-
-export async function updateEmergencyContact(
-  providerId: number,
-  settingValue: EditableValue,
-): Promise<ActionResponse> {
-  try {
-    if (!providerId || !settingValue) {
-      throw new Error('Missing credentials')
-    }
-
-    if (!(typeof settingValue === 'object' && 'phone' in settingValue)) {
-      throw new Error('Invalid format for emergency contact')
-    }
-
-    const supabase = await createClient()
-    const { error } = await supabase
-      .from('patient')
-      .update({
-        emergency_contact: settingValue,
-      })
-      .eq('person_id', providerId)
-
-    if (error) {
-      console.error(error.message)
-      return {
-        success: false,
-        message: error.message,
-        error: error.name,
-      }
-    }
-
-    return {
-      success: true,
-      message: 'Emergency contact successfully updated',
-    }
-  } catch (err) {
-    console.error('Emergency contact update failed:', err)
-    return {
-      success: false,
-      message: 'Failed to update emergency contact',
-      error: 'Emergency contact update error',
-    }
-  }
-}
-
-export async function updateAddress(
-  providerId: number,
-  settingValue: EditableValue,
-): Promise<ActionResponse> {
-  try {
-    if (!providerId || !settingValue) {
-      throw new Error('Missing credentials')
-    }
-
-    if (!(typeof settingValue === 'object' && 'streetA' in settingValue)) {
-      throw new Error('Invalid format for address')
-    }
-
-    const supabase = await createClient()
-    const { error } = await supabase
-      .from('address')
-      .update({
-        streeta: settingValue.streetA,
-        streetb: settingValue.streetB,
-        city: settingValue.city,
-        address_state: settingValue.state,
-        zip_code: settingValue.zipCode,
-      })
-      .eq('person_id', providerId)
-
-    if (error) {
-      return {
-        success: false,
-        message: error.message,
-        error: error.name,
-      }
-    }
-
-    return {
-      success: true,
-      message: 'Successfully updated address',
-    }
-  } catch (err) {
-    console.error('Failed to updated address:', err)
-
-    return {
-      success: false,
-      message: 'Failed to update address',
-      error: 'Address update error',
     }
   }
 }
