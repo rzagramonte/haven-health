@@ -1,3 +1,13 @@
+## [1.23.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.22.0...v1.23.0) (2025-08-08)
+
+### Features
+
+* **patient profile:** linked profile to supabase, populates user's data, updates fields in supabase ([ebc2ea2](https://github.com/ncharris93/dsd-east-coast-goats/commit/ebc2ea2aea0b990067bf991df1ca267914e70d5b))
+
+### Bug Fixes
+
+* **patient profile:** fixed email to pull from auth table ([f84fd37](https://github.com/ncharris93/dsd-east-coast-goats/commit/f84fd37439fd569fbc4bb9dd996e6bba8e541f16))
+
 ## [1.22.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.21.0...v1.22.0) (2025-08-08)
 
 ### Features
