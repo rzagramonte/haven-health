@@ -74,8 +74,7 @@ export async function getPatientProfile() {
     return null
   }
 
-  const email =
-    data.contact.find((c) => c.contact_type === 'email')?.contact_value || null
+  const email = getUser.data?.email ?? null
   const phone = getUser.data.phone ?? null
 
   const patientData = data.patient[0]
