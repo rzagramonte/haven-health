@@ -1,10 +1,10 @@
 'use client'
 import { Appointment, Message } from '@/lib/types/patient'
 
-import Messages from './Messages'
+import Messages from './../patient/dashboard/Messages'
+import Scheduler from './../patient/dashboard/Scheduler'
+import UpcomingAppointment from './../patient/dashboard/UpcomingAppointment'
 import PatientFinder from './PatientFinder'
-import Scheduler from './Scheduler'
-import UpcomingAppointment from './UpcomingAppointment'
 
 type ProviderDashboard = {
   provider: string

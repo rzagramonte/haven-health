@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { FaHandHoldingMedical } from 'react-icons/fa'
 
-
 import { EditProviderProfile } from '@/components/profile/provider/editProviderProfile'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'

@@ -1,5 +1,6 @@
 'use client'
 
+import { CalendarDays } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
@@ -25,7 +26,7 @@ export default function UpcomingAppointment({
 }: UpcomingAppointmentProps) {
   const router = useRouter()
   const handleClick = () => {
-    router.push('/appointment')
+    router.push('/patient/appointments')
   }
 
   let localDate = ''
@@ -69,6 +70,7 @@ export default function UpcomingAppointment({
       )}
       <CardFooter className="flex-col gap-2">
         <Button onClick={handleClick} className="w-full">
+          <CalendarDays />
           View All Appointments
         </Button>
       </CardFooter>

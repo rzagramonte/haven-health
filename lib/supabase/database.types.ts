@@ -13,6 +13,6 @@ export type DBEnum<T extends keyof Database['public']['Enums']> =
   Database['public']['Enums'][T]
 
 // Example usage - team can create their own types as needed:
-// type Person = DBRecord<'person'>
+export type Person = DBRecord<'person'>
 // type NewPatient = DBInsert<'patient'>
 // type UserRole = DBEnum<'user_role'>

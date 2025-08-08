@@ -1,8 +1,8 @@
 'use client'
 
-import { PatientName } from '@/lib/types/patient'
+import { Patient } from '@/lib/types/patient'
 
-export default function WelcomeMessage({ patient }: { patient: PatientName }) {
+export default function WelcomeMessage({ patient }: { patient: Patient }) {
   return (
     <div className=" mx-auto space-y-6">
       <h1 className="text-3xl font-semibold">
