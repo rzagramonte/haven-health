@@ -1,3 +1,9 @@
+## [1.25.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.24.0...v1.25.0) (2025-08-08)
+
+### Features
+
+* Provider Appointments/Schedule Page/feat: Make Footer Sticky ([#70](https://github.com/ncharris93/dsd-east-coast-goats/issues/70)) ([b593c2c](https://github.com/ncharris93/dsd-east-coast-goats/commit/b593c2c1b70f01b803f8affa33f19751226de88f))
+
 ## [1.24.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.23.0...v1.24.0) (2025-08-08)
 
 ### Features
