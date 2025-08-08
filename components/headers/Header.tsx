@@ -8,7 +8,7 @@ export default async function Header() {
 
   if (!user.data) {
     return (
-      <div className="mb-2">
+      <div>
         {!user.success && (
           <p className="text-destructive text-sm mt-4 text-center">
             {user.message}
@@ -23,7 +23,7 @@ export default async function Header() {
 
   if (!person.success) {
     return (
-      <div className="mb-2">
+      <div>
         <p className="text-destructive text-sm mt-4 text-center">
           {person.message}
         </p>
@@ -33,10 +33,10 @@ export default async function Header() {
   }
 
   return (
-    <div className="mb-2">
+    <div>
       {person.data?.role && <AuthHeader person={person.data} />}
       {!person.data?.role && (
-        <div className="mb-2">
+        <div>
           <p className="text-destructive text-sm ">
             Your role is not recognized. Please contact support.
           </p>

@@ -10,7 +10,7 @@ import NavLinks from './navlinks/LandingNavLinks'
 export default function PublicHeader() {
   return (
     <>
-      <header className="hidden lg:flex bg-background justify-between px-6 py-4 mb-4">
+      <header className="hidden lg:flex bg-background justify-between px-6 py-3">
         <Image
           src="/icons/logo.svg"
           alt="Haven Health"
@@ -27,8 +27,9 @@ export default function PublicHeader() {
         />
         <div className="flex flex-row justify-between items-center gap-x-10">
           <NavLinks />
-          <ModeToggle />
-          <div className="flex flex-row gap-x-5">
+
+          <div className="flex gap-x-5">
+            <ModeToggle />
             <Link href="/login">
               <Button className="cursor-pointer" variant="default">
                 Log In

@@ -34,7 +34,7 @@ export default function AuthHeader({ person }: AuthHeader) {
         />
         <div className="flex justify-around items-center gap-x-10">
           <NavComponent />
-          <div className="flex gap-x-5">
+          <div className="flex items-center gap-x-1">
             <ModeToggle />
             <HeaderActions person={person} />
           </div>
