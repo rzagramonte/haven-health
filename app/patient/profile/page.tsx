@@ -26,6 +26,19 @@ export default async function ProfilePage() {
     )
   }
 
+  const formattedProfile = {
+    ...userData,
+    address: userData.address
+      ? {
+          streetA: userData.address.streeta,
+          streetB: userData.address.streetb,
+          city: userData.address.city,
+          state: userData.address.state,
+          zipCode: userData.address.zip, // Map 'zip' to 'zipCode'
+        }
+      : null,
+  }
+
   return (
     <main className="flex-grow p-5">
       <div className="w-full max-w-[110px]">
@@ -36,7 +49,7 @@ export default async function ProfilePage() {
       <h1>Patient Profile</h1>
       <div className="p-3 flex flex-col gap-1 items-center">
         <div className=" w-full max-w-[500px]">
-          <Link href="/provider/dashboard">
+          <Link href="/patient/dashboard">
             <Button className="w-full max-w-[125px] text-xs cursor-pointer">
               Back to Dashboard
             </Button>
@@ -49,7 +62,7 @@ export default async function ProfilePage() {
               Where Patient Profile Details Live
             </CardDescription>
           </CardHeader>
-          <EditPatientProfile profile={userData} />
+          <EditPatientProfile profile={formattedProfile} />
         </Card>
       </div>
     </main>

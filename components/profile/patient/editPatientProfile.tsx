@@ -8,11 +8,14 @@ import { MdAlternateEmail } from 'react-icons/md'
 import { RiContactsBookFill } from 'react-icons/ri'
 import { VscSaveAs } from 'react-icons/vsc'
 
+import AddressField from '@/components/profile/patient/AddressField'
 import EmergencyContactField, {
   EmergencyContact,
 } from '@/components/profile/patient/EmergencyContactField'
 import { Button } from '@/components/ui/button'
 import { CardAction, CardContent } from '@/components/ui/card'
+import { Address } from '@/lib/types/auth'
+import { getFieldValue } from '@/utils/helper'
 
 import EditableBooleanField from './InsuredBooleanField'
 import EditableStringField from './StringField'
@@ -24,18 +27,12 @@ type PatientProfile = {
   }
   phone: string | null
   email: string | null
-  address: {
-    streeta: string | null
-    streetb: string | null
-    city: string | null
-    state: string | null
-    zip: string | null
-  }
+  address: Address | null
   emergencyContact: EmergencyContact | null
   insurance_flag: boolean
 }
 
-type EditableValue = string | boolean | EmergencyContact | null
+type EditableValue = string | boolean | Address | EmergencyContact | null
 
 type EditAction =
   | { type: 'EDIT'; key: string; value: EditableValue }
@@ -47,7 +44,7 @@ export type PatientDetails = [
   { label: string; key: 'name'; value: string; icon: IconType },
   { label: string; key: 'phone'; value: string; icon: IconType },
   { label: string; key: 'email'; value: string; icon: IconType },
-  { label: string; key: 'address'; value: string; icon: IconType },
+  { label: string; key: 'address'; value: Address; icon: IconType },
   {
     label: string
     key: 'emergencyContact'
@@ -61,7 +58,7 @@ export type PatientDetails = [
   { label: string; key: 'insuredFlag'; value: boolean; icon: IconType },
 ]
 
-type EditState = {
+export type EditState = {
   patientDetails: PatientDetails
   editingKey: string | null
   editableValue: EditableValue | null
@@ -101,22 +98,6 @@ const editProfileReducer = (
   }
 }
 
-const formatAddress = (address: PatientProfile['address']) => {
-  if (!address) {
-    return 'Not available'
-  }
-
-  const streetLine = [address.streeta, address.streetb]
-    .filter(Boolean)
-    .join(' ')
-
-  const fullAddress = [streetLine, address.city, address.state, address.zip]
-    .filter(Boolean)
-    .join(', ')
-
-  return fullAddress || 'Not available'
-}
-
 export const EditPatientProfile = ({
   profile,
 }: {
@@ -144,7 +125,13 @@ export const EditPatientProfile = ({
     {
       label: 'Address',
       key: 'address',
-      value: formatAddress(profile.address),
+      value: {
+        streetA: profile?.address?.streetA ?? '',
+        streetB: profile?.address?.streetB ?? '',
+        city: profile?.address?.city ?? '',
+        state: profile?.address?.state ?? '',
+        zipCode: profile?.address?.zipCode ?? '',
+      },
       icon: FaHouse,
     },
     {
@@ -185,48 +172,57 @@ export const EditPatientProfile = ({
               </div>
               <div className="flex flex-col">
                 <p className="text-xs font-semibold">{label}</p>
-                {key === 'emergencyContact' && (
-                  <EmergencyContactField
-                    value={
-                      editState.editingKey === key &&
-                      typeof editState.editableValue === 'object'
-                        ? editState.editableValue
-                        : (value as EmergencyContact)
-                    }
-                    editing={editState.editingKey === key}
-                    onUpdate={(val) =>
-                      editDispatch({ type: 'UPDATE', value: val })
-                    }
-                  />
-                )}
-                {key === 'insuredFlag' && (
-                  <EditableBooleanField
-                    value={
-                      editState.editingKey === key &&
-                      typeof editState.editableValue === 'boolean'
-                        ? editState.editableValue
-                        : (value as boolean)
-                    }
-                    editing={editState.editingKey === key}
-                    onUpdate={(val) =>
-                      editDispatch({ type: 'UPDATE', value: val })
-                    }
-                  />
-                )}
-                {key !== 'emergencyContact' && key !== 'insuredFlag' && (
-                  <EditableStringField
-                    value={
-                      editState.editingKey === key &&
-                      typeof editState.editableValue === 'string'
-                        ? editState.editableValue
-                        : (value as string)
-                    }
-                    editing={editState.editingKey === key}
-                    onUpdate={(val) =>
-                      editDispatch({ type: 'UPDATE', value: val })
-                    }
-                  />
-                )}
+
+                {(() => {
+                  switch (key) {
+                    case 'address':
+                      return (
+                        <AddressField
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+
+                    case 'emergencyContact':
+                      return (
+                        <EmergencyContactField
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+
+                    case 'insuredFlag':
+                      return (
+                        <EditableBooleanField
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+
+                    default:
+                      if (value === 'Not provided') {
+                        return <p className="text-foreground/50">{value}</p>
+                      }
+                      return (
+                        <EditableStringField
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+                  }
+                })()}
               </div>
             </div>
             <CardAction>

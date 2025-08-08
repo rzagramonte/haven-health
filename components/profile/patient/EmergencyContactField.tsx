@@ -36,19 +36,22 @@ export default function EmergencyContactField({
     <>
       <Input
         aria-label="First Name"
-        className="bg-muted"
+        placeholder="First Name..."
+        className="bg-muted placeholder:text-foreground/50"
         value={value.firstName}
         onChange={(e) => onUpdate({ ...value, firstName: e.target.value })}
       />
       <Input
         aria-label="Last Name"
-        className="bg-muted"
+        placeholder="Last Name..."
+        className="bg-muted placeholder:text-foreground/50"
         value={value.lastName}
         onChange={(e) => onUpdate({ ...value, lastName: e.target.value })}
       />
       <Input
         aria-label="Phone Number"
-        className="bg-muted"
+        placeholder="(888)888-8888"
+        className="bg-muted placeholder:text-foreground/50"
         value={value.phone}
         onChange={(e) => onUpdate({ ...value, phone: e.target.value })}
       />
