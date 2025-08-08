@@ -16,9 +16,3 @@ export type Message = {
 
 export type Patient = string
 export type Provider = string
-
-export type EmergencyContact = {
-  firstName: string
-  lastName: string
-  phone: string
-}
