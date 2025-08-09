@@ -1,3 +1,9 @@
+## [1.25.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.25.0...v1.25.1) (2025-08-09)
+
+### Bug Fixes
+
+* bux fix on fetching and rendering patient data ([7e0670f](https://github.com/ncharris93/dsd-east-coast-goats/commit/7e0670f8399847b45a79310b528e1cd6c335bbc9))
+
 ## [1.25.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.24.0...v1.25.0) (2025-08-08)
 
 ### Features
