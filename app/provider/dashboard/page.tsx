@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import { Appointment, Message, Provider } from '@/lib/types/patient'
+import { Appointment, Message } from '@/lib/types/patient'
 
 import ProviderDashboard from '../../../components/dashboard/ProviderDashboard'
 
@@ -68,16 +68,8 @@ export default function DashboardPage() {
       content: 'Thanks again for your help with the prescription issue.',
     },
   ]
-
-  const [provider] = useState<Provider>('')
   const [messages] = useState<Message[]>(messagesData)
-  const [appointment] = useState<Appointment | null>(null)
+  const [appointment] = useState<Appointment[]>([])
 
-  return (
-    <ProviderDashboard
-      provider={provider}
-      appointment={appointment}
-      messages={messages}
-    />
-  )
+  return <ProviderDashboard appointment={appointment} messages={messages} />
 }

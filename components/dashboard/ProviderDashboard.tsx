@@ -7,13 +7,11 @@ import UpcomingAppointment from './../patient/dashboard/UpcomingAppointment'
 import PatientFinder from './PatientFinder'
 
 type ProviderDashboard = {
-  provider: string
-  appointment: Appointment | null
+  appointment: Appointment[]
   messages: Message[]
 }
 
 export default function ProviderDashboard({
-  provider,
   appointment,
   messages,
 }: ProviderDashboard) {
@@ -25,7 +23,7 @@ export default function ProviderDashboard({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col space-y-6 lg:space-y-15 lg:m-7 lg:items-end">
-          <UpcomingAppointment appointment={appointment} provider={provider} />
+          <UpcomingAppointment appointment={appointment} />
           <Scheduler />
         </div>
 
