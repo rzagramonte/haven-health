@@ -1,10 +1,10 @@
-import { Appointments } from '@/lib/types/patient'
+import { Appointment } from '@/lib/types/patient'
 
 export function groupAppointmentsByTimeAgo(
-  appointments: Appointments[] | null,
-): Record<string, Appointments[]> {
+  appointments: Appointment[] | null,
+): Record<string, Appointment[]> {
   const now = new Date()
-  const groups: Record<string, Appointments[]> = {}
+  const groups: Record<string, Appointment[]> = {}
   if (!appointments) {
     throw new Error('useFormField should be used within <FormField>')
   }

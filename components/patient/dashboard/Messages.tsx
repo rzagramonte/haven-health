@@ -15,7 +15,11 @@ import {
 } from '@/components/ui/card'
 import { Message } from '@/lib/types/patient'
 
-export default function Messages({ messages }: { messages: Message[] }) {
+type MessagesProps = {
+  messages: Message[]
+}
+
+export default function Messages({ messages }: MessagesProps) {
   const router = useRouter()
   const handleClickMessage = () => {
     router.push('/patient/message')
