@@ -1,7 +1,8 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { FaHandHoldingMedical } from 'react-icons/fa'
 
-import { EditPatientProfile } from '@/components/profile/patient/editPatientProfile'
+import EditPatientProfile from '@/components/profile/patient/editPatientProfile'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
@@ -10,8 +11,30 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { getCurrentUser } from '@/server/auth/queries'
+import { getPatientProfile } from '@/server/patient/queries'
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const user = await getCurrentUser()
+  if (!user.success || !user.data) {
+    redirect('/login')
+  }
+
+  const profileResponse = await getPatientProfile(user)
+  if (!profileResponse.success || !profileResponse.data) {
+    return (
+      <main className="flex-grow p-5 text-center">
+        <h1>Profile Not Found</h1>
+        <p>
+          We could not load the patient profile. Please ensure you are logged
+          in.
+        </p>
+      </main>
+    )
+  }
+
+  const patientProfile = profileResponse.data
+
   return (
     <main className="flex-grow p-5">
       <div className="w-full max-w-[110px]">
@@ -22,7 +45,7 @@ export default function ProfilePage() {
       <h1>Patient Profile</h1>
       <div className="p-3 flex flex-col gap-1 items-center">
         <div className=" w-full max-w-[500px]">
-          <Link href="/provider/dashboard">
+          <Link href="/patient/dashboard">
             <Button className="w-full max-w-[125px] text-xs cursor-pointer">
               Back to Dashboard
             </Button>
@@ -35,7 +58,10 @@ export default function ProfilePage() {
               Where Patient Profile Details Live
             </CardDescription>
           </CardHeader>
-          <EditPatientProfile />
+          <EditPatientProfile
+            patientDetails={patientProfile}
+            userId={user.data.id}
+          />
         </Card>
       </div>
     </main>
