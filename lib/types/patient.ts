@@ -1,15 +1,15 @@
 export type Appointment = {
-  appointment_time: string | null
-}
-
-export type Appointments = {
   id: number
   appointment_time: string | null
   appointment_type: string | null
-  provider: string
+  provider: {
+    first_name: string | null
+    last_name: string | null
+  }
 } | null
 
 export type Message = {
+  id: number
   sender: string
   content: string
 }

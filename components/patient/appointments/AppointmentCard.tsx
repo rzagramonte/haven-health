@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Appointments } from '@/lib/types/patient'
+import { Appointment } from '@/lib/types/patient'
 
 export default function AppointmentCard({
   appointments,
 }: {
-  appointments: Appointments[]
+  appointments: Appointment[]
 }) {
   const router = useRouter()
   const handleClickSummary = (id: number) => {
@@ -50,7 +50,7 @@ export default function AppointmentCard({
                   {appt.appointment_type}
                 </h3>
                 <p className="text-sm leading-relaxed">
-                  {appt.provider}
+                  {appt.provider.first_name} {appt.provider.last_name}
                   <br />
                   Haven Health - Islip
                 </p>

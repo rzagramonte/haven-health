@@ -1,13 +1,13 @@
 'use client'
 
-import { Appointments } from '@/lib/types/patient'
+import { Appointment } from '@/lib/types/patient'
 
 import BookNow from './BookNow'
 import PastAppointmentsSection from './PastAppointmentsSection'
 import UpcomingAppointments from './UpcomingAppointments'
 
 type PatientAppointmentsProps = {
-  appointments: Appointments[]
+  appointments: Appointment[]
 }
 
 export default function PatientAppointments({
@@ -21,7 +21,7 @@ export default function PatientAppointments({
       </div>
       <div className="p-4 pb-3">
         <UpcomingAppointments
-          appointments={appointments ? appointments[0] : null}
+          appointments={appointments ? [appointments[0]] : []}
         />
       </div>
       <div className="p-4 pb-3">

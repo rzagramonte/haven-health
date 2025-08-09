@@ -11,10 +11,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Appointments } from '@/lib/types/patient'
+import { Appointment } from '@/lib/types/patient'
 
 type UpcomingAppointmentsProps = {
-  appointments: Appointments
+  appointments: Appointment[]
 }
 
 export default function UpcomingAppointments({
@@ -29,7 +29,7 @@ export default function UpcomingAppointments({
   let localTime = ''
 
   if (appointments) {
-    const date = new Date(appointments?.appointment_time as string)
+    const date = new Date(appointments[0]?.appointment_time as string)
 
     localDate = date.toLocaleDateString(undefined, {
       weekday: 'long',
@@ -50,13 +50,14 @@ export default function UpcomingAppointments({
           Upcoming Appointment
         </CardTitle>
       </CardHeader>
-      {!appointments?.appointment_time ? (
+      {!appointments ? (
         <CardContent className="">No upcoming appointments found.</CardContent>
       ) : (
         <CardContent className="md:flex">
           <CardContent className="md:w-1/2 py-4">
-            Your {appointments.appointment_type?.toLowerCase()} with{' '}
-            {appointments.provider} is on{' '}
+            Your {appointments[0]?.appointment_type?.toLowerCase()} with{' '}
+            {appointments[0]?.provider.first_name}{' '}
+            {appointments[0]?.provider.last_name} is on{' '}
             <span className="font-semibold">
               {localDate} at {localTime}
             </span>
