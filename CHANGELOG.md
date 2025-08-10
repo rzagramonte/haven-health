@@ -1,3 +1,42 @@
+## [1.26.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.25.1...v1.26.0) (2025-08-10)
+
+### Features
+
+* **app/provider/patient/[i]:** added slug route and fixed ts config ([658adf0](https://github.com/ncharris93/dsd-east-coast-goats/commit/658adf025564ebb4deff34596a119a9a5dbd2f80))
+* **app/provider/patient/page:** added contact and address data ([7ff90b9](https://github.com/ncharris93/dsd-east-coast-goats/commit/7ff90b9ed1bcc7dc6bee8a024821ba02ba38fb27))
+* **app/provider/patient/page:** installed breadcrumbs and called queries ([ab42a92](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab42a92e5ee28433bb82640152c476b9d2c57f59))
+* **components and utils:** added helper functions and Medical/Appointment Accordions ([dd47e81](https://github.com/ncharris93/dsd-east-coast-goats/commit/dd47e81739c11c0b8da532905a4ab5788a370627))
+* **lib/types/auth:** updated Person and created Address type ([fadb47f](https://github.com/ncharris93/dsd-east-coast-goats/commit/fadb47ff63bf746a73f83e198831ff8f294ad90f))
+* **server and lib:** getPerson, getMedicalVisit, and assocaited types ([0156946](https://github.com/ncharris93/dsd-east-coast-goats/commit/01569460caaf097948feaf2ffb4164312d09e26b))
+* **server/appointment/queries:** created getAppointments query ([38a69a9](https://github.com/ncharris93/dsd-east-coast-goats/commit/38a69a92e767376af346a855fc6f6e2cae7fb3ce))
+* **server/lib/auth/queries:** getPerson, getAddress ([29bb907](https://github.com/ncharris93/dsd-east-coast-goats/commit/29bb90798e09f6d8897686c70eaa80c644237bc8))
+
+### Bug Fixes
+
+* **app/provider/patient/[id]:** fixed height and centered accordions ([08a314b](https://github.com/ncharris93/dsd-east-coast-goats/commit/08a314b73155b2fa50aafd9a6db9d53b40443969))
+* **dsd-east-coast-goats:** reinstalled accordion and breadcrumb ([252d8ae](https://github.com/ncharris93/dsd-east-coast-goats/commit/252d8ae915af51a8615e19337fb7e56770a5840e))
+* merge conflicts testing ([af60e86](https://github.com/ncharris93/dsd-east-coast-goats/commit/af60e86a9ba819e5e5c57677b2e7d8138d9a1027))
+
+### Reverts
+
+* **.gitignore:** .gitignore reverted to main ([3137abc](https://github.com/ncharris93/dsd-east-coast-goats/commit/3137abc4705a24b97487b0d64b6e93efbc2dd01f))
+* **supabase/config.toml:** reverted config.toml ([19dca67](https://github.com/ncharris93/dsd-east-coast-goats/commit/19dca6782bee5ab9e206ff5484f23b4d97f8db54))
+* **tsconfig.json:** reverted tsconfig.json to main ([d5f52e9](https://github.com/ncharris93/dsd-east-coast-goats/commit/d5f52e98a4332acc06afc84865fbcd465f147afc))
+
+### Code Refactoring
+
+* **.env.example:** added .env.example ([0f98c9b](https://github.com/ncharris93/dsd-east-coast-goats/commit/0f98c9b370da79d392687125937878ae9ae55b34))
+* **.env.example:** reverted .env.example ([ff68b18](https://github.com/ncharris93/dsd-east-coast-goats/commit/ff68b1842093326170b8a08f09bb51b42371fa59))
+* **.gitignore:** added .env.example to gitignore ([342f2e7](https://github.com/ncharris93/dsd-east-coast-goats/commit/342f2e78a808c36b41a1a6131709439b27e81728))
+* **app/provider/schedule:** fixed formatTime import ([aebe239](https://github.com/ncharris93/dsd-east-coast-goats/commit/aebe239420b2baca8c4d8d9e20a419ea77724c8c))
+* **dsd-east-coast-goats:** merge from remote ([9061600](https://github.com/ncharris93/dsd-east-coast-goats/commit/9061600eabc34c48c5a4a37f9a8f7503d02f5e71))
+* **dsd-east-coast-goats:** merge into main. created PatientRecord and getPatientDetails ([2edc2bf](https://github.com/ncharris93/dsd-east-coast-goats/commit/2edc2bf9c826d59fe9b3bdfa4d75effd9e353fe8))
+* **globals.css:** removed sidebar styles ([4140ff5](https://github.com/ncharris93/dsd-east-coast-goats/commit/4140ff562c8d4dabd197955e435e40b18667bc9a))
+* **provider/patient/[id]:** removed logs ([f305f0e](https://github.com/ncharris93/dsd-east-coast-goats/commit/f305f0e0bf340c941e91354ae2af90429c142646))
+* **utils/helper.ts:** deleted helper ts and moved functions to helpers.ts ([ee908df](https://github.com/ncharris93/dsd-east-coast-goats/commit/ee908df5975e158a5b34c676942e9981e0c73a29))
+* **utils/helper:** moved assertData helper function ([dd95ab1](https://github.com/ncharris93/dsd-east-coast-goats/commit/dd95ab1b1fb128c31332373108e23409744d287a))
+* **utils/helpers:** fixed helpers bug ([b2a4e52](https://github.com/ncharris93/dsd-east-coast-goats/commit/b2a4e5204763db32090c59bf1e1275539312b87e))
+
 ## [1.25.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.25.0...v1.25.1) (2025-08-09)
 
 ### Bug Fixes
