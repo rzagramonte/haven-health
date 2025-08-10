@@ -17,6 +17,7 @@ import type {
 } from '@/lib/types/patientProfile'
 import { updatePatientProfile } from '@/server/patient/actions'
 import { getFieldValue, transformPatientProfile } from '@/utils/patient'
+import { showError, showSuccess } from '@/utils/toast'
 
 import AddressField from './AddressField'
 import EmergencyContactField from './EmergencyContactField'
@@ -87,9 +88,9 @@ export default function EditPatientProfile({
     startTransition(async () => {
       const response = await updatePatientProfile(updatedValues)
       if (response.success) {
-        console.log('Success:', response.message)
+        showSuccess(response.message)
       } else {
-        console.error('Error:', response.message)
+        showError(response.message)
       }
       editDispatch({ type: 'SAVE' })
     })
