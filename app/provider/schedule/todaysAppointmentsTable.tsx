@@ -9,8 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { getAppointmentsByDateRange } from '@/server/appointment/queries'
-
-import { formatTime } from '../../../utils/helper'
+import { formatTime } from '@/utils/helpers'
 
 export default async function TodaysAppointmentsTable() {
   const today = new Date()

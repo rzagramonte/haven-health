@@ -18,3 +18,13 @@ export interface Person {
   lastName: string | null
   role: Role | null
 }
+
+export interface Address {
+  id: number
+  personId: number | null
+  streetA: string | null
+  streetB?: string | null
+  city: string | null
+  state: string | null
+  zipCode: string | null
+}
