@@ -29,20 +29,6 @@ export function formatDate(dateString: string) {
   return `${day} ${month}, ${year}`
 }
 
-export const getAge = (dateOfBirth: string) => {
-  const today = new Date()
-  const birthDate = new Date(dateOfBirth)
-  const age = today.getFullYear() - birthDate.getFullYear()
-  return age
-}
-
-export function assertData<T>(result: ActionResponse<T>, message: string): T {
-  if (!result.data) {
-    throw new Error(message)
-  }
-  return result.data
-}
-
 export const formatPhoneNumber = (phoneNumberString: string) => {
   const defaultCountry = 'US'
 
@@ -65,4 +51,18 @@ export function formatTime(dateString: string) {
     minute: '2-digit',
     timeZone: 'America/New_York',
   })
+}
+
+export const getAge = (dateOfBirth: string) => {
+  const today = new Date()
+  const birthDate = new Date(dateOfBirth)
+  const age = today.getFullYear() - birthDate.getFullYear()
+  return age
+}
+
+export function assertData<T>(result: ActionResponse<T>, message: string): T {
+  if (!result.data) {
+    throw new Error(message)
+  }
+  return result.data
 }
