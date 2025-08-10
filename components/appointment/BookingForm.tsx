@@ -158,7 +158,7 @@ export default function BookingForm() {
           </div>
           <div className="w-full px-2 md:px-6 pb-4 flex justify-start">
             <button
-              className="bg-primary text-white px-4 py-2 rounded"
+              className="bg-primary px-4 py-2 rounded"
               onClick={() => setPage(1)}
             >
               Back
@@ -185,13 +185,13 @@ export default function BookingForm() {
 
           <div className="flex gap-4 mt-4">
             <button
-              className="bg-primary text-white px-4 px-4 py-2 rounded"
+              className="bg-primary px-4 py-2 rounded"
               onClick={() => setPage(2)}
             >
               Back
             </button>
             <button
-              className="bg-secondary text-white px-4 py-2 rounded"
+              className="bg-secondary px-4 py-2 rounded"
               onClick={handleConfirmBooking}
             >
               Confirm Appointment

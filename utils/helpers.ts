@@ -1,4 +1,10 @@
+import { parsePhoneNumberFromString } from 'libphonenumber-js'
+
 import { ActionResponse } from '@/lib/types/auth'
+
+export function mockDelay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
 
 export function formatDate(dateString: string) {
   const date = new Date(dateString)
@@ -35,4 +41,19 @@ export function assertData<T>(result: ActionResponse<T>, message: string): T {
     throw new Error(message)
   }
   return result.data
+}
+
+export const formatPhoneNumber = (phoneNumberString: string) => {
+  const defaultCountry = 'US'
+
+  const phoneNumber = parsePhoneNumberFromString(
+    phoneNumberString,
+    defaultCountry,
+  )
+
+  if (!phoneNumber) {
+    throw new Error('Could not parse phone number')
+  }
+
+  return phoneNumber.format('E.164')
 }

@@ -1,3 +1,121 @@
+## [1.25.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.25.0...v1.25.1) (2025-08-09)
+
+### Bug Fixes
+
+* bux fix on fetching and rendering patient data ([7e0670f](https://github.com/ncharris93/dsd-east-coast-goats/commit/7e0670f8399847b45a79310b528e1cd6c335bbc9))
+
+## [1.25.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.24.0...v1.25.0) (2025-08-08)
+
+### Features
+
+* Provider Appointments/Schedule Page/feat: Make Footer Sticky ([#70](https://github.com/ncharris93/dsd-east-coast-goats/issues/70)) ([b593c2c](https://github.com/ncharris93/dsd-east-coast-goats/commit/b593c2c1b70f01b803f8affa33f19751226de88f))
+
+## [1.24.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.23.0...v1.24.0) (2025-08-08)
+
+### Features
+
+* **.vscode:** removed deno ([fd0279d](https://github.com/ncharris93/dsd-east-coast-goats/commit/fd0279dd1cfe323ee03daf905e1b642c2c1c1cd9))
+* **app, server, lib, components:** wired up provider profile to supabase ([ddbde7a](https://github.com/ncharris93/dsd-east-coast-goats/commit/ddbde7aa6849e05870212c7c88a5e8079d263df6))
+* **app:** copilot feedback implemented ([488d67b](https://github.com/ncharris93/dsd-east-coast-goats/commit/488d67bd6e1dae74980a35176653caed2dc1d423))
+* **app:** created profile skeleton and added mock delay to queries ([180f173](https://github.com/ncharris93/dsd-east-coast-goats/commit/180f173fe44a78a702959c09c517d2f4cb1476ad))
+* **app:** deleted and reverted files from patient-details branch ([c9cc81e](https://github.com/ncharris93/dsd-east-coast-goats/commit/c9cc81ed3828c8dc6de4634d847f8274707fe5c7))
+* **app:** deleted files from patient-profile ([d6f4869](https://github.com/ncharris93/dsd-east-coast-goats/commit/d6f486902a4e6a15740585dcf619e9b60290fd84))
+* **app:** deleted more files from patient-details branch ([2736d05](https://github.com/ncharris93/dsd-east-coast-goats/commit/2736d05923e1f8d9e3d4778d6e95b2861d8494d7))
+* **app:** noah comments added ([f02f76e](https://github.com/ncharris93/dsd-east-coast-goats/commit/f02f76e67f7e8c2ba02d166d396e55ceedacb980))
+* **app:** noah feedback in progress ([d61fde4](https://github.com/ncharris93/dsd-east-coast-goats/commit/d61fde466b3734ce4a7eb038f7bf16af90dbedcf))
+* **appointments/queries:** getAppointment() query ([5c6afa3](https://github.com/ncharris93/dsd-east-coast-goats/commit/5c6afa33cc221b87eb3f406da5806d8c2c810a95))
+* **app:** resolving merge conflicts with main ([9305cd0](https://github.com/ncharris93/dsd-east-coast-goats/commit/9305cd0d74fa76cc848d6ab6f91c1af0730a95e1))
+* **components/provider:** deleted emergencycontact and address components ([b497d9d](https://github.com/ncharris93/dsd-east-coast-goats/commit/b497d9d226961c8da77470671a801ddc76cea5ae))
+* **componets/loading:** created LoadSpinner ([7f9f0fd](https://github.com/ncharris93/dsd-east-coast-goats/commit/7f9f0fd6c3294ca56ba193da3d329bf4183ed0fc))
+* **contactinfo:** passed medical_visit data down to contactInfo ([03e7b6c](https://github.com/ncharris93/dsd-east-coast-goats/commit/03e7b6c33b93c7b1a843bc79e713fc611ce113d0))
+* **dsd-east-coast-goats:** merge conflicts with main resolved ([bb32841](https://github.com/ncharris93/dsd-east-coast-goats/commit/bb328418ef4c7b3f83763e9f252356eb1a00fb46))
+* **dsd-east-coast-goats:** merge into main ([9c0b17f](https://github.com/ncharris93/dsd-east-coast-goats/commit/9c0b17feaa43ca1164a39e116673065dfdea8e8e))
+* **helper.ts and provider/queries:** installed libphonenumber-js for helper function ([555d669](https://github.com/ncharris93/dsd-east-coast-goats/commit/555d6699f49df98c3347ff8e5976deb6878d6107))
+* **package.json:** removed dependencies from patient-details branch ([ce59315](https://github.com/ncharris93/dsd-east-coast-goats/commit/ce593155f69c3b6f048eb2fe4822c97e49339295))
+* **patient/[id]/@patientdetails:** route slot tabs for patient details page ([8edcfc9](https://github.com/ncharris93/dsd-east-coast-goats/commit/8edcfc981f159740661182405c215e5bba5c1722))
+* **patient/[id]/contactinfo:** built layout for conatctInfo page ([4e4bca9](https://github.com/ncharris93/dsd-east-coast-goats/commit/4e4bca903ed565c8d6e4b61b3d764d4f2aa11899))
+* **patient/[id]/page:** implemented sidebar ([3f15e6e](https://github.com/ncharris93/dsd-east-coast-goats/commit/3f15e6ecc28b9f2f199c4d3082d8dd78796c2eae))
+* **patient/[id]/page:** installed and implemented tabs for patient details ([cb8d1ac](https://github.com/ncharris93/dsd-east-coast-goats/commit/cb8d1ac9395040fd45673c9a0b032b2ffbad0ca6))
+* **patient/[id]/page:** sidebar styled ([20ee9a9](https://github.com/ncharris93/dsd-east-coast-goats/commit/20ee9a918d5352797388f614b899307283be9e37))
+* **patient/queries utils/helpers.ts:** getMedicalVisit() and helper functions ([2a2bc21](https://github.com/ncharris93/dsd-east-coast-goats/commit/2a2bc21b8f6b3390c6d78d1f7a411ec6ed78e55b))
+* **patientcontext.tsx:** created PatientContext.tsx ([9a6fd10](https://github.com/ncharris93/dsd-east-coast-goats/commit/9a6fd10d6cb35e51d91b46631e896c7cff2ca8cb))
+* **server/patient/queries:** created a getPatient server function ([ca8c1d3](https://github.com/ncharris93/dsd-east-coast-goats/commit/ca8c1d3d8b65694660b4ddc9a9bc94fdf42e005f))
+* **server/provider/queries:** created getProviderAccountSettings() function ([b47471f](https://github.com/ncharris93/dsd-east-coast-goats/commit/b47471ff6e438bf4a216df7a97d142f04b643763))
+* **tailwind:** isntalled tailwind animatinos ([0ea0008](https://github.com/ncharris93/dsd-east-coast-goats/commit/0ea00082db15fa3a209fb233af62aecd57d56354))
+* **utils/provider:** started a getEidtableValue() function ([6626dcd](https://github.com/ncharris93/dsd-east-coast-goats/commit/6626dcd51cb77e6deafa14accfbfba77d18406f2))
+
+### Bug Fixes
+
+* **@contactdetails/contactinfo/page.tsx:** passed appointment prop down ([7b5c182](https://github.com/ncharris93/dsd-east-coast-goats/commit/7b5c182b1980262302510f20aa7f735c0e8a5c89))
+* **app/patient/[id]:** deleted folders from patient detail branch ([80a1b6e](https://github.com/ncharris93/dsd-east-coast-goats/commit/80a1b6e9a236d149898775e44907cf2243be48c3))
+* **app:** deleted and reverted files related to patient-detail ([cda8100](https://github.com/ncharris93/dsd-east-coast-goats/commit/cda810093602432f455d2650c808c3235f156adc))
+* **app:** ran local typegen command ([7770df5](https://github.com/ncharris93/dsd-east-coast-goats/commit/7770df566aa1976842a0a9c80a459877428edb73))
+* **config.tml:** changed project name ([f37c9a7](https://github.com/ncharris93/dsd-east-coast-goats/commit/f37c9a76f14d9fb37624b4ae0694f21cf6bbc8eb))
+* **dsd-east-coast-goats:** fixed Address Type ([46110d5](https://github.com/ncharris93/dsd-east-coast-goats/commit/46110d56fd7e8cd49d0e176a0c7e890b7a47aa59))
+* **patient/[id]/layout.tsx:** removed route slots ([13e6a65](https://github.com/ncharris93/dsd-east-coast-goats/commit/13e6a6576f4065a0ba8485740b4ca0f0c07a4817))
+* **provider/profile/page.tsx:** passed user email to providerAccountSettings function ([67d2854](https://github.com/ncharris93/dsd-east-coast-goats/commit/67d285481f1e9fca9c2c8d06d72b05a86f4ab1e5))
+* **providerprofile:** fiexed getProviderProfile function ([93be8ae](https://github.com/ncharris93/dsd-east-coast-goats/commit/93be8ae3e03726dfce43f456f0d85634a6f17ce8))
+* **server:** fixed ProviderAccountSettings error ([9c8e847](https://github.com/ncharris93/dsd-east-coast-goats/commit/9c8e847e3563533d7eadb8be0834a3776af6d7d7))
+
+### Reverts
+
+* **globals.css:** reverted globals.css ([4c48d50](https://github.com/ncharris93/dsd-east-coast-goats/commit/4c48d5058b3784a0d359055b74816b471cbfeda1))
+* **server and app:** removed mockDelays ([3127888](https://github.com/ncharris93/dsd-east-coast-goats/commit/3127888b343ff38a12185d4cbe45ad0f3c123e58))
+
+### Code Refactoring
+
+* **app/provider/profile/page:** removed logs ([06bc51d](https://github.com/ncharris93/dsd-east-coast-goats/commit/06bc51d583f54bf82cf66034e995b5975ecd0204))
+* **app:** fixed phone mapping issue ([d0b8282](https://github.com/ncharris93/dsd-east-coast-goats/commit/d0b8282841f6fe4f497ead2a671036a1c2ea6db1))
+* **appointment/actions:** refactored getAppointment ([4ff7a66](https://github.com/ncharris93/dsd-east-coast-goats/commit/4ff7a662d42b414a52e142fb6969579e66d70337))
+* **app:** removed ProfileSkeleton and changed field component names ([a59c55f](https://github.com/ncharris93/dsd-east-coast-goats/commit/a59c55fdc3d6da01d256a5b011f5a178bcb3426a))
+* **components/profile/patientprofile:** removed address and emergency contact components ([1919e69](https://github.com/ncharris93/dsd-east-coast-goats/commit/1919e693a602fd9fc76b778499b7ae4beffbca86))
+* **components/provider/profile:** renamed components and ProviderAccountSettings ([0857dc7](https://github.com/ncharris93/dsd-east-coast-goats/commit/0857dc7994ce7f031b51d4ce5a935c4e1e529a41))
+* **dsd-east-coast-goats:** added in address type ([c9a3445](https://github.com/ncharris93/dsd-east-coast-goats/commit/c9a3445100ee11065b83494c323d609244b3233d))
+* **dsd-east-coast-goats:** removed logs and fixed all types ([d6ac112](https://github.com/ncharris93/dsd-east-coast-goats/commit/d6ac112464ae7455bee3f9889f6ebbf0622cca10))
+* **dsd-east-coast-goats:** removed logs and fixed ProviderProfile types ([7d8ea5a](https://github.com/ncharris93/dsd-east-coast-goats/commit/7d8ea5a1aa6c18c3fd01ec2397b64c2d69fe33c6))
+* **dsd-east-coast-goats:** renamed components ([25689a9](https://github.com/ncharris93/dsd-east-coast-goats/commit/25689a9dc024292a8151bda6040d8847e801931a))
+* **dsd-east-coast-goats:** renamed updatedSetting to updatedValues ([a9aecec](https://github.com/ncharris93/dsd-east-coast-goats/commit/a9aecec40e36e2f17648c77aa8e89dd0b16696f3))
+* **lib/types:** removed address and emergencyContact types ([9d4cb0e](https://github.com/ncharris93/dsd-east-coast-goats/commit/9d4cb0ebf937fd35406ca8cb5df93247b7ee5678))
+* **patient/[id]/layout.tsx patientdetailssidebar:** refactored PatientDetails page ([393cd9c](https://github.com/ncharris93/dsd-east-coast-goats/commit/393cd9cab97102e6561a709e375c8835d27446e1))
+* **patient/[id]:** added KHRM suggestions ([637ac4a](https://github.com/ncharris93/dsd-east-coast-goats/commit/637ac4a25f84f19e4df5da700a8afa60c7bb6f3e))
+* **patient/[id]:** route slots working ([99bb36c](https://github.com/ncharris93/dsd-east-coast-goats/commit/99bb36c86324d4199b00582669d172236b90865a))
+* **providerprofile.tsx and server/provider/actions:** changed updateProviderProfile ([1438ed3](https://github.com/ncharris93/dsd-east-coast-goats/commit/1438ed3f94597ce5718f78b4897258a32284817a))
+* **server and lib:** removed address and emergency contact functions and types ([e2c16e5](https://github.com/ncharris93/dsd-east-coast-goats/commit/e2c16e56a05d66ec02443d921875879f24831139))
+* **supabase:** moved adminClient to admin.ts ([5ece52f](https://github.com/ncharris93/dsd-east-coast-goats/commit/5ece52f7c8b4df3321cb15eed027ae4b28eb8f2e))
+* **utils/provider.ts:** getFieldValue helper function ([bdc244a](https://github.com/ncharris93/dsd-east-coast-goats/commit/bdc244a2d7d8a6f5828de74da1c521bc8294d2a9))
+
+## [1.23.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.22.0...v1.23.0) (2025-08-08)
+
+### Features
+
+* **patient profile:** linked profile to supabase, populates user's data, updates fields in supabase ([ebc2ea2](https://github.com/ncharris93/dsd-east-coast-goats/commit/ebc2ea2aea0b990067bf991df1ca267914e70d5b))
+
+### Bug Fixes
+
+* **patient profile:** fixed email to pull from auth table ([f84fd37](https://github.com/ncharris93/dsd-east-coast-goats/commit/f84fd37439fd569fbc4bb9dd996e6bba8e541f16))
+
+## [1.22.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.21.0...v1.22.0) (2025-08-08)
+
+### Features
+
+* **patient appt page and various other files:** patient appt page & gnrl styling ([1c67673](https://github.com/ncharris93/dsd-east-coast-goats/commit/1c67673aa8703bb6e5ca7389901ef2e4e3ddbb92))
+
+## [1.21.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.20.0...v1.21.0) (2025-08-08)
+
+### Features
+
+* **component:** added a component that fetches patients based on typed input ([b55ab68](https://github.com/ncharris93/dsd-east-coast-goats/commit/b55ab68ccb8049438b89e648de95209335f8cec4))
+* **component:** added a patient finder component to the page ([cdd3ecb](https://github.com/ncharris93/dsd-east-coast-goats/commit/cdd3ecb9ba506d0810acd1d31d314dd1f2fc2fe2))
+* **component:** danielgorbachev@MacBookPro Provider Dashboard % git commit -m " ([f92ecf8](https://github.com/ncharris93/dsd-east-coast-goats/commit/f92ecf8e72caba2e01b8b1bb4352aaf76d539819))
+
+### Bug Fixes
+
+* added tsc script ([9557733](https://github.com/ncharris93/dsd-east-coast-goats/commit/955773365655d2f125453cb3963e6dfde7b2b77d))
+
+### Performance Improvements
+
+* **component:** removed a duplicate conditional that checked the length of the input ([50609a5](https://github.com/ncharris93/dsd-east-coast-goats/commit/50609a5cd64a49414f28d09c8fa0e1cd5e60630f))
+
 ## [1.20.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.19.0...v1.20.0) (2025-08-05)
 
 ### Features

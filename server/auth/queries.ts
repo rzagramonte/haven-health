@@ -40,7 +40,7 @@ export const getCurrentUser: () => Promise<ActionResponse<User>> = cache(
       console.error('Get current user error:', err)
       return {
         success: false,
-        message: 'An error occurred while retrievig the current user',
+        message: 'An error occurred while retrieving  the current user',
         error: 'Failed to get current user',
       }
     }
@@ -72,8 +72,6 @@ export async function getCurrentPerson(
       firstName: data.first_name,
       lastName: data.last_name,
       role: data.role as Role,
-      createdAt: data.created_at,
-      updatedAt: data.updated_at,
     }
 
     return {

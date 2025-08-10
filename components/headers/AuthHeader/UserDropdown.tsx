@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import { useTransition } from 'react'
 
+import { Button } from '@/components/ui/button'
 import { Person } from '@/lib/types/auth'
 import { logOut } from '@/server/auth/actions'
 import { showError, showSuccess } from '@/utils/toast'
@@ -55,24 +56,18 @@ export const UserDropdown = ({ person }: UserDropdownProps) => {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="rounded-lg px-5 py-2.5"
-      >
-        <CircleUserRoundIcon className="size-6 cursor-pointer" />
-      </button>
+      <Button onClick={() => setIsOpen(!isOpen)} variant="ghost">
+        <CircleUserRoundIcon className="cursor-pointer size-5" />
+      </Button>
       {isOpen && (
-        <div
-          className="absolute right-0 mt-2 w-48 border bg-background
-         rounded shadow-md p-2 z-50"
-        >
+        <div className="absolute right-0 mt-2 w-48 border bg-muted rounded shadow-md p-2 z-50">
           <Link
             href={
               person.role === 'provider' || person.role === 'admin'
                 ? '/provider/profile'
                 : '/patient/profile'
             }
-            className="block px-4 py-2 hover:bg-gray-100"
+            className="block px-4 py-2"
           >
             <button onClick={() => setIsOpen(false)} className="cursor-pointer">
               Account Settings
@@ -81,7 +76,7 @@ export const UserDropdown = ({ person }: UserDropdownProps) => {
           <button
             onClick={handleLogOut}
             disabled={isPending}
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+            className="block w-full text-left px-4 py-2 cursor-pointer"
           >
             {isPending ? 'Logging Out' : 'Log Out'}
           </button>

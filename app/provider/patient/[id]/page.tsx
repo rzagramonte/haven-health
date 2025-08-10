@@ -13,7 +13,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { CardHeader, CardTitle } from '@/components/ui/card'
 import { getAppointments } from '@/server/appointment/queries'
 import { getAddress, getPerson } from '@/server/auth/queries'
-import { getPatient } from '@/server/patient/queries'
+import { getPatientDetails } from '@/server/patient/queries'
 import { getMedicalVisit } from '@/server/patient/queries'
 import { assertData, formatDate, getAge } from '@/utils/helpers'
 
@@ -24,7 +24,7 @@ export default async function PatientDetailsPage({
 }) {
   const { id } = await params
 
-  const patient = assertData(await getPatient(id), 'Patient not found')
+  const patient = assertData(await getPatientDetails(id), 'Patient not found')
   const person = assertData(
     await getPerson(patient.personId),
     'Person not found',

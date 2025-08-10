@@ -1,12 +1,20 @@
 export type Appointment = {
+  id: number
   appointment_time: string | null
-}
+  appointment_type: string | null
+  provider: {
+    first_name: string | null
+    last_name: string | null
+  }
+} | null
+
 export type Message = {
-  content: string
+  id: number
   sender: string
+  content: string
 }
 
-export type PatientName = string
+export type Patient = string
 export type Provider = string
 
 export type EmergencyContact = {
@@ -15,7 +23,7 @@ export type EmergencyContact = {
   phone: string
 }
 
-export interface Patient {
+export interface PatientRecord {
   id: number
   personId: number | null
   dateOfBirth: string | null

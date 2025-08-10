@@ -1,5 +1,6 @@
 'use client'
 
+import { CalendarDays } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
@@ -12,27 +13,25 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Appointment, Provider } from '@/lib/types/patient'
+import { Appointment } from '@/lib/types/patient'
 
 type UpcomingAppointmentProps = {
-  appointment: Appointment | null
-  provider: Provider
+  appointment: Appointment[]
 }
 
 export default function UpcomingAppointment({
   appointment,
-  provider,
 }: UpcomingAppointmentProps) {
   const router = useRouter()
   const handleClick = () => {
-    router.push('/appointment')
+    router.push('/patient/appointments')
   }
 
   let localDate = ''
   let localTime = ''
 
-  if (!appointment?.appointment_time) {
-    const date = new Date(appointment?.appointment_time as string)
+  if (appointment) {
+    const date = new Date(appointment[0]?.appointment_time as string)
 
     localDate = date.toLocaleDateString(undefined, {
       weekday: 'long',
@@ -51,14 +50,17 @@ export default function UpcomingAppointment({
       <CardHeader>
         <CardTitle className="font-bold">Upcoming Appointment</CardTitle>
       </CardHeader>
-      {!appointment?.appointment_time ? (
+      {!appointment ? (
         <CardContent className="pl-10">
           No upcoming appointments found.
         </CardContent>
       ) : (
         <CardContent className="flex items-center gap-2">
           <CardDescription>
-            Your appointment with {provider} is on {localDate} at {localTime}.
+            Your {appointment[0]?.appointment_type?.toLowerCase()} with{' '}
+            {appointment[0]?.provider.first_name}{' '}
+            {appointment[0]?.provider.last_name} is on {localDate} at{' '}
+            {localTime}.
           </CardDescription>
           <CardAction>
             <Button variant="link" className="text-accent">
@@ -69,6 +71,7 @@ export default function UpcomingAppointment({
       )}
       <CardFooter className="flex-col gap-2">
         <Button onClick={handleClick} className="w-full">
+          <CalendarDays />
           View All Appointments
         </Button>
       </CardFooter>

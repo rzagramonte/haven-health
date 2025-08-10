@@ -1,4 +1,6 @@
 'use client'
+
+import { MessagesSquare } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
@@ -13,7 +15,11 @@ import {
 } from '@/components/ui/card'
 import { Message } from '@/lib/types/patient'
 
-export default function Messages({ messages }: { messages: Message[] }) {
+type MessagesProps = {
+  messages: Message[]
+}
+
+export default function Messages({ messages }: MessagesProps) {
   const router = useRouter()
   const handleClickMessage = () => {
     router.push('/patient/message')
@@ -82,6 +88,7 @@ export default function Messages({ messages }: { messages: Message[] }) {
           onClick={handleClickMessages}
           className="w-full bg-secondary text-secondary-foreground"
         >
+          <MessagesSquare />
           View All Messages
         </Button>
       </CardFooter>

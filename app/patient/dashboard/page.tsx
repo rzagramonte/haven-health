@@ -3,191 +3,178 @@
 import { useEffect, useState } from 'react'
 
 import { createClient } from '@/lib/supabase/client'
-import {
-  Appointment,
-  Message,
-  PatientName,
-  Provider,
-} from '@/lib/types/patient'
+import { Appointment, Message, Patient } from '@/lib/types/patient'
 
-import PatientDashboard from '../../../components/dashboard/PatientDashboard'
+import PatientDashboard from '../../../components/patient/dashboard/PatientDashboard'
+
+const mockAppointments: Appointment[] = [
+  {
+    id: 1,
+    appointment_time: '2024-08-15T14:00:00Z',
+    appointment_type: 'Office Visit',
+    provider: { first_name: 'Dr. April', last_name: ' Bailey-Maletta, DPM' },
+  },
+]
+
+const mockMessages: Message[] = [
+  {
+    id: 1,
+    sender: 'Dr. Rachel Kim',
+    content: 'Radiology results are back',
+  },
+  {
+    id: 2,
+    sender: 'Dr. Amelia Grant',
+    content: 'Lipid panel results are back',
+  },
+  {
+    id: 3,
+    sender: 'Dr. Amelia Grant',
+    content: 'Follow-up needed',
+  },
+  {
+    id: 4,
+    sender: 'Dr. Fatima Hassan',
+    content: 'MRI Clean',
+  },
+  {
+    id: 5,
+    sender: 'Dr. Rachel Kim',
+    content: 'Radiology results are back',
+  },
+  {
+    id: 6,
+    sender: 'Dr. Lydia Chen',
+    content: 'Lipid panel results are back',
+  },
+  {
+    id: 7,
+    sender: 'Dr. Harper Lin',
+    content: 'Follow-up needed',
+  },
+  {
+    id: 8,
+    sender: 'Dr. Dahlia Stone',
+    content: 'MRI Clean',
+  },
+  {
+    id: 9,
+    sender: 'Dr. Sandy Alberca',
+    content: 'MRI Clean',
+  },
+  {
+    id: 10,
+    sender: 'Dr. Sandy Alberca',
+    content: 'Prescripton sent out',
+  },
+  {
+    id: 11,
+    sender: 'Dr. Sandy Alberca',
+    content: 'MRI Clean',
+  },
+]
 
 async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
-  //Fetch auth user
+  // Fetch auth.user
   const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser()
 
   if (userError || !user) {
-    console.error('Error getting user:', userError)
-    return
+    return { patientName: '', messages: [], appointment: [] as Appointment[] }
   }
 
-  //Fetch person
-  const { data: personData, error: personError } = await supabase
+  // Use auth.user.id to fetch person
+  const { data: person, error: personError } = await supabase
     .from('person')
-    .select('first_name, last_name, id')
-    .eq('user_id', user.id)
+    .select('id, first_name, last_name')
+    .eq('person_uuid', user.id)
     .single()
 
-  const person = personData
-  const patientName = `${person?.first_name} ${person?.last_name}`
+  if (personError || !person) {
+    return { patientName: '', messages: [], appointment: [] as Appointment[] }
+  }
+  const patientName = [person.first_name, person.last_name]
+    .filter(Boolean)
+    .join(' ')
 
-  if (personError || !personData || !person) {
-    console.error('Error fetching patient name:', personError)
-    return
+  // Use person.id to fetch messages
+  const { data: messages, error: messagesError } = await supabase
+    .from('messages')
+    .select(
+      `
+      id, content,
+      sender:sender_id(first_name, last_name)
+    `,
+    )
+    .eq('recipient_id', person.id)
+
+  if (messagesError) {
+    throw new Error(
+      `No messages found for user. Error: ${messagesError?.message || 'No matching record'}`,
+    )
   }
 
-  /*
-      // Fetch messages
-      const { data: messagesData, error: messagesError } = await supabase
-        .from('messages')
-        .select(
-          `
-    content,
-    sender:sender_id!messages_sender_id_fkey (
-      first_name,
-      last_name
-    )
-  `,
-        )
-        .eq('recipient_id', user.id)
-
-      if (messagesError) {
-        console.error('Error fetching messages:', messagesError)
-      } else {
-        const formattedMessages: Message[] = (messagesData ?? []).map(
-          (msg) => ({
-            content: msg.content,
-            sender_name: msg.sender,
-          }),
-        )
-
-        setMessages(formattedMessages)
-      }
-*/
-
-  //Fetch patient
-  const { data: patientData, error: patientError } = await supabase
+  // Use person.id to fetch patient
+  const { data: patient, error: patientError } = await supabase
     .from('patient')
-    .select('*')
+    .select('id')
     .eq('person_id', person.id)
     .single()
 
-  const patient = patientData
-
-  if (patientError || !patientData || !patient) {
-    console.error('Error fetching patient:', patientError)
-    return
+  if (patientError || !patient) {
+    return { patientName, messages, appointment: [] as Appointment[] }
   }
 
-  // Fetch appointments
-  const { data: appointmentsData, error: appointmentsError } = await supabase
+  // Use patient.id to fetch appointments
+  const { data: appointment, error: appointmentError } = await supabase
     .from('appointment_booking')
     .select(
-      `
-  appointment_time,
-  id,
-  doctor:doctor_id!appointment_doctor_id_fkey (
-    first_name,
-    last_name
-  )
-`,
+      `id, appointment_time, appointment_type, provider:provider_id(first_name, last_name)`,
     )
     .eq('patient_id', patient.id)
+    .order('appointment_time', { ascending: true })
 
-  let appointment: Appointment | null = null
-  let provider = ''
-
-  if (appointmentsError) {
-    console.error('Error fetching appointments:', appointmentsError)
-  } else {
-    const appt = appointmentsData?.[0]
-    if (appt) {
-      appointment = { appointment_time: appt?.appointment_time }
-      provider = appt?.doctor
-    }
+  if (appointmentError) {
+    throw new Error(
+      `No appointments found for user. Error: ${appointmentError?.message || 'No matching record'}`,
+    )
   }
 
   return {
-    patientName,
-    provider,
     appointment,
-    //messages,
+    messages,
+    patientName,
   }
 }
 
 export default function DashboardPage() {
-  const messagesData = [
-    {
-      content: 'Radiology results are back',
-      sender: 'Dr. Rachel Kim',
-    },
-    {
-      content: 'Lipid panel results are back',
-      sender: 'Dr. Elijah Thompson',
-    },
-    {
-      content: 'Follow-up needed',
-      sender: 'Dr. Elias Hunt',
-    },
-    {
-      content: 'MRI Clean',
-      sender: 'Dr. José Martínez',
-    },
-    {
-      content: 'Radiology results are back',
-      sender: 'Dr. Rachel Kim',
-    },
-    {
-      content: 'Lipid panel results are back',
-      sender: 'Dr. Elijah Thompson',
-    },
-    {
-      content: 'Follow-up needed',
-      sender: 'Dr. Elias Hunt',
-    },
-    {
-      content: 'MRI Clean',
-      sender: 'Dr. José Martínez',
-    },
-    {
-      content: 'MRI Clean',
-      sender: 'Dr. Josh Martínez',
-    },
-    {
-      content: 'Prescripton sent out',
-      sender: 'Dr. José Martínez',
-    },
-    {
-      content: 'MRI Clean',
-      sender: 'Dr. José Martínez',
-    },
-  ]
-
-  const [patientName /*, setPatientName*/] = useState<PatientName>('')
-  const [provider, setProvider] = useState<Provider>('')
-  const [messages /*, setMessages*/] = useState<Message[]>(messagesData)
-  const [appointment, setAppointment] = useState<Appointment | null>(null)
+  const [patient, setPatient] = useState<Patient>('')
+  const [messages, setMessages] = useState<Message[]>([])
+  const [appointment, setAppointment] = useState<Appointment[]>([])
 
   useEffect(() => {
     const supabase = createClient()
-    fetchDashboardData(supabase).then((data) => {
-      if (!data) {
-        return
+
+    const fetchData = async () => {
+      const data = await fetchDashboardData(supabase)
+
+      if (data) {
+        setPatient(data.patientName ? data.patientName : 'Jane Doe')
+        setAppointment(
+          data.appointment.length ? data.appointment : mockAppointments,
+        )
+        setMessages(data.messages.length ? data.messages : mockMessages)
       }
-      //setPatientName(data.patientName)
-      setProvider(data.provider)
-      setAppointment(data.appointment)
-      //setMessages(data.messages)
-    })
-  }, [])
+    }
+
+    fetchData()
+  })
 
   return (
     <PatientDashboard
-      patient={patientName}
-      provider={provider}
+      patient={patient}
       appointment={appointment}
       messages={messages}
     />

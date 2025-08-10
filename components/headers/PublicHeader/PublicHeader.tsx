@@ -10,27 +10,44 @@ import NavLinks from './navlinks/LandingNavLinks'
 export default function PublicHeader() {
   return (
     <>
-      <header className="hidden md:flex flex-row justify-between m-2">
-        <Image src="/icons/logo_dark.svg" alt="Logo" width="100" height="100" />
-        <div className="flex flex-row justify-around mt-2 items-center gap-x-10">
+      <header className="hidden lg:flex bg-background justify-between px-6 py-3">
+        <Image
+          src="/icons/logo.svg"
+          alt="Haven Health"
+          width={200}
+          height={32}
+          className="block dark:hidden"
+        />
+        <Image
+          src="/icons/logo_dark.svg"
+          alt="Haven Health"
+          width={200}
+          height={32}
+          className="hidden dark:block"
+        />
+        <div className="flex flex-row justify-between items-center gap-x-10">
           <NavLinks />
-          <ModeToggle />
-          <div className="flex flex-row gap-x-5 ">
-            <Link href="/signup">
+
+          <div className="flex gap-x-5">
+            <ModeToggle />
+            <Link href="/login">
               <Button className="cursor-pointer" variant="default">
-                Register
+                Log In
               </Button>
             </Link>
-            <Link href="/login">
-              <Button className="cursor-pointer" variant="secondary">
-                Log In
+            <Link href="/signup">
+              <Button
+                className="cursor-pointer border border-primary"
+                variant="outline"
+              >
+                Register
               </Button>
             </Link>
           </div>
         </div>
       </header>
 
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <MobileHeader />
       </div>
     </>
