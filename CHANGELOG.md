@@ -1,3 +1,9 @@
+## [1.27.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.1...v1.27.2) (2025-08-11)
+
+### Bug Fixes
+
+* **patient profile:** fixed supabase links ([3e2272e](https://github.com/ncharris93/dsd-east-coast-goats/commit/3e2272e4d615faa6b8949d00fd724a99f2989792))
+
 ## [1.27.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.0...v1.27.1) (2025-08-11)
 
 ### Bug Fixes
