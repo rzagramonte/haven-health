@@ -6,7 +6,7 @@ import type { User } from '@supabase/supabase-js'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
 import { ActionResponse } from '@/lib/types/auth'
-import { PatientInfo } from '@/lib/types/patientProfile'
+import { MedicalVisit, PatientRecord } from '@/lib/types/patient'
 import {
   AddressUI,
   EditableValue,
@@ -14,33 +14,6 @@ import {
   PatientProfile,
 } from '@/lib/types/patientProfile'
 import { formatPhoneNumber } from '@/utils/helpers'
-
-export async function getPatient(): Promise<PatientInfo> {
-  const supabase = await createClient()
-
-  const { data, error } = await supabase
-    .from('person')
-    .select(
-      `
-      *,
-      contact(*),
-      address(*),
-      patient(*)
-    `,
-    )
-    .eq('role', 'patient')
-    .limit(1)
-    .single()
-
-  if (error) {
-    console.error(error.message)
-    throw new Error('Failed to fetch Patient')
-  }
-
-  return data
-}
-
-export async function getPatients() {}
 
 export async function getPatientProfile(
   userData: ActionResponse<User>,
@@ -378,5 +351,94 @@ export async function updateInsuranceFlag(
       err instanceof Error ? err.message : 'An unknown error occurred.'
     console.error('Failed to update insurance status:', message)
     return { success: false, message: 'Failed to update insurance status.' }
+  }
+}
+
+export async function getPatientDetails(
+  patientId: number,
+): Promise<ActionResponse<PatientRecord>> {
+  const supabase = await createClient()
+
+  try {
+    const { data, error } = await supabase
+      .from('patient')
+      .select('*')
+      .eq('id', patientId)
+      .single()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
+    const patient = {
+      id: data.id,
+      personId: data.person_id,
+      dateOfBirth: data.date_of_birth,
+      sex: data.sex,
+      insuranceFlag: data.insurance_flag,
+      emergencyContact: data.emergency_contact as EmergencyContact,
+    }
+
+    return {
+      success: true,
+      data: patient,
+      message: 'Retrieved current patient',
+    }
+  } catch (err) {
+    console.error('Get current patient error:', err)
+    return {
+      success: false,
+      message: 'An error occured retrieving the current patient',
+      error: 'Failed to get current patient',
+    }
+  }
+}
+
+export async function getMedicalVisit(
+  patientId: number,
+): Promise<ActionResponse<MedicalVisit>> {
+  const supabase = await createClient()
+
+  try {
+    const { data, error } = await supabase
+      .from('medical_visit')
+      .select('*')
+      .eq('id', patientId)
+      .single()
+
+    if (error) {
+      return {
+        success: false,
+        message: error.message,
+        error: error.name,
+      }
+    }
+
+    const medicalVisit = {
+      id: data.id,
+      patientId: data.patient_id,
+      doctorId: data.doctor_id,
+      allergies: data.allergies,
+      prescriptions: data.prescriptions,
+      summaryNotes: data.summary_notes,
+      followUpNeeded: data.followup_needed,
+    }
+
+    return {
+      success: true,
+      data: medicalVisit,
+      message: 'Retrieved current patient',
+    }
+  } catch (err) {
+    console.error('Get medical visit error:', err)
+    return {
+      success: false,
+      message: 'An error occured retrieving medical visit',
+      error: 'Failed to get medical visit',
+    }
   }
 }
