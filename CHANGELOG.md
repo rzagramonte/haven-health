@@ -1,3 +1,9 @@
+## [1.27.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.26.1...v1.27.0) (2025-08-11)
+
+### Features
+
+* **route inbox:** route inbox icon by role and use abs path ([#80](https://github.com/ncharris93/dsd-east-coast-goats/issues/80)) ([2d57eca](https://github.com/ncharris93/dsd-east-coast-goats/commit/2d57ecaa3a4e02f18836b4cef34d7ef9e70e6af2))
+
 ## [1.26.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.26.0...v1.26.1) (2025-08-11)
 
 ### Bug Fixes
