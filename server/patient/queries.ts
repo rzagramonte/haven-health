@@ -3,6 +3,7 @@ import 'server-only'
 
 import type { User } from '@supabase/supabase-js'
 
+import { AppConfig } from '@/lib/config'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
 import { ActionResponse } from '@/lib/types/auth'
@@ -137,8 +138,8 @@ export async function updateEmail(
     }
 
     const supabaseAdmin = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_KEY!,
+      AppConfig.supabase.url,
+      AppConfig.supabase.adminKey,
     )
 
     const { error } = await supabaseAdmin.auth.admin.updateUserById(authId, {
@@ -184,8 +185,8 @@ export async function updatePhone(
     const formattedPhone = formatPhoneNumber(settingValue)
 
     const supabaseAdmin = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_KEY!,
+      AppConfig.supabase.url,
+      AppConfig.supabase.adminKey,
     )
 
     const { error } = await supabaseAdmin.auth.admin.updateUserById(authId, {
