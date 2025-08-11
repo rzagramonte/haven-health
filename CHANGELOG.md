@@ -1,3 +1,9 @@
+## [1.26.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.26.0...v1.26.1) (2025-08-11)
+
+### Bug Fixes
+
+* **bug:** redirec login success to /patient/dashbaord ([#79](https://github.com/ncharris93/dsd-east-coast-goats/issues/79)) ([8fdbf4a](https://github.com/ncharris93/dsd-east-coast-goats/commit/8fdbf4a4c113a5cfce6f89f88a2bd7f799e18653))
+
 ## [1.26.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.25.1...v1.26.0) (2025-08-10)
 
 ### Features
