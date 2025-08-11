@@ -1,3 +1,9 @@
+## [1.27.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.0...v1.27.1) (2025-08-11)
+
+### Bug Fixes
+
+* **patient dashboard:** updated route for appointments ([7d2f65a](https://github.com/ncharris93/dsd-east-coast-goats/commit/7d2f65a0a55668feb08b8843a5b66164a53d32a5))
+
 ## [1.27.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.26.1...v1.27.0) (2025-08-11)
 
 ### Features
