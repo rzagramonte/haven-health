@@ -1,11 +1,11 @@
 'use client'
 
-import { Appointments } from '@/lib/types/patient'
+import { Appointment } from '@/lib/types/patient'
 
 import AppointmentCard from './AppointmentCard'
 
 type PastAppointmentsProps = {
-  appointments: Appointments[]
+  appointments: Appointment[]
 }
 
 export default function PastAppointmentsSection({

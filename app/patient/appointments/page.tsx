@@ -2,76 +2,74 @@
 import { useEffect, useState } from 'react'
 
 import { createClient } from '@/lib/supabase/client'
-import { Appointments } from '@/lib/types/patient'
+import { Appointment } from '@/lib/types/patient'
 
-import PatientAppointments from '../../../components/patient/appointments/PatientAppointments'
+import PatientAppointment from '../../../components/patient/appointments/PatientAppointments'
 
-const mockAppointments: Appointments[] = [
+const mockAppointments: Appointment[] = [
   {
     id: 1,
-    appointment_time: '2024-08-01T14:00:00Z', // UTC
+    appointment_time: '2024-08-15T14:00:00Z',
     appointment_type: 'Office Visit',
-    provider: 'Dr. April Bailey-Maletta, DPM',
+    provider: { first_name: 'Dr. April', last_name: ' Bailey-Maletta, DPM' },
   },
   {
     id: 2,
-    appointment_time: '2024-07-15T09:30:00-04:00', // EDT (New York)
+    appointment_time: '2024-07-15T09:30:00-04:00',
     appointment_type: 'Follow-up',
-    provider: 'Dr. James Anderson, MD',
+    provider: { first_name: 'Dr. James', last_name: 'Anderson, MD' },
   },
   {
     id: 3,
-    appointment_time: '2024-06-10T16:00:00+01:00', // BST (London)
+    appointment_time: '2024-06-10T16:00:00+01:00',
     appointment_type: 'Physical Exam',
-    provider: 'Dr. Priya Desai, DO',
+    provider: { first_name: 'Dr. Priya', last_name: 'Desai, DO' },
   },
   {
     id: 4,
     appointment_time: '2024-05-22T11:45:00Z',
     appointment_type: 'Annual Checkup',
-    provider: 'Dr. Luis Ramirez, MD',
+    provider: { first_name: 'Dr. Luis', last_name: 'Ramirez, MD' },
   },
   {
     id: 5,
-    appointment_time: '2024-04-09T13:15:00-07:00', // PDT (LA)
+    appointment_time: '2024-04-09T13:15:00-07:00',
     appointment_type: 'Specialist Visit',
-    provider: 'Dr. Nina Patel, Cardiologist',
+    provider: { first_name: 'Dr. Nina', last_name: 'Patel, Cardiologist' },
   },
   {
     id: 6,
     appointment_time: '2024-03-01T08:30:00Z',
     appointment_type: 'Dermatology',
-    provider: 'Dr. Mark Holloway, MD',
+    provider: { first_name: 'Dr. Mark', last_name: 'Holloway, MD' },
   },
   {
     id: 7,
     appointment_time: '2023-12-20T10:00:00-05:00',
     appointment_type: 'Orthopedic',
-    provider: 'Dr. Emily Zhang, DO',
+    provider: { first_name: 'Dr. Emily', last_name: 'Zhang, DO' },
   },
   {
     id: 8,
-    appointment_time: '2023-11-05T15:45:00+02:00', // EET (Eastern Europe)
+    appointment_time: '2023-11-05T15:45:00+02:00',
     appointment_type: 'Pediatric',
-    provider: 'Dr. John Kim, MD',
+    provider: { first_name: 'Dr. John', last_name: 'Kim, MD' },
   },
   {
     id: 9,
     appointment_time: '2023-10-18T12:00:00Z',
     appointment_type: 'Consultation',
-    provider: 'Dr. Alice Morgan, MD',
+    provider: { first_name: 'Dr. Alice', last_name: 'Morgan, MD' },
   },
   {
     id: 10,
-    appointment_time: '2023-09-25T18:20:00+09:00', // JST (Tokyo)
+    appointment_time: '2023-09-25T18:20:00+09:00',
     appointment_type: 'Telehealth',
-    provider: 'Dr. Samuel Green, MD',
+    provider: { first_name: 'Dr. Samuel', last_name: 'Green, MD' },
   },
 ]
 
-async function fetchAppointmentsData(
-  supabase: ReturnType<typeof createClient>,
-) {
+async function fetchAppointmentData(supabase: ReturnType<typeof createClient>) {
   // Fetch auth.user
   const {
     data: { user },
@@ -107,42 +105,44 @@ async function fetchAppointmentsData(
     return
   }
 
-  // Use patient.id to fetch appointments
+  // Use patient.id to fetch Appointment
   const { data: appointments, error: appointmentsError } = await supabase
     .from('appointment_booking')
     .select(
-      `id, appointment_time, appointment_type, provider:provider_id!appointment_provider_id_fkey (first_name, last_name)`,
+      `id, appointment_time, appointment_type, provider:provider_id(first_name, last_name)`,
     )
     .eq('patient_id', patient.id)
 
-  if (appointmentsError || !appointments) {
-    console.error('Error getting appointments:', appointmentsError)
-    return
+  if (appointmentsError) {
+    throw new Error(
+      `No appointments found for user. Error: ${appointmentsError?.message || 'No matching record'}`,
+    )
   }
 
-  return appointments
+  return { appointments }
 }
 
-export default function AppointmentsPage() {
-  const [appointments, setAppointments] = useState<Appointments[] | null>(
-    mockAppointments,
-  )
+export default function AppointmentPage() {
+  const [appointments, setAppointments] =
+    useState<Appointment[]>(mockAppointments)
 
   useEffect(() => {
     const supabase = createClient()
 
     const fetchData = async () => {
-      const appointments = await fetchAppointmentsData(supabase)
+      const data = await fetchAppointmentData(supabase)
 
-      if (!appointments) {
+      if (!data) {
         return
       }
 
-      setAppointments(appointments)
+      setAppointments(
+        data.appointments.length ? data.appointments : mockAppointments,
+      )
     }
 
     fetchData()
-  }, [])
+  })
 
-  return <PatientAppointments appointments={appointments || []} />
+  return <PatientAppointment appointments={appointments || []} />
 }
