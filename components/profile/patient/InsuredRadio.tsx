@@ -1,14 +1,14 @@
-export interface EditableBooleanFieldProps {
+export interface InsuredRadioProps {
   value: boolean
   editing: boolean
   onUpdate: (val: boolean) => void
 }
 
-export default function EditableBooleanField({
+export default function InsuredRadio({
   value,
   editing,
   onUpdate,
-}: EditableBooleanFieldProps) {
+}: InsuredRadioProps) {
   return (
     <div className="flex gap-2" role="radiogroup" aria-label="Boolean Field">
       <label>

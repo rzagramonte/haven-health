@@ -1,86 +1,29 @@
 'use client'
-import { useReducer } from 'react'
-import type { IconType } from 'react-icons'
-import { FaEdit, FaPhone, FaUser, FaUserFriends } from 'react-icons/fa'
-import { FaHouse } from 'react-icons/fa6'
+
+import { useReducer, useTransition } from 'react'
+import { FaEdit } from 'react-icons/fa'
 import { GiCancel } from 'react-icons/gi'
-import { MdAlternateEmail } from 'react-icons/md'
-import { RiContactsBookFill } from 'react-icons/ri'
 import { VscSaveAs } from 'react-icons/vsc'
 
-import EmergencyContactField, {
-  EmergencyContact,
-} from '@/components/profile/patient/EmergencyContactField'
+import LoadSpinner from '@/components/loading/Spinner'
 import { Button } from '@/components/ui/button'
 import { CardAction, CardContent } from '@/components/ui/card'
+import type {
+  EditAction,
+  EditState,
+  PatientDetails,
+  PatientProfile,
+  UpdatedValues,
+} from '@/lib/types/patientProfile'
+import { updatePatientProfile } from '@/server/patient/actions'
+import { getFieldValue, transformPatientProfile } from '@/utils/patient'
+import { showError, showSuccess } from '@/utils/toast'
 
-import EditableBooleanField from './InsuredBooleanField'
-import EditableStringField from './StringField'
-
-type EditableValue = string | boolean | EmergencyContact | null
-
-type EditAction =
-  | { type: 'EDIT'; key: string; value: EditableValue }
-  | { type: 'UPDATE'; value: EditableValue }
-  | { type: 'SAVE' }
-  | { type: 'CANCEL' }
-
-export type PatientDetails = [
-  { label: string; key: 'name'; value: string; icon: IconType },
-  { label: string; key: 'phone'; value: string; icon: IconType },
-  { label: string; key: 'email'; value: string; icon: IconType },
-  { label: string; key: 'address'; value: string; icon: IconType },
-  {
-    label: string
-    key: 'emergencyContact'
-    value: {
-      firstName: string
-      lastName: string
-      phone: string
-    }
-    icon: IconType
-  },
-  { label: string; key: 'insuredFlag'; value: boolean; icon: IconType },
-]
-
-type EditState = {
-  patientDetails: PatientDetails
-  editingKey: string | null
-  editableValue: EditableValue | null
-}
-
-const patientDummyData: PatientDetails = [
-  { label: 'Name & Title', key: 'name', value: 'Sara Sneeze', icon: FaUser },
-  { label: 'Phone', key: 'phone', value: '(555) 555-5555', icon: FaPhone },
-  {
-    label: 'Email',
-    key: 'email',
-    value: 'patient@email.com',
-    icon: MdAlternateEmail,
-  },
-  {
-    label: 'Address',
-    key: 'address',
-    value: '123 Main St., Islip, NY 11751',
-    icon: FaHouse,
-  },
-  {
-    label: 'Emergency Contact',
-    key: 'emergencyContact',
-    value: {
-      firstName: 'Jane',
-      lastName: 'Ross',
-      phone: '(555) 555-5555',
-    },
-    icon: RiContactsBookFill,
-  },
-  {
-    label: 'Are you currently insured?',
-    key: 'insuredFlag',
-    value: true,
-    icon: FaUserFriends,
-  },
-]
+import AddressField from './AddressField'
+import EmergencyContactField from './EmergencyContactField'
+import InsuredRadio from './InsuredRadio'
+import NameField from './NameField'
+import StringField from './StringField'
 
 const editProfileReducer = (
   state: EditState,
@@ -93,7 +36,6 @@ const editProfileReducer = (
     case 'UPDATE':
       return { ...state, editableValue: action.value }
 
-    // udpate patient details state based on matching item.key to state.editingKey
     case 'SAVE':
       if (!state.editingKey) {
         return state
@@ -117,16 +59,46 @@ const editProfileReducer = (
   }
 }
 
-export const EditPatientProfile = () => {
+interface PatientProfileProps {
+  patientDetails: PatientProfile
+  userId: string
+}
+
+export default function EditPatientProfile({
+  patientDetails,
+  userId,
+}: PatientProfileProps) {
+  const [isPending, startTransition] = useTransition()
+
   const [editState, editDispatch] = useReducer(editProfileReducer, {
-    patientDetails: patientDummyData,
+    patientId: patientDetails.id,
+    patientDetails: transformPatientProfile(patientDetails),
     editingKey: null,
     editableValue: null,
   })
 
+  const handleSubmit = () => {
+    const updatedValues: UpdatedValues = {
+      authId: userId,
+      patientId: patientDetails.id,
+      key: editState.editingKey,
+      updatedValue: editState.editableValue,
+    }
+
+    startTransition(async () => {
+      const response = await updatePatientProfile(updatedValues)
+      if (response.success) {
+        showSuccess(response.message)
+      } else {
+        showError(response.message)
+      }
+      editDispatch({ type: 'SAVE' })
+    })
+  }
+
   return (
-    <CardContent className="flex flex-col items-center">
-      <ul className=" w-full max-w-[350px] flex flex-col gap-3">
+    <CardContent>
+      <ul>
         {editState.patientDetails.map(({ key, label, value, icon: Icon }) => (
           <li
             key={key}
@@ -138,84 +110,78 @@ export const EditPatientProfile = () => {
               </div>
               <div className="flex flex-col">
                 <p className="text-xs font-semibold">{label}</p>
-                {key === 'emergencyContact' && (
-                  <EmergencyContactField
-                    value={
-                      editState.editingKey === key &&
-                      typeof editState.editableValue === 'object'
-                        ? editState.editableValue
-                        : (value as EmergencyContact)
-                    }
-                    editing={editState.editingKey === key}
-                    onUpdate={(val) =>
-                      editDispatch({ type: 'UPDATE', value: val })
-                    }
-                  />
-                )}
-                {key === 'insuredFlag' && (
-                  <EditableBooleanField
-                    value={
-                      editState.editingKey === key &&
-                      typeof editState.editableValue === 'boolean'
-                        ? editState.editableValue
-                        : (value as boolean)
-                    }
-                    editing={editState.editingKey === key}
-                    onUpdate={(val) =>
-                      editDispatch({ type: 'UPDATE', value: val })
-                    }
-                  />
-                )}
-                {key !== 'emergencyContact' && key !== 'insuredFlag' && (
-                  <EditableStringField
-                    value={
-                      editState.editingKey === key &&
-                      typeof editState.editableValue === 'string'
-                        ? editState.editableValue
-                        : (value as string)
-                    }
-                    editing={editState.editingKey === key}
-                    onUpdate={(val) =>
-                      editDispatch({ type: 'UPDATE', value: val })
-                    }
-                  />
-                )}
+                {(() => {
+                  switch (key) {
+                    case 'name':
+                      return (
+                        <NameField
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+                    case 'address':
+                      return (
+                        <AddressField
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+                    case 'emergencyContact':
+                      return (
+                        <EmergencyContactField
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+                    case 'insuranceFlag':
+                      return (
+                        <InsuredRadio
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+                    default:
+                      return (
+                        <StringField
+                          value={getFieldValue(key, editState, value)}
+                          editing={editState.editingKey === key}
+                          onUpdate={(val) =>
+                            editDispatch({ type: 'UPDATE', value: val })
+                          }
+                        />
+                      )
+                  }
+                })()}
               </div>
             </div>
             <CardAction>
-              {editState.editingKey === key && (
+              {editState.editingKey === key ? (
                 <div className="flex gap-1">
                   <Button
-                    className="w-6 h-6 cursor-pointer"
-                    aria-label="Cancel edit"
-                    onClick={() => {
-                      editDispatch({ type: 'CANCEL' })
-                    }}
+                    onClick={() => editDispatch({ type: 'CANCEL' })}
+                    disabled={isPending}
                   >
                     <GiCancel />
                   </Button>
-                  <Button
-                    className="w-6 h-6 cursor-pointer"
-                    aria-label="Save changes"
-                    onClick={() => {
-                      editDispatch({ type: 'SAVE' })
-                    }}
-                  >
-                    <VscSaveAs />
+                  <Button onClick={handleSubmit} disabled={isPending}>
+                    {isPending ? <LoadSpinner /> : <VscSaveAs />}
                   </Button>
                 </div>
-              )}
-              {editState.editingKey !== key && (
+              ) : (
                 <Button
-                  className="w-6 h-6 cursor-pointer"
-                  aria-label="Edit Field"
-                  onClick={() => {
-                    editDispatch({
-                      type: 'EDIT',
-                      key: key,
-                      value: value,
-                    })
-                  }}
+                  onClick={() => editDispatch({ type: 'EDIT', key, value })}
                 >
                   <FaEdit />
                 </Button>
