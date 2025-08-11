@@ -168,4 +168,48 @@ export async function getMedicalVisit(
   }
 }
 
+// export async function updateEmergencyContact(
+//   providerId: number,
+//   settingValue: EditableValue,
+// ): Promise<ActionResponse> {
+//   try {
+//     if (!providerId || !settingValue) {
+//       throw new Error('Missing credentials')
+//     }
+
+//     if (!(typeof settingValue === 'object' && 'phone' in settingValue)) {
+//       throw new Error('Invalid format for emergency contact')
+//     }
+
+//     const supabase = await createClient()
+//     const { error } = await supabase
+//       .from('patient')
+//       .update({
+//         emergency_contact: settingValue,
+//       })
+//       .eq('person_id', providerId)
+
+//     if (error) {
+//       console.error(error.message)
+//       return {
+//         success: false,
+//         message: error.message,
+//         error: error.name,
+//       }
+//     }
+
+//     return {
+//       success: true,
+//       message: 'Emergency contact successfully updated',
+//     }
+//   } catch (err) {
+//     console.error('Emergency contact update failed:', err)
+//     return {
+//       success: false,
+//       message: 'Failed to update emergency contact',
+//       error: 'Emergency contact update error',
+//     }
+//   }
+// }
+
 export async function getPatients() {}
