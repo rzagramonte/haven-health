@@ -16,7 +16,7 @@ import {
 export default function Scheduler() {
   const router = useRouter()
   const handleClick = () => {
-    router.push('/appointment')
+    router.push('/patient/appointments')
   }
   return (
     <Card className="bg-card-2 w-full max-w-md">
