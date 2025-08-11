@@ -13,35 +13,43 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import type { Address } from '@/lib/types/auth'
+import type { EmergencyContact } from '@/lib/types/patient'
 
 import { DatePicker } from './ui/DatePicker'
 import { RadioGroupDemo } from './ui/RadioGroup'
 
 type FormData = {
-  firstName: string
-  lastName: string
-  address: string
+  address: Address
   dob: Date
   sex: string
   insurance: string
-  emergency_contact: string
+  emergencyContact: EmergencyContact
 }
 
 export default function PatientIntakeForm() {
   const form = useForm<FormData>({
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      address: '',
+      address: {
+        streetA: '',
+        streetB: '',
+        city: '',
+        state: '',
+        zipCode: '',
+      },
       sex: '',
       insurance: '',
-      emergency_contact: '',
+      emergencyContact: {
+        firstName: '',
+        lastName: '',
+        phone: '',
+      },
     },
   })
 
   function onSubmit(values: FormData) {
     //check that with the team
-    console.log(values)
+    console.log('intake-form values:', values)
   }
 
   return (
@@ -50,42 +58,97 @@ export default function PatientIntakeForm() {
         <FormDescription>
           Please input your information below. All fields are required.
         </FormDescription>
-        <FormField
-          control={form.control}
-          name="firstName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>First Name</FormLabel>
-              <FormControl>
-                <Input {...field} className="bg-input" />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="lastName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Last Name</FormLabel>
-              <FormControl>
-                <Input {...field} className="bg-input" />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+
         <FormField
           control={form.control}
           name="address"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Home Address</FormLabel>
-              <FormControl>
-                <Input {...field} type="text" className="bg-input" />
-              </FormControl>
-            </FormItem>
+            <div className="flex flex-col gap-2">
+              <FormLabel>Address</FormLabel>
+              <FormItem>
+                <FormControl>
+                  <Input
+                    value={field.value?.streetA ?? ''}
+                    type="text"
+                    className="bg-input placeholder:text-gray-400"
+                    placeholder="StreetA"
+                    onChange={(e) =>
+                      field.onChange({
+                        ...field.value,
+                        streetA: e.target.value,
+                      })
+                    }
+                  />
+                </FormControl>
+              </FormItem>
+              <FormItem>
+                <FormControl>
+                  <Input
+                    value={field.value?.streetB ?? ''}
+                    type="text"
+                    className="bg-input placeholder:text-gray-400"
+                    placeholder="StreetB"
+                    onChange={(e) =>
+                      field.onChange({
+                        ...field.value,
+                        streetB: e.target.value,
+                      })
+                    }
+                  />
+                </FormControl>
+              </FormItem>
+              <FormItem>
+                <FormControl>
+                  <Input
+                    onChange={(e) =>
+                      field.onChange({
+                        ...field.value,
+                        city: e.target.value,
+                      })
+                    }
+                    value={field.value?.city ?? ''}
+                    type="text"
+                    className="bg-input placeholder:text-gray-400"
+                    placeholder="city"
+                  />
+                </FormControl>
+              </FormItem>
+              <FormItem>
+                <FormControl>
+                  <Input
+                    onChange={(e) =>
+                      field.onChange({
+                        ...field.value,
+                        state: e.target.value,
+                      })
+                    }
+                    value={field.value?.state ?? ''}
+                    type="text"
+                    className="bg-input placeholder:text-gray-400"
+                    placeholder="state"
+                  />
+                </FormControl>
+              </FormItem>
+              <FormItem>
+                <FormControl>
+                  <Input
+                    value={field.value?.zipCode ?? ''}
+                    onChange={(e) =>
+                      field.onChange({
+                        ...field.value,
+                        zipCode: e.target.value,
+                      })
+                    }
+                    type="text"
+                    className="bg-input placeholder:text-gray-400"
+                    placeholder="zipCode"
+                  />
+                </FormControl>
+              </FormItem>
+            </div>
           )}
         />
+
         <FormField
           control={form.control}
           name="dob"
@@ -137,17 +200,65 @@ export default function PatientIntakeForm() {
         />
         <FormField
           control={form.control}
-          name="emergency_contact"
+          name="emergencyContact"
           render={({ field }) => (
-            <FormItem>
+            <div className="flex flex-col gap-2">
               <FormLabel>Emergency Contact</FormLabel>
-              <FormControl>
-                <Input {...field} type="text" className="bg-input" />
-              </FormControl>
-            </FormItem>
+              <FormItem>
+                <FormControl>
+                  <Input
+                    value={field.value?.firstName ?? ''}
+                    onChange={(e) =>
+                      field.onChange({
+                        ...field.value,
+                        firstName: e.target.value,
+                      })
+                    }
+                    type="text"
+                    placeholder="First Name"
+                    className="bg-input placeholder:text-gray-400"
+                  />
+                </FormControl>
+              </FormItem>
+              <FormItem>
+                <FormControl>
+                  <Input
+                    onChange={(e) =>
+                      field.onChange({
+                        ...field.value,
+                        lastName: e.target.value,
+                      })
+                    }
+                    value={field.value?.lastName ?? ''}
+                    type="text"
+                    placeholder="Last Name"
+                    className="bg-input placeholder:text-gray-400"
+                  />
+                </FormControl>
+              </FormItem>
+              <FormItem>
+                <FormControl>
+                  <Input
+                    onChange={(e) =>
+                      field.onChange({
+                        ...field.value,
+                        phone: e.target.value,
+                      })
+                    }
+                    value={field.value?.phone ?? ''}
+                    type="text"
+                    placeholder="Phone"
+                    className="bg-input placeholder:text-gray-400"
+                  />
+                </FormControl>
+              </FormItem>
+            </div>
           )}
         />
-        <Button className="bg-secondary w-full mb-8" type="submit">
+        <Button
+          className="bg-secondary w-full mb-8 cursor-pointer"
+          type="submit"
+        >
           Submit
         </Button>
       </form>
