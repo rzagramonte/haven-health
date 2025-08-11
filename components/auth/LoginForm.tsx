@@ -37,7 +37,7 @@ export default function LoginForm() {
 
     if (response.success) {
       showSuccess(response.message)
-      setTimeout(() => router.push('/'), 2000)
+      setTimeout(() => router.replace('/patient/dashboard'))
     } else {
       showError(response.message)
     }
