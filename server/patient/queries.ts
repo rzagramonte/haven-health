@@ -259,7 +259,7 @@ export async function updateAddress(
       address_state: settingValue.state,
       zip_code: settingValue.zipCode,
     }
-    console.log(addressForDb)
+
     const { data, error: selectError } = await supabase
       .from('address')
       .select('person_id')
