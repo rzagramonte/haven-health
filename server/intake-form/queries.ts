@@ -32,8 +32,6 @@ export async function addIntakeFields(
       }
     }
 
-    console.log('intake form data:', data)
-
     return {
       success: true,
       message: 'Intake fields successfully updated',

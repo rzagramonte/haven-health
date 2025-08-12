@@ -1,5 +1,6 @@
 'use client'
 
+import { redirect } from 'next/navigation'
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -61,14 +62,13 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
 
   function onSubmit(formData: IntakeFormData) {
     //check that with the team
-    console.log('intake-form values:', formData)
 
     startTransition(async () => {
-      console.log('create intake form check')
       const response = await createIntakeForm(formData, patientId)
 
       if (response.success) {
         showSuccess(response.message)
+        redirect('/dashboard')
       } else {
         showError(
           response.message ||
