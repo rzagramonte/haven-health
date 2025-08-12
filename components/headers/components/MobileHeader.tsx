@@ -30,20 +30,22 @@ const MobileHeader = ({ person }: MobileHeaderProps) => {
   return (
     <>
       <header className="flex justify-between px-6 py-3">
-        <Image
-          src="/icons/logo.svg"
-          alt="Haven Health"
-          width={200}
-          height={32}
-          className="block dark:hidden"
-        />
-        <Image
-          src="/icons/logo_dark.svg"
-          alt="Haven Health"
-          width={200}
-          height={32}
-          className="hidden dark:block"
-        />
+        <Link href="/" aria-label="Go to Homepage">
+          <Image
+            src="/icons/logo.svg"
+            alt="Haven Health"
+            width={200}
+            height={32}
+            className="block dark:hidden"
+          />
+          <Image
+            src="/icons/logo_dark.svg"
+            alt="Haven Health"
+            width={200}
+            height={32}
+            className="hidden dark:block"
+          />
+        </Link>
         <div className="flex items-center gap-x-1">
           <ModeToggle />
           {person && <HeaderActions person={person} />}
