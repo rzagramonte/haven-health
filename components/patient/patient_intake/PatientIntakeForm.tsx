@@ -37,8 +37,6 @@ export interface PatientIntakeProps {
 }
 
 export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
-  console.log('patient intake form id:', patientId)
-
   const form = useForm<IntakeFormData>({
     defaultValues: {
       address: {
@@ -61,8 +59,6 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
   const [isPending, startTransition] = useTransition()
 
   function onSubmit(formData: IntakeFormData) {
-    //check that with the team
-
     startTransition(async () => {
       const response = await createIntakeForm(formData, patientId)
 
