@@ -1,3 +1,9 @@
+## [1.28.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.4...v1.28.0) (2025-08-12)
+
+### Features
+
+* **messages:** inbox/thread convo page, new branch to make clean pr ([#78](https://github.com/ncharris93/dsd-east-coast-goats/issues/78)) ([106cab7](https://github.com/ncharris93/dsd-east-coast-goats/commit/106cab712efbfbd186e41dbcd396342937f2be52))
+
 ## [1.27.4](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.3...v1.27.4) (2025-08-12)
 
 ### Bug Fixes
