@@ -30,7 +30,7 @@ export default function Home() {
             </p>
           </div>
           <div>
-            <Link href="/appointment">
+            <Link href="/patient/appointments">
               <Button variant="cta" size="cta" className="text-lg">
                 <CalendarHeart className="size-6" />
                 Schedule Appointment
@@ -117,7 +117,7 @@ export default function Home() {
           </article>
         </div>
         <div className="flex justify-center">
-          <Link href="/appointment">
+          <Link href="/patient/appointments">
             <Button size="cta" className="text-lg bg-chart-2">
               <CalendarHeart className="size-6" />
               Schedule Appointment

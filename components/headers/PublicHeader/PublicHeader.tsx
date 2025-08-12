@@ -11,20 +11,22 @@ export default function PublicHeader() {
   return (
     <>
       <header className="hidden lg:flex bg-background justify-between px-6 py-3">
-        <Image
-          src="/icons/logo.svg"
-          alt="Haven Health"
-          width={200}
-          height={32}
-          className="block dark:hidden"
-        />
-        <Image
-          src="/icons/logo_dark.svg"
-          alt="Haven Health"
-          width={200}
-          height={32}
-          className="hidden dark:block"
-        />
+        <Link href="/" aria-label="Go to Homepage">
+          <Image
+            src="/icons/logo.svg"
+            alt="Haven Health"
+            width={200}
+            height={32}
+            className="block dark:hidden"
+          />
+          <Image
+            src="/icons/logo_dark.svg"
+            alt="Haven Health"
+            width={200}
+            height={32}
+            className="hidden dark:block"
+          />
+        </Link>
         <div className="flex flex-row justify-between items-center gap-x-10">
           <NavLinks />
 
