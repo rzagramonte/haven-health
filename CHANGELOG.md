@@ -1,3 +1,9 @@
+## [1.27.3](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.2...v1.27.3) (2025-08-12)
+
+### Bug Fixes
+
+* **intake-form routing:** add routing to intake form in appropriate location ([#82](https://github.com/ncharris93/dsd-east-coast-goats/issues/82)) ([517d164](https://github.com/ncharris93/dsd-east-coast-goats/commit/517d1648aeafecf7e4cfe53a5efb912ea64ea18d))
+
 ## [1.27.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.1...v1.27.2) (2025-08-11)
 
 ### Bug Fixes
