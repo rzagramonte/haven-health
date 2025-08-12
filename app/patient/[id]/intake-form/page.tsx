@@ -6,10 +6,5 @@ export default async function IntakeFormPage({
   params: Promise<{ id: number }>
 }) {
   const { id } = await params
-  return (
-    <div className="flex flex-col items-center mx-auto w-1/2 rounded-md space-y-8 m-8 bg-card-4">
-      <h4 className="font-bold text-3xl mt-4">Patient Intake Form </h4>
-      <PatientIntakeForm patientId={id} />
-    </div>
-  )
+  return <PatientIntakeForm patientId={id} />
 }
