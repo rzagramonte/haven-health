@@ -64,7 +64,7 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
 
       if (response.success) {
         showSuccess(response.message)
-        redirect('/dashboard')
+        redirect('/patient/dashboard')
       } else {
         showError(
           response.message ||
