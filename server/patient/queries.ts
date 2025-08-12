@@ -8,6 +8,7 @@ import type {
   MedicalVisit,
   PatientRecord,
 } from '@/lib/types/patient'
+import { Sex } from '@/lib/types/patient'
 
 export async function getPatientDetails(
   patientId: number,
@@ -33,7 +34,7 @@ export async function getPatientDetails(
       id: data.id,
       personId: data.person_id,
       dateOfBirth: data.date_of_birth,
-      sex: data.sex,
+      sex: data.sex as Sex,
       insuranceFlag: data.insurance_flag,
       emergencyContact: data.emergency_contact as EmergencyContact,
     }

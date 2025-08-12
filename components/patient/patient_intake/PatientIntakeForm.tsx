@@ -1,7 +1,9 @@
 'use client'
 
+import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 
+import LoadSpinner from '@/components/loading/Spinner'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -15,11 +17,13 @@ import {
 import { Input } from '@/components/ui/input'
 import type { Address } from '@/lib/types/auth'
 import type { EmergencyContact } from '@/lib/types/patient'
+import { createIntakeForm } from '@/server/intake-form/actions'
+import { showError, showSuccess } from '@/utils/toast'
 
 import { DatePicker } from './ui/DatePicker'
 import { RadioGroupDemo } from './ui/RadioGroup'
 
-type FormData = {
+export type IntakeFormData = {
   address: Address
   dob: Date
   sex: string
@@ -27,8 +31,14 @@ type FormData = {
   emergencyContact: EmergencyContact
 }
 
-export default function PatientIntakeForm() {
-  const form = useForm<FormData>({
+export interface PatientIntakeProps {
+  patientId: number
+}
+
+export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
+  console.log('patient intake form id:', patientId)
+
+  const form = useForm<IntakeFormData>({
     defaultValues: {
       address: {
         streetA: '',
@@ -47,9 +57,25 @@ export default function PatientIntakeForm() {
     },
   })
 
-  function onSubmit(values: FormData) {
+  const [isPending, startTransition] = useTransition()
+
+  function onSubmit(formData: IntakeFormData) {
     //check that with the team
-    console.log('intake-form values:', values)
+    console.log('intake-form values:', formData)
+
+    startTransition(async () => {
+      console.log('create intake form check')
+      const response = await createIntakeForm(formData, patientId)
+
+      if (response.success) {
+        showSuccess(response.message)
+      } else {
+        showError(
+          response.message ||
+            'Something went wrong submitting your intake form',
+        )
+      }
+    })
   }
 
   return (
@@ -259,7 +285,7 @@ export default function PatientIntakeForm() {
           className="bg-secondary w-full mb-8 cursor-pointer"
           type="submit"
         >
-          Submit
+          {isPending ? <LoadSpinner /> : 'Submit'}
         </Button>
       </form>
     </Form>
