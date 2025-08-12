@@ -1,3 +1,9 @@
+## [1.27.4](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.3...v1.27.4) (2025-08-12)
+
+### Bug Fixes
+
+* **footer:** shrink bottom footer ([#83](https://github.com/ncharris93/dsd-east-coast-goats/issues/83)) ([52431e0](https://github.com/ncharris93/dsd-east-coast-goats/commit/52431e011034e4459322bb67656bee79559a7504))
+
 ## [1.27.3](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.2...v1.27.3) (2025-08-12)
 
 ### Bug Fixes
