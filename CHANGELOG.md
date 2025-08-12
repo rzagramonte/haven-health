@@ -1,3 +1,45 @@
+## [1.28.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.4...v1.28.0) (2025-08-12)
+
+### Features
+
+* **messages:** inbox/thread convo page, new branch to make clean pr ([#78](https://github.com/ncharris93/dsd-east-coast-goats/issues/78)) ([106cab7](https://github.com/ncharris93/dsd-east-coast-goats/commit/106cab712efbfbd186e41dbcd396342937f2be52))
+
+## [1.27.4](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.3...v1.27.4) (2025-08-12)
+
+### Bug Fixes
+
+* **footer:** shrink bottom footer ([#83](https://github.com/ncharris93/dsd-east-coast-goats/issues/83)) ([52431e0](https://github.com/ncharris93/dsd-east-coast-goats/commit/52431e011034e4459322bb67656bee79559a7504))
+
+## [1.27.3](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.2...v1.27.3) (2025-08-12)
+
+### Bug Fixes
+
+* **intake-form routing:** add routing to intake form in appropriate location ([#82](https://github.com/ncharris93/dsd-east-coast-goats/issues/82)) ([517d164](https://github.com/ncharris93/dsd-east-coast-goats/commit/517d1648aeafecf7e4cfe53a5efb912ea64ea18d))
+
+## [1.27.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.1...v1.27.2) (2025-08-11)
+
+### Bug Fixes
+
+* **patient profile:** fixed supabase links ([3e2272e](https://github.com/ncharris93/dsd-east-coast-goats/commit/3e2272e4d615faa6b8949d00fd724a99f2989792))
+
+## [1.27.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.0...v1.27.1) (2025-08-11)
+
+### Bug Fixes
+
+* **patient dashboard:** updated route for appointments ([7d2f65a](https://github.com/ncharris93/dsd-east-coast-goats/commit/7d2f65a0a55668feb08b8843a5b66164a53d32a5))
+
+## [1.27.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.26.1...v1.27.0) (2025-08-11)
+
+### Features
+
+* **route inbox:** route inbox icon by role and use abs path ([#80](https://github.com/ncharris93/dsd-east-coast-goats/issues/80)) ([2d57eca](https://github.com/ncharris93/dsd-east-coast-goats/commit/2d57ecaa3a4e02f18836b4cef34d7ef9e70e6af2))
+
+## [1.26.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.26.0...v1.26.1) (2025-08-11)
+
+### Bug Fixes
+
+* **bug:** redirec login success to /patient/dashbaord ([#79](https://github.com/ncharris93/dsd-east-coast-goats/issues/79)) ([8fdbf4a](https://github.com/ncharris93/dsd-east-coast-goats/commit/8fdbf4a4c113a5cfce6f89f88a2bd7f799e18653))
+
 ## [1.26.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.25.1...v1.26.0) (2025-08-10)
 
 ### Features

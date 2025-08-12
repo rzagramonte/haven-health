@@ -97,7 +97,7 @@ export const locationHours = [
 
 const Footer = () => {
   return (
-    <footer className="p-5 bg-muted h-95">
+    <footer className="px-4 py-6 bg-muted">
       <div className="flex w-full flex-col justify-between gap-4 lg:flex-row lg:items-start lg:text-left">
         <div className="flex w-full max-w-[90%] flex-col justify-between gap-3 lg:items-start">
           <p className="text-muted-foreground max-w-[70%] text-sm">
@@ -162,7 +162,7 @@ const Footer = () => {
           ))}
         </div>
       </div>
-      <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium md:flex-row md:items-center md:text-left">
+      <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 border-t py-4 text-xs font-medium md:flex-row md:items-center md:text-left">
         <p className="order-2 lg:order-1">{copyright}</p>
         <ul className="order-1 flex flex-col gap-2 md:order-2 md:flex-row">
           {legalLinks.map((link: Link) => (

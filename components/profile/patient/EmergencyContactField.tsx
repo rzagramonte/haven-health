@@ -1,15 +1,12 @@
+'use client'
+
 import { Input } from '@/components/ui/input'
+import type { EmergencyContact } from '@/lib/types/patientProfile'
 
-export type EmergencyContact = {
-  firstName: string
-  lastName: string
-  phone: string
-}
-
-export interface EmergencyContactFieldProps {
+interface EmergencyContactFieldProps {
   value: EmergencyContact | null
   editing: boolean
-  onUpdate: (val: EmergencyContact) => void
+  onUpdate: (value: EmergencyContact) => void
 }
 
 export default function EmergencyContactField({
@@ -17,41 +14,52 @@ export default function EmergencyContactField({
   editing,
   onUpdate,
 }: EmergencyContactFieldProps) {
-  if (!value) {
-    return
-  }
+  const currentContact = value || { firstName: '', lastName: '', phone: '' }
 
   if (!editing) {
+    if (!currentContact.firstName) {
+      return <p className="text-muted-foreground">Not provided</p>
+    }
+
     return (
-      <>
+      <div>
         <p>
-          {value.firstName} {value.lastName}
+          {currentContact.firstName} {currentContact.lastName}
         </p>
-        <p>{value.phone}</p>
-      </>
+        <p className="text-sm text-foreground/80">{currentContact.phone}</p>
+      </div>
     )
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onUpdate({
+      ...currentContact,
+      [e.target.name]: e.target.value,
+    })
+  }
+
   return (
-    <>
+    <div className="flex flex-col gap-2 p-2 bg-muted rounded-md">
+      <div className="flex gap-2">
+        <Input
+          name="firstName"
+          placeholder="First Name"
+          defaultValue={currentContact.firstName ?? ''}
+          onChange={handleChange}
+        />
+        <Input
+          name="lastName"
+          placeholder="Last Name"
+          defaultValue={currentContact.lastName ?? ''}
+          onChange={handleChange}
+        />
+      </div>
       <Input
-        aria-label="First Name"
-        className="bg-muted"
-        value={value.firstName}
-        onChange={(e) => onUpdate({ ...value, firstName: e.target.value })}
+        name="phone"
+        placeholder="Phone Number"
+        defaultValue={currentContact.phone ?? ''}
+        onChange={handleChange}
       />
-      <Input
-        aria-label="Last Name"
-        className="bg-muted"
-        value={value.lastName}
-        onChange={(e) => onUpdate({ ...value, lastName: e.target.value })}
-      />
-      <Input
-        aria-label="Phone Number"
-        className="bg-muted"
-        value={value.phone}
-        onChange={(e) => onUpdate({ ...value, phone: e.target.value })}
-      />
-    </>
+    </div>
   )
 }

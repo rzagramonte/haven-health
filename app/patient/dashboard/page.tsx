@@ -1,7 +1,9 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
+import { Button } from '@/components/ui/button'
 import { createClient } from '@/lib/supabase/client'
 import { Appointment, Message, Patient } from '@/lib/types/patient'
 
@@ -119,7 +121,7 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
   // Use person.id to fetch patient
   const { data: patient, error: patientError } = await supabase
     .from('patient')
-    .select('id')
+    .select('id, date_of_birth, sex, emergency_contact')
     .eq('person_id', person.id)
     .single()
 
@@ -142,10 +144,17 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
     )
   }
 
+  const isIntakeComplete =
+    !!patient &&
+    patient.date_of_birth !== null &&
+    patient.sex !== null &&
+    patient.emergency_contact !== null
+
   return {
     appointment,
     messages,
     patientName,
+    isIntakeComplete,
   }
 }
 
@@ -153,6 +162,7 @@ export default function DashboardPage() {
   const [patient, setPatient] = useState<Patient>('')
   const [messages, setMessages] = useState<Message[]>([])
   const [appointment, setAppointment] = useState<Appointment[]>([])
+  const [showIntakeAlert, setShowIntakeAlert] = useState(false)
 
   useEffect(() => {
     const supabase = createClient()
@@ -166,6 +176,7 @@ export default function DashboardPage() {
           data.appointment.length ? data.appointment : mockAppointments,
         )
         setMessages(data.messages.length ? data.messages : mockMessages)
+        setShowIntakeAlert(!data.isIntakeComplete)
       }
     }
 
@@ -173,10 +184,33 @@ export default function DashboardPage() {
   })
 
   return (
-    <PatientDashboard
-      patient={patient}
-      appointment={appointment}
-      messages={messages}
-    />
+    <>
+      {showIntakeAlert && (
+        <div className="mt-6 px-4">
+          <div className="max-w-2xl mx-auto rounded-md border border-amber-300 bg-amber-100/70 dark:border-amber-800 dark:bg-amber-900/30 p-3">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm">
+                Your profile is missing required info. Please complete your
+                intake form.
+              </p>
+              <Link href="/intake-form">
+                <Button
+                  size="sm"
+                  className=" bg-primary text-primary-foreground"
+                >
+                  Complete intake
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <PatientDashboard
+        patient={patient}
+        appointment={appointment}
+        messages={messages}
+      />
+    </>
   )
 }
