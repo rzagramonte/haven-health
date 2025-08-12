@@ -41,7 +41,7 @@ export default function SignupForm() {
 
     if (response.success) {
       showSuccess(response.message)
-      setTimeout(() => router.push(`/patient/dashboard`), 2000)
+      setTimeout(() => router.replace(`/patient/dashboard`))
     } else {
       showError(response.message)
     }
