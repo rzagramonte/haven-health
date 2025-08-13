@@ -25,7 +25,7 @@ export default function Messages({ messages }: MessagesProps) {
     router.push('/patient/message')
   }
   const handleClickMessages = () => {
-    router.push('/patient/messages')
+    router.push('/patient/inbox')
   }
 
   const messageCounts = messages?.reduce(

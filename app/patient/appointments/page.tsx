@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { createClient } from '@/lib/supabase/client'
@@ -123,6 +124,7 @@ async function fetchAppointmentData(supabase: ReturnType<typeof createClient>) {
 }
 
 export default function AppointmentPage() {
+  const router = useRouter()
   const [appointments, setAppointments] =
     useState<Appointment[]>(mockAppointments)
 
@@ -130,6 +132,14 @@ export default function AppointmentPage() {
     const supabase = createClient()
 
     const fetchData = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+      if (!user) {
+        router.replace('/login')
+        return
+      }
+
       const data = await fetchAppointmentData(supabase)
 
       if (!data) {
@@ -142,7 +152,7 @@ export default function AppointmentPage() {
     }
 
     fetchData()
-  })
+  }, [router])
 
   return <PatientAppointment appointments={appointments || []} />
 }
