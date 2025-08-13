@@ -1,3 +1,9 @@
+## [1.28.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.28.0...v1.28.1) (2025-08-13)
+
+### Bug Fixes
+
+* require login for appointment routes, updated cta's to respect flow/routes ([#87](https://github.com/ncharris93/dsd-east-coast-goats/issues/87)) ([5a0aff8](https://github.com/ncharris93/dsd-east-coast-goats/commit/5a0aff81bd865aeb81eb63a2bfaf19176efc9554))
+
 ## [1.28.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.27.4...v1.28.0) (2025-08-12)
 
 ### Features
