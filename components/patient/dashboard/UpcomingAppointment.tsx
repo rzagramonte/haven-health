@@ -23,7 +23,7 @@ export default function UpcomingAppointment({
 }: UpcomingAppointmentProps) {
   const router = useRouter()
   const handleClick = () => {
-    router.push('/patient/appointments')
+    router.push('/provider/schedule')
   }
 
   let localDate = ''
