@@ -28,8 +28,6 @@ export default function PatientFinder() {
   const [results, setResults] = useState<Patient[]>([])
   const lastQueryRef = useRef<string>('')
 
-  console.log('search input:', input)
-
   async function fetchData(value: string) {
     if (value.length < 2) {
       setResults([])

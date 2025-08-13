@@ -411,8 +411,6 @@ export async function getMedicalVisit(
       .eq('patient_id', patientId)
       .single()
 
-    console.log('medical visit data:', data)
-
     if (error) {
       return {
         success: false,
@@ -420,8 +418,6 @@ export async function getMedicalVisit(
         error: error.name,
       }
     }
-
-    console.log('medical visit data:', data)
 
     const medicalVisit = {
       id: data.id,
