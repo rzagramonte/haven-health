@@ -61,7 +61,6 @@ export const getAge = (dateOfBirth: string) => {
 }
 
 export function assertData<T>(result: ActionResponse<T>, message: string): T {
-  console.log('result:', result.data)
   if (!result.data) {
     throw new Error(message)
   }

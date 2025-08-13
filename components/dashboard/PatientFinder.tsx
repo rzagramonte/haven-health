@@ -49,8 +49,6 @@ export default function PatientFinder() {
         .order('first_name')
         .limit(10)
 
-      console.log('patient search data:', data)
-
       if (error) {
         return
       }
