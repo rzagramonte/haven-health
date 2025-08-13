@@ -2,12 +2,11 @@ import 'server-only'
 
 import type { User } from '@supabase/supabase-js'
 
-import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
 import { ActionResponse, Role } from '@/lib/types/auth'
+import { EmergencyContact } from '@/lib/types/patient'
 import { ProviderInfo } from '@/lib/types/provider'
-import { EditableValue, ProviderProfile } from '@/lib/types/provider'
-import { formatPhoneNumber } from '@/utils/helpers'
+import { ProviderProfile } from '@/lib/types/provider'
 
 export async function getProvider(): Promise<ProviderInfo> {
   const supabase = await createClient()
@@ -61,6 +60,16 @@ export async function getProviderProfile(
       firstName: data.first_name,
       lastName: data.last_name,
       role: 'provider' as Role,
+      createdAt: data.created_at,
+      updatedAt: data.updated_at,
+      address: {
+        streetA: data.address[0].streeta,
+        city: data.address[0].city,
+        state: data.address[0].address_state,
+        zipCode: data.address[0].zip_code,
+      },
+      //@ts-expect-error :: emergency contact is not an array
+      emergencyContact: data.patient?.emergency_contact as EmergencyContact,
       email: userData.data?.email ?? '',
       phone: userData.data?.phone ?? '',
     }
@@ -77,143 +86,6 @@ export async function getProviderProfile(
       success: false,
       message: 'There was an error getting your contact information',
       error: 'Error getting your contact info',
-    }
-  }
-}
-
-export async function updateName(
-  providerId: number,
-  settingValue: EditableValue,
-) {
-  try {
-    if (!providerId || !settingValue) {
-      throw new Error('Missing credentials')
-    }
-
-    if (!(typeof settingValue === 'object' && 'firstName' in settingValue)) {
-      throw new Error('Invalid format for name')
-    }
-
-    const supabase = await createClient()
-
-    const { error } = await supabase
-      .from('person')
-      .update({
-        first_name: settingValue.firstName,
-        last_name: settingValue.lastName,
-      })
-      .eq('id', providerId)
-
-    if (error) {
-      return {
-        success: false,
-        message: error.message,
-        error: error.name,
-      }
-    }
-
-    return {
-      success: true,
-      message: 'Name updated successfully',
-    }
-  } catch (err) {
-    console.error('Failed to update name:', err)
-    return {
-      success: false,
-      message: 'Failed to update name',
-      error: 'Name update error',
-    }
-  }
-}
-
-export async function updateEmail(
-  authId: string,
-  settingValue: EditableValue,
-): Promise<ActionResponse> {
-  try {
-    if (!authId || !settingValue) {
-      throw new Error('Missing credentials')
-    }
-
-    if (typeof settingValue !== 'string') {
-      throw new Error('Invalid format for email')
-    }
-
-    const supabaseAdmin = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_KEY!,
-    )
-
-    const { error } = await supabaseAdmin.auth.admin.updateUserById(authId, {
-      email: settingValue,
-    })
-
-    if (error) {
-      console.error(error.message)
-      return {
-        success: false,
-        message: error.message,
-        error: error.name,
-      }
-    }
-
-    return {
-      success: true,
-      message: 'Email successfully updated',
-    }
-  } catch (err) {
-    console.error('Failed to update email:', err)
-    return {
-      success: false,
-      message: 'Failed to update email',
-      error: 'Update email error',
-    }
-  }
-}
-
-export async function updatePhone(
-  authId: string,
-  settingValue: EditableValue,
-): Promise<ActionResponse> {
-  try {
-    if (!authId || !settingValue) {
-      throw new Error('Missing credentials')
-    }
-
-    if (typeof settingValue !== 'string') {
-      throw new Error('Invalid format for phone')
-    }
-
-    const formattedPhone = formatPhoneNumber(settingValue)
-
-    const supabaseAdmin = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_KEY!,
-    )
-
-    const { error } = await supabaseAdmin.auth.admin.updateUserById(authId, {
-      phone: formattedPhone,
-    })
-
-    if (error) {
-      console.error(error.message)
-      return {
-        success: false,
-        message: error.message,
-        error: error.name,
-      }
-    }
-
-    return {
-      success: true,
-      message: 'Phone number successfully updated',
-    }
-  } catch (err) {
-    console.error('Failed to update phone number:', err)
-    return {
-      success: false,
-      message: 'Failed to update phone number',
-      error: 'Phone number update error',
     }
   }
 }
