@@ -24,7 +24,7 @@ export default function Scheduler() {
         <CardTitle className="font-bold">Schedule Appointment</CardTitle>
       </CardHeader>
       <CardContent className="flex items-center gap-2">
-        <CardDescription className="pl-4">
+        <CardDescription>
           Book your next appointment in just a few clicks.
         </CardDescription>
       </CardContent>

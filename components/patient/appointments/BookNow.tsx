@@ -12,7 +12,7 @@ export default function BookNow() {
   }
   return (
     <div className="gap-2 ">
-      <Button onClick={handleClick} className="bg-secondary p-5">
+      <Button onClick={handleClick} variant="secondary" className="p-5">
         <CalendarPlus />
         Schedule an appointment
       </Button>
