@@ -1,4 +1,4 @@
-import { Calendar, DollarSign, Star } from 'lucide-react'
+import { Calendar, Clock, Star } from 'lucide-react'
 
 import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
@@ -12,10 +12,10 @@ const stats = [
     color: 'text-chart-1',
   },
   {
-    title: 'Monthly Revenue',
-    value: '$45,231',
+    title: 'Patient Average Wait Time',
+    value: '5:29 minutes',
     subtitle: '+9% from last month',
-    icon: DollarSign,
+    icon: Clock,
     color: 'text-chart-2',
   },
   {
