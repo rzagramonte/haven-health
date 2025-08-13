@@ -147,7 +147,7 @@ export async function getAddress(
     const { data, error } = await supabase
       .from('address')
       .select('*')
-      .eq('id', personId)
+      .eq('person_id', personId)
       .single()
 
     if (error) {
