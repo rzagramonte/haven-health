@@ -409,7 +409,7 @@ export async function getMedicalVisit(
     const { data, error } = await supabase
       .from('medical_visit')
       .select('*')
-      .eq('id', patientId)
+      .eq('patient_id', patientId)
       .single()
 
     if (error) {
