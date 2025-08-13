@@ -9,73 +9,6 @@ import { Appointment, Message, Patient } from '@/lib/types/patient'
 
 import PatientDashboard from '../../../components/patient/dashboard/PatientDashboard'
 
-const mockAppointments: Appointment[] = [
-  {
-    id: 1,
-    appointment_time: '2024-08-15T14:00:00Z',
-    appointment_type: 'Office Visit',
-    provider: { first_name: 'Dr. April', last_name: ' Bailey-Maletta, DPM' },
-  },
-]
-
-const mockMessages: Message[] = [
-  {
-    id: 1,
-    sender: 'Dr. Rachel Kim',
-    content: 'Radiology results are back',
-  },
-  {
-    id: 2,
-    sender: 'Dr. Amelia Grant',
-    content: 'Lipid panel results are back',
-  },
-  {
-    id: 3,
-    sender: 'Dr. Amelia Grant',
-    content: 'Follow-up needed',
-  },
-  {
-    id: 4,
-    sender: 'Dr. Fatima Hassan',
-    content: 'MRI Clean',
-  },
-  {
-    id: 5,
-    sender: 'Dr. Rachel Kim',
-    content: 'Radiology results are back',
-  },
-  {
-    id: 6,
-    sender: 'Dr. Lydia Chen',
-    content: 'Lipid panel results are back',
-  },
-  {
-    id: 7,
-    sender: 'Dr. Harper Lin',
-    content: 'Follow-up needed',
-  },
-  {
-    id: 8,
-    sender: 'Dr. Dahlia Stone',
-    content: 'MRI Clean',
-  },
-  {
-    id: 9,
-    sender: 'Dr. Sandy Alberca',
-    content: 'MRI Clean',
-  },
-  {
-    id: 10,
-    sender: 'Dr. Sandy Alberca',
-    content: 'Prescripton sent out',
-  },
-  {
-    id: 11,
-    sender: 'Dr. Sandy Alberca',
-    content: 'MRI Clean',
-  },
-]
-
 async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
   // Fetch auth.user
   const {
@@ -151,6 +84,7 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
     patient.emergency_contact !== null
 
   return {
+    patient,
     appointment,
     messages,
     patientName,
@@ -160,28 +94,22 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
 
 export default function DashboardPage() {
   const [patient, setPatient] = useState<Patient>('')
+  const [patientId, setPatientId] = useState<number>()
   const [messages, setMessages] = useState<Message[]>([])
   const [appointment, setAppointment] = useState<Appointment[]>([])
   const [showIntakeAlert, setShowIntakeAlert] = useState(false)
 
   useEffect(() => {
     const supabase = createClient()
-
-    const fetchData = async () => {
+    ;(async () => {
       const data = await fetchDashboardData(supabase)
-
-      if (data) {
-        setPatient(data.patientName ? data.patientName : 'Jane Doe')
-        setAppointment(
-          data.appointment.length ? data.appointment : mockAppointments,
-        )
-        setMessages(data.messages.length ? data.messages : mockMessages)
-        setShowIntakeAlert(!data.isIntakeComplete)
-      }
-    }
-
-    fetchData()
-  })
+      setPatient(data.patientName)
+      setPatientId(data.patient?.id)
+      setAppointment(data.appointment)
+      setMessages(data.messages)
+      setShowIntakeAlert(!data.isIntakeComplete)
+    })()
+  }, [])
 
   return (
     <>
@@ -193,7 +121,7 @@ export default function DashboardPage() {
                 Your profile is missing required info. Please complete your
                 intake form.
               </p>
-              <Link href="/intake-form">
+              <Link href={`/patient/${patientId}/intake-form`}>
                 <Button
                   size="sm"
                   className=" bg-primary text-primary-foreground"

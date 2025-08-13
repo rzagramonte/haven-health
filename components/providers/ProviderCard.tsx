@@ -6,7 +6,7 @@ type Props = {
 
 export default function ProviderCard({ provider }: Props) {
   return (
-    <div className="bg-card text-card-foreground border border-border rounded-xl shadow-sm p-4 hover:shadow-md transition">
+    <div className="border border-border rounded-xl shadow-sm p-4 hover:shadow-md transition">
       <h2 className="text-lg font-semibold mb-2">
         Dr. {provider.first_name} {provider.last_name}, MD
       </h2>
