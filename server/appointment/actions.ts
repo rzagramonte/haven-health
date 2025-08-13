@@ -8,12 +8,6 @@ import { generateAvailableTimeSlots } from './timeSlots'
 
 type AppointmentType = Database['public']['Enums']['appointment_type_enums']
 
-export async function createAppointment() {}
-
-export async function deleteAppointment() {}
-
-export async function updateAppointment() {}
-
 export async function getAvailableSlots(date: Date) {
   const allSlots = generateAvailableTimeSlots()
   const bookedTimes = await getBookedAppointmentTimes(date)
@@ -23,7 +17,7 @@ export async function getAvailableSlots(date: Date) {
   return allSlots.filter((s) => !bookedTimesString.includes(s))
 }
 
-export async function confirmBooking(bookingData: {
+export async function createAppointment(bookingData: {
   type: string
   date: Date
   time: string
@@ -104,3 +98,31 @@ export async function confirmBooking(bookingData: {
 
   return { success: true, message: 'Appointment booked successfully!' }
 }
+
+export async function updateAppointment(params: {
+  bookingId: number
+  when: Date
+  type?: AppointmentType
+}) {
+  const supabase = await createClient()
+
+  const patch: Database['public']['Tables']['appointment_booking']['Update'] = {
+    appointment_time: params.when.toISOString(),
+  }
+
+  if (params.type) {
+    patch.appointment_type = params.type
+  }
+
+  const { error } = await supabase
+    .from('appointment_booking')
+    .update(patch)
+    .eq('id', params.bookingId)
+
+  if (error) {
+    return { success: false, message: 'Update failed' }
+  }
+  return { success: true, message: 'Appointment updated' }
+}
+
+export async function deleteAppointment() {}

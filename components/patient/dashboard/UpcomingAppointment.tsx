@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -29,20 +28,36 @@ export default function UpcomingAppointment({
 
   let localDate = ''
   let localTime = ''
+  let nextAppointment
 
   if (appointment) {
-    const date = new Date(appointment[0]?.appointment_time as string)
+    const now = Date.now()
 
-    localDate = date.toLocaleDateString(undefined, {
-      weekday: 'long',
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric',
-    })
-    localTime = date.toLocaleTimeString(undefined, {
-      hour: 'numeric',
-      minute: 'numeric',
-    })
+    nextAppointment = appointment
+      .filter(
+        (a) =>
+          a.appointment_time && new Date(a.appointment_time).getTime() >= now,
+      )
+      .sort(
+        (a, b) =>
+          new Date(a.appointment_time!).getTime() -
+          new Date(b.appointment_time!).getTime(),
+      )[0]
+
+    if (nextAppointment) {
+      const date = new Date(nextAppointment.appointment_time as string)
+
+      localDate = date.toLocaleDateString(undefined, {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+      localTime = date.toLocaleTimeString(undefined, {
+        hour: 'numeric',
+        minute: 'numeric',
+      })
+    }
   }
 
   return (
@@ -51,22 +66,22 @@ export default function UpcomingAppointment({
         <CardTitle className="font-bold">Upcoming Appointment</CardTitle>
       </CardHeader>
       {!appointment ? (
-        <CardContent className="pl-10">
-          No upcoming appointments found.
-        </CardContent>
+        <CardContent>No upcoming appointments found.</CardContent>
       ) : (
         <CardContent className="flex items-center gap-2">
           <CardDescription>
-            Your {appointment[0]?.appointment_type?.toLowerCase()} with{' '}
-            {appointment[0]?.provider.first_name}{' '}
-            {appointment[0]?.provider.last_name} is on {localDate} at{' '}
-            {localTime}.
+            Your{' '}
+            <span className="text-accent font-semibold">
+              {nextAppointment?.appointment_type}
+            </span>{' '}
+            with{' '}
+            <span className="font-semibold">
+              {nextAppointment?.provider.first_name}{' '}
+              {nextAppointment?.provider.last_name}
+            </span>{' '}
+            is on <span className="text-primary font-bold">{localDate}</span> at{' '}
+            <span className="text-primary font-bold">{localTime}</span>.
           </CardDescription>
-          <CardAction>
-            <Button variant="link" className="text-accent">
-              View More
-            </Button>
-          </CardAction>
         </CardContent>
       )}
       <CardFooter className="flex-col gap-2">
