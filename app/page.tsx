@@ -5,6 +5,7 @@ import {
   PillBottle,
   Stethoscope,
   Syringe,
+  UserRoundPlus,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -22,20 +23,31 @@ export default function Home() {
       >
         <div className="flex flex-col gap-8 items-center justify-center h-full backdrop-blur-sm backdrop-brightness-60 text-center px-4 2xl:gap-16">
           <div className="flex flex-col gap-2">
-            <h1 className="text-4xl font-bold text-balance 2xl:text-5xl text-[#f9f7f3]">
+            <h1 className="text-4xl font-bold text-balance 2xl:text-6xl text-[#f9f7f3]">
               Welcome to Haven Health
             </h1>
-            <p className="text-2xl text-balance 2xl:text-3xl">
+            <p className="text-2xl text-balance 2xl:text-4xl">
               Your Wellness, Our Commitment
             </p>
           </div>
-          <div>
-            <Link href="/patient/appointments">
-              <Button variant="cta" size="cta" className="text-lg">
+          <div className="flex gap-8">
+            <Button asChild variant="cta" size="cta" className="text-lg">
+              <Link href="/appointment">
                 <CalendarHeart className="size-6" />
                 Schedule Appointment
-              </Button>
-            </Link>
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="cta"
+              size="cta"
+              className="text-lg bg-secondary"
+            >
+              <Link href="/signup">
+                <UserRoundPlus className="size-6" />
+                Create an Account
+              </Link>
+            </Button>
           </div>
         </div>
         <div>
@@ -116,15 +128,20 @@ export default function Home() {
             </div>
           </article>
         </div>
-        <div className="flex justify-center">
-          <Link href="/patient/appointments">
-            <Button size="cta" className="text-lg bg-chart-2">
-              <CalendarHeart className="size-6" />
-              Schedule Appointment
-            </Button>
-          </Link>
-        </div>
       </section>
+      <div className="flex justify-center">
+        <Button
+          asChild
+          variant="cta"
+          size="cta"
+          className="text-lg bg-secondary"
+        >
+          <Link href="/appointment">
+            <CalendarHeart className="size-6" />
+            Schedule Appointment
+          </Link>
+        </Button>
+      </div>
       <section id="about" className="max-w-screen-xl px-4 mx-auto ">
         <div className="bg-card-3 flex flex-col gap-16 p-8 mx-auto rounded-3xl shadow-2xl dark:bg-card-2">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 justify-center text-pretty">
