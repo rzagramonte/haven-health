@@ -17,15 +17,19 @@ import { Message } from '@/lib/types/patient'
 
 type MessagesProps = {
   messages: Message[]
+  path?: string
 }
 
-export default function Messages({ messages }: MessagesProps) {
+export default function Messages({
+  messages,
+  path = '/patient',
+}: MessagesProps) {
   const router = useRouter()
   const handleClickMessage = () => {
-    router.push('/patient/message')
+    router.push(`${path}/inbox`)
   }
   const handleClickMessages = () => {
-    router.push('/patient/inbox')
+    router.push(`${path}/inbox`)
   }
 
   const messageCounts = messages?.reduce(

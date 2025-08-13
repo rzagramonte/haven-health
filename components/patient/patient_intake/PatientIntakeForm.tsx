@@ -98,7 +98,7 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
                         value={field.value?.streetA ?? ''}
                         type="text"
                         className="bg-input placeholder:text-gray-400 w-full"
-                        placeholder="StreetA"
+                        placeholder="Address Line 1"
                         onChange={(e) =>
                           field.onChange({
                             ...field.value,
@@ -114,7 +114,7 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
                         value={field.value?.streetB ?? ''}
                         type="text"
                         className="bg-input placeholder:text-gray-400"
-                        placeholder="StreetB"
+                        placeholder="Address Line 2"
                         onChange={(e) =>
                           field.onChange({
                             ...field.value,
@@ -136,7 +136,7 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
                         value={field.value?.city ?? ''}
                         type="text"
                         className="bg-input placeholder:text-gray-400"
-                        placeholder="city"
+                        placeholder="City"
                       />
                     </FormControl>
                   </FormItem>
@@ -152,7 +152,7 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
                         value={field.value?.state ?? ''}
                         type="text"
                         className="bg-input placeholder:text-gray-400"
-                        placeholder="state"
+                        placeholder="State"
                       />
                     </FormControl>
                   </FormItem>
@@ -168,7 +168,7 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
                         }
                         type="text"
                         className="bg-input placeholder:text-gray-400"
-                        placeholder="zipCode"
+                        placeholder="Zip Code"
                       />
                     </FormControl>
                   </FormItem>
