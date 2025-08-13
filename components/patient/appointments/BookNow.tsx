@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 export default function BookNow() {
   const router = useRouter()
   const handleClick = () => {
-    router.push('/patient/appointments')
+    router.push('/appointment')
   }
   return (
     <div className="gap-2 ">
