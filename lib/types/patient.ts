@@ -10,7 +10,10 @@ export type Appointment = {
 
 export type Message = {
   id: number
-  sender: string
+  sender: {
+    first_name: string
+    last_name: string
+  }
   content: string
 }
 
