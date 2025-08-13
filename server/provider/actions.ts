@@ -3,7 +3,7 @@
 import { ActionResponse } from '@/lib/types/auth'
 import { UpdatedValues } from '@/lib/types/provider'
 
-import { updateEmail, updateName, updatePhone } from './queries'
+import { updateEmail, updateName, updatePhone } from '../auth/queries'
 
 export async function updateProviderProfile(
   updatedValues: UpdatedValues,

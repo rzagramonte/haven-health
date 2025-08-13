@@ -8,6 +8,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
 import { ActionResponse } from '@/lib/types/auth'
 import { MedicalVisit, PatientRecord } from '@/lib/types/patient'
+import { Sex } from '@/lib/types/patient'
 import {
   AddressUI,
   EditableValue,
@@ -379,7 +380,7 @@ export async function getPatientDetails(
       id: data.id,
       personId: data.person_id,
       dateOfBirth: data.date_of_birth,
-      sex: data.sex,
+      sex: data.sex as Sex,
       insuranceFlag: data.insurance_flag,
       emergencyContact: data.emergency_contact as EmergencyContact,
     }
@@ -408,7 +409,7 @@ export async function getMedicalVisit(
     const { data, error } = await supabase
       .from('medical_visit')
       .select('*')
-      .eq('id', patientId)
+      .eq('patient_id', patientId)
       .single()
 
     if (error) {
@@ -443,3 +444,5 @@ export async function getMedicalVisit(
     }
   }
 }
+
+export async function getPatients() {}
