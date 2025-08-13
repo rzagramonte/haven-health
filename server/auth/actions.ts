@@ -2,7 +2,12 @@
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/lib/supabase/server'
-import { ActionResponse } from '@/lib/types/auth'
+import { ActionResponse, Role } from '@/lib/types/auth'
+
+type LoginResult = ActionResponse & {
+  role?: Role
+  personId?: number
+}
 
 export async function login({
   email,
@@ -10,14 +15,15 @@ export async function login({
 }: {
   email: string
   password: string
-}): Promise<ActionResponse> {
+}): Promise<LoginResult> {
   const supabase = await createClient()
 
   try {
-    const { error: loginErr } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
+    const { data: login, error: loginErr } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
     if (loginErr) {
       console.error('Login error:', loginErr.message)
@@ -26,9 +32,24 @@ export async function login({
         message: 'Login failed. Please check your credentials.',
       }
     }
+
+    const { data: person, error: personErr } = await supabase
+      .from('person')
+      .select('id, role')
+      .eq('person_uuid', login.user.id)
+      .single()
+
+    if (personErr || !person) {
+      return { success: false, message: 'Profile not found' }
+    }
+
+    const role = person.role as Role
+
     return {
       success: true,
       message: 'Signed in successfully',
+      role,
+      personId: person.id,
     }
   } catch (err) {
     console.error('Sign in error:', err)

@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Role } from '@/lib/types/auth'
 import { login } from '@/server/auth/actions'
 import { showError, showSuccess } from '@/utils/toast'
 
@@ -37,7 +38,15 @@ export default function LoginForm() {
 
     if (response.success) {
       showSuccess(response.message)
-      setTimeout(() => router.replace('/patient/dashboard'))
+
+      const loginPath =
+        response.role === Role.provider
+          ? '/provider/dashboard'
+          : response.role === Role.admin
+            ? '/admin/dashboard'
+            : '/patient/dashboard'
+
+      router.replace(loginPath)
     } else {
       showError(response.message)
     }

@@ -28,7 +28,7 @@ export default function ProviderDashboard({
         </div>
 
         <div className="flex flex-col space-y-6 lg:space-y-15 lg:m-7 lg:items-start">
-          <Messages messages={messages} />
+          <Messages messages={messages} path="/provider" />
         </div>
       </div>
 
