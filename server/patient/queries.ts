@@ -408,8 +408,10 @@ export async function getMedicalVisit(
     const { data, error } = await supabase
       .from('medical_visit')
       .select('*')
-      .eq('id', patientId)
+      .eq('patient_id', patientId)
       .single()
+
+    console.log('medical visit data:', data)
 
     if (error) {
       return {
@@ -418,6 +420,8 @@ export async function getMedicalVisit(
         error: error.name,
       }
     }
+
+    console.log('medical visit data:', data)
 
     const medicalVisit = {
       id: data.id,

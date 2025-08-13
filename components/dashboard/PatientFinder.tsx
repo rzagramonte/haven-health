@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
@@ -27,6 +28,8 @@ export default function PatientFinder() {
   const [results, setResults] = useState<Patient[]>([])
   const lastQueryRef = useRef<string>('')
 
+  console.log('search input:', input)
+
   async function fetchData(value: string) {
     if (value.length < 2) {
       setResults([])
@@ -45,6 +48,8 @@ export default function PatientFinder() {
         .or(`first_name.ilike.%${value}%,last_name.ilike.%${value}%`)
         .order('first_name')
         .limit(10)
+
+      console.log('patient search data:', data)
 
       if (error) {
         return
@@ -87,10 +92,13 @@ export default function PatientFinder() {
             {results.length > 0 &&
               results.map((patient) => (
                 <CommandItem
+                  className="cursor-pointer"
                   key={patient.id}
                   value={`${patient.first_name} ${patient.last_name}`}
                 >
-                  {patient.first_name} {patient.last_name}
+                  <Link href={`./patient/${patient.id}`}>
+                    {patient.first_name} {patient.last_name}
+                  </Link>
                 </CommandItem>
               ))}
             {hasSearched && results.length === 0 && (
