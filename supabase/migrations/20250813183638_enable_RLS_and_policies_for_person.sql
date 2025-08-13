@@ -1,35 +1,22 @@
 
 ALTER TABLE public.person ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Users can only insert their own person record when signing up"
+CREATE POLICY "Public users can insert on person records"
 ON public.person
 FOR INSERT
-TO authenticated
-WITH CHECK ((select auth.uid()) = person_uuid);
+TO anon
+WITH CHECK (true);
 
-CREATE POLICY "Authenticated users only can see their own person record"
+CREATE POLICY "Only authenticated users can select person records"
 on public.person
 FOR SELECT
 TO authenticated
-USING ((select auth.uid()) = person_uuid);
+USING (true);
 
-CREATE POLICY "only providers can see all the person records"
-on public.person
-FOR SELECT
-TO authenticated
-USING (
-    EXISTS (
-        SELECT 1
-        FROM public.person as p
-        WHERE p.person_uuid = auth.uid()
-        AND p.role = 'provider'
-    )
-);
-
-CREATE POLICY "Users can only update their own person record"
+CREATE POLICY "Only authenticated users can update person records"
 ON public.person
 FOR UPDATE
 TO authenticated
-USING ((select auth.uid()) = person_uuid)
-WITH CHECK ((select auth.uid()) = person_uuid);
+USING (true)
+WITH CHECK (true);
 
