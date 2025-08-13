@@ -1,3 +1,9 @@
+## [1.30.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.29.0...v1.30.0) (2025-08-13)
+
+### Features
+
+* **auth,messages:** role-based login redirect and provider inbox/conversation ([#91](https://github.com/ncharris93/dsd-east-coast-goats/issues/91)) ([8db758f](https://github.com/ncharris93/dsd-east-coast-goats/commit/8db758f8b2b8497488ed8d5f5ce7794b40f38f46))
+
 ## [1.29.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.28.1...v1.29.0) (2025-08-13)
 
 ### Features

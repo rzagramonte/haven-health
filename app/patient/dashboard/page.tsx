@@ -40,7 +40,7 @@ async function fetchDashboardData(supabase: ReturnType<typeof createClient>) {
     .select(
       `
       id, content,
-      sender:sender_id(first_name, last_name)
+      sender:person!sender_id(first_name, last_name)
     `,
     )
     .eq('recipient_id', person.id)
@@ -106,7 +106,16 @@ export default function DashboardPage() {
       setPatient(data.patientName)
       setPatientId(data.patient?.id)
       setAppointment(data.appointment)
-      setMessages(data.messages)
+      setMessages(
+        (data.messages ?? []).map((m) => ({
+          ...m,
+          sender: {
+            first_name: m.sender.first_name ?? '',
+            last_name: m.sender.last_name ?? '',
+          },
+        })),
+      )
+
       setShowIntakeAlert(!data.isIntakeComplete)
     })()
   }, [])

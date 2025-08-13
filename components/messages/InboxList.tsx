@@ -7,9 +7,11 @@ import { InboxMessageItem } from '@/lib/types/messages'
 export default function InboxList({
   threads,
   userId,
+  path = '/patient/messages',
 }: {
   threads: InboxMessageItem[]
   userId: number
+  path?: string
 }) {
   return (
     <div className="bg-background py-10">
@@ -34,7 +36,7 @@ export default function InboxList({
 
             return (
               <li key={thread.latest}>
-                <Link href={`/patient/messages/${thread.thread_key}`}>
+                <Link href={`${path}/${thread.thread_key}`}>
                   <div className="flex items-center gap-4 px-4 py-3 hover:bg-muted/60 transition cursor-pointer">
                     <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-medium">
                       {initial}
