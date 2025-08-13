@@ -210,9 +210,10 @@ export async function updateName(
       .eq('id', providerId)
 
     if (error) {
+      console.error(error.message)
       return {
         success: false,
-        message: error.message,
+        message: 'Failed to save name',
         error: error.name,
       }
     }
@@ -257,7 +258,7 @@ export async function updateEmail(
       console.error(error.message)
       return {
         success: false,
-        message: error.message,
+        message: 'Failed to save email',
         error: error.name,
       }
     }
@@ -304,7 +305,7 @@ export async function updatePhone(
       console.error(error.message)
       return {
         success: false,
-        message: error.message,
+        message: 'Failed to save phone',
         error: error.name,
       }
     }
@@ -322,54 +323,6 @@ export async function updatePhone(
     }
   }
 }
-
-// export async function updateAddress(
-//   providerId: number,
-//   settingValue: EditableValue,
-// ): Promise<ActionResponse> {
-//   try {
-//     if (!providerId || !settingValue) {
-//       throw new Error('Missing credentials')
-//     }
-
-//     if (!(typeof settingValue === 'object' && 'streetA' in settingValue)) {
-//       throw new Error('Invalid format for address')
-//     }
-
-//     const supabase = await createClient()
-//     const { error } = await supabase
-//       .from('address')
-//       .update({
-//         streeta: settingValue.streetA,
-//         streetb: settingValue.streetB,
-//         city: settingValue.city,
-//         address_state: settingValue.state,
-//         zip_code: settingValue.zipCode,
-//       })
-//       .eq('person_id', providerId)
-
-//     if (error) {
-//       return {
-//         success: false,
-//         message: error.message,
-//         error: error.name,
-//       }
-//     }
-
-//     return {
-//       success: true,
-//       message: 'Successfully updated address',
-//     }
-//   } catch (err) {
-//     console.error('Failed to updated address:', err)
-
-//     return {
-//       success: false,
-//       message: 'Failed to update address',
-//       error: 'Address update error',
-//     }
-//   }
-// }
 
 export async function createUser() {}
 
