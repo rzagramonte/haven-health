@@ -6,7 +6,7 @@ export type Appointment = {
     first_name: string | null
     last_name: string | null
   }
-} | null
+}
 
 export type Message = {
   id: number
@@ -23,11 +23,16 @@ export type EmergencyContact = {
   phone: string
 }
 
+export enum Sex {
+  male = 'Male',
+  female = 'Female',
+}
+
 export interface PatientRecord {
   id: number
   personId: number | null
   dateOfBirth: string | null
-  sex: string | null
+  sex: Sex
   insuranceFlag: boolean | null
   emergencyContact: EmergencyContact | null
 }
@@ -64,4 +69,11 @@ export interface MedicalVisit {
   prescriptions: string[] | null
   summaryNotes: string | null
   followUpNeeded: string | null
+}
+
+export interface IntakeFields {
+  dateOfBirth: string
+  sex: Sex
+  insurance: boolean
+  emergencyContact: EmergencyContact
 }

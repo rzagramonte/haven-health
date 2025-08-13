@@ -4,71 +4,9 @@ import { useEffect, useState } from 'react'
 
 import { createClient } from '@/lib/supabase/client'
 import { Appointment } from '@/lib/types/patient'
+import { splitAppointments } from '@/lib/utils/splitAppointments'
 
 import PatientAppointment from '../../../components/patient/appointments/PatientAppointments'
-
-const mockAppointments: Appointment[] = [
-  {
-    id: 1,
-    appointment_time: '2024-08-15T14:00:00Z',
-    appointment_type: 'Office Visit',
-    provider: { first_name: 'Dr. April', last_name: ' Bailey-Maletta, DPM' },
-  },
-  {
-    id: 2,
-    appointment_time: '2024-07-15T09:30:00-04:00',
-    appointment_type: 'Follow-up',
-    provider: { first_name: 'Dr. James', last_name: 'Anderson, MD' },
-  },
-  {
-    id: 3,
-    appointment_time: '2024-06-10T16:00:00+01:00',
-    appointment_type: 'Physical Exam',
-    provider: { first_name: 'Dr. Priya', last_name: 'Desai, DO' },
-  },
-  {
-    id: 4,
-    appointment_time: '2024-05-22T11:45:00Z',
-    appointment_type: 'Annual Checkup',
-    provider: { first_name: 'Dr. Luis', last_name: 'Ramirez, MD' },
-  },
-  {
-    id: 5,
-    appointment_time: '2024-04-09T13:15:00-07:00',
-    appointment_type: 'Specialist Visit',
-    provider: { first_name: 'Dr. Nina', last_name: 'Patel, Cardiologist' },
-  },
-  {
-    id: 6,
-    appointment_time: '2024-03-01T08:30:00Z',
-    appointment_type: 'Dermatology',
-    provider: { first_name: 'Dr. Mark', last_name: 'Holloway, MD' },
-  },
-  {
-    id: 7,
-    appointment_time: '2023-12-20T10:00:00-05:00',
-    appointment_type: 'Orthopedic',
-    provider: { first_name: 'Dr. Emily', last_name: 'Zhang, DO' },
-  },
-  {
-    id: 8,
-    appointment_time: '2023-11-05T15:45:00+02:00',
-    appointment_type: 'Pediatric',
-    provider: { first_name: 'Dr. John', last_name: 'Kim, MD' },
-  },
-  {
-    id: 9,
-    appointment_time: '2023-10-18T12:00:00Z',
-    appointment_type: 'Consultation',
-    provider: { first_name: 'Dr. Alice', last_name: 'Morgan, MD' },
-  },
-  {
-    id: 10,
-    appointment_time: '2023-09-25T18:20:00+09:00',
-    appointment_type: 'Telehealth',
-    provider: { first_name: 'Dr. Samuel', last_name: 'Green, MD' },
-  },
-]
 
 async function fetchAppointmentData(supabase: ReturnType<typeof createClient>) {
   // Fetch auth.user
@@ -125,8 +63,7 @@ async function fetchAppointmentData(supabase: ReturnType<typeof createClient>) {
 
 export default function AppointmentPage() {
   const router = useRouter()
-  const [appointments, setAppointments] =
-    useState<Appointment[]>(mockAppointments)
+  const [appointments, setAppointments] = useState<Appointment[]>([])
 
   useEffect(() => {
     const supabase = createClient()
@@ -142,17 +79,15 @@ export default function AppointmentPage() {
 
       const data = await fetchAppointmentData(supabase)
 
-      if (!data) {
-        return
+      if (data) {
+        setAppointments(data.appointments)
       }
-
-      setAppointments(
-        data.appointments.length ? data.appointments : mockAppointments,
-      )
     }
 
     fetchData()
   }, [router])
 
-  return <PatientAppointment appointments={appointments || []} />
+  const { upcoming, past } = splitAppointments(appointments)
+
+  return <PatientAppointment upcoming={upcoming} past={past} />
 }
