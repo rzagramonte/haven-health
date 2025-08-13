@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Command,
   CommandInput,
@@ -73,35 +73,37 @@ export default function PatientFinder() {
   }
 
   return (
-    <div className="flex justify-center py-8">
+    <div className="flex w-full ">
       <Card className="bg-card-2 w-full max-w-md">
         <CardHeader>
           <CardTitle className="font-bold">Find a Patient</CardTitle>
         </CardHeader>
-        <Command>
-          <CommandInput
-            placeholder="Start typing a name"
-            value={input}
-            onValueChange={handleInputChange}
-          />
-          <CommandList>
-            {results.length > 0 &&
-              results.map((patient) => (
-                <CommandItem
-                  className="cursor-pointer"
-                  key={patient.id}
-                  value={`${patient.first_name} ${patient.last_name}`}
-                >
-                  <Link href={`./patient/${patient.id}`}>
-                    {patient.first_name} {patient.last_name}
-                  </Link>
-                </CommandItem>
-              ))}
-            {hasSearched && results.length === 0 && (
-              <CommandItem>No patients found</CommandItem>
-            )}
-          </CommandList>
-        </Command>
+        <CardContent>
+          <Command>
+            <CommandInput
+              placeholder=""
+              value={input}
+              onValueChange={handleInputChange}
+            />
+            <CommandList>
+              {results.length > 0 &&
+                results.map((patient) => (
+                  <CommandItem
+                    className="cursor-pointer"
+                    key={patient.id}
+                    value={`${patient.first_name} ${patient.last_name}`}
+                  >
+                    <Link href={`./patient/${patient.id}`}>
+                      {patient.first_name} {patient.last_name}
+                    </Link>
+                  </CommandItem>
+                ))}
+              {hasSearched && results.length === 0 && (
+                <CommandItem>No patients found</CommandItem>
+              )}
+            </CommandList>
+          </Command>
+        </CardContent>
       </Card>
     </div>
   )

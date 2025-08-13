@@ -2,9 +2,8 @@
 
 import { useState } from 'react'
 
+import ProviderDashboard from '@/components/dashboard/ProviderDashboard'
 import { Appointment, Message } from '@/lib/types/patient'
-
-import ProviderDashboard from '../../../components/dashboard/ProviderDashboard'
 
 export default function DashboardPage() {
   const messagesData: Message[] = [
