@@ -33,6 +33,13 @@ const appointments = [
     time: '3:30 PM',
     status: 'cancelled',
   },
+  {
+    id: 5,
+    patient: 'Dingus Mingus',
+    type: 'Consultation',
+    time: '4:30 PM',
+    status: 'confirmed',
+  },
 ]
 
 const statusColors = {
