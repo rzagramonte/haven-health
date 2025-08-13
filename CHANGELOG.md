@@ -1,3 +1,25 @@
+## [1.29.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.28.1...v1.29.0) (2025-08-13)
+
+### Features
+
+* **components/loading:** added LoadSpinner ([6e41efb](https://github.com/ncharris93/dsd-east-coast-goats/commit/6e41efb172b5a2c18568ace607323077751aa2d9))
+* **patientintakeform:** added redirect on success ([1c3ddda](https://github.com/ncharris93/dsd-east-coast-goats/commit/1c3ddda5e219047d4b7baa1bb25a5d9553bd2b04))
+* **server/intake-form/queries and actions:** created addPatientIntake and addPatientAddress ([631cafb](https://github.com/ncharris93/dsd-east-coast-goats/commit/631cafb083db371a5472e5cf97b1e70e1204fa68))
+
+### Bug Fixes
+
+* custom message for update functions ([ab7f708](https://github.com/ncharris93/dsd-east-coast-goats/commit/ab7f708ded6373cd7580e46a2afd2cacf6b8318d))
+
+### Code Refactoring
+
+* **components/patient_intake/patientintakeform:** added new inputs and deleted old ([ecffc98](https://github.com/ncharris93/dsd-east-coast-goats/commit/ecffc98920589406bfb502e30a1b8c032f4ec1b0))
+* **patientintakeform:** made PatientIntakeForm responsive ([46c5053](https://github.com/ncharris93/dsd-east-coast-goats/commit/46c50535be37d00bb5d7ff00c54b336f1bf8424c))
+* **patientintakeform:** moved div and header inside patientintakeform ([c626dbf](https://github.com/ncharris93/dsd-east-coast-goats/commit/c626dbfa21e983417dd298a03b057cb750e3e20d))
+* **patientintakeform:** removed log ([396d456](https://github.com/ncharris93/dsd-east-coast-goats/commit/396d45670cb3c8220aa49da1aeeb01d0fcf69e4e))
+* **server/provider/actions:** server/provider/actions ([5f091e5](https://github.com/ncharris93/dsd-east-coast-goats/commit/5f091e574f7d950f7b81b86e9d83e7d66f9817d1))
+* **server/provider/queries:** copied update functions from provider profile to intake form ([309d695](https://github.com/ncharris93/dsd-east-coast-goats/commit/309d6956e86c93f13ee96dc5e18160473f589931))
+* **server:** reorganized update queries ([64da808](https://github.com/ncharris93/dsd-east-coast-goats/commit/64da808548e1687557d21562aff769dfd26b3075))
+
 ## [1.28.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.28.0...v1.28.1) (2025-08-13)
 
 ### Bug Fixes
