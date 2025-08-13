@@ -15,21 +15,20 @@ type PatientDashboardProps = {
 
 export default function PatientDashboard({
   patient,
-
   appointment,
   messages,
 }: PatientDashboardProps) {
   return (
-    <main className="container m-auto p-8">
-      <div className="container m-auto p-8">
+    <main className="container m-auto px-6 py-8 max-w-6xl">
+      <div className="container mb-6">
         <WelcomeMessage patient={patient} />
       </div>
-      <div className="container m-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="sm:items-center lg:space-y-15 space-y-6 lg:m-7 flex flex-col lg:items-end ">
+      <div className="container m-auto grid grid-cols-1 md:grid-cols-2  border border-l border-r-0 border-t-0 border-b-0 max-w-5xl gap-10 p-4">
+        <div className="sm:items-center space-y-10  flex flex-col lg:items-end max-w-3xl">
           <UpcomingAppointment appointment={appointment} />
           <Scheduler />
         </div>
-        <div className="sm:items-center lg:space-y-15 space-y-6 lg:m-7 flex flex-col lg:items-start  ">
+        <div className="sm:items-center lg:space-y-15 space-y-6  flex flex-col lg:items-start  ">
           <Messages messages={messages} />
         </div>
       </div>

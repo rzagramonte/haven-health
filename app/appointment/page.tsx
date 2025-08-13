@@ -20,10 +20,10 @@ export default async function AppointmentsPage() {
   }
 
   return (
-    <div>
-      <h2 className="p-2 text-lg font-semibold mb-4">Appointment Scheduler</h2>
+    <div className="container mx-auto px-6 py-8 max-w-6xl">
+      <h2 className="text-4xl font-semibold my-5">Appointment Scheduler</h2>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] p-6 gap-6">
-        <div className="bg-card text-card-foreground p-4 rounded-lg shadow-sm">
+        <div className="p-4 rounded-lg shadow-sm">
           <ProviderCard provider={provider} />
         </div>
         <BookingForm />
