@@ -1,8 +1,18 @@
+import { redirect } from 'next/navigation'
+
 import BookingForm from '@/components/appointment/BookingForm'
 import ProviderCard from '@/components/providers/ProviderCard'
+import { getCurrentUser } from '@/server/auth/queries'
 import { getProvider } from '@/server/provider/queries'
 
 export default async function AppointmentsPage() {
+  const user = await getCurrentUser()
+  console.log(user)
+
+  if (!user.data) {
+    redirect('/login')
+  }
+
   const provider = await getProvider()
 
   if (!provider) {
