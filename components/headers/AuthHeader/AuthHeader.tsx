@@ -18,7 +18,7 @@ export default function AuthHeader({ person }: AuthHeader) {
     person?.role == 'provider' ? ProviderNavLinks : PatientNavLinks
   return (
     <>
-      <header className="hidden md:flex justify-between px-6 py-3">
+      <header className="hidden md:flex justify-between items-center px-6 py-3">
         <Link href="/" aria-label="Go to Homepage">
           <Image
             src="/icons/logo.svg"

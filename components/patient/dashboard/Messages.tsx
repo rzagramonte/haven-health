@@ -25,16 +25,19 @@ export default function Messages({
   path = '/patient',
 }: MessagesProps) {
   const router = useRouter()
-  const handleClickMessage = () => {
-    router.push(`${path}/inbox`)
-  }
+  const handleClickMessage =
+    (id: number): React.MouseEventHandler<HTMLButtonElement> =>
+    () => {
+      router.push(`${path}/messages/${id}`)
+    }
+
   const handleClickMessages = () => {
     router.push(`${path}/inbox`)
   }
 
   const messageCounts = messages?.reduce(
     (acc, msg) => {
-      acc[msg.sender] = (acc[msg.sender] || 0) + 1
+      acc[msg.id] = (acc[msg.id] || 0) + 1
       return acc
     },
     {} as Record<string, number>,
@@ -53,16 +56,16 @@ export default function Messages({
           <CardContent className="">No messages found.</CardContent>
         ) : (
           messages.map((m, i) => {
-            if (seen.has(m.sender)) {
+            if (seen.has(m.sender.first_name)) {
               return null
             }
-            seen.add(m.sender)
+            seen.add(m.sender.first_name)
 
-            const count = messageCounts[m.sender]
+            const count = messageCounts[m.sender.first_name]
             const label =
               count > 1
-                ? `${count} new messages from ${m.sender}`
-                : `1 new message from ${m.sender}`
+                ? `${count} new messages from ${m.sender.first_name}`
+                : `1 new message from ${m.sender.first_name} ${m.sender.last_name}`
 
             return (
               <CardContent
@@ -75,7 +78,7 @@ export default function Messages({
                 <CardAction>
                   <Button
                     variant="link"
-                    onClick={handleClickMessage}
+                    onClick={handleClickMessage(m.id)}
                     className="text-accent"
                   >
                     View More
