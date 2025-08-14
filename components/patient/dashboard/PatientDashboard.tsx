@@ -28,7 +28,7 @@ export default function PatientDashboard({
           <UpcomingAppointment appointment={appointment} />
           <Scheduler />
         </div>
-        <div className="sm:items-center lg:space-y-15 space-y-6  flex flex-col lg:items-start  ">
+        <div className="sm:items-center lg:space-y-15 space-y-6  flex flex-col lg:items-start">
           <Messages messages={messages} />
         </div>
       </div>
