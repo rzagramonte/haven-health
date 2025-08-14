@@ -65,7 +65,7 @@ export default function UpcomingAppointment({
       <CardHeader>
         <CardTitle className="font-bold">Upcoming Appointment</CardTitle>
       </CardHeader>
-      {!appointment ? (
+      {!nextAppointment ? (
         <CardContent>No upcoming appointments found.</CardContent>
       ) : (
         <CardContent className="flex items-center gap-2">
