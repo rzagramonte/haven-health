@@ -1,6 +1,6 @@
 ALTER TABLE public.address ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Authenticated users can insert any address"
+CREATE POLICY "Authenticated users can insert/create any address"
 ON public.address
 FOR INSERT
 TO authenticated
