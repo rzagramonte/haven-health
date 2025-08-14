@@ -4,7 +4,7 @@ ALTER TABLE public.person ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Public users can insert on person records"
 ON public.person
 FOR INSERT
-TO anon
+TO public
 WITH CHECK (true);
 
 CREATE POLICY "Only authenticated users can select person records"
@@ -19,4 +19,3 @@ FOR UPDATE
 TO authenticated
 USING (true)
 WITH CHECK (true);
-
