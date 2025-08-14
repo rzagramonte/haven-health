@@ -51,7 +51,7 @@ const quickActions = [
 
 export function QuickActions() {
   return (
-    <Card className="bg-card border-border">
+    <Card className="bg-card-2 border-border">
       <CardHeader>
         <CardTitle className="text-card-foreground">Quick Actions</CardTitle>
         <p className="text-sm text-muted-foreground">
@@ -66,7 +66,7 @@ export function QuickActions() {
               <Button
                 key={index}
                 variant="outline"
-                className="h-auto p-4 flex flex-col items-start gap-2 hover:bg-accent/50 bg-transparent"
+                className="h-auto p-4 flex flex-col items-start gap-2 hover:bg-accent/50 bg-card-4"
               >
                 <Icon className={`w-5 h-5 ${action.color}`} />
                 <div className="text-left">
