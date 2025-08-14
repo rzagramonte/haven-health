@@ -96,8 +96,6 @@ export default function EditPatientProfile({
     })
   }
 
-  console.log('patient details:', patientDetails)
-
   return (
     <CardContent>
       <ul>
