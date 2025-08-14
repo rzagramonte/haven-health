@@ -10,7 +10,7 @@ USING (true);
 CREATE POLICY "Only authenticated users can insert on patient records"
 ON public.patient
 FOR INSERT
-TO authenticated
+TO public
 WITH CHECK (true);
 
 CREATE POLICY "Only authenticated users can update patient records"
