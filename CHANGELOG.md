@@ -1,3 +1,19 @@
+## [1.31.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.30.0...v1.31.0) (2025-08-14)
+
+### Features
+
+* enable basic RLS for messages/appointemnt_booking ([2ee2ada](https://github.com/ncharris93/dsd-east-coast-goats/commit/2ee2adaf5cc424dea5505fd40704a6a04354972f))
+
+### Bug Fixes
+
+* double quotes ([#108](https://github.com/ncharris93/dsd-east-coast-goats/issues/108)) ([4033d57](https://github.com/ncharris93/dsd-east-coast-goats/commit/4033d57c1f2d9e3252fd73503379e275ad1348c0))
+* policy names changed ([7066404](https://github.com/ncharris93/dsd-east-coast-goats/commit/706640407c5484f1bfa7350e01603df369d44d75))
+* save file ([711c862](https://github.com/ncharris93/dsd-east-coast-goats/commit/711c862deb722611a345d9efaecf477f7992164e))
+
+### Code Refactoring
+
+* simplified public and private policies ([1c7d41d](https://github.com/ncharris93/dsd-east-coast-goats/commit/1c7d41de63a362f5f1de39d7077f440b8a672f8b))
+
 ## [1.30.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.29.0...v1.30.0) (2025-08-13)
 
 ### Features
