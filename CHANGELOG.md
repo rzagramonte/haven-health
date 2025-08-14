@@ -1,3 +1,11 @@
+## [1.31.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.31.0...v1.31.1) (2025-08-14)
+
+### Bug Fixes
+
+* double quotes ([5094020](https://github.com/ncharris93/dsd-east-coast-goats/commit/50940207172777bec49714c1ba8c2a87adcb4d5b))
+* patient insert public ([41b247f](https://github.com/ncharris93/dsd-east-coast-goats/commit/41b247f3f6f5f4c65914fffc6312c9b0b7803f62))
+* remove logs ([74982bc](https://github.com/ncharris93/dsd-east-coast-goats/commit/74982bc92567d461fca0c5ca5ea1353d7c1a77c1))
+
 ## [1.31.0](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.30.0...v1.31.0) (2025-08-14)
 
 ### Features
