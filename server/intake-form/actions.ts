@@ -25,18 +25,11 @@ export async function createIntakeForm(
     ...formData.address,
   }
 
-  console.log('address:', address)
-  console.log('intake fields:', intakeFields)
-
   try {
     const fieldsResponse = await addIntakeFields(intakeFields, patientId)
 
-    console.log('fields response:', fieldsResponse)
-
     if (fieldsResponse.success) {
       const response = await addPatientAddress(address, patientId)
-
-      console.log('fields response:', response)
 
       return response
     } else {
