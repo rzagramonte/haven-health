@@ -209,7 +209,7 @@ export default function BookingForm() {
                       className={`border border-muted p-2 rounded transition ${
                         time === appointment_time
                           ? 'bg-primary text-primary-foreground'
-                          : 'hover:bg-accent'
+                          : 'hover:bg-accent hover:text-secondary-foreground'
                       }`}
                     >
                       {time}
