@@ -25,7 +25,7 @@ const menuItems = [
     href: '/dashboard',
     active: true,
   },
-  { icon: Users, label: 'Patients', href: '/patients' },
+  { icon: Users, label: 'Search', href: '/patients' },
   { icon: Calendar, label: 'Appointments', href: '/appointments' },
   { icon: FileText, label: 'Medical Records', href: '/records' },
   { icon: Pill, label: 'Prescriptions', href: '/prescriptions' },
@@ -52,9 +52,7 @@ export function Sidebar() {
             <LayoutDashboard className="w-4 h-4 text-sidebar-primary-foreground" />
           </div>
           {!collapsed && (
-            <span className="font-semibold text-sidebar-foreground">
-              Admin Panel
-            </span>
+            <span className="font-semibold text-sidebar-foreground">Home</span>
           )}
         </div>
 
