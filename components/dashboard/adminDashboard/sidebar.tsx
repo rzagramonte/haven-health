@@ -42,7 +42,7 @@ export function Sidebar() {
   return (
     <div
       className={cn(
-        'bg-sidebar border-r border-sidebar-border transition-all duration-300',
+        'mr-6 bg-sidebar border-r border-sidebar-border transition-all duration-300',
         collapsed ? 'w-16' : 'w-64',
       )}
     >

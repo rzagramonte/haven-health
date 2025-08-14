@@ -35,7 +35,7 @@ export default function AppointmentCard({
       const year = date.getFullYear()
 
       return (
-        <Card key={i} className="w-full max-w-md mx-auto bg-card-2">
+        <Card key={i} className="w-full max-w-md bg-card-2">
           <CardContent className="p-0">
             <div className="flex items-start gap-4 p-4 pb-3">
               <div className="flex flex-col items-center min-w-0 text-secondary">

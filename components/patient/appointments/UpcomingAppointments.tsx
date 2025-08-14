@@ -85,21 +85,21 @@ export default function UpcomingAppointments({
   }
 
   return (
-    <Card className="bg-card-1 w-full">
+    <Card className="bg-card-1 w-3/4  min-small:max-w-md xl:w-full">
       <CardHeader>
-        <CardTitle className="text-2xl font-semibold">
+        <CardTitle className="font-bold">
           Upcoming {appointments.length == 1 ? 'Appointment' : 'Appointments'}
         </CardTitle>
       </CardHeader>
       {!appointments.length ? (
         <CardContent>No upcoming appointments found.</CardContent>
       ) : (
-        <CardContent className="mb-4 md:flex">
+        <CardContent className="mb-4 lg:flex">
           <Carousel
             setApi={setApi}
             plugins={[Autoplay({ delay: 4000 })]}
             opts={{ align: 'start', loop: true }}
-            className="md:w-1/2"
+            className="lg:w-1/2"
           >
             <CarouselContent>
               {appointments.map((a) => {
@@ -123,7 +123,7 @@ export default function UpcomingAppointments({
               })}
             </CarouselContent>
           </Carousel>
-          <CardFooter className="gap-2 md:w-1/2">
+          <CardFooter className="gap-2 lg:w-1/2">
             <Button
               onClick={onReschedule}
               className="w-1/2"
