@@ -1,42 +1,20 @@
 ALTER TABLE public.address ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Users can insert their own address record"
+CREATE POLICY "Authenticated users can insert/create any address"
 ON public.address
 FOR INSERT
 TO authenticated
-WITH CHECK (
-    person_id IN (SELECT id FROM public.person WHERE person_uuid = auth.uid())
-);
+WITH CHECK (true);
 
-CREATE POLICY "Authenticated users only can see their own address record"
-on public.address
+CREATE POLICY "Authenticated users can see all addresses"
+ON public.address
 FOR SELECT
 TO authenticated
-USING ( 
-    person_id IN (SELECT id FROM public.person WHERE person_uuid = auth.uid())
-);
+USING (true);
 
-CREATE POLICY "Users can only update their own addresses"
+CREATE POLICY "Authenticated users can update any address"
 ON public.address
 FOR UPDATE
 TO authenticated
-USING (
-  person_id IN (SELECT id FROM public.person WHERE person_uuid = auth.uid())
-)
-WITH CHECK (
-  person_id IN (SELECT id FROM public.person WHERE person_uuid = auth.uid())
-);
-
-CREATE POLICY "providers and admins can view all the addresses"
-on public.address
-FOR SELECT
-TO authenticated
-USING (
-    EXISTS (
-        SELECT 1
-        FROM public.person as p
-        WHERE p.person_uuid = auth.uid()
-        AND p.role IN ('provider','admin')
-    )
-);
-
+USING (true)
+WITH CHECK (true);
