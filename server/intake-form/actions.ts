@@ -10,8 +10,6 @@ export async function createIntakeForm(
   formData: IntakeFormData,
   patientId: number,
 ) {
-  console.log('form data:', formData)
-
   const formattedDate = formData.dob.toISOString().split('T')[0]
 
   const intakeFields: IntakeFields = {
