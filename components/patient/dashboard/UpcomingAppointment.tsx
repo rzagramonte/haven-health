@@ -23,7 +23,7 @@ export default function UpcomingAppointment({
 }: UpcomingAppointmentProps) {
   const router = useRouter()
   const handleClick = () => {
-    router.push('/provider/schedule')
+    router.push('/patient/appointments')
   }
 
   let localDate = ''
@@ -65,7 +65,7 @@ export default function UpcomingAppointment({
       <CardHeader>
         <CardTitle className="font-bold">Upcoming Appointment</CardTitle>
       </CardHeader>
-      {!appointment ? (
+      {!nextAppointment ? (
         <CardContent>No upcoming appointments found.</CardContent>
       ) : (
         <CardContent className="flex items-center gap-2">
