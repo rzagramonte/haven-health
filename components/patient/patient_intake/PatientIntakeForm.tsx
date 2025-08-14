@@ -46,6 +46,7 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
         state: '',
         zipCode: '',
       },
+      dob: new Date(),
       sex: '',
       insurance: '',
       emergencyContact: {
