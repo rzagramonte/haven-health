@@ -283,7 +283,8 @@ export default function PatientIntakeForm({ patientId }: PatientIntakeProps) {
             />
           </div>
           <Button
-            className="bg-secondary w-full max-w-[350px] mb-8 cursor-pointer"
+            className="w-full max-w-[350px] mb-8"
+            variant="secondary"
             type="submit"
           >
             {isPending ? <LoadSpinner /> : 'Submit'}
