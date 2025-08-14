@@ -25,7 +25,7 @@ const recentPatients = [
 
 export function RecentPatients() {
   return (
-    <Card className="bg-card border-border">
+    <Card className="bg-card-2 border-border">
       <CardHeader>
         <CardTitle className="text-card-foreground">Recent Patients</CardTitle>
         <p className="text-sm text-muted-foreground">
@@ -37,7 +37,7 @@ export function RecentPatients() {
           {recentPatients.map((patient, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-3 rounded-lg border border-border bg-muted/30"
+              className="flex items-center justify-between p-3 rounded-lg border border-border bg-card-4"
             >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
