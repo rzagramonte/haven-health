@@ -27,9 +27,7 @@ export async function createIntakeForm(
     const fieldsResponse = await addIntakeFields(intakeFields, patientId)
 
     if (fieldsResponse.success) {
-      const response = await addPatientAddress(address, patientId)
-
-      return response
+      return await addPatientAddress(address, patientId)
     } else {
       return fieldsResponse
     }
