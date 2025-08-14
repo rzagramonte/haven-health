@@ -10,6 +10,7 @@ const stats = [
     subtitle: '3 pending confirmations',
     icon: Calendar,
     color: 'text-chart-1',
+    bg_color: 'bg-card-2',
   },
   {
     title: 'Patient Average Wait Time',
@@ -17,6 +18,7 @@ const stats = [
     subtitle: '+9% from last month',
     icon: Clock,
     color: 'text-chart-2',
+    bg_color: 'bg-card-2',
   },
   {
     title: 'Patient Satisfaction',
@@ -24,6 +26,7 @@ const stats = [
     subtitle: '+0.2 from last quarter',
     icon: Star,
     color: 'text-chart-3',
+    bg_color: 'bg-card-2',
   },
 ]
 
@@ -33,7 +36,7 @@ export function StatsCards() {
       {stats.map((stat, index) => {
         const Icon = stat.icon
         return (
-          <Card key={index} className="bg-card border-border">
+          <Card key={index} className={cn('border-border', stat.bg_color)}>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>

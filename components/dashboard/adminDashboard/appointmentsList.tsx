@@ -50,7 +50,7 @@ const statusColors = {
 
 export function AppointmentsList() {
   return (
-    <Card className="bg-card border-border">
+    <Card className="bg-card-2 border-border">
       <CardHeader>
         <CardTitle className="text-card-foreground">
           {"Today's Appointments"}
@@ -64,7 +64,7 @@ export function AppointmentsList() {
           {appointments.map((appointment) => (
             <div
               key={appointment.id}
-              className="flex items-center justify-between p-4 rounded-lg border border-border bg-muted/30"
+              className="flex items-center justify-between p-4 rounded-lg border border-border bg-card-4"
             >
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
