@@ -10,6 +10,8 @@ export async function createIntakeForm(
   formData: IntakeFormData,
   patientId: number,
 ) {
+  console.log('form data:', formData)
+
   const formattedDate = formData.dob.toISOString().split('T')[0]
 
   const intakeFields: IntakeFields = {
@@ -23,11 +25,20 @@ export async function createIntakeForm(
     ...formData.address,
   }
 
+  console.log('address:', address)
+  console.log('intake fields:', intakeFields)
+
   try {
     const fieldsResponse = await addIntakeFields(intakeFields, patientId)
 
+    console.log('fields response:', fieldsResponse)
+
     if (fieldsResponse.success) {
-      return await addPatientAddress(address, patientId)
+      const response = await addPatientAddress(address, patientId)
+
+      console.log('fields response:', response)
+
+      return response
     } else {
       return fieldsResponse
     }
