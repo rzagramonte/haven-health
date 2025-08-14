@@ -1,3 +1,12 @@
+## [1.31.2](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.31.1...v1.31.2) (2025-08-14)
+
+### Bug Fixes
+
+* disable rls ([2cfdbde](https://github.com/ncharris93/dsd-east-coast-goats/commit/2cfdbde0b4d93df6eca278120a17242e71758f5f))
+* disable RLS ([a6252fb](https://github.com/ncharris93/dsd-east-coast-goats/commit/a6252fb45dfe433b242a8615985b3c6d70d384fe))
+* remove logs ([e4c80b4](https://github.com/ncharris93/dsd-east-coast-goats/commit/e4c80b472d7ade44b642428da3a4fa61518cd2ae))
+* response ([efb54d0](https://github.com/ncharris93/dsd-east-coast-goats/commit/efb54d06920c251c7dd09b7cd14528852b0a0b25))
+
 ## [1.31.1](https://github.com/ncharris93/dsd-east-coast-goats/compare/v1.31.0...v1.31.1) (2025-08-14)
 
 ### Bug Fixes
