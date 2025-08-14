@@ -1,3 +1,7 @@
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
+
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -25,6 +29,14 @@ export default function SchedulePage() {
   return (
     <main className="my-32">
       <Tabs defaultValue="daily" className="place-self-center min-w-3xl">
+        <div>
+          <Button asChild variant="default" className="mb-16">
+            <Link href="/provider/dashboard" className="text-sm">
+              <ArrowLeft className="size-4" />
+              Back to Dashboard
+            </Link>
+          </Button>
+        </div>
         <TabsList>
           <TabsTrigger value="daily">Daily</TabsTrigger>
           <TabsTrigger value="weekly">Weekly</TabsTrigger>

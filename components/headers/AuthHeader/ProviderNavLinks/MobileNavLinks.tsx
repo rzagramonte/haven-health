@@ -4,13 +4,13 @@ export default function LandingNavLinks() {
   return (
     <nav>
       <ul className="flex flex-col items-center gap-y-2 mt-4">
-        <li>
+        <li className="hover:text-foreground/90">
           <Link href="/provider/dashboard">Dashboard</Link>
         </li>
-        <li>
+        <li className="hover:text-foreground/90">
           <Link href="/provider/schedule">Calendar</Link>
         </li>
-        <li>
+        <li className="hover:text-foreground/90">
           <Link href="/provider/patient-search">Patients</Link>
         </li>
       </ul>

@@ -10,7 +10,7 @@ import NavLinks from './navlinks/LandingNavLinks'
 export default function PublicHeader() {
   return (
     <>
-      <header className="hidden lg:flex bg-background justify-between px-6 py-3">
+      <header className="hidden lg:flex bg-background justify-between items-center px-6 py-3 border border-b">
         <Link href="/" aria-label="Go to Homepage">
           <Image
             src="/icons/logo.svg"
@@ -33,15 +33,10 @@ export default function PublicHeader() {
           <div className="flex gap-x-5">
             <ModeToggle />
             <Link href="/login">
-              <Button className="cursor-pointer" variant="default">
-                Log In
-              </Button>
+              <Button variant="default">Log In</Button>
             </Link>
             <Link href="/signup">
-              <Button
-                className="cursor-pointer border border-primary"
-                variant="outline"
-              >
+              <Button className="border border-primary" variant="outline">
                 Register
               </Button>
             </Link>

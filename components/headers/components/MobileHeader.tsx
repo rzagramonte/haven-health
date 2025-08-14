@@ -29,7 +29,7 @@ const MobileHeader = ({ person }: MobileHeaderProps) => {
 
   return (
     <>
-      <header className="flex justify-between px-6 py-3">
+      <header className="flex justify-between items-center px-6 py-3 border border-b">
         <Link href="/" aria-label="Go to Homepage">
           <Image
             src="/icons/logo.svg"

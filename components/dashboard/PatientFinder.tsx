@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Command,
   CommandInput,
@@ -73,14 +73,14 @@ export default function PatientFinder() {
   }
 
   return (
-    <div className="flex justify-center py-8">
-      <Card className="bg-card-2 w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="font-bold">Find a Patient</CardTitle>
-        </CardHeader>
+    <Card className="bg-card-2 w-full max-w-md">
+      <CardHeader>
+        <CardTitle className="font-bold">Find a Patient</CardTitle>
+      </CardHeader>
+      <CardContent className="flex items-center gap-2">
         <Command>
           <CommandInput
-            placeholder="Start typing a name"
+            placeholder=""
             value={input}
             onValueChange={handleInputChange}
           />
@@ -102,7 +102,7 @@ export default function PatientFinder() {
             )}
           </CommandList>
         </Command>
-      </Card>
-    </div>
+      </CardContent>
+    </Card>
   )
 }

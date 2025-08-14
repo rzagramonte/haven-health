@@ -4,16 +4,16 @@ export default function LandingNavLinks() {
   return (
     <nav>
       <ul className="flex flex-row gap-x-6 list-none">
-        <li>
+        <li className="hover:text-foreground/90">
           <Link href="/">Home</Link>
         </li>
-        <li>
+        <li className="hover:text-foreground/90">
           <Link href="/#services">Services</Link>
         </li>
-        <li>
+        <li className="hover:text-foreground/90">
           <Link href="/#about">About</Link>
         </li>
-        <li>
+        <li className="hover:text-foreground/90">
           <Link href="/#contact">Contact</Link>
         </li>
       </ul>
