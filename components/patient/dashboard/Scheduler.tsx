@@ -29,7 +29,7 @@ export default function Scheduler() {
         </CardDescription>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Button onClick={handleClick} className="bg-secondary w-full">
+        <Button onClick={handleClick} variant="secondary" className="w-full">
           <CalendarPlus />
           Book Now
         </Button>

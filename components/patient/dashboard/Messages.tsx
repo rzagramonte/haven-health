@@ -93,7 +93,8 @@ export default function Messages({
       <CardFooter className="flex-col gap-2">
         <Button
           onClick={handleClickMessages}
-          className="w-full bg-secondary text-secondary-foreground"
+          className="w-full"
+          variant="secondary"
         >
           <MessagesSquare />
           View All Messages
