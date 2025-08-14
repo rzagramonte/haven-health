@@ -73,38 +73,36 @@ export default function PatientFinder() {
   }
 
   return (
-    <div className="flex w-full ">
-      <Card className="bg-card-2 w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="font-bold">Find a Patient</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Command>
-            <CommandInput
-              placeholder=""
-              value={input}
-              onValueChange={handleInputChange}
-            />
-            <CommandList>
-              {results.length > 0 &&
-                results.map((patient) => (
-                  <CommandItem
-                    className="cursor-pointer"
-                    key={patient.id}
-                    value={`${patient.first_name} ${patient.last_name}`}
-                  >
-                    <Link href={`./patient/${patient.id}`}>
-                      {patient.first_name} {patient.last_name}
-                    </Link>
-                  </CommandItem>
-                ))}
-              {hasSearched && results.length === 0 && (
-                <CommandItem>No patients found</CommandItem>
-              )}
-            </CommandList>
-          </Command>
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="bg-card-2 w-full max-w-md">
+      <CardHeader>
+        <CardTitle className="font-bold">Find a Patient</CardTitle>
+      </CardHeader>
+      <CardContent className="flex items-center gap-2">
+        <Command>
+          <CommandInput
+            placeholder=""
+            value={input}
+            onValueChange={handleInputChange}
+          />
+          <CommandList>
+            {results.length > 0 &&
+              results.map((patient) => (
+                <CommandItem
+                  className="cursor-pointer"
+                  key={patient.id}
+                  value={`${patient.first_name} ${patient.last_name}`}
+                >
+                  <Link href={`./patient/${patient.id}`}>
+                    {patient.first_name} {patient.last_name}
+                  </Link>
+                </CommandItem>
+              ))}
+            {hasSearched && results.length === 0 && (
+              <CommandItem>No patients found</CommandItem>
+            )}
+          </CommandList>
+        </Command>
+      </CardContent>
+    </Card>
   )
 }
