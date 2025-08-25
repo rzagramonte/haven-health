@@ -1,6 +1,6 @@
 # 🏥 Community Health Clinic
 
-A full-stack demo application for a fictional community health clinic, built with [Next.js](https://nextjs.org), [Supabase](https://supabase.com), [Tailwind CSS](https://tailwindcss.com), and [shadcn/ui](https://ui.shadcn.com). This project showcases developer skills across frontend, backend, and infrastructure, and is designed as a polished portfolio piece for hiring teams.
+A full-stack demo application for a community health clinic, built with [Next.js](https://nextjs.org), [Supabase](https://supabase.com), [Tailwind CSS](https://tailwindcss.com), and [shadcn/ui](https://ui.shadcn.com). This project showcases skills across frontend, backend, and infrastructure.
 
 ---
 
